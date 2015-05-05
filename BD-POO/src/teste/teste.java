@@ -6,6 +6,7 @@ public class teste {
 		int a;
 		int b,c,d;
 		int f,g;
+		System.out.println("PEPEU");
 	}
 	
 	

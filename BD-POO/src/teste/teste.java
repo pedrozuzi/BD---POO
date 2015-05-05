@@ -7,6 +7,7 @@ public class teste {
 		int b,c,d;
 		int f,g;
 		System.out.println("PEPEU");
+		System.out.println("DEUS");
 	}
 	
 	

@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Criado pelo Prof. M.Sc. Leandro Colevati dos Santos
- */
+
 public class Conexao {
 	
 	public static void main(String[] args) {
@@ -27,7 +25,7 @@ public class Conexao {
 			
 			int soma = 0;
 			
-			while ( rs.next()){
+			while ( rs.next() ){
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
 				soma ++;

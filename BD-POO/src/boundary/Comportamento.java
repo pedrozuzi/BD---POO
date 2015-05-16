@@ -6,13 +6,15 @@ public enum Comportamento {
 	
 	private final String COMPORTAMENTO;
 
-	private Comportamento(String nome) {
-		this.COMPORTAMENTO = nome;
+	private Comportamento(String comportamento) {
+		this.COMPORTAMENTO = comportamento;
 	}
 
-	public String getNome() {
+	public String getCOMPORTAMENTO() {
 		return COMPORTAMENTO;
 	}
+
+
 
 	
 

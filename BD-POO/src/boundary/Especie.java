@@ -6,13 +6,15 @@ public enum Especie {
 	
 	private final String ESPECIE;
 
-	private Especie(String nome) {
-		this.ESPECIE = nome;
+	private Especie(String especie) {
+		this.ESPECIE = especie;
 	}
 
-	public String getNome() {
+	public String getESPECIE() {
 		return ESPECIE;
 	}
+
+
 	
 	
 

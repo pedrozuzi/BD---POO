@@ -10,9 +10,11 @@ public enum Status {
 		this.STATUS = status;
 	}
 
-	public String getStatus() {
+	public String getSTATUS() {
 		return STATUS;
 	}
+
+
 	
 	
 

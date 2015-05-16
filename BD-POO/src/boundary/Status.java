@@ -4,14 +4,14 @@ public enum Status {
 	
 	ACEITO("Aceito"), NAO_ACEITO("Não Aceito");
 	
-	private final String status;
+	private final String STATUS;
 
 	private Status(String status) {
-		this.status = status;
+		this.STATUS = status;
 	}
 
 	public String getStatus() {
-		return status;
+		return STATUS;
 	}
 	
 	

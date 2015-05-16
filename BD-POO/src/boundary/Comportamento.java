@@ -4,14 +4,14 @@ public enum Comportamento {
 	
 	AGRESSIVO("Agressivo"), NORMAL("Normal");
 	
-	private final String comportamento;
+	private final String COMPORTAMENTO;
 
 	private Comportamento(String nome) {
-		this.comportamento = nome;
+		this.COMPORTAMENTO = nome;
 	}
 
 	public String getNome() {
-		return comportamento;
+		return COMPORTAMENTO;
 	}
 
 	

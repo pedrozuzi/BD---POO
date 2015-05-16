@@ -4,14 +4,14 @@ public enum Especie {
 	
 	CACHORRO("Cachorro"), GATO("Gato");
 	
-	private final String especie;
+	private final String ESPECIE;
 
 	private Especie(String nome) {
-		this.especie = nome;
+		this.ESPECIE = nome;
 	}
 
 	public String getNome() {
-		return especie;
+		return ESPECIE;
 	}
 	
 	

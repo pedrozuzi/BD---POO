@@ -4,7 +4,7 @@ use trabalho
 
 create table cliente(
 id int identity(1,1) not null,
-nome varchar(50)not null,
+nome varchar(100)not null,
 logradouro varchar(50) not null,
 numero int not null,
 bairro varchar(50) not null
@@ -30,7 +30,7 @@ create table animal(
 id int identity(1,1) not null,
 id_cliente int not null,
 rga int not null,
-nome varchar(50) not null,
+nome varchar(100) not null,
 raca varchar(50) not null,
 especie varchar(50) not null,
 cor varchar(50) not null
@@ -45,7 +45,7 @@ foreign key(id_cliente) references cliente(id))
 
 create table fornecedor(
 id int identity(1,1) not null,
-nome varchar(50) not null 
+nome varchar(100) not null 
 primary key(id))
 
 create table lote(

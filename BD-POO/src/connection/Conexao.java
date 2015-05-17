@@ -15,24 +15,24 @@ public class Conexao {
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
 			Connection con = DriverManager
 					.getConnection(
-							"jdbc:jtds:sqlserver://localhost:1433;DatabaseName=pessoas",
+							"jdbc:jtds:sqlserver://localhost:1433;DatabaseName=trabalho",
 							"sa", "senha");
 			System.out.println("Conexao ok");
 			
-			String qry = "SELECT * FROM pessoa";
-			PreparedStatement stm = con.prepareStatement( qry );
-			ResultSet rs = stm.executeQuery();
-			
-			int soma = 0;
-			
-			while ( rs.next() ){
-				int id = rs.getInt("id");
-				String nome = rs.getString("nome");
-				soma ++;
-				System.out.println(id + " -- " + nome);
-			}
-			
-			System.out.println("Retornou " + soma + " registro(s)");
+//			String qry = "SELECT * FROM pessoa";
+//			PreparedStatement stm = con.prepareStatement( qry );
+//			ResultSet rs = stm.executeQuery();
+//			
+//			int soma = 0;
+//			
+//			while ( rs.next() ){
+//				int id = rs.getInt("id");
+//				String nome = rs.getString("nome");
+//				soma ++;
+//				System.out.println(id + " -- " + nome);
+//			}
+//			
+//			System.out.println("Retornou " + soma + " registro(s)");
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

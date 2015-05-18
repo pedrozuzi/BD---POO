@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class FrmProduto {
 
@@ -18,7 +20,12 @@ public class FrmProduto {
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
-		janela.setSize(400,281);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
+		lblNewLabel.setBounds(0, 0, 556, 323);
+		panPrincipal.add(lblNewLabel);
+		janela.setSize(572,362);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -28,5 +35,4 @@ public class FrmProduto {
 
 		new FrmProduto();
 	}
-
 }

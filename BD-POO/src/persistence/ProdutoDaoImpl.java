@@ -21,35 +21,7 @@ public class ProdutoDaoImpl implements ProdutoDao {
 	
 	
 
-	@Override
-	public void insereLote(Lote lot) throws SQLException {
-		
-		
-	}
 
-	@Override
-	public void atualizaLote(Lote lot) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void excluiLote(Lote lot) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Lote consultaLote(Lote lot) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Lote> listaLote() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 //
 	@Override
 	public void insereProduto(Produto prod) throws SQLException {
@@ -77,6 +49,35 @@ public class ProdutoDaoImpl implements ProdutoDao {
 
 	@Override
 	public List<Produto> listaProduto() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void insereLote(Lote lot) throws SQLException {
+
+	}
+
+	@Override
+	public void atualizaLote(Lote lot) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluiLote(Lote lot) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Lote consultaLote(Lote lot) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Lote> listaLote() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

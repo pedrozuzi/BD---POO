@@ -14,11 +14,11 @@ public class FrmProduto {
 	public FrmProduto(){
 		
 		JPanel panPrincipal = new JPanel();
-		panPrincipal.setLayout(new BorderLayout());
 		JPanel panForm = new JPanel();
 		
 		janela.setContentPane( panPrincipal);
-		janela.setSize(300,200);
+		panPrincipal.setLayout(null);
+		janela.setSize(400,281);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

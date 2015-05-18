@@ -1,6 +1,6 @@
-create database trabalho
+create database ludpet
 
-use trabalho
+use ludpet
 
 create table cliente(
 id int identity(1,1) not null,

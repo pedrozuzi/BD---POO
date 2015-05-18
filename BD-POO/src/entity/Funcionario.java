@@ -5,7 +5,21 @@ public class Funcionario {
 	private long id;
 	private String nome;
 	private int cpf;
+	private double salario;
+	private String cargo;
 	
+	public double getSalario() {
+		return salario;
+	}
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 	public long getId() {
 		return id;
 	}

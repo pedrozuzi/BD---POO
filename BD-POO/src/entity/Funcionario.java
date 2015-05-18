@@ -4,7 +4,7 @@ public class Funcionario {
 	
 	private long id;
 	private String nome;
-	private int cpf;
+	private long cpf;
 	private double salario;
 	private String cargo;
 	
@@ -32,7 +32,7 @@ public class Funcionario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getCpf() {
+	public long getCpf() {
 		return cpf;
 	}
 	public void setCpf(int cpf) {

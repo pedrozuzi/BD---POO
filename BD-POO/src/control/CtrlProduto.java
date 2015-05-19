@@ -1,5 +1,5 @@
 package control;
 
-public class CtrlProduto {
+public interface CtrlProduto {
 
 }

@@ -12,9 +12,11 @@ primary key(id) )
 
 create table funcionario(
 id int identity(1,1) not null,
+cpf char(11) not null,
 nome varchar(50) not null,
-cpf int not null
-primary key (id),
+cargo varchar(50) not null,
+salario decimal (7,2) not null
+primary key (id)
 )
 
 create table venda(

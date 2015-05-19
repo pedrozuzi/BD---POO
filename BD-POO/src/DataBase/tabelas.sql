@@ -57,6 +57,8 @@ primary key(id))
 
 create table produto(
 id int identity(1,1) not null,
+nome varchar(20) not null,
+descricao varchar(30),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,

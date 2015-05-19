@@ -5,6 +5,6 @@ package control;
  * @author Hury
  *
  */
-public interface CtrlProduto {
+public class CtrlTableModelProduto {
 
 }

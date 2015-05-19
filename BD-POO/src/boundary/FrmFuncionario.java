@@ -1,9 +1,11 @@
 package boundary;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.Font;
 
 public class FrmFuncionario {
@@ -77,6 +79,11 @@ public class FrmFuncionario {
 		txtSalario.setBounds(74, 196, 107, 27);
 		panPrincipal.add(txtSalario);  /////////////
 		txtSalario.setColumns(10);
+		
+		JLabel lblBackGround = new JLabel();
+		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
+		lblBackGround.setBounds(0, 0, 450, 341);
+		panPrincipal.add(lblBackGround); ///////////
 		
 		janela.setSize(450,341);
 		janela.setVisible(true);

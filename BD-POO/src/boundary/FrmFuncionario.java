@@ -1,6 +1,7 @@
 package boundary;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,11 +17,14 @@ public class FrmFuncionario {
 	private JTextField txtNome;
 	private JTextField txtCargo;
 	private JTextField txtSalario;
+	private JButton btnSalvar;
+	private JButton btnCancelar;
 
 	public FrmFuncionario() {
 		
 		JPanel panPrincipal = new JPanel();
 		JPanel panForm = new JPanel();
+		janela.setResizable(false);
 		
 		janela.setContentPane( panPrincipal );
 		panPrincipal.setLayout(null);
@@ -80,9 +84,21 @@ public class FrmFuncionario {
 		panPrincipal.add(txtSalario);  /////////////
 		txtSalario.setColumns(10);
 		
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnSalvar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
+		btnSalvar.setBounds(280, 258, 114, 34);
+		panPrincipal.add(btnSalvar);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnCancelar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniX.png")));
+		btnCancelar.setBounds(35, 258, 114, 34);
+		panPrincipal.add(btnCancelar);
+		
 		JLabel lblBackGround = new JLabel();
 		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
-		lblBackGround.setBounds(0, 0, 450, 341);
+		lblBackGround.setBounds(0, 0, 444, 313);
 		panPrincipal.add(lblBackGround); ///////////
 		
 		janela.setSize(450,341);

@@ -4,6 +4,6 @@ package persistence;
  * @author Hury
  *
  */
-public interface ProdutoDao {
+public interface ProdutoDao extends LoteDao {
 
 }

@@ -5,8 +5,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
+import control.CtrlLogin;
+import entity.Login;
+
 
 /**
  * 
@@ -22,9 +28,10 @@ public class FrmLogin {
 	private JLabel lblUsuario;
 	private JLabel lblSenha;
 	private JButton btnLogar;
+	private CtrlLogin controlLogin;
 
 	public FrmLogin(){
-		
+		controlLogin = new CtrlLogin();
 		JPanel panPrincipal = new JPanel();
 		JPanel panForm = new JPanel();
 		
@@ -61,7 +68,10 @@ public class FrmLogin {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		btnLogar.addActionListener(e -> {
-			
+			Login l = new Login();
+			l.setUsuario(txtUsuario.getText());
+			l.setSenha(pwdSenha.getPassword());
+			controlLogin.realizarLogin(l);
 		});
 	}
 	

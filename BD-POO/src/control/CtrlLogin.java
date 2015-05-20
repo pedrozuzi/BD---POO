@@ -1,8 +1,10 @@
 package control;
 
+import entity.Login;
+
 public class CtrlLogin {
 	
-	public void realizarLogin(String usuario, String senha) {
+	public void realizarLogin(Login l) {
 		//TODO
 	}
 

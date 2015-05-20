@@ -16,7 +16,7 @@ import javax.swing.JButton;
 
 public class FrmLogin {
 
-	private JFrame janela = new JFrame("Produto");
+	private JFrame janela = new JFrame("Realizar Login");
 	private JTextField txtUsuario;
 	private JPasswordField pwdSenha;
 	private JLabel lblUsuario;
@@ -59,6 +59,10 @@ public class FrmLogin {
 		janela.setSize(400,281);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		btnLogar.addActionListener(e -> {
+			
+		});
 	}
 	
 	

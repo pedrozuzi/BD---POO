@@ -18,22 +18,6 @@ cargo varchar(50) not null,
 salario decimal (7,2) not null
 primary key (id))
 
-alter table funcionario
-drop column cpf
-
-alter table funcionario
-add cpf varchar(11) cast(check(LEN(cpf) as   
-
-select * from funcionario
-
-insert into funcionario  values(
-'1234567891', 'Pedro', 'Analista', 5500.00
-)
-
-insert into funcionario  values(
-'1234567891011', 'Pedro', 'Analista', 5500.00
-)
-
 create table venda(
 id int identity not null,
 id_cliente int not null,

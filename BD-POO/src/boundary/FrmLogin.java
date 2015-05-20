@@ -13,13 +13,6 @@ import javax.swing.JButton;
 import control.CtrlLogin;
 import entity.Login;
 
-
-/**
- * 
- * @author Hury
- *
- */
-
 public class FrmLogin {
 
 	private JFrame janela = new JFrame("Realizar Login");

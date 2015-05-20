@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class ConnectionImpl implements GenericConnection {
 	
 	private Connection con;
@@ -19,11 +21,14 @@ public class ConnectionImpl implements GenericConnection {
 							"sa", "senha");
 			System.out.println("Conexao ok");
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
 		}
 		return con;
 	}
@@ -35,7 +40,8 @@ public class ConnectionImpl implements GenericConnection {
 				con.close();
 			con = null;
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
   }

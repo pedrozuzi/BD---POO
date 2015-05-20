@@ -1,23 +1,21 @@
 package boundary;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-/**
- * 
- * @author Hury
- *
- */
 public class FrmPrincipal {
 
 	
-	private JFrame janela = new JFrame("Produto");
+	private JFrame janela;
+	private JButton btnCadastro;
+	private JButton btnAgendarServico;
+	private JButton btnRealizarVenda;
+	private JButton btnRelatorio;
 
 	public FrmPrincipal(){
 		
 		JPanel panPrincipal = new JPanel();
-		JPanel panForm = new JPanel();
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -25,6 +23,8 @@ public class FrmPrincipal {
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
+	
 	
 	
 	public static void main(String[] args) {

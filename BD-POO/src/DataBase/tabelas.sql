@@ -4,19 +4,34 @@ use ludpet
 
 create table cliente(
 id int identity not null,
-nome varchar(100)not null,
-logradouro varchar(50) not null,
+nome varchar(60) not null,
+logradouro varchar(100) not null,
 numero int not null,
-bairro varchar(50) not null
+bairro varchar(60) not null
 primary key(id) )
 
 create table funcionario(
 id int identity not null,
-cpf char(11) not null,
+cpf varchar(11) not null,
 nome varchar(50) not null,
 cargo varchar(50) not null,
 salario decimal (7,2) not null
-primary key (id)
+primary key (id))
+
+alter table funcionario
+drop column cpf
+
+alter table funcionario
+add cpf varchar(11) cast(check(LEN(cpf) as   
+
+select * from funcionario
+
+insert into funcionario  values(
+'1234567891', 'Pedro', 'Analista', 5500.00
+)
+
+insert into funcionario  values(
+'1234567891011', 'Pedro', 'Analista', 5500.00
 )
 
 create table venda(
@@ -32,7 +47,7 @@ create table animal(
 id int identity not null,
 id_cliente int not null,
 rga int not null,
-nome varchar(100) not null,
+nome varchar(60) not null,
 raca varchar(50) not null,
 especie varchar(50) not null,
 cor varchar(50) not null
@@ -47,7 +62,7 @@ foreign key(id_cliente) references cliente(id))
 
 create table fornecedor(
 id int identity not null,
-nome varchar(100) not null 
+nome varchar(60) not null 
 primary key(id))
 
 create table lote(
@@ -57,8 +72,8 @@ primary key(id))
 
 create table produto(
 id int identity not null,
-nome varchar(20) not null,
-descricao varchar(30),
+nome varchar(60) not null,
+descricao varchar(60),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,

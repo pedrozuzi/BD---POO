@@ -70,7 +70,7 @@ public class FrmLogin {
 		btnLogar.addActionListener(e -> {
 			Login l = new Login();
 			l.setUsuario(txtUsuario.getText());
-			l.setSenha(pwdSenha.getPassword());
+			l.setSenha(new String (pwdSenha.getPassword()));
 			controlLogin.realizarLogin(l);
 		});
 	}

@@ -3,7 +3,7 @@ package entity;
 public class Login {
 	
 	private String usuario;
-	private char[] senha;
+	private String senha;
 	
 	public String getUsuario() {
 		return usuario;
@@ -11,10 +11,10 @@ public class Login {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public char[] getSenha() {
+	public String getSenha() {
 		return senha;
 	}
-	public void setSenha(char[] senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	

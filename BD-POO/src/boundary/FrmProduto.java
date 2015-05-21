@@ -39,7 +39,6 @@ public class FrmProduto {
 	private JLabel lblId_1;
 	private JLabel lblDataDeValidade;
 	private JTextField textField_4;
-	private JTable table;
 
 	public FrmProduto(){
 		
@@ -67,54 +66,25 @@ public class FrmProduto {
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
-		JPanel panProduto = new JPanel();
-		panProduto.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Produto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panProduto.setBounds(38, 213, 529, 136);
-		panPrincipal.add(panProduto);
-		panProduto.setLayout(null);
-		panProduto.setOpaque(false);
+		JPanel panInferior = new JPanel();
+		panInferior.setBounds(20, 205, 741, 326);
+		panPrincipal.add(panInferior);
+		panInferior.setOpaque(false);
+		panInferior.setLayout(null);
 		
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(74, 24, 15, 14);
-		panProduto.add(lblId);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(658, 278, 49, 25);
+		panInferior.add(btnNewButton_1);
+		btnNewButton_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(106, 52, 168, 20);
-		panProduto.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField = new JTextField();
-		textField.setBounds(106, 21, 61, 20);
-		panProduto.add(textField);
-		textField.setColumns(10);
-		
-		lblNome = new JLabel("Nome:");
-		lblNome.setBounds(58, 52, 44, 20);
-		panProduto.add(lblNome);
-		
-		lblNewLabel_1 = new JLabel("Descri\u00E7\u00E3o:");
-		lblNewLabel_1.setBounds(37, 83, 61, 20);
-		panProduto.add(lblNewLabel_1);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnNewButton.setBounds(197, 11, 30, 25);
-		panProduto.add(btnNewButton);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(106, 84, 168, 41);
-		panProduto.add(textField_4);
-		textField_4.setColumns(10);
-		
-		JLabel lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 8));
-		lblPesquisar.setBounds(193, 35, 44, 14);
-		panProduto.add(lblPesquisar);
+		JLabel lblSalvar = new JLabel("Salvar");
+		lblSalvar.setBounds(667, 307, 40, 19);
+		panInferior.add(lblSalvar);
 		
 		panLote = new JPanel();
+		panLote.setBounds(37, 171, 500, 100);
+		panInferior.add(panLote);
 		panLote.setBorder(new TitledBorder(null, "Lote", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panLote.setBounds(38, 360, 529, 100);
-		panPrincipal.add(panLote);
 		panLote.setLayout(null);
 		panLote.setOpaque(false);
 		
@@ -136,86 +106,149 @@ public class FrmProduto {
 		panLote.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
-		btnNewButton_1.setBounds(38, 167, 69, 23);
-		panPrincipal.add(btnNewButton_1);
+		JPanel panProduto_1 = new JPanel();
+		panProduto_1.setBounds(31, 11, 677, 136);
+		panInferior.add(panProduto_1);
+		panProduto_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Produto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panProduto_1.setLayout(null);
+		panProduto_1.setOpaque(false);
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniX.png")));
-		btnNewButton_2.setBounds(124, 167, 69, 23);
-		panPrincipal.add(btnNewButton_2);
+		JLabel lblId = new JLabel("ID:");
+		lblId.setBounds(74, 24, 15, 14);
+		panProduto_1.add(lblId);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(548, 23, 17, 90);
-		panPrincipal.add(scrollBar);
+		textField_3 = new JTextField();
+		textField_3.setBounds(106, 52, 168, 20);
+		panProduto_1.add(textField_3);
+		textField_3.setColumns(10);
 		
-		table = new JTable();
-		table.setBounds(38, 23, 529, 90);
-		panPrincipal.add(table);
+		textField = new JTextField();
+		textField.setBounds(106, 21, 61, 20);
+		panProduto_1.add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblRegistros = new JLabel("Registros");
-		lblRegistros.setBounds(38, 0, 79, 23);
-		panPrincipal.add(lblRegistros);
+		lblNome = new JLabel("Nome:");
+		lblNome.setBounds(58, 52, 44, 20);
+		panProduto_1.add(lblNome);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniEditar.png")));
-		button.setBounds(210, 167, 69, 23);
-		panPrincipal.add(button);
+		lblNewLabel_1 = new JLabel("Descri\u00E7\u00E3o:");
+		lblNewLabel_1.setBounds(37, 83, 61, 20);
+		panProduto_1.add(lblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnNewButton.setBounds(197, 11, 30, 25);
+		panProduto_1.add(btnNewButton);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(106, 84, 168, 41);
+		panProduto_1.add(textField_4);
+		textField_4.setColumns(10);
+		
+		JLabel lblPesquisar = new JLabel("Pesquisar");
+		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 8));
+		lblPesquisar.setBounds(193, 35, 44, 14);
+		panProduto_1.add(lblPesquisar);
+		
+		JButton button_7 = new JButton("");
+		button_7.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
+		button_7.setBounds(587, 278, 49, 25);
+		panInferior.add(button_7);
+		
+		JLabel lblLimpar = new JLabel("Limpar");
+		lblLimpar.setBounds(597, 307, 40, 19);
+		panInferior.add(lblLimpar);
+		
+		JPanel panSuperior = new JPanel();
+		panSuperior.setBounds(20, 88, 741, 106);
+		panPrincipal.add(panSuperior);
+		panSuperior.setLayout(null);
+		panSuperior.setOpaque(false);
 		
 		JButton button_1 = new JButton("");
+		button_1.setBounds(226, 27, 69, 23);
+		panSuperior.add(button_1);
 		button_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniRewind.png")));
-		button_1.setBounds(151, 115, 69, 23);
-		panPrincipal.add(button_1);
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
-		button_2.setBounds(230, 115, 69, 23);
-		panPrincipal.add(button_2);
-		
-		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniNext.png")));
-		button_3.setBounds(306, 115, 69, 23);
-		panPrincipal.add(button_3);
-		
-		JButton button_4 = new JButton("");
-		button_4.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniFoward.png")));
-		button_4.setBounds(385, 115, 69, 23);
-		panPrincipal.add(button_4);
 		
 		JLabel lblNewLabel = new JLabel("Ultimo");
-		lblNewLabel.setBounds(171, 137, 40, 19);
-		panPrincipal.add(lblNewLabel);
+		lblNewLabel.setBounds(246, 49, 40, 19);
+		panSuperior.add(lblNewLabel);
+		
+		JButton button_2 = new JButton("");
+		button_2.setBounds(305, 27, 69, 23);
+		panSuperior.add(button_2);
+		button_2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
 		
 		JLabel lblAnterior = new JLabel("Anterior");
-		lblAnterior.setBounds(240, 137, 47, 19);
-		panPrincipal.add(lblAnterior);
+		lblAnterior.setBounds(315, 49, 47, 19);
+		panSuperior.add(lblAnterior);
+		
+		JButton button_3 = new JButton("");
+		button_3.setBounds(381, 27, 69, 23);
+		panSuperior.add(button_3);
+		button_3.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniNext.png")));
 		
 		JLabel lblProximo = new JLabel("Proximo");
-		lblProximo.setBounds(316, 137, 47, 19);
-		panPrincipal.add(lblProximo);
+		lblProximo.setBounds(391, 49, 47, 19);
+		panSuperior.add(lblProximo);
+		
+		JButton button_4 = new JButton("");
+		button_4.setBounds(460, 27, 69, 23);
+		panSuperior.add(button_4);
+		button_4.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniFoward.png")));
 		
 		JLabel lblPrimeiro = new JLabel("Primeiro");
-		lblPrimeiro.setBounds(395, 137, 54, 19);
-		panPrincipal.add(lblPrimeiro);
+		lblPrimeiro.setBounds(470, 49, 54, 19);
+		panSuperior.add(lblPrimeiro);
 		
-		JLabel lblSalvar = new JLabel("Salvar");
-		lblSalvar.setBounds(48, 188, 40, 19);
-		panPrincipal.add(lblSalvar);
+		JPanel panAcoes = new JPanel();
+		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panAcoes.setBounds(164, 0, 426, 77);
+		panPrincipal.add(panAcoes);
+		panAcoes.setLayout(null);
+		panAcoes.setOpaque(false);
 		
-		JLabel lblExcluir = new JLabel("Excluir");
-		lblExcluir.setBounds(134, 188, 40, 19);
-		panPrincipal.add(lblExcluir);
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		button.setBounds(49, 11, 69, 41);
+		panAcoes.add(button);
 		
-		JLabel lblEditar = new JLabel("Editar");
-		lblEditar.setBounds(220, 188, 40, 19);
-		panPrincipal.add(lblEditar);
+		JLabel label = new JLabel("Incluir");
+		label.setBounds(59, 58, 40, 19);
+		panAcoes.add(label);
+		
+		JButton button_5 = new JButton("");
+		button_5.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Edit.png")));
+		button_5.setBounds(143, 11, 69, 41);
+		panAcoes.add(button_5);
+		
+		JLabel label_1 = new JLabel("Alterar");
+		label_1.setBounds(163, 58, 40, 19);
+		panAcoes.add(label_1);
+		
+		JButton button_6 = new JButton("");
+		button_6.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Delete.png")));
+		button_6.setBounds(232, 11, 69, 41);
+		panAcoes.add(button_6);
+		
+		JLabel label_2 = new JLabel("Excluir");
+		label_2.setBounds(242, 58, 40, 19);
+		panAcoes.add(label_2);
+		
+		JButton button_8 = new JButton("");
+		button_8.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/View.png")));
+		button_8.setBounds(326, 11, 69, 41);
+		panAcoes.add(button_8);
+		
+		JLabel label_3 = new JLabel("Pesquisar");
+		label_3.setBounds(336, 58, 59, 19);
+		panAcoes.add(label_3);
 		
 		JLabel lblBackGround = new JLabel("New label");
-		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
-		lblBackGround.setBounds(0, 0, 594, 481);
+		lblBackGround.setBounds(0, 0, 974, 671);
 		panPrincipal.add(lblBackGround);
-		janela.setSize(605,531);
+		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
+		janela.setSize(801,602);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

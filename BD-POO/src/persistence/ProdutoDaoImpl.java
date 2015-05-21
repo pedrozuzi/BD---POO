@@ -63,7 +63,10 @@ foreign key(idProduto)references produto(id))
 		ps.setString(1, prod.getNome());
 		ps.setString(2, prod.getDescricao());
 		ps.setInt(3, prod.getId_fornecedor());
-		
+		ps.setInt(4, prod.getValor_venda());
+		ps.setInt(5, prod.getValor_compra());
+		ps.execute();
+		ps.close();
 		
 	}
 

@@ -32,6 +32,7 @@ public class FrmPrincipal {
 	private JLabel lblfRealizarVenda;
 	private JLabel lblfCadastros;
 	private JLabel lblfRealizarServio;
+	private JLabel lblAgendarServio;
 
 	public FrmPrincipal(){
 		janela = new JFrame("Menu Principal");
@@ -43,12 +44,14 @@ public class FrmPrincipal {
 		panPrincipal.setLayout(null);
 		
 		labelImagemTxt = new JLabel("");
-		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/textoLudPet.png")));
+		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/textoLudPet.png")));
 		labelImagemTxt.setBounds(38, 11, 375, 81);
 		panPrincipal.add(labelImagemTxt);
 		
 		lblImagem = new JLabel("");
-		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/dog.png")));
+		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/dog.png")));
 		lblImagem.setBounds(311, 89, 190, 123);
 		panPrincipal.add(lblImagem);
 		
@@ -94,7 +97,7 @@ public class FrmPrincipal {
 		btnDeslogar.setBounds(499, 367, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
-		JLabel lblAgendarServio = new JLabel("(F5) Agendar Serviço");
+		lblAgendarServio = new JLabel("(F5) Agendar Serviço");
 		lblAgendarServio.setBounds(340, 336, 122, 14);
 		panPrincipal.add(lblAgendarServio);
 		
@@ -103,7 +106,6 @@ public class FrmPrincipal {
 		panPrincipal.add(lblRelatrios);
 		
 		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
-		
 		lblfRealizarVenda.setBounds(52, 203, 110, 14);
 		panPrincipal.add(lblfRealizarVenda);
 		
@@ -138,6 +140,8 @@ public class FrmPrincipal {
 		panPrincipal = new JPanel();
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
+		panPrincipal.setForeground(Color.WHITE);
+		panPrincipal.setBackground(SystemColor.text);
 		
 		labelImagemTxt = new JLabel("");
 		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
@@ -148,24 +152,46 @@ public class FrmPrincipal {
 		lblImagem = new JLabel("");
 		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/dog.png")));
-		lblImagem.setBounds(175, 88, 190, 123);
+		lblImagem.setBounds(172, 103, 190, 123);
 		panPrincipal.add(lblImagem);
 		
-		btnRealizarVenda = new JButton("Realizar Venda");
+		btnRealizarVenda = new JButton("");
+		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/venda.png")));
+		btnRealizarVenda.setToolTipText("Realizar uma venda");
 		btnRealizarVenda.setBounds(38, 116, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
-		btnRealizarServico = new JButton("Realizar Serviço");
-		btnRealizarServico.setBounds(185, 214, 137, 88);
+		btnRealizarServico = new JButton("");
+		btnRealizarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/servico.png")));
+		btnRealizarServico.setToolTipText("Realizar um Serviço");
+		btnRealizarServico.setBounds(196, 231, 137, 88);
 		panPrincipal.add(btnRealizarServico);
 		
-		btnAgendarServico = new JButton("Agendar Serviço");
-		btnAgendarServico.setBounds(38, 214, 137, 88);
+		btnAgendarServico = new JButton("");
+		btnAgendarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/calendar.png")));
+		btnAgendarServico.setToolTipText("Agendar um serviço");
+		btnAgendarServico.setBounds(38, 230, 137, 88);
 		panPrincipal.add(btnAgendarServico);
+		
+		lblAgendarServio = new JLabel("(F2) Agendar Servi\u00E7o");
+		lblAgendarServio.setBounds(48, 318, 122, 14);
+		panPrincipal.add(lblAgendarServio);
+		
+		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
+		lblfRealizarVenda.setBounds(52, 203, 110, 14);
+		panPrincipal.add(lblfRealizarVenda);
+		
+		lblfRealizarServio = new JLabel("(F3) Realizar Servi\u00E7o");
+		lblfRealizarServio.setBounds(206, 318, 122, 14);
+		panPrincipal.add(lblfRealizarServio);
 		
 		btnDeslogar = new JButton("");
 		btnDeslogar.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/icon_login_out.png")));
+		btnDeslogar.setToolTipText("Deslogar-se");
 		btnDeslogar.setBounds(399, 328, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
@@ -196,7 +222,7 @@ public class FrmPrincipal {
 	
 	public static void main(String[] args) {
 		String s = null;
-		//new FrmPrincipal(s);
+		new FrmPrincipal(s);
 		new FrmPrincipal();
 	}
 }

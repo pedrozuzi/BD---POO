@@ -272,7 +272,7 @@ public class FrmProduto {
 		panInferior.add(lblLimpar);
 		
 		JLabel lblBackGround = new JLabel("");
-		lblBackGround.setBounds(0, 0, 974, 671);
+		lblBackGround.setBounds(0, 0, 785, 562);
 		panPrincipal.add(lblBackGround);
 		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
 		janela.setSize(801,624);

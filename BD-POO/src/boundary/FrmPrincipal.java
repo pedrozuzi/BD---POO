@@ -22,6 +22,7 @@ public class FrmPrincipal {
 	private JButton btnRelatorio;
 	private JButton btnCadastros;
 	private JButton btnAgendarServico;
+	private JLabel lblImagem;
 
 	public FrmPrincipal(){
 		janela = new JFrame("Menu Principal");
@@ -29,6 +30,16 @@ public class FrmPrincipal {
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/textoLudPet.png")));
+		label.setBounds(38, 11, 375, 81);
+		panPrincipal.add(label);
+		
+		lblImagem = new JLabel("");
+		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/dog.png")));
+		lblImagem.setBounds(311, 89, 190, 123);
+		panPrincipal.add(lblImagem);
 		
 		btnRealizarVenda = new JButton("Realizar Venda");
 		btnRealizarVenda.setBounds(42, 115, 137, 88);
@@ -50,13 +61,8 @@ public class FrmPrincipal {
 		btnAgendarServico.setBounds(331, 214, 132, 88);
 		panPrincipal.add(btnAgendarServico);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/textoLudPet.png")));
-		label.setBounds(38, 11, 375, 81);
-		panPrincipal.add(label);
 		
-		
-		janela.setSize(518,358);
+		janela.setSize(561,367);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

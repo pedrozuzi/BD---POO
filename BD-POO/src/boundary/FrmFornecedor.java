@@ -16,8 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import java.awt.SystemColor;
 
 public class FrmFornecedor implements ConfigTelas{
@@ -41,6 +43,9 @@ public class FrmFornecedor implements ConfigTelas{
 	private JButton btnPesquisar;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JButton btnGravar;
+	private JButton btnLimpar;
+	private JButton btnVoltar;
 	
 	public FrmFornecedor() {
 		panPrincipal = new JPanel();
@@ -62,10 +67,10 @@ public class FrmFornecedor implements ConfigTelas{
 		btnIncluir.setBounds(49, 11, 69, 41);
 		panel.add(btnIncluir);
 		
-		lblIncluir = new JLabel("(F2)Incluir");
+		lblIncluir = new JLabel("(F2) Incluir");
 		btnIncluir.setIcon(new ImageIcon(FrmFornecedor.class.getResource("/img/Insert.png")));
 		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblIncluir.setBounds(59, 54, 59, 19);
+		lblIncluir.setBounds(54, 54, 69, 19);
 		panel.add(lblIncluir);
 		
 		btnAlterar = new JButton("");
@@ -125,6 +130,27 @@ public class FrmFornecedor implements ConfigTelas{
 		lblTelefone.setBounds(62, 409, 58, 14);
 		panPrincipal.add(lblTelefone);
 		
+		btnGravar = new JButton("Gravar");
+		btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource("/img/MiniSalvar.png")));
+		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGravar.setBounds(434, 460, 96, 31);
+		btnGravar.setVisible(true);
+		panPrincipal.add(btnGravar);
+		
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource("/img/MiniClear.png")));
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLimpar.setBounds(240, 460, 96, 31);
+		btnLimpar.setVisible(true);
+		panPrincipal.add(btnLimpar);
+		
+		btnVoltar = new JButton("Voltar");
+		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource("/img/MiniBack.png")));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(46, 460, 96, 31);
+		btnVoltar.setVisible(true);
+		panPrincipal.add(btnVoltar);
+		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 107, 549, 159);
 		panPrincipal.add(scrollPane);
@@ -132,7 +158,7 @@ public class FrmFornecedor implements ConfigTelas{
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		janela.setSize(585,503);
+		janela.setSize(585,553);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);

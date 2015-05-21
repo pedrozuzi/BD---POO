@@ -3,8 +3,11 @@ package boundary;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import entity.Login;
+
 import javax.swing.JLabel;
 
 public class FrmPrincipal {
@@ -114,6 +117,18 @@ public class FrmPrincipal {
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		btnDeslogar.addActionListener(e -> {
+			int escolha = JOptionPane.showConfirmDialog(null, 
+					"Deseja realmente deslogar ?", "Sair", JOptionPane.YES_NO_OPTION);
+			
+			if (escolha == JOptionPane.YES_OPTION) {
+				janela.dispose();
+				new FrmLogin();
+			}
+			
+		});
 		
 	}
 	

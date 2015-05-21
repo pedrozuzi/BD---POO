@@ -163,12 +163,12 @@ public class FrmProduto {
 		panInferior.setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(640, 234, 49, 25);
+		btnNewButton_1.setBounds(682, 215, 49, 25);
 		panInferior.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
 		
 		JLabel lblSalvar = new JLabel("Salvar");
-		lblSalvar.setBounds(649, 263, 40, 19);
+		lblSalvar.setBounds(691, 244, 40, 19);
 		panInferior.add(lblSalvar);
 		
 		panLote = new JPanel();
@@ -196,85 +196,94 @@ public class FrmProduto {
 		panLote.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JPanel panProduto_1 = new JPanel();
-		panProduto_1.setBounds(35, 11, 677, 193);
-		panInferior.add(panProduto_1);
-		panProduto_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Produto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panProduto_1.setLayout(null);
-		panProduto_1.setOpaque(false);
+		JPanel panProduto = new JPanel();
+		panProduto.setBounds(35, 11, 677, 193);
+		panInferior.add(panProduto);
+		panProduto.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Produto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panProduto.setLayout(null);
+		panProduto.setOpaque(false);
 		
 		JLabel lblId = new JLabel("ID:");
 		lblId.setBounds(83, 16, 15, 14);
-		panProduto_1.add(lblId);
+		panProduto.add(lblId);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(106, 50, 168, 20);
-		panProduto_1.add(textField_3);
+		panProduto.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField = new JTextField();
 		textField.setBounds(104, 15, 61, 20);
-		panProduto_1.add(textField);
+		panProduto.add(textField);
 		textField.setColumns(10);
 		
 		lblNome = new JLabel("Nome:");
 		lblNome.setBounds(62, 46, 36, 20);
-		panProduto_1.add(lblNome);
+		panProduto.add(lblNome);
 		
 		lblNewLabel_1 = new JLabel("Descri\u00E7\u00E3o:");
 		lblNewLabel_1.setBounds(46, 82, 52, 20);
-		panProduto_1.add(lblNewLabel_1);
+		panProduto.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnNewButton.setBounds(403, 24, 30, 25);
-		panProduto_1.add(btnNewButton);
+		panProduto.add(btnNewButton);
 		
 		textField_4 = new JTextField();
 		textField_4.setBounds(106, 85, 168, 20);
-		panProduto_1.add(textField_4);
+		panProduto.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblPesquisar = new JLabel("Pesquisar");
 		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 8));
 		lblPesquisar.setBounds(399, 48, 44, 14);
-		panProduto_1.add(lblPesquisar);
+		panProduto.add(lblPesquisar);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(104, 113, 61, 20);
-		panProduto_1.add(textField_5);
+		panProduto.add(textField_5);
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
 		textField_6.setBounds(106, 154, 61, 20);
-		panProduto_1.add(textField_6);
+		panProduto.add(textField_6);
 		
 		JLabel lblValorDeVenda = new JLabel("Valor de Venda:");
 		lblValorDeVenda.setBounds(14, 118, 84, 20);
-		panProduto_1.add(lblValorDeVenda);
+		panProduto.add(lblValorDeVenda);
 		
 		JLabel lblValorDeCompra = new JLabel("Valor de Compra:");
 		lblValorDeCompra.setBounds(10, 154, 88, 20);
-		panProduto_1.add(lblValorDeCompra);
+		panProduto.add(lblValorDeCompra);
 		
 		JLabel lblFornecedor = new JLabel("Fornecedor:");
 		lblFornecedor.setBounds(284, 154, 88, 20);
-		panProduto_1.add(lblFornecedor);
+		panProduto.add(lblFornecedor);
 		
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
 		textField_7.setBounds(380, 154, 61, 20);
-		panProduto_1.add(textField_7);
+		panProduto.add(textField_7);
 		
 		JButton button_7 = new JButton("");
 		button_7.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
-		button_7.setBounds(569, 234, 49, 25);
+		button_7.setBounds(611, 215, 49, 25);
 		panInferior.add(button_7);
 		
 		JLabel lblLimpar = new JLabel("Limpar");
-		lblLimpar.setBounds(579, 263, 40, 19);
+		lblLimpar.setBounds(621, 244, 40, 19);
 		panInferior.add(lblLimpar);
+		
+		JButton button_9 = new JButton("");
+		button_9.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
+		button_9.setBounds(545, 215, 49, 25);
+		panInferior.add(button_9);
+		
+		JLabel lblVoltar = new JLabel("Voltar");
+		lblVoltar.setBounds(555, 244, 40, 19);
+		panInferior.add(lblVoltar);
 		
 		JLabel lblBackGround = new JLabel("");
 		lblBackGround.setBounds(0, 0, 785, 562);

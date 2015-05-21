@@ -22,7 +22,7 @@ foreign key(idPessoa) references pessoa(idPessoa),
 foreign key(idTipo) references tipo(id))
 
 create table cliente(
-id int identity not null,
+id int not null,
 nome varchar(60) not null,
 logradouro varchar(100) not null,
 numero int not null,
@@ -32,7 +32,7 @@ primary key(id),
 foreign key(id) references pessoa(idPessoa))
 
 create table funcionario(
-id int identity not null,
+id int not null,
 cpf varchar(11) not null,
 nome varchar(50) not null,
 cargo varchar(50) not null,
@@ -41,7 +41,7 @@ primary key (id),
 foreign key(id) references pessoa(idPessoa))
 
 create table fornecedor(
-id int identity not null,
+id int not null,
 nome varchar(60) not null 
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
@@ -122,5 +122,39 @@ check(data_compra <= getdate()),
 primary key(data_compra, id_compra, id_funcionario, id_produto),
 foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
+
+INSERT INTO tipo (descricao) VALUES 
+('Administrador'),
+('Atendente'),
+('Funcionario'),
+('Fornecedor'),
+('Cliente')
+
+INSERT INTO pessoa (idTipo) VALUES
+(1), --1 adm
+(2), --2 atend
+(3), --3 func
+(4), --4 forn
+(5), --5 cli
+(1), --6 adm
+(2), --7 atend
+(3), --8 func
+(4), --9 forn 
+(5) --10 cli
+
+INSERT INTO funcionario (id,cpf,nome,cargo,salario) VALUES
+(1,11111111111,'Hury Gabriel', 'JavaMan',99999.99), --adm
+(2,22222222222,'Pedro ZUZI', 'Secretario',1200.00), --atend
+(3,33333333333,'Pedro Afonso', 'Banhista',850.00)   --func
+
+INSERT INTO fornecedor (id,nome) VALUES
+(4,'burns'),
+(9,'aang')
+
+INSERT INTO cliente (id,nome,logradouro,numero,bairro,senha) VALUES
+(5,'Oscar Alho','av 23',157,'se',666),
+(10,'Paula Tejando','rua cachueira',420,'cracolandia',123)
+
+
 
 

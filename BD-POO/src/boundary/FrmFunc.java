@@ -29,8 +29,8 @@ import java.awt.Cursor;
 
 public class FrmFunc implements ActionListener{
 
-	JFrame janela;
-	JPanel panPrincipal;
+	private JFrame janela;
+	private JPanel panPrincipal;
 	private JTable table;
 	private final JTextField txtCodigo = new JTextField();
 	private JTextField txtNome;
@@ -318,51 +318,6 @@ public class FrmFunc implements ActionListener{
 			btnLimpar.setVisible(true);
 			btnVoltar.setVisible(true);
 		}
-//		else if(x == 3){
-//			lblCodigo.setVisible(true);
-//			lblNome.setVisible(true);
-//			lblCargo.setVisible(true);
-//			lblCpf.setVisible(true);
-//			lblSalario.setVisible(true);
-//			lblTelefone.setVisible(true);
-//			txtCargo.setVisible(true);
-//			txtCargo.setEnabled(false);
-//			txtNome.setVisible(true);
-//			txtCodigo.setVisible(true);
-//			txtSalario.setVisible(true);
-//			txtSalario.setEnabled(false);
-//			txtCpf.setVisible(true);
-//			txtCpf.setEnabled(false);
-//			txtTelefone.setVisible(true);
-//			txtTelefone.setEnabled(false);
-//			table.setVisible(true);
-//			scrollPane.setVisible(true);
-//			btnGravar.setVisible(true);
-//			btnLimpar.setVisible(true);
-//			btnVoltar.setVisible(true);
-//		}else if(x == 4){
-//			lblCodigo.setVisible(true);
-//			lblNome.setVisible(true);
-//			lblCargo.setVisible(true);
-//			lblCpf.setVisible(true);
-//			lblSalario.setVisible(true);
-//			lblTelefone.setVisible(true);
-//			txtCargo.setVisible(true);
-//			txtCargo.setEnabled(false);
-//			txtNome.setVisible(true);
-//			txtCodigo.setVisible(true);
-//			txtSalario.setVisible(true);
-//			txtSalario.setEnabled(false);
-//			txtCpf.setVisible(true);
-//			txtCpf.setEnabled(false);
-//			txtTelefone.setVisible(true);
-//			txtTelefone.setEnabled(false);
-//			table.setVisible(true);
-//			scrollPane.setVisible(true);
-//			btnGravar.setVisible(true);
-//			btnLimpar.setVisible(true);
-//			btnVoltar.setVisible(true);
-//		}
 	}
 
 	@Override

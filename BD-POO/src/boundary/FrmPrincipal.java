@@ -5,8 +5,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import entity.Login;
+
 import javax.swing.JLabel;
+
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class FrmPrincipal {
 
@@ -14,6 +19,7 @@ public class FrmPrincipal {
 	private JFrame janela;
 	private JButton btnRealizarVenda;
 	private JPanel panPrincipal;
+	private JPanel panel;
 	private Login login;
 	private JButton btnRealizarServico;
 	private JButton btnRelatorio;
@@ -22,10 +28,16 @@ public class FrmPrincipal {
 	private JLabel lblImagem;
 	private JLabel labelImagemTxt;
 	private JButton btnDeslogar;
+	private JLabel lblRelatrios;
+	private JLabel lblfRealizarVenda;
+	private JLabel lblfCadastros;
+	private JLabel lblfRealizarServio;
 
 	public FrmPrincipal(){
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
+		panPrincipal.setForeground(Color.WHITE);
+		panPrincipal.setBackground(SystemColor.text);
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -40,31 +52,68 @@ public class FrmPrincipal {
 		lblImagem.setBounds(311, 89, 190, 123);
 		panPrincipal.add(lblImagem);
 		
-		btnRealizarVenda = new JButton("Realizar Venda");
+		btnRealizarVenda = new JButton("");
+		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/venda.png")));
+		btnRealizarVenda.setToolTipText("Realizar uma venda");
 		btnRealizarVenda.setBounds(42, 115, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
-		btnRealizarServico = new JButton("Realizar Serviço");
+		btnRealizarServico = new JButton("");
+		btnRealizarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/servico.png")));
+		btnRealizarServico.setToolTipText("Realizar um Serviço");
 		btnRealizarServico.setBounds(189, 115, 132, 88);
 		panPrincipal.add(btnRealizarServico);
 		
-		btnRelatorio = new JButton("Relat\u00F3rios");
-		btnRelatorio.setBounds(42, 214, 137, 88);
+		btnRelatorio = new JButton("");
+		btnRelatorio.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/relatorio.png")));
+		btnRelatorio.setToolTipText("Abrir Relatórios");
+		btnRelatorio.setBounds(41, 248, 137, 88);
 		panPrincipal.add(btnRelatorio);
 		
-		btnCadastros = new JButton("Cadastros");
-		btnCadastros.setBounds(189, 214, 132, 88);
+		btnCadastros = new JButton("");
+		btnCadastros.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/cadastros.png")));
+		btnCadastros.setToolTipText("Cadastrar/Consultar/Aterar/Remover");
+		btnCadastros.setBounds(188, 248, 132, 88);
 		panPrincipal.add(btnCadastros);
 		
-		btnAgendarServico = new JButton("Agendar Serviço");
-		btnAgendarServico.setBounds(331, 214, 132, 88);
+		btnAgendarServico = new JButton("");
+		btnAgendarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/calendar.png")));
+		btnAgendarServico.setToolTipText("Agendar um serviço");
+		btnAgendarServico.setBounds(330, 248, 132, 88);
 		panPrincipal.add(btnAgendarServico);
 		
 		btnDeslogar = new JButton("");
 		btnDeslogar.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/icon_login_out.png")));
-		btnDeslogar.setBounds(497, 329, 51, 49);
+		btnDeslogar.setToolTipText("Deslogar-se");
+		btnDeslogar.setBounds(499, 367, 51, 49);
 		panPrincipal.add(btnDeslogar);
+		
+		JLabel lblAgendarServio = new JLabel("(F5) Agendar Serviço");
+		lblAgendarServio.setBounds(340, 336, 122, 14);
+		panPrincipal.add(lblAgendarServio);
+		
+		lblRelatrios = new JLabel("(F3) Relat\u00F3rios");
+		lblRelatrios.setBounds(64, 336, 98, 14);
+		panPrincipal.add(lblRelatrios);
+		
+		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
+		
+		lblfRealizarVenda.setBounds(52, 203, 110, 14);
+		panPrincipal.add(lblfRealizarVenda);
+		
+		lblfCadastros = new JLabel("(F4) Cadastros");
+		lblfCadastros.setBounds(210, 336, 98, 14);
+		panPrincipal.add(lblfCadastros);
+		
+		lblfRealizarServio = new JLabel("(F2) Realizar Servi\u00E7o");
+		lblfRealizarServio.setBounds(199, 203, 122, 14);
+		panPrincipal.add(lblfRealizarServio);
 		
 		btnDeslogar.addActionListener(e -> {
 			int escolha = JOptionPane.showConfirmDialog(null, 
@@ -78,7 +127,7 @@ public class FrmPrincipal {
 		});
 		
 		
-		janela.setSize(574,427);
+		janela.setSize(576,465);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

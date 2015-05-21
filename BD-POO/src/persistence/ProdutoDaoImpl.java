@@ -8,9 +8,10 @@ import java.util.List;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Lote;
+import entity.LoteProduto;
 import entity.Produto;
 
-public class ProdutoDaoImpl implements ProdutoDao {
+public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	
 	private Connection c;
 	
@@ -46,7 +47,7 @@ foreign key(idProduto)references produto(id))
 	 */
 
 
-//
+	//Metodos implementados Produto
 	@Override
 	public void insereProduto(Produto prod) throws SQLException {
 	//	String sql = "INSERT INTO materias (nome, carga_horaria)"+
@@ -57,7 +58,7 @@ foreign key(idProduto)references produto(id))
 		//ps.execute();
 		//ps.close();
 		
-		String sql = "INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra,)"+
+		String sql = "INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra)"+
 		"VALUES(?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1, prod.getNome());
@@ -93,10 +94,17 @@ foreign key(idProduto)references produto(id))
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+	//Metodos implementados Lote
 	@Override
 	public void insereLote(Lote lot) throws SQLException {
-
+		String sql = "INSERT INTO lote (id,data_validade)"+
+		"VALUES(?,?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		ps.setInt(1, lot.getId());
+		ps.setDate(2, lot.getData_validade());
+		ps.execute();
+		ps.close();
+		
 	}
 
 	@Override
@@ -119,6 +127,42 @@ foreign key(idProduto)references produto(id))
 
 	@Override
 	public List<Lote> listaLote() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+//Metodos implementados LoteProduto
+	@Override
+	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
+		String sql = "INSERT INTO lote (idProduto,idLote)"+
+		"VALUES(?,?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		ps.setInt(1, lotProd.getIdLote());
+		ps.setInt(2, lotProd.getIdProduto());
+		ps.execute();
+		ps.close();
+		
+	}
+
+	@Override
+	public void atualizaLoteProduto(LoteProduto lotProd) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluiLoteProduto(LoteProduto lotProd) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Lote consultaLoteProduto(LoteProduto lotProd) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<LoteProduto> listaLoteProduto() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

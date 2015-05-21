@@ -11,7 +11,7 @@ import entity.Produto;
  * @author Hury
  *
  */
-public interface ProdutoDao extends LoteDao {
+public interface ProdutoDao {
 	
 	public abstract void insereProduto(Produto prod) throws SQLException;
 

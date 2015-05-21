@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -19,6 +20,11 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+
+import org.w3c.dom.events.MouseEvent;
+
+import control.CtrlFuncionario;
+
 import java.awt.Cursor;
 
 public class FrmFunc implements ActionListener{
@@ -48,7 +54,10 @@ public class FrmFunc implements ActionListener{
 	private JButton btnLimpar;
 	private JButton btnGravar;
 	private JButton btnPesquisar;
-	private JTextField textField;
+	private JTextField txtTelefone;
+	private JLabel lblTelefone;
+	private JScrollPane scrollPane;
+	private CtrlFuncionario ctrlFunc;
 	
 	public FrmFunc() {
 	
@@ -110,7 +119,7 @@ public class FrmFunc implements ActionListener{
 		btnPesquisar.setBounds(326, 11, 69, 41);
 		panel.add(btnPesquisar);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 101, 546, 152);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
@@ -210,33 +219,175 @@ public class FrmFunc implements ActionListener{
 		lblLogo.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogo);
 		
-		JLabel lblTelefone = new JLabel("Telefone :");
+		lblTelefone = new JLabel("Telefone :");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTelefone.setBounds(33, 459, 68, 14);
+		lblTelefone.setVisible(false);
 		panPrincipal.add(lblTelefone);
 		
-		textField = new JTextField();
-		textField.setBackground(SystemColor.info);
-		textField.setBounds(113, 458, 128, 20);
-		panPrincipal.add(textField);
-		textField.setColumns(10);
+		txtTelefone = new JTextField();
+		txtTelefone.setBackground(SystemColor.info);
+		txtTelefone.setBounds(113, 458, 128, 20);
+		txtTelefone.setVisible(false);
+		panPrincipal.add(txtTelefone);
+		txtTelefone.setColumns(10);
+		
 		janela.setSize(582,600);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		btnIncluir.addActionListener(this);
-		btnAlterar.addActionListener(this);
-		btnPesquisar.addActionListener(this);
-		btnRemover.addActionListener(this);		
+		janela.setLocationRelativeTo(null);
 		
+		ctrlFunc = new CtrlFuncionario();
+
+		btnIncluir.addActionListener(e -> {
+			acaoPrincipal(e);
+		});
+		btnAlterar.addActionListener(e -> {
+			acaoPrincipal(e);
+		});
+		btnPesquisar.addActionListener(e -> {
+			acaoPrincipal(e);
+		});
+		btnRemover.addActionListener(e -> {
+			acaoPrincipal(e);
+		});
+		
+		btnGravar.addActionListener(this);
+		btnLimpar.addActionListener(this);
+		btnVoltar.addActionListener(this);
+		
+	}
+
+	private void acaoPrincipal(ActionEvent e){
+		Object acao = e.getSource();
+		lblLogo.setVisible(false);
+		if(btnIncluir.equals(acao)){
+			montarTela(1);
+		}else if(btnRemover.equals(acao)){
+			montarTela(2);
+		}else if(btnAlterar.equals(acao)){
+			montarTela(2);
+		}else if(btnPesquisar.equals(acao)){
+			montarTela(2);
+		}
+	}
+	
+	private void montarTela(int x) {
+		if(x == 1){
+			lblCodigo.setVisible(true);
+			lblNome.setVisible(true);
+			lblCargo.setVisible(true);
+			lblCpf.setVisible(true);
+			lblSalario.setVisible(true);
+			lblTelefone.setVisible(true);
+			txtCargo.setVisible(true);
+			txtCargo.setEnabled(true);
+			txtNome.setVisible(true);
+			txtCodigo.setVisible(true);
+			txtSalario.setVisible(true);
+			txtSalario.setEnabled(true);
+			txtCpf.setVisible(true);
+			txtCpf.setEnabled(true);
+			txtTelefone.setVisible(true);
+			txtTelefone.setEnabled(true);
+			table.setVisible(true);
+			scrollPane.setVisible(true);
+			btnGravar.setVisible(true);
+			btnLimpar.setVisible(true);
+			btnVoltar.setVisible(true);
+		}else if(x == 2){
+			lblCodigo.setVisible(true);
+			lblNome.setVisible(true);
+			lblCargo.setVisible(true);
+			lblCpf.setVisible(true);
+			lblSalario.setVisible(true);
+			lblTelefone.setVisible(true);
+			txtCargo.setVisible(true);
+			txtCargo.setEnabled(false);
+			txtNome.setVisible(true);
+			txtCodigo.setVisible(true);
+			txtSalario.setVisible(true);
+			txtSalario.setEnabled(false);
+			txtCpf.setVisible(true);
+			txtCpf.setEnabled(false);
+			txtTelefone.setVisible(true);
+			txtTelefone.setEnabled(false);
+			table.setVisible(true);
+			scrollPane.setVisible(true);
+			btnGravar.setVisible(true);
+			btnLimpar.setVisible(true);
+			btnVoltar.setVisible(true);
+		}
+//		else if(x == 3){
+//			lblCodigo.setVisible(true);
+//			lblNome.setVisible(true);
+//			lblCargo.setVisible(true);
+//			lblCpf.setVisible(true);
+//			lblSalario.setVisible(true);
+//			lblTelefone.setVisible(true);
+//			txtCargo.setVisible(true);
+//			txtCargo.setEnabled(false);
+//			txtNome.setVisible(true);
+//			txtCodigo.setVisible(true);
+//			txtSalario.setVisible(true);
+//			txtSalario.setEnabled(false);
+//			txtCpf.setVisible(true);
+//			txtCpf.setEnabled(false);
+//			txtTelefone.setVisible(true);
+//			txtTelefone.setEnabled(false);
+//			table.setVisible(true);
+//			scrollPane.setVisible(true);
+//			btnGravar.setVisible(true);
+//			btnLimpar.setVisible(true);
+//			btnVoltar.setVisible(true);
+//		}else if(x == 4){
+//			lblCodigo.setVisible(true);
+//			lblNome.setVisible(true);
+//			lblCargo.setVisible(true);
+//			lblCpf.setVisible(true);
+//			lblSalario.setVisible(true);
+//			lblTelefone.setVisible(true);
+//			txtCargo.setVisible(true);
+//			txtCargo.setEnabled(false);
+//			txtNome.setVisible(true);
+//			txtCodigo.setVisible(true);
+//			txtSalario.setVisible(true);
+//			txtSalario.setEnabled(false);
+//			txtCpf.setVisible(true);
+//			txtCpf.setEnabled(false);
+//			txtTelefone.setVisible(true);
+//			txtTelefone.setEnabled(false);
+//			table.setVisible(true);
+//			scrollPane.setVisible(true);
+//			btnGravar.setVisible(true);
+//			btnLimpar.setVisible(true);
+//			btnVoltar.setVisible(true);
+//		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String acao = e.getActionCommand();
-		System.out.println(acao);
+		Object acao = e.getSource();
+		
+		if(btnGravar.equals(acao)){
+			System.out.println("Gravar");
+		}else if(btnLimpar.equals(acao)){
+			limpaCampos();
+		}else if(btnVoltar.equals(acao)){
+			System.out.println("Voltar");
+		}
 	}
 	
+	
+	private void limpaCampos() {
+		txtCargo.setText("");
+		txtCodigo.setText("");
+		txtCpf.setText("");
+		txtNome.setText("");
+		txtSalario.setText("");
+		txtTelefone.setText("");
+	}
+
 	public static void main(String[] args) {
 		new FrmFunc();
 	}

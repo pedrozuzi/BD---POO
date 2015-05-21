@@ -15,7 +15,7 @@ import java.sql.Date;
 public class Lote {
 
 	private int id;
-	private Date datetime;
+	private Date data_validade;
 
 	public int getId() {
 		return id;
@@ -25,12 +25,12 @@ public class Lote {
 		this.id = id;
 	}
 
-	public Date getDatetime() {
-		return datetime;
+	public Date getData_validade() {
+		return data_validade;
 	}
 
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
+	public void setData_validade(Date data_validade) {
+		this.data_validade = data_validade;
 	}
 
 }

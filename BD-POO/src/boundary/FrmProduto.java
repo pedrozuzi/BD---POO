@@ -284,7 +284,7 @@ public class FrmProduto implements ConfigTelas{
 		janela.setSize(801,624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		centralizeFrame(janela);
+		centralizarFrame(janela);
 	}
 	
 	

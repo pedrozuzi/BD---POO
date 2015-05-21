@@ -31,13 +31,13 @@ public class FrmFunc {
 		janela = new JFrame();
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
-		panPrincipal.setBackground(SystemColor.desktop);
+		panPrincipal.setBackground(SystemColor.text);
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.desktop);
+		panel.setBackground(SystemColor.text);
 		panel.setForeground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -121,19 +121,19 @@ public class FrmFunc {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(33, 507, 96, 31);
+		btnVoltar.setBounds(33, 496, 96, 31);
 		panPrincipal.add(btnVoltar);
 		
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(241, 507, 96, 31);
+		btnLimpar.setBounds(240, 496, 96, 31);
 		panPrincipal.add(btnLimpar);
 		
 		JButton btnGravar = new JButton("Gravar");
 		btnGravar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnGravar.setBounds(430, 507, 96, 31);
+		btnGravar.setBounds(432, 496, 96, 31);
 		panPrincipal.add(btnGravar);
 		textField.setBackground(SystemColor.info);
 		textField.setBounds(103, 280, 96, 22);
@@ -166,7 +166,7 @@ public class FrmFunc {
 		
 		JLabel lblLogoLudPet = new JLabel("");
 		lblLogoLudPet.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/LogoLudpet.png")));
-		lblLogoLudPet.setBounds(10, 197, 546, 199);
+		lblLogoLudPet.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogoLudPet);
 		janela.setSize(582,600);
 		janela.setVisible(true);

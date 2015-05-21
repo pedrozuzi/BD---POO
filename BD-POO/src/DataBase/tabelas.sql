@@ -2,13 +2,34 @@ create database ludpet
 
 use ludpet
 
+create table tipo(
+id int identity not null,
+descricao varchar(50) not null
+primary key(id)) 
+
+create table pessoa(
+idPessoa int identity not null,
+idTipo int not null
+primary key(idPessoa),
+foreign key(idTipo) references tipo(id))
+
+create table telefone(
+numero varchar(9) not null,
+idPessoa int not null,
+idTipo int not null 
+primary key(numero, idPessoa, idTipo)
+foreign key(idPessoa) references pessoa(idPessoa),
+foreign key(idTipo) references tipo(id))
+
 create table cliente(
 id int identity not null,
 nome varchar(60) not null,
 logradouro varchar(100) not null,
 numero int not null,
-bairro varchar(60) not null
-primary key(id) )
+bairro varchar(60) not null,
+senha int null
+primary key(id),
+foreign key(id) references pessoa(idPessoa))
 
 create table funcionario(
 id int identity not null,
@@ -16,7 +37,14 @@ cpf varchar(11) not null,
 nome varchar(50) not null,
 cargo varchar(50) not null,
 salario decimal (7,2) not null
-primary key (id))
+primary key (id),
+foreign key(id) references pessoa(idPessoa))
+
+create table fornecedor(
+id int identity not null,
+nome varchar(60) not null 
+primary key(id),
+foreign key(id) references pessoa(idPessoa))
 
 create table venda(
 id int identity not null,
@@ -38,17 +66,6 @@ cor varchar(50) null
 primary key (id, id_cliente),
 foreign key (id_cliente) references cliente(id))
 
-create table telefone(
-numero int not null,
-id_cliente int not null
-primary key(numero, id_cliente),
-foreign key(id_cliente) references cliente(id))
-
-create table fornecedor(
-id int identity not null,
-nome varchar(60) not null 
-primary key(id))
-
 create table lote(
 id int identity not null,
 data_validade datetime not null
@@ -65,6 +82,13 @@ id_lote int not null
 primary key(id)
 foreign key(id_fornecedor) references fornecedor(id),
 foreign key(id_lote) references lote(id))
+
+create table lote_produto(
+idProduto int not null,
+idLote int not null,
+primary key(idProduto, idLote),
+foreign key(idLote)references lote(id),
+foreign key(idProduto)references produto(id))
 
 
 create table venda_produto(

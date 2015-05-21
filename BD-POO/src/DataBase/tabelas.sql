@@ -81,7 +81,7 @@ valor_compra int not null,
 id_lote int not null
 primary key(id)
 foreign key(id_fornecedor) references fornecedor(id),
-foreign key(id_lote) references lote(id))
+)
 
 create table lote_produto(
 idProduto int not null,

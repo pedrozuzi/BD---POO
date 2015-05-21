@@ -6,5 +6,9 @@ package boundary;
  *
  */
 public class FrmCompra {
+	
+	public FrmCompra() {
+		// TODO Auto-generated constructor stub
+	}
 
 }

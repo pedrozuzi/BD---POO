@@ -9,13 +9,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
 import javax.swing.border.BevelBorder;
@@ -25,13 +28,15 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import control.ConfigTelas;
+
 /**
  * 
  * @author Hury
  *
  */
 
-public class FrmProduto {
+public class FrmProduto implements ConfigTelas{
 
 	private JFrame janela = new JFrame("Produto");
 	private JTextField textField;
@@ -275,9 +280,11 @@ public class FrmProduto {
 		lblBackGround.setBounds(0, 0, 785, 562);
 		panPrincipal.add(lblBackGround);
 		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
+		
 		janela.setSize(801,624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		centralizeFrame(janela);
 	}
 	
 	

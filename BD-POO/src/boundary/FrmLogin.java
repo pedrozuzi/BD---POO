@@ -10,10 +10,11 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
+import control.ConfigTelas;
 import control.CtrlLogin;
 import entity.Login;
 
-public class FrmLogin {
+public class FrmLogin implements ConfigTelas{
 
 	private JFrame janela = new JFrame("Realizar Login");
 	private JTextField txtUsuario;
@@ -24,9 +25,9 @@ public class FrmLogin {
 	private CtrlLogin controlLogin;
 
 	public FrmLogin(){
+		
 		controlLogin = new CtrlLogin();
 		JPanel panPrincipal = new JPanel();
-		JPanel panForm = new JPanel();
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -56,9 +57,11 @@ public class FrmLogin {
 		btnLogar.setFont(new Font("Arial", Font.PLAIN, 14));
 		btnLogar.setBounds(247, 174, 89, 43);
 		panPrincipal.add(btnLogar);
+		
 		janela.setSize(400,281);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		centralizeFrame(janela);
 		
 		btnLogar.addActionListener(e -> {
 			Login l = new Login();

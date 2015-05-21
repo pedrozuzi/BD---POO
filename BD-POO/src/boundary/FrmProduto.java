@@ -36,7 +36,7 @@ import control.ConfigTelas;
  *
  */
 
-public class FrmProduto implements ConfigTelas{
+public class FrmProduto {
 
 	private JFrame janela = new JFrame("Produto");
 	private JTextField textField;
@@ -284,7 +284,7 @@ public class FrmProduto implements ConfigTelas{
 		janela.setSize(801,624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		centralizarFrame(janela);
+		
 	}
 	
 	

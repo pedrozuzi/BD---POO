@@ -26,6 +26,8 @@ import org.w3c.dom.events.MouseEvent;
 import control.CtrlFuncionario;
 
 import java.awt.Cursor;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
 
 public class FrmFunc implements ActionListener{
 
@@ -36,7 +38,6 @@ public class FrmFunc implements ActionListener{
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtSalario;
-	private JTextField txtCargo;
 	private JLabel lblLogo;
 	private JPanel panel;
 	private JButton btnIncluir;
@@ -149,7 +150,7 @@ public class FrmFunc implements ActionListener{
 		
 		lblCargo = new JLabel("Cargo : ");
 		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCargo.setBounds(33, 421, 60, 17);
+		lblCargo.setBounds(33, 453, 60, 17);
 		lblCargo.setVisible(false);
 		panPrincipal.add(lblCargo);
 		
@@ -207,13 +208,6 @@ public class FrmFunc implements ActionListener{
 		txtSalario.setVisible(false);
 		panPrincipal.add(txtSalario);
 		
-		txtCargo = new JTextField();
-		txtCargo.setColumns(10);
-		txtCargo.setBackground(SystemColor.info);
-		txtCargo.setBounds(103, 420, 182, 22);
-		txtCargo.setVisible(false);
-		panPrincipal.add(txtCargo);
-		
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/LogoLudpet.png")));
 		lblLogo.setBounds(10, 181, 546, 199);
@@ -221,16 +215,34 @@ public class FrmFunc implements ActionListener{
 		
 		lblTelefone = new JLabel("Telefone :");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTelefone.setBounds(33, 459, 68, 14);
+		lblTelefone.setBounds(33, 420, 68, 14);
 		lblTelefone.setVisible(false);
 		panPrincipal.add(lblTelefone);
 		
 		txtTelefone = new JTextField();
 		txtTelefone.setBackground(SystemColor.info);
-		txtTelefone.setBounds(113, 458, 128, 20);
+		txtTelefone.setBounds(113, 419, 128, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
+		
+		JRadioButton rdbtnAdministrador = new JRadioButton("Administrador");
+		rdbtnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnAdministrador.setBackground(Color.WHITE);
+		rdbtnAdministrador.setBounds(99, 452, 109, 23);
+		panPrincipal.add(rdbtnAdministrador);
+		
+		JRadioButton rdbtnAtendente = new JRadioButton("Atendente");
+		rdbtnAtendente.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnAtendente.setBackground(Color.WHITE);
+		rdbtnAtendente.setBounds(210, 452, 109, 23);
+		panPrincipal.add(rdbtnAtendente);
+		
+		JRadioButton rdbtnBanhistatosador = new JRadioButton("Banhista/Tosador");
+		rdbtnBanhistatosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnBanhistatosador.setBackground(Color.WHITE);
+		rdbtnBanhistatosador.setBounds(321, 452, 118, 23);
+		panPrincipal.add(rdbtnBanhistatosador);
 		
 		janela.setSize(582,600);
 		janela.setVisible(true);

@@ -5,9 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import entity.Login;
-
 import javax.swing.JLabel;
 
 public class FrmPrincipal {
@@ -132,7 +130,8 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener(e -> {
 			int escolha = JOptionPane.showConfirmDialog(null, 
-					"Deseja realmente deslogar ?", "Sair", JOptionPane.YES_NO_OPTION);
+					"Deseja realmente deslogar ?", "Sair", 
+					JOptionPane.YES_NO_OPTION);
 			
 			if (escolha == JOptionPane.YES_OPTION) {
 				janela.dispose();
@@ -148,7 +147,7 @@ public class FrmPrincipal {
 	
 	public static void main(String[] args) {
 		String s = null;
-		new FrmPrincipal(s);
-		//new FrmPrincipal();
+		//new FrmPrincipal(s);
+		new FrmPrincipal();
 	}
 }

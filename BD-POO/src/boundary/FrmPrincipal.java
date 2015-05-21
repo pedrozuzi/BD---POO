@@ -68,6 +68,17 @@ public class FrmPrincipal {
 		btnDeslogar.setBounds(497, 329, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
+		btnDeslogar.addActionListener(e -> {
+			int escolha = JOptionPane.showConfirmDialog(null, 
+					"Deseja realmente deslogar ?", "Sair", JOptionPane.YES_NO_OPTION);
+			
+			if (escolha == JOptionPane.YES_OPTION) {
+				janela.dispose();
+				new FrmLogin();
+			}
+			
+		});
+		
 		
 		janela.setSize(574,427);
 		janela.setLocationRelativeTo(null);

@@ -32,7 +32,7 @@ public class FrmFunc implements ActionListener{
 	private JFrame janela;
 	private JPanel panPrincipal;
 	private JTable table;
-	private final JTextField txtCodigo = new JTextField();
+	private JTextField txtCodigo;
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtSalario;
@@ -61,6 +61,7 @@ public class FrmFunc implements ActionListener{
 	private JRadioButton rdbtnAtendente;
 	private JRadioButton rdbtnAdministrador;
 	private ButtonGroup bg;
+	private JButton btnPesquisarNome;
 	
 	public FrmFunc(String nome) {
 	
@@ -183,6 +184,7 @@ public class FrmFunc implements ActionListener{
 		btnGravar.setVisible(false);
 		panPrincipal.add(btnGravar);
 		
+		txtCodigo = new JTextField();
 		txtCodigo.setBackground(SystemColor.info);
 		txtCodigo.setBounds(103, 280, 96, 22);
 		txtCodigo.setVisible(false);
@@ -257,15 +259,16 @@ public class FrmFunc implements ActionListener{
 		bg.add(rdbtnAtendente);
 		bg.add(rdbtnAdministrador);
 		
+		btnPesquisarNome = new JButton("");
+		btnPesquisarNome.setVisible(false);
+		btnPesquisarNome.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniLupa.png")));
+		btnPesquisarNome.setBounds(295, 313, 40, 23);
+		panPrincipal.add(btnPesquisarNome);
+		
 		janela.setSize(582,600);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setLocationRelativeTo(null);
-		
-//		ctrlFunc = new CtrlFuncionario();
-//		int codigoAtual = ctrlFunc.pegarCodigo();
-//		String codAtual = String.valueOf(codigoAtual+1);
-//		txtCodigo.setText( codAtual );
 		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
@@ -304,6 +307,7 @@ public class FrmFunc implements ActionListener{
 			btnGravar.setVisible(true);
 			btnLimpar.setVisible(true);
 			btnVoltar.setVisible(true);
+			btnPesquisarNome.setVisible(false);
 		}else {
 			lblCodigo.setVisible(true);
 			lblNome.setVisible(true);
@@ -330,6 +334,7 @@ public class FrmFunc implements ActionListener{
 			btnGravar.setVisible(true);
 			btnLimpar.setVisible(true);
 			btnVoltar.setVisible(true);
+			btnPesquisarNome.setVisible(true);
 		}
 	}
 

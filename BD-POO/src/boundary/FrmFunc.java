@@ -361,19 +361,15 @@ public class FrmFunc implements ActionListener{
 		if(btnIncluir.equals(acao)){
 			controle = 1;
 			montarTela(controle);
-
 		}else if(btnRemover.equals(acao)){
 			controle = 2;
 			montarTela(controle);
-			
 		}else if(btnAlterar.equals(acao)){
 			controle = 3;
 			montarTela(controle);
-			
 		}else if(btnPesquisar.equals(acao)){
 			controle = 4;
 			montarTela(controle);
-			
 		}
 		
 		if(btnGravar.equals(acao) && controle==1){

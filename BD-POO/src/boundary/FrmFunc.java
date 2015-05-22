@@ -271,7 +271,7 @@ public class FrmFunc implements ActionListener{
 		
 		ctrlFunc = new CtrlFuncionario();
 		int codigoAtual = ctrlFunc.pegarCodigo();
-		String codAtual = String.valueOf(codigoAtual);
+		String codAtual = String.valueOf(codigoAtual+1);
 		txtCodigo.setText( codAtual );
 
 		btnIncluir.addActionListener(e -> {
@@ -279,12 +279,15 @@ public class FrmFunc implements ActionListener{
 		});
 		btnAlterar.addActionListener(e -> {
 			acaoPrincipal(e);
+			btnGravar.addActionListener(this);
 		});
 		btnPesquisar.addActionListener(e -> {
 			acaoPrincipal(e);
+			btnGravar.addActionListener(this);
 		});
 		btnRemover.addActionListener(e -> {
 			acaoPrincipal(e);
+			btnGravar.addActionListener(this);
 		});
 		
 		btnGravar.addActionListener(this);

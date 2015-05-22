@@ -26,6 +26,7 @@ import javax.swing.JComboBox;
 import org.w3c.dom.events.MouseEvent;
 
 import control.CtrlFuncionario;
+import entity.Funcionario;
 
 import java.awt.Cursor;
 
@@ -294,6 +295,20 @@ public class FrmFunc implements ActionListener{
 		lblLogo.setVisible(false);
 		if(btnIncluir.equals(acao)){
 			montarTela(1);
+			Funcionario f = new Funcionario();
+			f.setNome( txtNome.getText() );
+			f.setCpf( txtCpf.getText() );
+			f.setSalario( Double.parseDouble(txtSalario.getText()) );
+			
+			if(rdbtnAdministrador.isSelected()){
+				f.setCargo("Administrador");
+			}else if(rdbtnAtendente.isSelected()){
+				f.setCargo("Atendente");
+			}else if(rdbtnBanhistaTosador.isSelected()){
+				f.setCargo("Banhista/Tosador");
+			}
+			ctrlFunc.incluir(f);
+			
 		}else if(btnRemover.equals(acao)){
 			montarTela(2);
 		}else if(btnAlterar.equals(acao)){

@@ -270,6 +270,9 @@ public class FrmFunc implements ActionListener{
 		janela.setLocationRelativeTo(null);
 		
 		ctrlFunc = new CtrlFuncionario();
+		int codigoAtual = ctrlFunc.pegarCodigo();
+		String codAtual = String.valueOf(codigoAtual);
+		txtCodigo.setText( codAtual );
 
 		btnIncluir.addActionListener(e -> {
 			acaoPrincipal(e);
@@ -295,19 +298,18 @@ public class FrmFunc implements ActionListener{
 		lblLogo.setVisible(false);
 		if(btnIncluir.equals(acao)){
 			montarTela(1);
-			Funcionario f = new Funcionario();
-			f.setNome( txtNome.getText() );
-			f.setCpf( txtCpf.getText() );
-			f.setSalario( Double.parseDouble(txtSalario.getText()) );
-			
-			if(rdbtnAdministrador.isSelected()){
-				f.setCargo("Administrador");
-			}else if(rdbtnAtendente.isSelected()){
-				f.setCargo("Atendente");
-			}else if(rdbtnBanhistaTosador.isSelected()){
-				f.setCargo("Banhista/Tosador");
-			}
-			ctrlFunc.incluir(f);
+//			Funcionario f = new Funcionario();
+//			f.setNome( txtNome.getText() );
+//			f.setCpf( txtCpf.getText() );
+//			f.setSalario( Double.parseDouble(txtSalario.getText()) );
+//			if(rdbtnAdministrador.isSelected()){
+//				f.setCargo("Administrador");
+//			}else if(rdbtnAtendente.isSelected()){
+//				f.setCargo("Atendente");
+//			}else if(rdbtnBanhistaTosador.isSelected()){
+//				f.setCargo("Banhista/Tosador");
+//			}
+//			ctrlFunc.incluir(f);
 			
 		}else if(btnRemover.equals(acao)){
 			montarTela(2);

@@ -24,5 +24,10 @@ public class Fornecedor {
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
+	}
 
 }

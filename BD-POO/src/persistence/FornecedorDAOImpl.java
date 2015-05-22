@@ -24,15 +24,13 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 
 	@Override
 	public void inserirFornecedor(Fornecedor f) throws SQLException {
-		String query = "insert into fornecedor (nome, telefone)"
-				+ " values(?, ?, ?, ?)";
+		String query = "insert into fornecedor values (?, ?)";
 		PreparedStatement ps = c.prepareStatement( query );
-		ps.setString( 1, f.getNome() );
-		ps.setInt( 2, f.getTelefone() );
+		ps.setString(1, f.getNome() );
+		ps.setInt(2, f.getTelefone() );
 		ps.execute();
-		JOptionPane.showMessageDialog(null, "Fornecedor inserido com sucesso!");
 		ps.close();
-		
+		JOptionPane.showMessageDialog(null, "Fornecedor inserido com sucesso!");
 	}
 
 	@Override

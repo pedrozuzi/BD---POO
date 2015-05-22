@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import control.ConfigTelas;
 import control.CtrlFornecedor;
+import control.TratamentoTextFields;
 
 import javax.swing.JLabel;
 
@@ -127,7 +128,7 @@ public class FrmFornecedor implements ConfigTelas{
 		panPrincipal.add(txtId);
 		txtId.setColumns(10);
 		
-		txtNome = new JTextField();
+		txtNome = new TratamentoTextFields();
 		txtNome.setBounds(137, 360, 383, 20);
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
@@ -143,7 +144,7 @@ public class FrmFornecedor implements ConfigTelas{
 		lblNome.setVisible(false);
 		panPrincipal.add(lblNome);
 		
-		txtTelefone = new JTextField();
+		txtTelefone = new TratamentoTextFields(8);
 		txtTelefone.setBounds(137, 406, 109, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);

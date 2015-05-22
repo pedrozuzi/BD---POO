@@ -48,7 +48,8 @@ foreign key(id) references funcionario(id)
 
 create table fornecedor(
 id int not null,
-nome varchar(60) not null 
+nome varchar(60) not null ,
+telefone int not null
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
 

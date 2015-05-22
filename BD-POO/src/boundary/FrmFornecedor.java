@@ -198,7 +198,12 @@ public class FrmFornecedor implements ConfigTelas{
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);
 		
+		btnAlterar.addActionListener(l -> {
+			
+		});
+		
 		btnIncluir.addActionListener( l -> inserirFornecedor() );
+		
 		btnGravar.addActionListener(l -> {
 			Fornecedor f = new Fornecedor();
 			f.setNome(txtNome.getText());
@@ -217,7 +222,7 @@ public class FrmFornecedor implements ConfigTelas{
 		
 	}
 
-	public void inserirFornecedor(){
+	private void inserirFornecedor(){
 		txtId.setVisible(true);
 		txtId.setEnabled(false);
 		txtNome.setVisible(true);

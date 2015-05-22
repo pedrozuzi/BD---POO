@@ -61,11 +61,9 @@ public class FrmFunc implements ActionListener{
 	private JRadioButton rdbtnAtendente;
 	private JRadioButton rdbtnAdministrador;
 	private ButtonGroup bg;
-	private int controle;
 	
 	public FrmFunc(String nome) {
 	
-		
 		janela = new JFrame("Fornecedor");
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
@@ -264,26 +262,10 @@ public class FrmFunc implements ActionListener{
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setLocationRelativeTo(null);
 		
-		ctrlFunc = new CtrlFuncionario();
-		int codigoAtual = ctrlFunc.pegarCodigo();
-		String codAtual = String.valueOf(codigoAtual+1);
-		txtCodigo.setText( codAtual );
-
-//		btnIncluir.addActionListener(e -> {
-//			acaoPrincipal(e);
-//		});
-//		btnAlterar.addActionListener(e -> {
-//			acaoPrincipal(e);
-//			btnGravar.addActionListener(this);
-//		});
-//		btnPesquisar.addActionListener(e -> {
-//			acaoPrincipal(e);
-//			btnGravar.addActionListener(this);
-//		});
-//		btnRemover.addActionListener(e -> {
-//			acaoPrincipal(e);
-//			btnGravar.addActionListener(this);
-//		});
+//		ctrlFunc = new CtrlFuncionario();
+//		int codigoAtual = ctrlFunc.pegarCodigo();
+//		String codAtual = String.valueOf(codigoAtual+1);
+//		txtCodigo.setText( codAtual );
 		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
@@ -292,8 +274,7 @@ public class FrmFunc implements ActionListener{
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
-		
-		
+				
 	}
 	
 	private void montarTela(int controle) {
@@ -359,24 +340,20 @@ public class FrmFunc implements ActionListener{
 		lblLogo.setVisible(false);
 		
 		if(btnIncluir.equals(acao)){
-			controle = 1;
-			montarTela(controle);
-			btnGravar.setActionCommand("Adicionar");
+			montarTela(1);
+			btnGravar.setActionCommand("Incluir");
 		}else if(btnRemover.equals(acao)){
-			controle = 2;
-			montarTela(controle);
+			montarTela(2);
 			btnGravar.setActionCommand("Remover");
 		}else if(btnAlterar.equals(acao)){
-			controle = 3;
-			montarTela(controle);
+			montarTela(2);
 			btnGravar.setActionCommand("Alterar");
 		}else if(btnPesquisar.equals(acao)){
-			controle = 4;
-			montarTela(controle);
+			montarTela(2);
 			btnGravar.setActionCommand("Pesquisar");
 		}
 		
-		if("Adicionar".equalsIgnoreCase(cmd)){
+		if("Incluir".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar incluindo");
 			Funcionario f = new Funcionario();
 			f.setNome( txtNome.getText() );
@@ -390,11 +367,11 @@ public class FrmFunc implements ActionListener{
 				f.setCargo("Banhista/Tosador");
 			}
 			ctrlFunc.incluir(f);
-		}else if(btnGravar.equals(acao) && controle==2){
+		}else if("Remover".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar removendo");
-		}else if(btnGravar.equals(acao) && controle==3){
+		}else if("Alterar".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar alterando");
-		}else if(btnGravar.equals(acao) && controle==4){
+		}else if("Pesquisar".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar pesquisando");
 		}
 

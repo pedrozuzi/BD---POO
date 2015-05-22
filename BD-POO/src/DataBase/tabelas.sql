@@ -27,7 +27,6 @@ nome varchar(60) not null,
 logradouro varchar(100) not null,
 numero int not null,
 bairro varchar(60) not null,
-senha int null
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
 
@@ -39,6 +38,13 @@ cargo varchar(50) not null,
 salario decimal (7,2) not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
+
+CREATE TABLE login(
+id int not null,
+username varchar(10),
+passwor varchar(10),
+foreign key(id) references funcionario(id)
+)
 
 create table fornecedor(
 id int not null,
@@ -123,6 +129,7 @@ primary key(data_compra, id_compra, id_funcionario, id_produto),
 foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
 
+
 INSERT INTO tipo (descricao) VALUES 
 ('Administrador'),
 ('Atendente'),
@@ -147,13 +154,19 @@ INSERT INTO funcionario (id,cpf,nome,cargo,salario) VALUES
 (2,22222222222,'Pedro ZUZI', 'Secretario',1200.00), --atend
 (3,33333333333,'Pedro Afonso', 'Banhista',850.00)   --func
 
+INSERT INTO login (id,username,passwor) VALUES
+(1,'hurygg','1234'),
+(2,'pedrozz','susi'),
+(3,'pedroaa','corinthias')
+
 INSERT INTO fornecedor (id,nome) VALUES
 (4,'burns'),
 (9,'aang')
 
-INSERT INTO cliente (id,nome,logradouro,numero,bairro,senha) VALUES
-(5,'Oscar Alho','av 23',157,'se',666),
-(10,'Paula Tejando','rua cachueira',420,'cracolandia',123)
+INSERT INTO cliente (id,nome,logradouro,numero,bairro) VALUES
+(5,'Oscar Alho','av 23',157,'se'),
+(10,'Paula Tejando','rua cachueira',420,'cracolandia')
+
 
 
 

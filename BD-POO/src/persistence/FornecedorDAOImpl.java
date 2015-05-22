@@ -42,7 +42,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 		
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, f.getNome() );
-		ps.setDouble(2, f.getTelefone() );
+		ps.setInt(2, f.getTelefone() );
 		ps.setInt(3, f.getId() );
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Dados atualizados");

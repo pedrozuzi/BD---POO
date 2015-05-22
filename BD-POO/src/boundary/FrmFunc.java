@@ -190,7 +190,7 @@ public class FrmFunc implements ActionListener{
 		txtCodigo.setVisible(false);
 		panPrincipal.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		
+			
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
 		txtNome.setBackground(SystemColor.info);
@@ -355,23 +355,28 @@ public class FrmFunc implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object acao = e.getSource();
+		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
 		
 		if(btnIncluir.equals(acao)){
 			controle = 1;
 			montarTela(controle);
+			btnGravar.setActionCommand("Adicionar");
 		}else if(btnRemover.equals(acao)){
 			controle = 2;
 			montarTela(controle);
+			btnGravar.setActionCommand("Remover");
 		}else if(btnAlterar.equals(acao)){
 			controle = 3;
 			montarTela(controle);
+			btnGravar.setActionCommand("Alterar");
 		}else if(btnPesquisar.equals(acao)){
 			controle = 4;
 			montarTela(controle);
+			btnGravar.setActionCommand("Pesquisar");
 		}
 		
-		if(btnGravar.equals(acao) && controle==1){
+		if("Adicionar".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar incluindo");
 			Funcionario f = new Funcionario();
 			f.setNome( txtNome.getText() );

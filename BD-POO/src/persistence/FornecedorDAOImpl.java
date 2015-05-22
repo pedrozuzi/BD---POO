@@ -30,7 +30,8 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 		ps.setInt(2, f.getTelefone() );
 		ps.execute();
 		ps.close();
-		JOptionPane.showMessageDialog(null, "Fornecedor inserido com sucesso!");
+		JOptionPane.showMessageDialog(null, "Fornecedor inserido com sucesso!",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

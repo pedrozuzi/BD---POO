@@ -1,6 +1,5 @@
 package boundary;
 
-import javax.naming.ldap.Rdn;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -13,17 +12,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-
-import org.w3c.dom.events.MouseEvent;
 
 import control.CtrlFuncionario;
 import entity.Funcionario;
@@ -31,7 +25,6 @@ import entity.Funcionario;
 import java.awt.Cursor;
 
 import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 import javax.swing.border.EmptyBorder;
 
 public class FrmFunc implements ActionListener{
@@ -68,6 +61,7 @@ public class FrmFunc implements ActionListener{
 	private JRadioButton rdbtnAtendente;
 	private JRadioButton rdbtnAdministrador;
 	private ButtonGroup bg;
+	private int controle;
 	
 	public FrmFunc() {
 	
@@ -270,60 +264,39 @@ public class FrmFunc implements ActionListener{
 		janela.setLocationRelativeTo(null);
 		
 		ctrlFunc = new CtrlFuncionario();
-		int codigoAtual = ctrlFunc.pegarCodigo();
-		String codAtual = String.valueOf(codigoAtual+1);
-		txtCodigo.setText( codAtual );
+//		int codigoAtual = ctrlFunc.pegarCodigo();
+//		String codAtual = String.valueOf(codigoAtual+1);
+//		txtCodigo.setText( codAtual );
 
-		btnIncluir.addActionListener(e -> {
-			acaoPrincipal(e);
-		});
-		btnAlterar.addActionListener(e -> {
-			acaoPrincipal(e);
-			btnGravar.addActionListener(this);
-		});
-		btnPesquisar.addActionListener(e -> {
-			acaoPrincipal(e);
-			btnGravar.addActionListener(this);
-		});
-		btnRemover.addActionListener(e -> {
-			acaoPrincipal(e);
-			btnGravar.addActionListener(this);
-		});
+//		btnIncluir.addActionListener(e -> {
+//			acaoPrincipal(e);
+//		});
+//		btnAlterar.addActionListener(e -> {
+//			acaoPrincipal(e);
+//			btnGravar.addActionListener(this);
+//		});
+//		btnPesquisar.addActionListener(e -> {
+//			acaoPrincipal(e);
+//			btnGravar.addActionListener(this);
+//		});
+//		btnRemover.addActionListener(e -> {
+//			acaoPrincipal(e);
+//			btnGravar.addActionListener(this);
+//		});
 		
+		btnIncluir.addActionListener(this);
+		btnAlterar.addActionListener(this);
+		btnPesquisar.addActionListener(this);
+		btnRemover.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
+		btnGravar.addActionListener(this);
+		
 		
 	}
-
-	private void acaoPrincipal(ActionEvent e){
-		Object acao = e.getSource();
-		lblLogo.setVisible(false);
-		if(btnIncluir.equals(acao)){
-			montarTela(1);
-//			Funcionario f = new Funcionario();
-//			f.setNome( txtNome.getText() );
-//			f.setCpf( txtCpf.getText() );
-//			f.setSalario( Double.parseDouble(txtSalario.getText()) );
-//			if(rdbtnAdministrador.isSelected()){
-//				f.setCargo("Administrador");
-//			}else if(rdbtnAtendente.isSelected()){
-//				f.setCargo("Atendente");
-//			}else if(rdbtnBanhistaTosador.isSelected()){
-//				f.setCargo("Banhista/Tosador");
-//			}
-//			ctrlFunc.incluir(f);
-			
-		}else if(btnRemover.equals(acao)){
-			montarTela(2);
-		}else if(btnAlterar.equals(acao)){
-			montarTela(2);
-		}else if(btnPesquisar.equals(acao)){
-			montarTela(2);
-		}
-	}
 	
-	private void montarTela(int x) {
-		if(x == 1){
+	private void montarTela(int controle) {
+		if(controle == 1){
 			lblCodigo.setVisible(true);
 			lblNome.setVisible(true);
 			lblCargo.setVisible(true);
@@ -349,7 +322,7 @@ public class FrmFunc implements ActionListener{
 			btnGravar.setVisible(true);
 			btnLimpar.setVisible(true);
 			btnVoltar.setVisible(true);
-		}else if(x == 2){
+		}else {
 			lblCodigo.setVisible(true);
 			lblNome.setVisible(true);
 			lblCargo.setVisible(true);
@@ -381,14 +354,47 @@ public class FrmFunc implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object acao = e.getSource();
+		lblLogo.setVisible(false);
 		
-		if(btnGravar.equals(acao)){
-			System.out.println("Gravar");
-		}else if(btnLimpar.equals(acao)){
-			limpaCampos();
-		}else if(btnVoltar.equals(acao)){
-			System.out.println("Voltar");
+		if(btnIncluir.equals(acao)){
+			controle = 1;
+			montarTela(controle);
+//			Funcionario f = new Funcionario();
+//			f.setNome( txtNome.getText() );
+//			f.setCpf( txtCpf.getText() );
+//			f.setSalario( Double.parseDouble(txtSalario.getText()) );
+//			if(rdbtnAdministrador.isSelected()){
+//				f.setCargo("Administrador");
+//			}else if(rdbtnAtendente.isSelected()){
+//				f.setCargo("Atendente");
+//			}else if(rdbtnBanhistaTosador.isSelected()){
+//				f.setCargo("Banhista/Tosador");
+//			}
+//			ctrlFunc.incluir(f);
+		}else if(btnRemover.equals(acao)){
+			controle = 2;
+			montarTela(controle);
+			
+		}else if(btnAlterar.equals(acao)){
+			controle = 3;
+			montarTela(controle);
+			
+		}else if(btnPesquisar.equals(acao)){
+			controle = 4;
+			montarTela(controle);
+			
 		}
+		
+		if(btnGravar.equals(acao) && controle==1){
+			System.out.println("Gravar incluindo");
+		}else if(btnGravar.equals(acao) && controle==2){
+			System.out.println("Gravar removendo");
+		}else if(btnGravar.equals(acao) && controle==3){
+			System.out.println("Gravar alterando");
+		}else if(btnGravar.equals(acao) && controle==4){
+			System.out.println("Gravar pesquisando");
+		}
+
 	}
 	
 	

@@ -83,12 +83,4 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		return func;
 	}
 
-	@Override
-	public int pegarCodigo() throws SQLException {
-		String query = "select IDENT_CURRENT ('tipo') as codigo";
-		PreparedStatement ps = c.prepareStatement( query );
-		ResultSet rs = ps.executeQuery();
-		return rs.getInt("codigo");
-	}
-
 }

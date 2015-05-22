@@ -22,16 +22,4 @@ public class CtrlFuncionario {
 		}
 	}
 	
-	public int pegarCodigo(){
-		fDao = new FuncionarioDaoImpl();
-		try {
-			fDao.pegarCodigo();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), 
-					"Erro", JOptionPane.ERROR_MESSAGE);
-		}
-		return 0;
-	}
-	
-	
 }

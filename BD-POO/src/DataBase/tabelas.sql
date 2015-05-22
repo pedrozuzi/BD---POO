@@ -3,7 +3,7 @@ create database ludpet
 use ludpet
 
 create table tipo(
-id int identity not null,
+id int identity(1,1) not null,
 descricao varchar(50) not null
 primary key(id)) 
 
@@ -39,15 +39,16 @@ salario decimal (7,2) not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
 
-CREATE TABLE login(
-id int not null,
-username varchar(10),
-passwor varchar(10),
+CREATE TABLE loginUs(
+id int identity(1,1) not null,
+username varchar(10) unique not null,
+passwor varchar(10) not null,
+primary key(id)
 foreign key(id) references funcionario(id)
 )
 
 create table fornecedor(
-id int not null,
+id int identity(1,1) not null,
 nome varchar(60) not null,
 telefone int not null,
 primary key(id),

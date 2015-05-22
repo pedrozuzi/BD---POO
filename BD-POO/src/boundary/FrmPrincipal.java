@@ -12,7 +12,6 @@ import java.awt.SystemColor;
 
 public class FrmPrincipal {
 
-	
 	private JFrame janela;
 	private JButton btnRealizarVenda;
 	private JPanel panPrincipal;
@@ -183,7 +182,6 @@ public class FrmPrincipal {
 		btnDeslogar.setBounds(399, 328, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
-
 		
 		janela.setSize(476,426);
 		janela.setLocationRelativeTo(null);

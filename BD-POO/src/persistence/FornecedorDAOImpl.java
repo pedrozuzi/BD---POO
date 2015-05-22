@@ -94,7 +94,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 			f.setTelefone( rs.getInt( "telefone" ) );
 			lista.add( f );
 		}
-		c.close();
+		ps.close();
 		return lista;
 	}
 

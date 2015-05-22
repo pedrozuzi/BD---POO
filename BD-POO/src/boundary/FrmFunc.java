@@ -265,9 +265,9 @@ public class FrmFunc implements ActionListener{
 		janela.setLocationRelativeTo(null);
 		
 		ctrlFunc = new CtrlFuncionario();
-//		int codigoAtual = ctrlFunc.pegarCodigo();
-//		String codAtual = String.valueOf(codigoAtual+1);
-//		txtCodigo.setText( codAtual );
+		int codigoAtual = ctrlFunc.pegarCodigo();
+		String codAtual = String.valueOf(codigoAtual+1);
+		txtCodigo.setText( codAtual );
 
 //		btnIncluir.addActionListener(e -> {
 //			acaoPrincipal(e);

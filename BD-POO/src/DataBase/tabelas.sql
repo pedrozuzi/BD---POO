@@ -84,8 +84,7 @@ descricao varchar(60),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,
-id_lote int not null
-primary key(id)
+primary key(id),
 foreign key(id_fornecedor) references fornecedor(id),
 )
 
@@ -167,7 +166,19 @@ INSERT INTO cliente (id,nome,logradouro,numero,bairro) VALUES
 (5,'Oscar Alho','av 23',157,'se'),
 (10,'Paula Tejando','rua cachueira',420,'cracolandia')
 
+INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra) VALUES
+('Petimax','ração para cachorro',4,10.00,5.00),
+('bonix','ossinhos para cachorro',9,2.00,1.00)
 
+INSERT INTO lote (data_validade) VALUES
+(convert(datetime,'20-06-15 10:30:00 PM',5)),
+(convert(datetime,'20-07-15 10:30:00 PM',5)),
+(convert(datetime,'10-08-15 10:30:00 PM',5)),
+(convert(datetime,'10-09-15 10:30:00 PM',5))
 
-
+INSERT INTO lote_produto(idProduto,idLote) VALUES
+(1,1),
+(1,2),
+(2,3),
+(2,4)
 

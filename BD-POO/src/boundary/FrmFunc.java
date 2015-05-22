@@ -66,8 +66,7 @@ public class FrmFunc implements ActionListener{
 	public FrmFunc(String nome) {
 	
 		
-		janela = new JFrame();
-		janela.setTitle(nome);
+		janela = new JFrame("Fornecedor");
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);

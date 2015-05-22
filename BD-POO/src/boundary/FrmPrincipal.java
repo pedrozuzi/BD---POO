@@ -5,11 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import entity.Login;
-
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -101,7 +98,7 @@ public class FrmPrincipal {
 		lblAgendarServio.setBounds(340, 336, 122, 14);
 		panPrincipal.add(lblAgendarServio);
 		
-		lblRelatrios = new JLabel("(F3) Relat\u00F3rios");
+		lblRelatrios = new JLabel("(F3) Relatórios");
 		lblRelatrios.setBounds(64, 336, 98, 14);
 		panPrincipal.add(lblRelatrios);
 		
@@ -113,20 +110,11 @@ public class FrmPrincipal {
 		lblfCadastros.setBounds(210, 336, 98, 14);
 		panPrincipal.add(lblfCadastros);
 		
-		lblfRealizarServio = new JLabel("(F2) Realizar Servi\u00E7o");
+		lblfRealizarServio = new JLabel("(F2) Realizar Serviço");
 		lblfRealizarServio.setBounds(199, 203, 122, 14);
 		panPrincipal.add(lblfRealizarServio);
 		
-		btnDeslogar.addActionListener(e -> {
-			int escolha = JOptionPane.showConfirmDialog(null, 
-					"Deseja realmente deslogar ?", "Sair", JOptionPane.YES_NO_OPTION);
-			
-			if (escolha == JOptionPane.YES_OPTION) {
-				janela.dispose();
-				new FrmLogin();
-			}
-			
-		});
+		btnDeslogar.addActionListener( e -> deslogar() );
 		
 		
 		janela.setSize(576,465);
@@ -203,21 +191,22 @@ public class FrmPrincipal {
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		btnDeslogar.addActionListener(e -> {
-			int escolha = JOptionPane.showConfirmDialog(null, 
-					"Deseja realmente deslogar ?", "Sair", 
-					JOptionPane.YES_NO_OPTION);
-			
-			if (escolha == JOptionPane.YES_OPTION) {
-				janela.dispose();
-				new FrmLogin();
-			}
-			
-		});
+		btnDeslogar.addActionListener( e -> deslogar() );
 		
 	}
 	
-	
+	public void deslogar(){
+		Object[] opcoes = {"Sim", "Não"};
+		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar-se ?", 
+				"Aviso", JOptionPane.DEFAULT_OPTION, 
+				JOptionPane.WARNING_MESSAGE, 
+				null, opcoes, opcoes[1]);
+			
+		if (escolha == JOptionPane.YES_OPTION) {
+			janela.dispose();
+			new FrmLogin();
+		}
+	}
 	
 	
 	public static void main(String[] args) {

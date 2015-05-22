@@ -43,7 +43,7 @@ CREATE TABLE loginUs(
 id int identity(1,1) not null,
 username varchar(10) unique not null,
 passwor varchar(10) not null,
-primary key(id)
+primary key(id),
 foreign key(id) references funcionario(id)
 )
 

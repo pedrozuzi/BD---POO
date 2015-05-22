@@ -48,8 +48,8 @@ foreign key(id) references funcionario(id)
 
 create table fornecedor(
 id int not null,
-nome varchar(60) not null ,
-telefone int not null
+nome varchar(60) not null,
+telefone int not null,
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
 
@@ -159,9 +159,9 @@ INSERT INTO login (id,username,passwor) VALUES
 (2,'pedrozz','susi'),
 (3,'pedroaa','corinthias')
 
-INSERT INTO fornecedor (id,nome) VALUES
-(4,'burns'),
-(9,'aang')
+INSERT INTO fornecedor (id,nome,telefone) VALUES
+(4,'burns',11111111),
+(9,'aang',22222222)
 
 INSERT INTO cliente (id,nome,logradouro,numero,bairro) VALUES
 (5,'Oscar Alho','av 23',157,'se'),

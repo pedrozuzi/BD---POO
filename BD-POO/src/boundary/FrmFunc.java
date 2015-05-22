@@ -1,5 +1,6 @@
 package boundary;
 
+import javax.naming.ldap.Rdn;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
@@ -26,8 +28,10 @@ import org.w3c.dom.events.MouseEvent;
 import control.CtrlFuncionario;
 
 import java.awt.Cursor;
+
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.border.EmptyBorder;
 
 public class FrmFunc implements ActionListener{
 
@@ -59,6 +63,10 @@ public class FrmFunc implements ActionListener{
 	private JLabel lblTelefone;
 	private JScrollPane scrollPane;
 	private CtrlFuncionario ctrlFunc;
+	private JRadioButton rdbtnBanhistaTosador;
+	private JRadioButton rdbtnAtendente;
+	private JRadioButton rdbtnAdministrador;
+	private ButtonGroup bg;
 	
 	public FrmFunc() {
 	
@@ -226,23 +234,34 @@ public class FrmFunc implements ActionListener{
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
-		JRadioButton rdbtnAdministrador = new JRadioButton("Administrador");
+		rdbtnAdministrador = new JRadioButton("Administrador");
+		rdbtnAdministrador.setVisible(false);
+		rdbtnAdministrador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAdministrador.setBackground(Color.WHITE);
 		rdbtnAdministrador.setBounds(99, 452, 109, 23);
 		panPrincipal.add(rdbtnAdministrador);
 		
-		JRadioButton rdbtnAtendente = new JRadioButton("Atendente");
+		rdbtnAtendente = new JRadioButton("Atendente");
+		rdbtnAtendente.setVisible(false);
 		rdbtnAtendente.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnAtendente.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAtendente.setBackground(Color.WHITE);
-		rdbtnAtendente.setBounds(210, 452, 109, 23);
+		rdbtnAtendente.setBounds(227, 452, 109, 23);
 		panPrincipal.add(rdbtnAtendente);
 		
-		JRadioButton rdbtnBanhistatosador = new JRadioButton("Banhista/Tosador");
-		rdbtnBanhistatosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnBanhistatosador.setBackground(Color.WHITE);
-		rdbtnBanhistatosador.setBounds(321, 452, 118, 23);
-		panPrincipal.add(rdbtnBanhistatosador);
+		rdbtnBanhistaTosador = new JRadioButton("Banhista/Tosador");
+		rdbtnBanhistaTosador.setVisible(false);
+		rdbtnBanhistaTosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnBanhistaTosador.setBorder(new EmptyBorder(0, 0, 0, 0));
+		rdbtnBanhistaTosador.setBackground(Color.WHITE);
+		rdbtnBanhistaTosador.setBounds(346, 452, 128, 23);
+		panPrincipal.add(rdbtnBanhistaTosador);
+		
+		bg = new ButtonGroup();
+		bg.add(rdbtnBanhistaTosador);
+		bg.add(rdbtnAtendente);
+		bg.add(rdbtnAdministrador);
 		
 		janela.setSize(582,600);
 		janela.setVisible(true);
@@ -292,8 +311,12 @@ public class FrmFunc implements ActionListener{
 			lblCpf.setVisible(true);
 			lblSalario.setVisible(true);
 			lblTelefone.setVisible(true);
-			txtCargo.setVisible(true);
-			txtCargo.setEnabled(true);
+			rdbtnAdministrador.setVisible(true);
+			rdbtnAdministrador.setEnabled(true);
+			rdbtnAtendente.setVisible(true);
+			rdbtnAtendente.setEnabled(true);
+			rdbtnBanhistaTosador.setVisible(true);
+			rdbtnBanhistaTosador.setEnabled(true);
 			txtNome.setVisible(true);
 			txtCodigo.setVisible(true);
 			txtSalario.setVisible(true);
@@ -314,8 +337,12 @@ public class FrmFunc implements ActionListener{
 			lblCpf.setVisible(true);
 			lblSalario.setVisible(true);
 			lblTelefone.setVisible(true);
-			txtCargo.setVisible(true);
-			txtCargo.setEnabled(false);
+			rdbtnAdministrador.setVisible(true);
+			rdbtnAdministrador.setEnabled(false);
+			rdbtnAtendente.setVisible(true);
+			rdbtnAtendente.setEnabled(false);
+			rdbtnBanhistaTosador.setVisible(true);
+			rdbtnBanhistaTosador.setEnabled(false);
 			txtNome.setVisible(true);
 			txtCodigo.setVisible(true);
 			txtSalario.setVisible(true);
@@ -347,7 +374,7 @@ public class FrmFunc implements ActionListener{
 	
 	
 	private void limpaCampos() {
-		txtCargo.setText("");
+		bg.clearSelection();
 		txtCodigo.setText("");
 		txtCpf.setText("");
 		txtNome.setText("");

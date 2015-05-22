@@ -290,7 +290,6 @@ public class FrmFunc implements ActionListener{
 			btnGravar.addActionListener(this);
 		});
 		
-		btnGravar.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		

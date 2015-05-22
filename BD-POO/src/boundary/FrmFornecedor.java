@@ -24,7 +24,7 @@ import java.awt.SystemColor;
 
 public class FrmFornecedor implements ConfigTelas{
 	
-	private JFrame janela = new JFrame("Fornecedor"); 
+	private JFrame janela; 
 	private JPanel panPrincipal;
 	private JTextField txtId;
 	private JTextField txtNome;
@@ -47,7 +47,10 @@ public class FrmFornecedor implements ConfigTelas{
 	private JButton btnLimpar;
 	private JButton btnVoltar;
 	
-	public FrmFornecedor() {
+	public FrmFornecedor(String nome) {
+		
+		janela = new JFrame();
+		janela.setTitle(nome);
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
@@ -165,6 +168,6 @@ public class FrmFornecedor implements ConfigTelas{
 	}
 	
 	public static void main(String[] args) {
-		new FrmFornecedor();
+		new FrmFornecedor("Fornecedor");
 	}
 }

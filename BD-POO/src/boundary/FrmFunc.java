@@ -63,9 +63,11 @@ public class FrmFunc implements ActionListener{
 	private ButtonGroup bg;
 	private int controle;
 	
-	public FrmFunc() {
+	public FrmFunc(String nome) {
 	
+		
 		janela = new JFrame();
+		janela.setTitle(nome);
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
@@ -359,18 +361,7 @@ public class FrmFunc implements ActionListener{
 		if(btnIncluir.equals(acao)){
 			controle = 1;
 			montarTela(controle);
-//			Funcionario f = new Funcionario();
-//			f.setNome( txtNome.getText() );
-//			f.setCpf( txtCpf.getText() );
-//			f.setSalario( Double.parseDouble(txtSalario.getText()) );
-//			if(rdbtnAdministrador.isSelected()){
-//				f.setCargo("Administrador");
-//			}else if(rdbtnAtendente.isSelected()){
-//				f.setCargo("Atendente");
-//			}else if(rdbtnBanhistaTosador.isSelected()){
-//				f.setCargo("Banhista/Tosador");
-//			}
-//			ctrlFunc.incluir(f);
+
 		}else if(btnRemover.equals(acao)){
 			controle = 2;
 			montarTela(controle);
@@ -387,6 +378,18 @@ public class FrmFunc implements ActionListener{
 		
 		if(btnGravar.equals(acao) && controle==1){
 			System.out.println("Gravar incluindo");
+			Funcionario f = new Funcionario();
+			f.setNome( txtNome.getText() );
+			f.setCpf( txtCpf.getText() );
+			f.setSalario( Double.parseDouble(txtSalario.getText()) );
+			if(rdbtnAdministrador.isSelected()){
+				f.setCargo("Administrador");
+			}else if(rdbtnAtendente.isSelected()){
+				f.setCargo("Atendente");
+			}else if(rdbtnBanhistaTosador.isSelected()){
+				f.setCargo("Banhista/Tosador");
+			}
+			ctrlFunc.incluir(f);
 		}else if(btnGravar.equals(acao) && controle==2){
 			System.out.println("Gravar removendo");
 		}else if(btnGravar.equals(acao) && controle==3){
@@ -408,6 +411,6 @@ public class FrmFunc implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		new FrmFunc();
+		new FrmFunc("Funcionario");
 	}
 }

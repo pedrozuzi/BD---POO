@@ -20,7 +20,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
-		String query = "insert into funcionario (cpf, nome, cargo, salario)"
+		String query = "insert into pessoa (cpf, nome, cargo, salario)"
 				+ " values(?, ?, ?, ?)";
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, func.getCpf() );

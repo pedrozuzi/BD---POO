@@ -39,27 +39,25 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		}else if(func.getCargo().equals("Banhista/Tosador")){
 			ps.setInt(1, 3);
 		}
-//		ResultSet rs = ps.executeQuery();
 		ps.execute();
 		ps.close();
 		
-		String querySelect = "select IDENT_CURRENT ('pessoa') as idPessoa";
+		String querySelect = "select IDENT_CURRENT ('funcionario') as idPessoa";
 		//select IDENT_CURRENT ('pessoa') as idPessoa
 		//select MAX(idPessoa) as tabela as idPessoa
 		ps = c.prepareStatement( querySelect );
 		ResultSet rs = ps.executeQuery();
-		int atual = rs.getInt("idPessoa");//No current row in the Result Set
-		rs.getRow();
+		rs.next();
 		
 		//inserindo funcionario
 		String queryFuncionario = "insert into funcionario (id, cpf, nome, cargo, salario)"
 				+ " values(?, ?, ?, ?, ?)";
-		ps = c.prepareStatement( queryPessoa );
-		ps.setInt(1, atual );
-		ps.setString(1, func.getCpf() );
-		ps.setString(1, func.getNome() );
-		ps.setString(1, func.getCargo() );
-		ps.setDouble(1, func.getSalario() );
+		ps = c.prepareStatement( queryFuncionario );
+		ps.setInt(1, rs.getInt("idPessoa") );
+		ps.setString(2, func.getCpf() );
+		ps.setString(3, func.getNome() );
+		ps.setString(4, func.getCargo() );
+		ps.setDouble(5, func.getSalario() );
 		
 		System.out.println("Funcionario inserido com sucesso");
 		ps.close();

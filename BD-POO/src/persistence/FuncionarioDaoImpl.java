@@ -41,11 +41,15 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		}
 //		ResultSet rs = ps.executeQuery();
 		ps.execute();
+		ps.close();
 		
-		String querySelect = "select idPessoa from pessoa";
+		String querySelect = "select IDENT_CURRENT ('pessoa') as idPessoa";
+		//select IDENT_CURRENT ('pessoa') as idPessoa
+		//select MAX(idPessoa) as tabela as idPessoa
 		ps = c.prepareStatement( querySelect );
 		ResultSet rs = ps.executeQuery();
-		int atual = rs.getInt("idPessoa");
+		int atual = rs.getInt("idPessoa");//No current row in the Result Set
+		rs.getRow();
 		
 		//inserindo funcionario
 		String queryFuncionario = "insert into funcionario (id, cpf, nome, cargo, salario)"

@@ -228,7 +228,7 @@ public class FrmProduto {
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnNewButton.setBounds(403, 24, 30, 25);
+		btnNewButton.setBounds(189, 5, 30, 25);
 		panProduto.add(btnNewButton);
 		
 		txtDescricao = new JTextField();
@@ -237,8 +237,8 @@ public class FrmProduto {
 		txtDescricao.setColumns(10);
 		
 		JLabel lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 8));
-		lblPesquisar.setBounds(399, 48, 44, 14);
+		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 10));
+		lblPesquisar.setBounds(177, 24, 61, 25);
 		panProduto.add(lblPesquisar);
 		
 		txtValorVenda = new JTextField();
@@ -297,6 +297,10 @@ public class FrmProduto {
 		
 		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
 				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+		
+		JButton btnNewButton_1 = new JButton("pesquisa3");
+		btnNewButton_1.setBounds(451, 153, 89, 23);
+		panProduto.add(btnNewButton_1);
 		
 		btnSalvar.addActionListener(incluirprod);
 		

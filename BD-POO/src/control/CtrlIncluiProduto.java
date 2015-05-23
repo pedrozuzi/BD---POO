@@ -69,7 +69,7 @@ public class CtrlIncluiProduto implements ActionListener{
 			pDao.insereProduto(prod);
 			System.out.println("Produto Incluido");
 			JOptionPane.showMessageDialog(null, 
-					"Matéria Inserida com Sucesso","Sucesso",
+					"Produto incluido com Sucesso","Sucesso",
 					JOptionPane.INFORMATION_MESSAGE);
 			//TODO limpa campos
 			

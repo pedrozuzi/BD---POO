@@ -97,11 +97,10 @@ foreign key(idProduto)references produto(id))
 	//Metodos implementados Lote
 	@Override
 	public void insereLote(Lote lot) throws SQLException {
-		String sql = "INSERT INTO lote (id,data_validade)"+
-		"VALUES(?,?)";
+		String sql = "INSERT INTO lote (data_validade)"+
+		"VALUES(?)";
 		PreparedStatement ps = c.prepareStatement(sql);
-		ps.setInt(1, lot.getId());
-		ps.setDate(2, lot.getData_validade());
+		ps.setDate(1, lot.getData_validade());
 		ps.execute();
 		ps.close();
 		
@@ -133,7 +132,7 @@ foreign key(idProduto)references produto(id))
 //Metodos implementados LoteProduto
 	@Override
 	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
-		String sql = "INSERT INTO lote (idProduto,idLote)"+
+		String sql = "INSERT INTO lote_produto (idProduto,idLote)"+
 		"VALUES(?,?)";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1, lotProd.getIdLote());
@@ -156,7 +155,7 @@ foreign key(idProduto)references produto(id))
 	}
 
 	@Override
-	public Lote consultaLoteProduto(LoteProduto lotProd) throws SQLException {
+	public LoteProduto consultaLoteProduto(LoteProduto lotProd) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

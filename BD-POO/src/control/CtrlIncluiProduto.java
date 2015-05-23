@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -44,22 +46,40 @@ public class CtrlIncluiProduto implements ActionListener{
 		Lote lot = new Lote();
 		LoteProduto lotprod = new LoteProduto();
 		
-		prod.setId(Integer.parseInt(txtIdProduto.getText())); //TODO Este valor é automatico, não deve ser chumbado.
+	//	prod.setId(Integer.parseInt(txtIdProduto.getText())); //TODO Este valor é automatico, não deve ser chumbado.
 		prod.setNome(txtNome.getText());
 		prod.setDescricao(txtDescricao.getText());
 		prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
 		prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 		prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText())); //TODO Este valor deve ser pesquisado.
 		
-		lot.setId(Integer.parseInt(txtIdLote.getText())); //TODO Este valor é automatico, não deve ser chumbado.
-		lot.setData_validade(DateFormat. txtDataValidadeLote.getText()); //FIXME arrumar a conversão de data dd/MM/YYYY (sql = DateTime 20-06-15 10:30:00 PM)
+	//	lot.setId(Integer.parseInt(txtIdLote.getText())); //TODO Este valor é automatico, não deve ser chumbado.
 		
-		lotprod.setIdProduto(prod.getId());
-		lotprod.setIdLote(lot.getId());
+        //data
+        try {
+    		String data =txtDataValidadeLote.getText();
+    		java.sql.Date date = null; 
+    		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			date = new java.sql.Date( ((java.util.Date)formatter.parse(data)).getTime() );
+			lot.setData_validade(date); //FIXME 
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+			
+		}
+       		
+		//TODO SELECT IDENT_CURRENT('produto'); SELECT IDENT_CURRENT('lote');
+		//lotprod.setIdProduto(prod.getId()); 
+		//lotprod.setIdLote(lot.getId());
 		
-		insereProduto(prod);
-		insereLote(lot);
+        //XXX temporario 
+		lotprod.setIdProduto(Integer.parseInt(txtIdProduto.getText())); 
+		lotprod.setIdLote(Integer.parseInt(txtIdLote.getText()));
+		
+	//	insereProduto(prod);
+	//	insereLote(lot);
 		insereLoteProduto(lotprod);
+		
+		System.out.println("prod: "+prod.getId()+" lot: "+lot.getId());
 		
 	}
 
@@ -68,9 +88,7 @@ public class CtrlIncluiProduto implements ActionListener{
 		try {
 			pDao.insereProduto(prod);
 			System.out.println("Produto Incluido");
-			JOptionPane.showMessageDialog(null, 
-					"Produto incluido com Sucesso","Sucesso",
-					JOptionPane.INFORMATION_MESSAGE);
+
 			//TODO limpa campos
 			
 		} catch (Exception e) {
@@ -95,10 +113,12 @@ public class CtrlIncluiProduto implements ActionListener{
 		try {
 			lpDao.insereLoteProduto(lotprod);
 			System.out.println("LoteProduto Incluido!");
+			JOptionPane.showMessageDialog(null, 
+					"Produto incluido com Sucesso","Sucesso",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
-			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	
 }

@@ -101,8 +101,8 @@ create table lote_produto(
 idProduto int not null,
 idLote int not null,
 primary key(idProduto, idLote),
-foreign key(idLote)references lote(id),
-foreign key(idProduto)references produto(id))
+foreign key(idProduto)references produto (id),
+foreign key(idLote)references lote (id))
 
 
 create table venda_produto(
@@ -173,10 +173,10 @@ INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra) VALU
 ('bonix','ossinhos para cachorro',9,2.00,1.00)
 
 INSERT INTO lote (data_validade) VALUES
-(convert(datetime,'20-06-15 10:30:00 PM',5)),
-(convert(datetime,'20-07-15 10:30:00 PM',5)),
-(convert(datetime,'10-08-15 10:30:00 PM',5)),
-(convert(datetime,'10-09-15 10:30:00 PM',5))
+('20-06-15'),
+('20-07-15'),
+('10-08-15'),
+('10-09-15')
 
 INSERT INTO lote_produto(idProduto,idLote) VALUES
 (1,1),
@@ -184,7 +184,14 @@ INSERT INTO lote_produto(idProduto,idLote) VALUES
 (2,3),
 (2,4)
 
+INSERT INTO lote_produto(idProduto,idLote) VALUES
+(5,7)
 
 
 use master
 drop database ludpet
+
+select * from produto
+
+SELECT IDENT_CURRENT('produto');
+SELECT IDENT_CURRENT('lote');

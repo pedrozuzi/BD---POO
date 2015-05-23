@@ -29,6 +29,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import control.ConfigTelas;
+import control.CtrlIncluiProduto;
 
 /**
  * 
@@ -293,6 +294,13 @@ public class FrmProduto {
 		janela.setSize(801,624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
+				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+		
+		btnSalvar.addActionListener(incluirprod);
+		
+		
 		
 	}
 	

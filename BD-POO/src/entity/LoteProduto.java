@@ -1,4 +1,5 @@
 package entity;
+
 /**
  * 
  * @author Hury

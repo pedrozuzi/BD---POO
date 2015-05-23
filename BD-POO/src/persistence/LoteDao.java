@@ -5,7 +5,14 @@ import java.util.List;
 
 import entity.Lote;
 
+/**
+ * 
+ * @author Hury
+ *
+ */
+
 public interface LoteDao {
+	
 	void insereLote(Lote lot) throws SQLException;
 
 	void atualizaLote(Lote lot) throws SQLException;

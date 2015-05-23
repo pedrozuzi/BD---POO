@@ -3,7 +3,6 @@ package persistence;
 import java.sql.SQLException;
 import java.util.List;
 
-import entity.Lote;
 import entity.Produto;
 
 /**
@@ -12,16 +11,15 @@ import entity.Produto;
  *
  */
 public interface ProdutoDao {
-	
-	public abstract void insereProduto(Produto prod) throws SQLException;
 
-	public abstract void atualizaProduto(Produto prod) throws SQLException;
+	void insereProduto(Produto prod) throws SQLException;
 
-	public abstract void excluiProduto(Produto prod) throws SQLException;
+	void atualizaProduto(Produto prod) throws SQLException;
 
-	public abstract Lote consultaProduto(Produto prod) throws SQLException;
+	void excluiProduto(Produto prod) throws SQLException;
 
-	public abstract List<Produto> listaProduto() throws SQLException;
-	
+	Produto consultaProduto(Produto prod) throws SQLException;
+
+	List<Produto> listaProduto() throws SQLException;
 
 }

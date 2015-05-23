@@ -7,6 +7,7 @@ public class Funcionario {
 	private String cpf;
 	private double salario;
 	private String cargo;
+	private int telefone;
 	
 	public double getSalario() {
 		return salario;
@@ -38,6 +39,13 @@ public class Funcionario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	public int getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+	
 	
 	
 

@@ -26,13 +26,14 @@ import java.awt.Cursor;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
+import java.awt.Component;
 
 public class FrmFunc implements ActionListener{
 
 	private JFrame janela;
 	private JPanel panPrincipal;
 	private JTable table;
-	private JTextField txtCodigo;
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtSalario;
@@ -48,7 +49,6 @@ public class FrmFunc implements ActionListener{
 	private JLabel lblCpf;
 	private JLabel lblSalario;
 	private JLabel lblCargo;
-	private JLabel lblCodigo;
 	private JButton btnVoltar;
 	private JButton btnLimpar;
 	private JButton btnGravar;
@@ -87,10 +87,11 @@ public class FrmFunc implements ActionListener{
 		panel.add(btnIncluir);
 		
 		lblIncluir = new JLabel("Incluir");
-		lblIncluir.setLabelFor(btnIncluir);
+		lblIncluir.setVerticalTextPosition(SwingConstants.TOP);
+		lblIncluir.setLabelFor(panel);
 		lblIncluir.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblIncluir.setBounds(59, 54, 59, 19);
+		lblIncluir.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblIncluir.setBounds(59, 54, 39, 19);
 		panel.add(lblIncluir);
 		
 		btnAlterar = new JButton("");
@@ -99,8 +100,8 @@ public class FrmFunc implements ActionListener{
 		panel.add(btnAlterar);
 		
 		JLabel lblAlterar = new JLabel("Alterar");
-		lblAlterar.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblAlterar.setBounds(162, 54, 44, 19);
+		lblAlterar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAlterar.setBounds(153, 54, 44, 19);
 		panel.add(lblAlterar);
 		
 		btnRemover = new JButton("");
@@ -109,13 +110,13 @@ public class FrmFunc implements ActionListener{
 		panel.add(btnRemover);
 		
 		lblRemover = new JLabel("Excluir");
-		lblRemover.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblRemover.setBounds(252, 53, 38, 19);
+		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblRemover.setBounds(242, 54, 39, 19);
 		panel.add(lblRemover);
 		
 		lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblPesquisar.setBounds(336, 53, 59, 19);
+		lblPesquisar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPesquisar.setBounds(336, 54, 59, 19);
 		panel.add(lblPesquisar);
 		
 		btnPesquisar = new JButton("");
@@ -135,33 +136,27 @@ public class FrmFunc implements ActionListener{
 		
 		lblNome = new JLabel("Nome : ");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNome.setBounds(33, 313, 68, 14);
+		lblNome.setBounds(33, 290, 68, 14);
 		lblNome.setVisible(false);
 		panPrincipal.add(lblNome);
 		
 		lblCpf = new JLabel("CPF : ");
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCpf.setBounds(33, 348, 46, 14);
+		lblCpf.setBounds(33, 322, 46, 14);
 		lblCpf.setVisible(false);
 		panPrincipal.add(lblCpf);
 		
 		lblSalario = new JLabel("Sal\u00E1rio : ");
 		lblSalario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSalario.setBounds(33, 381, 60, 17);
+		lblSalario.setBounds(33, 360, 60, 17);
 		lblSalario.setVisible(false);
 		panPrincipal.add(lblSalario);
 		
 		lblCargo = new JLabel("Cargo : ");
 		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCargo.setBounds(33, 453, 60, 17);
+		lblCargo.setBounds(33, 438, 60, 17);
 		lblCargo.setVisible(false);
 		panPrincipal.add(lblCargo);
-		
-		lblCodigo = new JLabel("C\u00F3digo");
-		lblCodigo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCodigo.setBounds(33, 280, 60, 22);
-		lblCodigo.setVisible(false);
-		panPrincipal.add(lblCodigo);
 		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniBack.png")));
@@ -183,32 +178,25 @@ public class FrmFunc implements ActionListener{
 		btnGravar.setBounds(432, 496, 96, 31);
 		btnGravar.setVisible(false);
 		panPrincipal.add(btnGravar);
-		
-		txtCodigo = new JTextField();
-		txtCodigo.setBackground(SystemColor.info);
-		txtCodigo.setBounds(103, 280, 96, 22);
-		txtCodigo.setVisible(false);
-		panPrincipal.add(txtCodigo);
-		txtCodigo.setColumns(10);
 			
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
 		txtNome.setBackground(SystemColor.info);
-		txtNome.setBounds(103, 313, 182, 22);
+		txtNome.setBounds(103, 288, 182, 22);
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
 		
 		txtCpf = new JTextField();
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.info);
-		txtCpf.setBounds(103, 348, 182, 22);
+		txtCpf.setBounds(103, 320, 182, 22);
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);
 		
 		txtSalario = new JTextField();
 		txtSalario.setColumns(10);
 		txtSalario.setBackground(SystemColor.info);
-		txtSalario.setBounds(103, 381, 182, 22);
+		txtSalario.setBounds(103, 359, 182, 22);
 		txtSalario.setVisible(false);
 		panPrincipal.add(txtSalario);
 		
@@ -219,13 +207,13 @@ public class FrmFunc implements ActionListener{
 		
 		lblTelefone = new JLabel("Telefone :");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTelefone.setBounds(33, 420, 68, 14);
+		lblTelefone.setBounds(33, 402, 68, 14);
 		lblTelefone.setVisible(false);
 		panPrincipal.add(lblTelefone);
 		
 		txtTelefone = new JTextField();
 		txtTelefone.setBackground(SystemColor.info);
-		txtTelefone.setBounds(113, 419, 128, 20);
+		txtTelefone.setBounds(103, 401, 128, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
@@ -235,7 +223,7 @@ public class FrmFunc implements ActionListener{
 		rdbtnAdministrador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAdministrador.setBackground(Color.WHITE);
-		rdbtnAdministrador.setBounds(99, 452, 109, 23);
+		rdbtnAdministrador.setBounds(103, 436, 109, 23);
 		panPrincipal.add(rdbtnAdministrador);
 		
 		rdbtnAtendente = new JRadioButton("Atendente");
@@ -243,7 +231,7 @@ public class FrmFunc implements ActionListener{
 		rdbtnAtendente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAtendente.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAtendente.setBackground(Color.WHITE);
-		rdbtnAtendente.setBounds(227, 452, 109, 23);
+		rdbtnAtendente.setBounds(227, 436, 109, 23);
 		panPrincipal.add(rdbtnAtendente);
 		
 		rdbtnBanhistaTosador = new JRadioButton("Banhista/Tosador");
@@ -251,7 +239,7 @@ public class FrmFunc implements ActionListener{
 		rdbtnBanhistaTosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnBanhistaTosador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnBanhistaTosador.setBackground(Color.WHITE);
-		rdbtnBanhistaTosador.setBounds(346, 452, 128, 23);
+		rdbtnBanhistaTosador.setBounds(346, 436, 128, 23);
 		panPrincipal.add(rdbtnBanhistaTosador);
 		
 		bg = new ButtonGroup();
@@ -262,7 +250,7 @@ public class FrmFunc implements ActionListener{
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setVisible(false);
 		btnPesquisarNome.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniLupa.png")));
-		btnPesquisarNome.setBounds(295, 313, 40, 23);
+		btnPesquisarNome.setBounds(295, 287, 40, 23);
 		panPrincipal.add(btnPesquisarNome);
 		
 		janela.setSize(582,600);
@@ -277,12 +265,12 @@ public class FrmFunc implements ActionListener{
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
+		btnPesquisarNome.addActionListener(this);
 				
 	}
 	
 	private void montarTela(int controle) {
 		if(controle == 1){
-			lblCodigo.setVisible(true);
 			lblNome.setVisible(true);
 			lblCargo.setVisible(true);
 			lblCpf.setVisible(true);
@@ -295,7 +283,6 @@ public class FrmFunc implements ActionListener{
 			rdbtnBanhistaTosador.setVisible(true);
 			rdbtnBanhistaTosador.setEnabled(true);
 			txtNome.setVisible(true);
-			txtCodigo.setVisible(true);
 			txtSalario.setVisible(true);
 			txtSalario.setEnabled(true);
 			txtCpf.setVisible(true);
@@ -309,7 +296,6 @@ public class FrmFunc implements ActionListener{
 			btnVoltar.setVisible(true);
 			btnPesquisarNome.setVisible(false);
 		}else {
-			lblCodigo.setVisible(true);
 			lblNome.setVisible(true);
 			lblCargo.setVisible(true);
 			lblCpf.setVisible(true);
@@ -322,7 +308,6 @@ public class FrmFunc implements ActionListener{
 			rdbtnBanhistaTosador.setVisible(true);
 			rdbtnBanhistaTosador.setEnabled(false);
 			txtNome.setVisible(true);
-			txtCodigo.setVisible(true);
 			txtSalario.setVisible(true);
 			txtSalario.setEnabled(false);
 			txtCpf.setVisible(true);
@@ -359,11 +344,12 @@ public class FrmFunc implements ActionListener{
 		}
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
-			System.out.println("Gravar incluindo");
+			ctrlFunc = new CtrlFuncionario();
 			Funcionario f = new Funcionario();
 			f.setNome( txtNome.getText() );
 			f.setCpf( txtCpf.getText() );
 			f.setSalario( Double.parseDouble(txtSalario.getText()) );
+			f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 			if(rdbtnAdministrador.isSelected()){
 				f.setCargo("Administrador");
 			}else if(rdbtnAtendente.isSelected()){
@@ -379,13 +365,22 @@ public class FrmFunc implements ActionListener{
 		}else if("Pesquisar".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar pesquisando");
 		}
+		
+		if(btnVoltar.equals(acao)){
+			System.out.println("Voltando...");
+		}
+		if(btnLimpar.equals(acao)){
+			limpaCampos();
+		}
+		if(btnPesquisarNome.equals(acao)){
+			System.out.println("Procurar por aquele nome...");
+		}
 
 	}
 	
 	
 	private void limpaCampos() {
 		bg.clearSelection();
-		txtCodigo.setText("");
 		txtCpf.setText("");
 		txtNome.setText("");
 		txtSalario.setText("");

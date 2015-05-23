@@ -19,7 +19,7 @@ private Connection c;
 	}
 
 	@Override
-	public void inserePessoa(Pessoa pes) throws SQLException {
+	public void inserePessoa(Pessoa pes) throws SQLException { //FIXME
 				
 		String sql = "INSERT INTO pessoa (id_tipo)"+
 				"VALUES(?)";

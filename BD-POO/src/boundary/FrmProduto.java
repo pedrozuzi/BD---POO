@@ -39,20 +39,20 @@ import control.ConfigTelas;
 public class FrmProduto {
 
 	private JFrame janela = new JFrame("Produto");
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtIdProduto;
+	private JTextField txtIdLote;
+	private JTextField txtDataValidadeLote;
+	private JTextField txtNome;
 	private JPanel panLote;
 	private JPanel panProduto;
 	private JLabel lblNome;
 	private JLabel lblNewLabel_1;
 	private JLabel lblId_1;
 	private JLabel lblDataDeValidade;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtDescricao;
+	private JTextField txtValorVenda;
+	private JTextField txtValorCompra;
+	private JTextField txtIdFornecedor;
 	private JTable tableProduto;
 
 	public FrmProduto(){
@@ -88,37 +88,37 @@ public class FrmProduto {
 		panAcoes.setLayout(null);
 		panAcoes.setOpaque(false);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
-		button.setBounds(49, 11, 69, 41);
-		panAcoes.add(button);
+		JButton btnIncluir = new JButton("");
+		btnIncluir.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		btnIncluir.setBounds(49, 11, 69, 41);
+		panAcoes.add(btnIncluir);
 		
 		JLabel label = new JLabel("Incluir");
 		label.setBounds(59, 58, 40, 19);
 		panAcoes.add(label);
 		
-		JButton button_5 = new JButton("");
-		button_5.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Edit.png")));
-		button_5.setBounds(143, 11, 69, 41);
-		panAcoes.add(button_5);
+		JButton btnAlterar = new JButton("");
+		btnAlterar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Edit.png")));
+		btnAlterar.setBounds(143, 11, 69, 41);
+		panAcoes.add(btnAlterar);
 		
 		JLabel label_1 = new JLabel("Alterar");
 		label_1.setBounds(163, 58, 40, 19);
 		panAcoes.add(label_1);
 		
-		JButton button_6 = new JButton("");
-		button_6.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Delete.png")));
-		button_6.setBounds(232, 11, 69, 41);
-		panAcoes.add(button_6);
+		JButton btnExcluir = new JButton("");
+		btnExcluir.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Delete.png")));
+		btnExcluir.setBounds(232, 11, 69, 41);
+		panAcoes.add(btnExcluir);
 		
 		JLabel label_2 = new JLabel("Excluir");
 		label_2.setBounds(242, 58, 40, 19);
 		panAcoes.add(label_2);
 		
-		JButton button_8 = new JButton("");
-		button_8.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/View.png")));
-		button_8.setBounds(326, 11, 69, 41);
-		panAcoes.add(button_8);
+		JButton btnPesquisar = new JButton("");
+		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/View.png")));
+		btnPesquisar.setBounds(326, 11, 69, 41);
+		panAcoes.add(btnPesquisar);
 		
 		JLabel label_3 = new JLabel("Pesquisar");
 		label_3.setBounds(336, 58, 59, 19);
@@ -162,10 +162,10 @@ public class FrmProduto {
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(682, 215, 49, 25);
-		panInferior.add(btnNewButton_1);
-		btnNewButton_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
+		JButton btnSalvar = new JButton("");
+		btnSalvar.setBounds(682, 215, 49, 25);
+		panInferior.add(btnSalvar);
+		btnSalvar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
 		
 		JLabel lblSalvar = new JLabel("Salvar");
 		lblSalvar.setBounds(691, 244, 40, 19);
@@ -178,10 +178,10 @@ public class FrmProduto {
 		panLote.setLayout(null);
 		panLote.setOpaque(false);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(108, 21, 86, 20);
-		panLote.add(textField_1);
-		textField_1.setColumns(10);
+		txtIdLote = new JTextField();
+		txtIdLote.setBounds(108, 21, 86, 20);
+		panLote.add(txtIdLote);
+		txtIdLote.setColumns(10);
 		
 		lblId_1 = new JLabel("Id:");
 		lblId_1.setBounds(65, 21, 33, 20);
@@ -191,10 +191,10 @@ public class FrmProduto {
 		lblDataDeValidade.setBounds(10, 52, 101, 20);
 		panLote.add(lblDataDeValidade);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(108, 52, 106, 20);
-		panLote.add(textField_2);
-		textField_2.setColumns(10);
+		txtDataValidadeLote = new JTextField();
+		txtDataValidadeLote.setBounds(108, 52, 106, 20);
+		panLote.add(txtDataValidadeLote);
+		txtDataValidadeLote.setColumns(10);
 		
 		JPanel panProduto = new JPanel();
 		panProduto.setBounds(35, 11, 677, 193);
@@ -207,15 +207,15 @@ public class FrmProduto {
 		lblId.setBounds(83, 16, 15, 14);
 		panProduto.add(lblId);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(106, 50, 168, 20);
-		panProduto.add(textField_3);
-		textField_3.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(106, 50, 168, 20);
+		panProduto.add(txtNome);
+		txtNome.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(104, 15, 61, 20);
-		panProduto.add(textField);
-		textField.setColumns(10);
+		txtIdProduto = new JTextField();
+		txtIdProduto.setBounds(104, 15, 61, 20);
+		panProduto.add(txtIdProduto);
+		txtIdProduto.setColumns(10);
 		
 		lblNome = new JLabel("Nome:");
 		lblNome.setBounds(62, 46, 36, 20);
@@ -230,25 +230,25 @@ public class FrmProduto {
 		btnNewButton.setBounds(403, 24, 30, 25);
 		panProduto.add(btnNewButton);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(106, 85, 168, 20);
-		panProduto.add(textField_4);
-		textField_4.setColumns(10);
+		txtDescricao = new JTextField();
+		txtDescricao.setBounds(106, 85, 168, 20);
+		panProduto.add(txtDescricao);
+		txtDescricao.setColumns(10);
 		
 		JLabel lblPesquisar = new JLabel("Pesquisar");
 		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 8));
 		lblPesquisar.setBounds(399, 48, 44, 14);
 		panProduto.add(lblPesquisar);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(104, 113, 61, 20);
-		panProduto.add(textField_5);
+		txtValorVenda = new JTextField();
+		txtValorVenda.setColumns(10);
+		txtValorVenda.setBounds(104, 113, 61, 20);
+		panProduto.add(txtValorVenda);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(106, 154, 61, 20);
-		panProduto.add(textField_6);
+		txtValorCompra = new JTextField();
+		txtValorCompra.setColumns(10);
+		txtValorCompra.setBounds(106, 154, 61, 20);
+		panProduto.add(txtValorCompra);
 		
 		JLabel lblValorDeVenda = new JLabel("Valor de Venda:");
 		lblValorDeVenda.setBounds(14, 118, 84, 20);
@@ -262,24 +262,24 @@ public class FrmProduto {
 		lblFornecedor.setBounds(284, 154, 88, 20);
 		panProduto.add(lblFornecedor);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(380, 154, 61, 20);
-		panProduto.add(textField_7);
+		txtIdFornecedor = new JTextField();
+		txtIdFornecedor.setColumns(10);
+		txtIdFornecedor.setBounds(380, 154, 61, 20);
+		panProduto.add(txtIdFornecedor);
 		
-		JButton button_7 = new JButton("");
-		button_7.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
-		button_7.setBounds(611, 215, 49, 25);
-		panInferior.add(button_7);
+		JButton btnLimpar = new JButton("");
+		btnLimpar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
+		btnLimpar.setBounds(611, 215, 49, 25);
+		panInferior.add(btnLimpar);
 		
 		JLabel lblLimpar = new JLabel("Limpar");
 		lblLimpar.setBounds(621, 244, 40, 19);
 		panInferior.add(lblLimpar);
 		
-		JButton button_9 = new JButton("");
-		button_9.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
-		button_9.setBounds(545, 215, 49, 25);
-		panInferior.add(button_9);
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
+		btnVoltar.setBounds(545, 215, 49, 25);
+		panInferior.add(btnVoltar);
 		
 		JLabel lblVoltar = new JLabel("Voltar");
 		lblVoltar.setBounds(555, 244, 40, 19);

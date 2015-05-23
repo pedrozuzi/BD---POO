@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Pessoa;
 
 public interface PessoaDao {
-	void inserePessoa(Pessoa pes) throws SQLException;
+	int inserePessoa(Pessoa pes) throws SQLException;
 
 	void atualizaPessoa(Pessoa pes) throws SQLException;
 

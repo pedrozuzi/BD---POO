@@ -1,21 +1,25 @@
 package control;
 
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
-
 import persistence.FornecedorDAO;
 import persistence.FornecedorDAOImpl;
+import persistence.PessoaDao;
 import entity.Fornecedor;
+import entity.Pessoa;
 
 public class CtrlFornecedor {
 	
-	private FornecedorDAO dao;
+	private FornecedorDAO daoF;
+	private PessoaDao daoP;
 	
 	public void inserir(Fornecedor f) {
-		dao = new FornecedorDAOImpl();
+		Pessoa p = new Pessoa();
+		daoP = new FornecedorDAOImpl();
+		daoF = new FornecedorDAOImpl();
 		try {
-			dao.inserirFornecedor(f);
+			int id = daoP.inserePessoa(p);
+			daoF.inserirFornecedor(f, id);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);

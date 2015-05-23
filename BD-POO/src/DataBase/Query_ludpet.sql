@@ -39,10 +39,11 @@ salario decimal (7,2) not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
 
-CREATE TABLE login(
+CREATE TABLE logins(
 id int not null,
-username varchar(10),
+username varchar(10) unique,
 passwor varchar(10),
+--primary key(username),
 foreign key(id) references funcionario(id)
 )
 
@@ -154,7 +155,7 @@ INSERT INTO funcionario (id,cpf,nome,cargo,salario) VALUES
 (2,22222222222,'Pedro ZUZI', 'Secretario',1200.00), --atend
 (3,33333333333,'Pedro Afonso', 'Banhista',850.00)   --func
 
-INSERT INTO login (id,username,passwor) VALUES
+INSERT INTO logins (id,username,passwor) VALUES
 (1,'hurygg','1234'),
 (2,'pedrozz','susi'),
 (3,'pedroaa','corinthias')
@@ -183,3 +184,7 @@ INSERT INTO lote_produto(idProduto,idLote) VALUES
 (2,3),
 (2,4)
 
+
+
+use master
+drop database ludpet

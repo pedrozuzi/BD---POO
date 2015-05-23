@@ -21,36 +21,37 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
 		
-		//inserindo tipo
-		String queryTipo = "insert into tipo (id, descricao)"
-				+ " values(?, ?)";
-		PreparedStatement ps = c.prepareStatement( queryTipo );
-		if(func.getCargo().equals("Administrador")){
-			ps.setInt(1, 1);
-			ps.setString(2, func.getCargo());
-		}else if(func.getCargo().equals("Atendente")){
-			ps.setInt(1, 2);
-			ps.setString(2, func.getCargo());
-		}else if(func.getCargo().equals("Banhista/Tosador")){
-			ps.setInt(1, 3);
-			ps.setString(2, func.getCargo());
-		}
-		ResultSet rs = ps.executeQuery();
+//		//inserindo tipo
+//		String queryTipo = "insert into tipo (id, descricao)"
+//				+ " values(?, ?)";
+//		 ps = c.prepareStatement( queryTipo );
+//
+//		ps.execute();
 		
 		//inserindo pessoa
 		String queryPessoa = "insert into pessoa (idTipo)"
 				+ " values(?)";
-		ps = c.prepareStatement( queryPessoa );
-		ps.setInt(1, rs.getInt("id") );
-		rs = ps.executeQuery();
-		System.out.println(rs.getInt("id"));
-		func.setId(rs.getInt("id"));
+		PreparedStatement ps = c.prepareStatement( queryPessoa );
+		if(func.getCargo().equals("Administrador")){
+			ps.setInt(1, 1);
+		}else if(func.getCargo().equals("Atendente")){
+			ps.setInt(1, 2);
+		}else if(func.getCargo().equals("Banhista/Tosador")){
+			ps.setInt(1, 3);
+		}
+//		ResultSet rs = ps.executeQuery();
+		ps.execute();
+		
+		String querySelect = "select IDENT_CURRENT ('pessoa') as atual";
+		ps = c.prepareStatement( querySelect );
+		ResultSet rs = ps.executeQuery();
+		int atual = rs.getInt(1);
 		
 		//inserindo funcionario
 		String queryFuncionario = "insert into funcionario (id, cpf, nome, cargo, salario)"
 				+ " values(?, ?, ?, ?, ?)";
 		ps = c.prepareStatement( queryPessoa );
-		ps.setInt(1, func.getId() );
+		ps.setInt(1, atual );
 		ps.setString(1, func.getCpf() );
 		ps.setString(1, func.getNome() );
 		ps.setString(1, func.getCargo() );

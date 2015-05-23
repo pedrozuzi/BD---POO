@@ -7,6 +7,13 @@ id int identity not null,
 descricao varchar(50) not null
 primary key(id)) 
 
+INSERT INTO tipo (descricao) VALUES 
+('Administrador'), --1
+('Atendente'),     --2
+('Funcionario'),   --3
+('Fornecedor'),    --4
+('Cliente')        --5
+
 create table pessoa(
 idPessoa int identity not null,
 idTipo int not null
@@ -130,13 +137,6 @@ primary key(data_compra, id_compra, id_funcionario, id_produto),
 foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
 
-
-INSERT INTO tipo (descricao) VALUES 
-('Administrador'),
-('Atendente'),
-('Funcionario'),
-('Fornecedor'),
-('Cliente')
 
 INSERT INTO pessoa (idTipo) VALUES
 (1), --1 adm

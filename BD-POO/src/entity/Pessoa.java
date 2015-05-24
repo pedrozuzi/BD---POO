@@ -6,15 +6,15 @@ package entity;
  *
  */
 public class Pessoa {
-	private int idPessoa;
+	private int id;
 	private int idTipo;
 
-	public int getIdPessoa() {
-		return idPessoa;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdPessoa(int idPessoa) {
-		this.idPessoa = idPessoa;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getIdTipo() {

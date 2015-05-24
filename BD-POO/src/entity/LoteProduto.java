@@ -6,6 +6,7 @@ package entity;
  *
  */
 public class LoteProduto {
+	
 	private int idProduto;
 	private int idLote;
 

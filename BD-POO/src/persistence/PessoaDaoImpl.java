@@ -32,7 +32,7 @@ private Connection c;
 		rs.next();
 		
 		int id = rs.getInt(1);
-		pes.setIdPessoa(id);
+		pes.setId(id);
 		
 		ps.close();
 		return id;

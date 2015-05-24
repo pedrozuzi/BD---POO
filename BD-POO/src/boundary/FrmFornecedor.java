@@ -2,11 +2,14 @@ package boundary;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import control.ConfigTelas;
 import control.CtrlFornecedor;
+import control.CtrlTabelaFornecedor;
+import control.CtrlTableFornecedor;
 import control.TratamentoTextFields;
 
 import javax.swing.JLabel;
@@ -25,6 +28,13 @@ import javax.swing.JTable;
 import entity.Fornecedor;
 
 import java.awt.SystemColor;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import persistence.FornecedorDAOImpl;
 
 public class FrmFornecedor implements ConfigTelas {
 	
@@ -52,6 +62,7 @@ public class FrmFornecedor implements ConfigTelas {
 	private JButton btnVoltar;
 	private JLabel lblLogo;
 	private CtrlFornecedor control;
+	private CtrlTableFornecedor controlTable;
 	private JButton btnLupaPesquisar;
 	
 	public FrmFornecedor() {
@@ -197,9 +208,38 @@ public class FrmFornecedor implements ConfigTelas {
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
+		String[] cabecalho = new String[3];
+		cabecalho[0] = "Código";
+		cabecalho[1] = "Nome";
+		cabecalho[2] = "Telefone";
+		
+		DefaultTableModel modelo = new CtrlTabelaFornecedor(new Object[][]{}, cabecalho);
+		
 		table = new JTable();
+		table.setModel(modelo);
+		
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(268);
+		table.getColumnModel().getColumn(2).setPreferredWidth(143);
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
+		
+		controlTable = new CtrlFornecedor();
+		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		
+		try {
+			lista = controlTable.listaFornecedores();
+			for ( Fornecedor f : lista) {
+				Object[] linha = new Object[3];
+				linha[0] = f.getId();
+				linha[1] = f.getNome();
+				linha[2] = f.getTelefone();
+				modelo.addRow(linha);
+			}
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(),
+					"ERRO", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		janela.setSize(585,553);
 		janela.setVisible(true);

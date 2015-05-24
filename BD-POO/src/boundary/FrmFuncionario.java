@@ -27,9 +27,8 @@ import java.awt.Cursor;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
-import java.awt.Component;
 
-public class FrmFunc implements ActionListener{
+public class FrmFuncionario implements ActionListener{
 
 	private JFrame janela;
 	private JPanel panPrincipal;
@@ -63,7 +62,7 @@ public class FrmFunc implements ActionListener{
 	private ButtonGroup bg;
 	private JButton btnPesquisarNome;
 	
-	public FrmFunc(String nome) {
+	public FrmFuncionario(String nome) {
 	
 		janela = new JFrame("Fornecedor");
 		panPrincipal = new JPanel();
@@ -82,7 +81,7 @@ public class FrmFunc implements ActionListener{
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
-		btnIncluir.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/Insert.png")));
+		btnIncluir.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/Insert.png")));
 		btnIncluir.setBounds(49, 11, 69, 41);
 		panel.add(btnIncluir);
 		
@@ -95,7 +94,7 @@ public class FrmFunc implements ActionListener{
 		panel.add(lblIncluir);
 		
 		btnAlterar = new JButton("");
-		btnAlterar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/Edit.png")));
+		btnAlterar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/Edit.png")));
 		btnAlterar.setBounds(143, 11, 69, 41);
 		panel.add(btnAlterar);
 		
@@ -105,7 +104,7 @@ public class FrmFunc implements ActionListener{
 		panel.add(lblAlterar);
 		
 		btnRemover = new JButton("");
-		btnRemover.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/Delete.png")));
+		btnRemover.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/Delete.png")));
 		btnRemover.setBounds(232, 11, 69, 41);
 		panel.add(btnRemover);
 		
@@ -120,7 +119,7 @@ public class FrmFunc implements ActionListener{
 		panel.add(lblPesquisar);
 		
 		btnPesquisar = new JButton("");
-		btnPesquisar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/View.png")));
+		btnPesquisar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/View.png")));
 		btnPesquisar.setBounds(326, 11, 69, 41);
 		panel.add(btnPesquisar);
 		
@@ -159,21 +158,21 @@ public class FrmFunc implements ActionListener{
 		panPrincipal.add(lblCargo);
 		
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniBack.png")));
+		btnVoltar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(33, 496, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipal.add(btnVoltar);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniClear.png")));
+		btnLimpar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLimpar.setBounds(240, 496, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipal.add(btnLimpar);
 		
 		btnGravar = new JButton("Gravar");
-		btnGravar.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniSalvar.png")));
+		btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGravar.setBounds(432, 496, 96, 31);
 		btnGravar.setVisible(false);
@@ -201,7 +200,7 @@ public class FrmFunc implements ActionListener{
 		panPrincipal.add(txtSalario);
 		
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/LogoLudpet.png")));
+		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/LogoLudpet.png")));
 		lblLogo.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogo);
 		
@@ -249,7 +248,7 @@ public class FrmFunc implements ActionListener{
 		
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setVisible(false);
-		btnPesquisarNome.setIcon(new ImageIcon(FrmFunc.class.getResource("/img/MiniLupa.png")));
+		btnPesquisarNome.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniLupa.png")));
 		btnPesquisarNome.setBounds(295, 287, 40, 23);
 		panPrincipal.add(btnPesquisarNome);
 		
@@ -388,6 +387,6 @@ public class FrmFunc implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		new FrmFunc("Funcionario");
+		new FrmFuncionario("Funcionario");
 	}
 }

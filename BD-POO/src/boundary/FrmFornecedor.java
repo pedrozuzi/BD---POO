@@ -187,7 +187,7 @@ public class FrmFornecedor implements ConfigTelas {
 		panPrincipal.add(btnVoltar);
 		
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmFunc.class.getResource
+		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource
 				("/img/LogoLudpet.png")));
 		lblLogo.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogo);

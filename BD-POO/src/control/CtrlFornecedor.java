@@ -1,10 +1,13 @@
 package control;
 
 import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
+
 import persistence.FornecedorDAO;
 import persistence.FornecedorDAOImpl;
 import persistence.PessoaDao;
+import persistence.PessoaDaoImpl;
 import entity.Fornecedor;
 import entity.Pessoa;
 
@@ -15,7 +18,7 @@ public class CtrlFornecedor {
 	
 	public void inserir(Fornecedor f) {
 		Pessoa p = new Pessoa();
-		daoP = new FornecedorDAOImpl();
+		daoP = new PessoaDaoImpl();
 		daoF = new FornecedorDAOImpl();
 		try {
 			int id = daoP.inserePessoa(p);

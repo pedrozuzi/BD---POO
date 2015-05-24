@@ -4,18 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Fornecedor;
-import entity.Pessoa;
 
-public class FornecedorDAOImpl implements FornecedorDAO,PessoaDao {
+public class FornecedorDAOImpl implements FornecedorDAO{
 	
 	public FornecedorDAOImpl() {
 		GenericConnection gc = new ConnectionImpl();
@@ -101,46 +97,4 @@ public class FornecedorDAOImpl implements FornecedorDAO,PessoaDao {
 		ps.close();
 		return lista;
 	}
-
-	@Override
-	public int inserePessoa(Pessoa pes) throws SQLException {
-		String sql = "insert into pessoa (idTipo) values (?)";
-		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		ps.setInt(1, 4);
-		ps.execute();
-		
-		ResultSet rs = ps.getGeneratedKeys();
-		rs.next();
-		
-		int id = rs.getInt(1);
-		pes.setIdPessoa(id);
-		
-		ps.close();
-		return id;
-	}
-
-	@Override
-	public void atualizaPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void excluiPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Pessoa consultaPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Pessoa> listaPessoa() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

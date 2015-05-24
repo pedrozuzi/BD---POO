@@ -26,7 +26,7 @@ import entity.Fornecedor;
 
 import java.awt.SystemColor;
 
-public class FrmFornecedor implements ConfigTelas{
+public class FrmFornecedor implements ConfigTelas {
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -52,6 +52,7 @@ public class FrmFornecedor implements ConfigTelas{
 	private JButton btnVoltar;
 	private JLabel lblLogo;
 	private CtrlFornecedor control;
+	private JButton btnLupaPesquisar;
 	
 	public FrmFornecedor() {
 		janela = new JFrame("Fornecedor");
@@ -60,6 +61,12 @@ public class FrmFornecedor implements ConfigTelas{
 		panPrincipal.setForeground(Color.WHITE);
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
+		
+		btnLupaPesquisar = new JButton("");
+		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnLupaPesquisar.setBounds(465, 319, 65, 31);
+		btnLupaPesquisar.setVisible(false);
+		panPrincipal.add(btnLupaPesquisar);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -129,7 +136,7 @@ public class FrmFornecedor implements ConfigTelas{
 		txtId.setColumns(10);
 		
 		txtNome = new TratamentoTextFields();
-		txtNome.setBounds(137, 360, 383, 20);
+		txtNome.setBounds(137, 360, 296, 20);
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
@@ -144,7 +151,7 @@ public class FrmFornecedor implements ConfigTelas{
 		lblNome.setVisible(false);
 		panPrincipal.add(lblNome);
 		
-		txtTelefone = new TratamentoTextFields(8);
+		txtTelefone = new TratamentoTextFields(9);
 		txtTelefone.setBounds(137, 406, 109, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);
@@ -199,23 +206,81 @@ public class FrmFornecedor implements ConfigTelas{
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);
 		
-		btnAlterar.addActionListener(l -> {
+		btnLimpar.addActionListener(l -> limpaCampos() );
+		
+		btnAlterar.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Alterar");
+			btnGravar.setActionCommand("Alterar");
+			telaAlterarExcluirFornecedor();
 			
 		});
 		
-		btnIncluir.addActionListener( l -> inserirFornecedor() );
+		btnIncluir.addActionListener( e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Gravar");
+			btnGravar.setActionCommand("Incluir");
+			telaInserirFornecedor();
+		});
 		
-		btnGravar.addActionListener(l -> {
+		btnExcluir.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setText("Excluir");
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/trash.png")));
+			btnExcluir.setActionCommand("Excluir");
+			telaAlterarExcluirFornecedor();
+		});
+		
+		btnPesquisar.addActionListener(e -> {
+			btnGravar.setEnabled(false);
+		});
+		
+		btnGravar.addActionListener(e -> {
+			String cmd = e.getActionCommand();
+			acaoGravar(cmd);
+		});
+		
+	}
+	
+	private void acaoGravar(String cmd) {
+		if("Alterar".equalsIgnoreCase(cmd)){
+			System.out.println("Alterando;;;");
+		}else if("Incluir".equalsIgnoreCase(cmd)){
 			Fornecedor f = new Fornecedor();
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control = new CtrlFornecedor();
 			control.inserir(f);
 			limpaCampos();
-		});
+		}else if("Excluir".equalsIgnoreCase(cmd)){
+			
+		}
 		
 	}
-	
+
+	private void telaAlterarExcluirFornecedor() {
+		btnLupaPesquisar.setVisible(true);
+		txtId.setVisible(true);
+		txtId.setEnabled(true);
+		txtNome.setVisible(true);
+		txtTelefone.setVisible(true);
+		lblId.setVisible(true);
+		lblNome.setVisible(true);
+		lblTelefone.setVisible(true);
+		btnGravar.setVisible(true);
+		btnLimpar.setVisible(true);
+		btnVoltar.setVisible(true);
+		lblLogo.setVisible(false);
+		scrollPane.setVisible(true);
+		table.setVisible(true);
+		
+	}
+
 	private void limpaCampos() {
 		txtNome.setText("");
 		txtId.setText("");
@@ -223,12 +288,13 @@ public class FrmFornecedor implements ConfigTelas{
 		
 	}
 
-	private void inserirFornecedor(){
-		txtId.setVisible(true);
+	private void telaInserirFornecedor(){
+		btnLupaPesquisar.setVisible(false);
+		txtId.setVisible(false);
 		txtId.setEnabled(false);
+		lblId.setVisible(false);
 		txtNome.setVisible(true);
 		txtTelefone.setVisible(true);
-		lblId.setVisible(true);
 		lblNome.setVisible(true);
 		lblTelefone.setVisible(true);
 		btnGravar.setVisible(true);

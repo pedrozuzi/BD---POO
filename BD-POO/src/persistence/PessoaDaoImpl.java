@@ -2,7 +2,9 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import connection.ConnectionImpl;
@@ -19,17 +21,30 @@ private Connection c;
 	}
 
 	@Override
-	public void inserePessoa(Pessoa pes) throws SQLException { //FIXME
-				
-		String sql = "INSERT INTO pessoa (id_tipo)"+
-				"VALUES(?)";
-		PreparedStatement ps = c.prepareStatement(sql);
-		ps.setInt(1, pes.getIdTipo());
-		ps.execute();
-		ps.close();
+	public int inserePessoa(Pessoa pes) throws SQLException { //FIXME
 		
+		String sql = "insert into pessoa (idTipo) values (?)";
+		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		ps.setInt(1, 4);
+		ps.execute();
+		
+		ResultSet rs = ps.getGeneratedKeys();
+		rs.next();
+		
+		int id = rs.getInt(1);
+		pes.setIdPessoa(id);
+		
+		ps.close();
+		return id;
 	}
-
+				
+//		String sql = "INSERT INTO pessoa (id_tipo)"+
+//				"VALUES(?)";
+//		PreparedStatement ps = c.prepareStatement(sql);
+//		ps.setInt(1, pes.getIdTipo());
+//		ps.execute();
+//		ps.close();
+		
 	@Override
 	public void atualizaPessoa(Pessoa pes) throws SQLException {
 		// TODO Auto-generated method stub

@@ -1,13 +1,9 @@
 package entity;
 
-public class Funcionario {
-	
-	private int id;
-	private String nome;
+public class Funcionario extends Pessoa{
+
 	private String cpf;
 	private double salario;
-	private String cargo;
-	private int telefone;
 	
 	public double getSalario() {
 		return salario;
@@ -15,38 +11,11 @@ public class Funcionario {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	public String getCargo() {
-		return cargo;
-	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	public String getCpf() {
 		return cpf;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public int getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
-	
-	
-	
 
 }

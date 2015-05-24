@@ -41,7 +41,6 @@ create table funcionario(
 id int not null,
 cpf varchar(11) not null,
 nome varchar(50) not null,
-cargo varchar(50) not null,
 salario decimal (7,2) not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
@@ -51,8 +50,7 @@ id int not null,
 username varchar(10) unique,
 passwor varchar(10),
 --primary key(username),
-foreign key(id) references funcionario(id)
-)
+foreign key(id) references funcionario(id))
 
 create table fornecedor(
 id int not null,
@@ -67,8 +65,7 @@ id_cliente int not null,
 id_funcionario int not null
 primary key(id, id_cliente),
 foreign key(id_cliente) references cliente(id),
-foreign key(id_funcionario) references funcionario(id),
-)
+foreign key(id_funcionario) references funcionario(id),)
 
 create table animal(
 id int identity not null,
@@ -94,8 +91,7 @@ id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,
 primary key(id),
-foreign key(id_fornecedor) references fornecedor(id),
-)
+foreign key(id_fornecedor) references fornecedor(id),)
 
 create table lote_produto(
 idProduto int not null,
@@ -103,7 +99,6 @@ idLote int not null,
 primary key(idProduto, idLote),
 foreign key(idProduto)references produto (id),
 foreign key(idLote)references lote (id))
-
 
 create table venda_produto(
 data_venda datetime not null,
@@ -137,7 +132,6 @@ primary key(data_compra, id_compra, id_funcionario, id_produto),
 foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
 
-
 INSERT INTO pessoa (idTipo) VALUES
 (1), --1 adm
 (2), --2 atend
@@ -150,10 +144,10 @@ INSERT INTO pessoa (idTipo) VALUES
 (4), --9 forn 
 (5) --10 cli
 
-INSERT INTO funcionario (id,cpf,nome,cargo,salario) VALUES
-(1,11111111111,'Hury Gabriel', 'JavaMan',99999.99), --adm
-(2,22222222222,'Pedro ZUZI', 'Secretario',1200.00), --atend
-(3,33333333333,'Pedro Afonso', 'Banhista',850.00)   --func
+INSERT INTO funcionario (id,cpf,nome,salario) VALUES
+(8,11111111111,'Hury Gabriel',99999.99), --adm
+(5,22222222222,'Pedro ZUZI',1200.00), --atend
+(10,33333333333,'Pedro Afonso',850.00)   --func
 
 INSERT INTO logins (id,username,passwor) VALUES
 (1,'hurygg','1234'),

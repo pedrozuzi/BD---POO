@@ -351,12 +351,15 @@ public class FrmFuncionario implements ActionListener{
 			f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 			if(rdbtnAdministrador.isSelected()){
 				f.setIdTipo(1);
+				ctrlFunc.incluir(f);
 			}else if(rdbtnAtendente.isSelected()){
-				f.setIdTipo(2);;
+				f.setIdTipo(2);
+				ctrlFunc.incluir(f);
 			}else if(rdbtnBanhistaTosador.isSelected()){
 				f.setIdTipo(3);
+				ctrlFunc.incluir(f);
 			}
-			ctrlFunc.incluir(f);
+			
 		}else if("Remover".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar removendo");
 		}else if("Alterar".equalsIgnoreCase(cmd)){

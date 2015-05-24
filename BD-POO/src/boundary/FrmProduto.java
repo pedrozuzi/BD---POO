@@ -30,6 +30,13 @@ import javax.swing.border.SoftBevelBorder;
 
 import control.ConfigTelas;
 import control.CtrlIncluiProduto;
+import control.CtrlTelaProduto;
+
+import javax.swing.JScrollPane;
+
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * 
@@ -61,20 +68,37 @@ public class FrmProduto {
 		JPanel panPrincipal = new JPanel();
 		JPanel panForm = new JPanel();
 		
-		JMenuBar menuBar = new JMenuBar();
-		janela.setJMenuBar(menuBar);
+		JMenuBar menuBarProduto = new JMenuBar();
+		janela.setJMenuBar(menuBarProduto);
 		
-		JMenu mnNewMenu = new JMenu("New menu");
-		menuBar.add(mnNewMenu);
+		JMenu mnMenu = new JMenu("Menu");
+		menuBarProduto.add(mnMenu);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		//TODO action temporario
+		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
+		mntmMenuPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+				FrmPrincipal telaprincipal = new FrmPrincipal();
+		        telaprincipal.main(null);
+				janela.dispose();
+			}
+		});
+		//fim no action temporario
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_2);
+		mntmMenuPrincipal.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/HomeMenu.png")));
+		mnMenu.add(mntmMenuPrincipal);
+		
+		JMenuItem mntmLogOff = new JMenuItem("Log Off");
+		mntmLogOff.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/LogOffMenu.png")));
+		mnMenu.add(mntmLogOff);
+		
+		JMenuItem mntmFechar = new JMenuItem("Fechar");
+		mntmFechar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/CloseMenu.png")));
+		mnMenu.add(mntmFechar);
 		
 		JMenu mnNewMenu_1 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_1);
+		menuBarProduto.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
 		mnNewMenu_1.add(mntmNewMenuItem);
@@ -132,29 +156,32 @@ public class FrmProduto {
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
 		
-		JButton button_1 = new JButton("");
-		button_1.setBounds(241, 152, 69, 18);
-		panSuperior.add(button_1);
-		button_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniRewind.png")));
+		JButton btnRewind = new JButton("");
+		btnRewind.setBounds(241, 152, 69, 18);
+		panSuperior.add(btnRewind);
+		btnRewind.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniRewind.png")));
 		
-		JButton button_2 = new JButton("");
-		button_2.setBounds(309, 152, 69, 18);
-		panSuperior.add(button_2);
-		button_2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
+		JButton btnBack = new JButton("");
+		btnBack.setBounds(309, 152, 69, 18);
+		panSuperior.add(btnBack);
+		btnBack.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
 		
-		JButton button_3 = new JButton("");
-		button_3.setBounds(379, 152, 69, 18);
-		panSuperior.add(button_3);
-		button_3.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniNext.png")));
+		JButton btnNext = new JButton("");
+		btnNext.setBounds(379, 152, 69, 18);
+		panSuperior.add(btnNext);
+		btnNext.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniNext.png")));
 		
-		JButton button_4 = new JButton("");
-		button_4.setBounds(447, 152, 69, 18);
-		panSuperior.add(button_4);
-		button_4.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniFoward.png")));
+		JButton btnFoward = new JButton("");
+		btnFoward.setBounds(447, 152, 69, 18);
+		panSuperior.add(btnFoward);
+		btnFoward.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniFoward.png")));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 721, 134);
+		panSuperior.add(scrollPane);
 		
 		tableProduto = new JTable();
-		tableProduto.setBounds(10, 11, 721, 134);
-		panSuperior.add(tableProduto);
+		scrollPane.setViewportView(tableProduto);
 		
 		JPanel panInferior = new JPanel();
 		panInferior.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -268,10 +295,10 @@ public class FrmProduto {
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
-				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+
 		
 		JButton btnPesquisaFornecedor = new JButton("");
+		btnPesquisaFornecedor.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnPesquisaFornecedor.setBounds(594, 46, 30, 25);
 		panProduto.add(btnPesquisaFornecedor);
 		
@@ -289,32 +316,37 @@ public class FrmProduto {
 		lblVoltar.setBounds(20, 40, 40, 19);
 		panel.add(lblVoltar);
 		
-		JButton btnVoltar = new JButton("");
-		btnVoltar.setBounds(10, 11, 49, 25);
-		panel.add(btnVoltar);
-		btnVoltar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
+		JButton btnVolta = new JButton("");
+		btnVolta.setBounds(10, 11, 49, 25);
+		panel.add(btnVolta);
+		btnVolta.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
 		
 		JLabel lblLimpar = new JLabel("Limpar");
 		lblLimpar.setBounds(80, 40, 40, 19);
 		panel.add(lblLimpar);
 		
-		JButton btnLimpar = new JButton("");
-		btnLimpar.setBounds(70, 11, 49, 25);
-		panel.add(btnLimpar);
-		btnLimpar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
+		JButton btnLimpa = new JButton("");
+		btnLimpa.setBounds(70, 11, 49, 25);
+		panel.add(btnLimpa);
+		btnLimpa.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
 		
-		JButton btnSalvar = new JButton("");
-		btnSalvar.setBounds(130, 11, 49, 25);
-		panel.add(btnSalvar);
-		btnSalvar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
+		JButton btnSalva = new JButton("");
+		btnSalva.setBounds(130, 11, 49, 25);
+		panel.add(btnSalva);
+		btnSalva.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
 		
 		JLabel lblSalvar = new JLabel("Salvar");
 		lblSalvar.setBounds(139, 40, 40, 19);
 		panel.add(lblSalvar);
 		
-		btnSalvar.addActionListener(incluirprod);
+		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
+				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+		btnSalva.addActionListener(incluirprod);
 		
-		
+		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
+				txtIdFornecedor, txtIdLote, txtDataValidadeLote, btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
+				btnRewind, btnBack, btnNext, btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes);
+		btnLimpa.addActionListener(ctrltela);
 		
 	}
 	

@@ -1,7 +1,5 @@
 package boundary;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -20,20 +18,14 @@ import javax.swing.JButton;
 import java.awt.Font;
 
 import javax.swing.JTable;
-import javax.swing.JScrollBar;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
 
-import control.ConfigTelas;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+
 import control.CtrlIncluiProduto;
 import control.CtrlTelaProduto;
 
 import javax.swing.JScrollPane;
-
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -291,11 +283,10 @@ public class FrmProduto {
 		panPrincipal.add(lblBackGround);
 		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/BackGround.png")));
 		
+		//configs básicas de janela
 		janela.setSize(801,624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-
 		
 		JButton btnPesquisaFornecedor = new JButton("");
 		btnPesquisaFornecedor.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
@@ -341,11 +332,13 @@ public class FrmProduto {
 		
 		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
 				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+		
 		btnSalva.addActionListener(incluirprod);
 		
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote, btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
 				btnRewind, btnBack, btnNext, btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes);
+		
 		btnLimpa.addActionListener(ctrltela);
 		
 	}
@@ -354,4 +347,5 @@ public class FrmProduto {
 	public static void main(String[] args) {
 		new FrmProduto();
 	}
+	
 }

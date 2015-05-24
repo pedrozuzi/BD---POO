@@ -20,44 +20,15 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
-		
-//		//inserindo tipo
-//		String queryTipo = "insert into tipo (id, descricao)"
-//				+ " values(?, ?)";
-//		 ps = c.prepareStatement( queryTipo );
-//
-//		ps.execute();
-		
-		//inserindo pessoa
-		String queryPessoa = "insert into pessoa (idTipo)"
-				+ " values(?)";
-		PreparedStatement ps = c.prepareStatement( queryPessoa );
-		if(func.getCargo().equals("Administrador")){
-			ps.setInt(1, 1);
-		}else if(func.getCargo().equals("Atendente")){
-			ps.setInt(1, 2);
-		}else if(func.getCargo().equals("Banhista/Tosador")){
-			ps.setInt(1, 3);
-		}
-		ps.execute();
-		ps.close();
-		
-		String querySelect = "select IDENT_CURRENT ('funcionario') as idPessoa";
-		//select IDENT_CURRENT ('pessoa') as idPessoa
-		//select MAX(idPessoa) as tabela as idPessoa
-		ps = c.prepareStatement( querySelect );
-		ResultSet rs = ps.executeQuery();
-		rs.next();
-		
-		//inserindo funcionario
-		String queryFuncionario = "insert into funcionario (id, cpf, nome, cargo, salario)"
-				+ " values(?, ?, ?, ?, ?)";
-		ps = c.prepareStatement( queryFuncionario );
-		ps.setInt(1, rs.getInt("idPessoa") );
+
+		String queryFuncionario = "insert into funcionario (id, cpf, nome, salario)"
+				+ " values(?, ?, ?, ?)";
+		PreparedStatement ps = c.prepareStatement( queryFuncionario );
+		System.out.println("TESTE... "+func.getId());
+		ps.setInt(1, func.getId() );
 		ps.setString(2, func.getCpf() );
 		ps.setString(3, func.getNome() );
-		ps.setString(4, func.getCargo() );
-		ps.setDouble(5, func.getSalario() );
+		ps.setDouble(4, func.getSalario() );
 		
 		System.out.println("Funcionario inserido com sucesso");
 		ps.close();
@@ -75,7 +46,6 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, func.getCpf() );
 		ps.setString(2, func.getNome() );
-		ps.setString(3, func.getCargo() );
 		ps.setDouble(4, func.getSalario() );
 		ps.setInt(5, func.getId() );
 		ps.execute();
@@ -106,8 +76,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		if( rs.next() ){
 			func.setId( rs.getInt("id") );
 			func.setCpf( rs.getString("cpf") );
-			func.setNome( rs.getString("nome") );	
-			func.setCargo( rs.getString("cargo"));
+			func.setNome( rs.getString("nome") );
 			func.setSalario( rs.getDouble("salario"));
 		}
 		ps.close();

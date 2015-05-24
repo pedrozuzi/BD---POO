@@ -29,7 +29,7 @@ private Connection c;
 //		System.out.println("Teste"+pes.getClass());
 //		System.exit(0);
 		
-		ps.setInt(1, pes.getId() );
+		ps.setInt(1, pes.getIdTipo() );
 		ps.execute();
 		
 		ResultSet rs = ps.getGeneratedKeys();
@@ -37,7 +37,7 @@ private Connection c;
 		
 		int id = rs.getInt(1);
 		pes.setId(id);
-		
+		System.out.println("ID... "+pes.getId());
 		ps.close();
 		return id;
 	}

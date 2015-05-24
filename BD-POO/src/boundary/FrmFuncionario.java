@@ -350,11 +350,11 @@ public class FrmFuncionario implements ActionListener{
 			f.setSalario( Double.parseDouble(txtSalario.getText()) );
 			f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 			if(rdbtnAdministrador.isSelected()){
-				f.setCargo("Administrador");
+				f.setIdTipo(1);
 			}else if(rdbtnAtendente.isSelected()){
-				f.setCargo("Atendente");
+				f.setIdTipo(2);;
 			}else if(rdbtnBanhistaTosador.isSelected()){
-				f.setCargo("Banhista/Tosador");
+				f.setIdTipo(3);
 			}
 			ctrlFunc.incluir(f);
 		}else if("Remover".equalsIgnoreCase(cmd)){

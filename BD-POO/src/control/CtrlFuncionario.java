@@ -19,6 +19,7 @@ public class CtrlFuncionario {
 		fDao = new FuncionarioDaoImpl();
 		pDao = new PessoaDaoImpl();
 		try {
+			pDao.inserePessoa(f);
 			fDao.inserirFuncionario(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 

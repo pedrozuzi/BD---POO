@@ -25,7 +25,11 @@ private Connection c;
 		
 		String sql = "insert into pessoa (idTipo) values (?)";
 		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		ps.setInt(1, 4);
+		
+//		System.out.println("Teste"+pes.getClass());
+//		System.exit(0);
+		
+		ps.setInt(1, pes.getId() );
 		ps.execute();
 		
 		ResultSet rs = ps.getGeneratedKeys();

@@ -59,17 +59,21 @@ public class CtrlTelaProduto implements ActionListener {
 			txtIdFornecedor.setText("");
 			txtIdLote.setText("");
 			txtDataValidadeLote.setText("");
-			panAcoes.setEnabled(false);
 	 }
 	 
-	 public void resetarTela(){
-		 
+	 public void resetaTela(){
+		 System.out.println("resetado");
 	 }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		limpaCampos();
-		
+		String acao = e.getActionCommand();
+			if (acao.equalsIgnoreCase("LIMPA")) {
+				limpaCampos();
+			} else if (acao.equalsIgnoreCase("VOLTA")) {
+				resetaTela();
+			}
+	
 	}
 	
 }

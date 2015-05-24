@@ -163,17 +163,8 @@ public class FrmProduto {
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
 		
-		JButton btnSalvar = new JButton("");
-		btnSalvar.setBounds(682, 215, 49, 25);
-		panInferior.add(btnSalvar);
-		btnSalvar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
-		
-		JLabel lblSalvar = new JLabel("Salvar");
-		lblSalvar.setBounds(691, 244, 40, 19);
-		panInferior.add(lblSalvar);
-		
 		panLote = new JPanel();
-		panLote.setBounds(35, 201, 500, 82);
+		panLote.setBounds(35, 201, 472, 82);
 		panInferior.add(panLote);
 		panLote.setBorder(new TitledBorder(null, "Lote", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panLote.setLayout(null);
@@ -226,10 +217,10 @@ public class FrmProduto {
 		lblNewLabel_1.setBounds(46, 82, 52, 20);
 		panProduto.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnNewButton.setBounds(189, 5, 30, 25);
-		panProduto.add(btnNewButton);
+		JButton btnPesquisaProduto = new JButton("");
+		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnPesquisaProduto.setBounds(189, 5, 30, 25);
+		panProduto.add(btnPesquisaProduto);
 		
 		txtDescricao = new JTextField();
 		txtDescricao.setBounds(106, 85, 168, 20);
@@ -260,31 +251,13 @@ public class FrmProduto {
 		panProduto.add(lblValorDeCompra);
 		
 		JLabel lblFornecedor = new JLabel("Fornecedor:");
-		lblFornecedor.setBounds(284, 154, 88, 20);
+		lblFornecedor.setBounds(346, 46, 88, 20);
 		panProduto.add(lblFornecedor);
 		
 		txtIdFornecedor = new JTextField();
 		txtIdFornecedor.setColumns(10);
-		txtIdFornecedor.setBounds(380, 154, 61, 20);
+		txtIdFornecedor.setBounds(417, 46, 126, 20);
 		panProduto.add(txtIdFornecedor);
-		
-		JButton btnLimpar = new JButton("");
-		btnLimpar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
-		btnLimpar.setBounds(611, 215, 49, 25);
-		panInferior.add(btnLimpar);
-		
-		JLabel lblLimpar = new JLabel("Limpar");
-		lblLimpar.setBounds(621, 244, 40, 19);
-		panInferior.add(lblLimpar);
-		
-		JButton btnVoltar = new JButton("");
-		btnVoltar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
-		btnVoltar.setBounds(545, 215, 49, 25);
-		panInferior.add(btnVoltar);
-		
-		JLabel lblVoltar = new JLabel("Voltar");
-		lblVoltar.setBounds(555, 244, 40, 19);
-		panInferior.add(lblVoltar);
 		
 		JLabel lblBackGround = new JLabel("");
 		lblBackGround.setBounds(0, 0, 785, 562);
@@ -298,9 +271,46 @@ public class FrmProduto {
 		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao,
 				txtValorVenda, txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 		
-		JButton btnNewButton_1 = new JButton("pesquisa3");
-		btnNewButton_1.setBounds(451, 153, 89, 23);
-		panProduto.add(btnNewButton_1);
+		JButton btnPesquisaFornecedor = new JButton("");
+		btnPesquisaFornecedor.setBounds(594, 46, 30, 25);
+		panProduto.add(btnPesquisaFornecedor);
+		
+		JLabel label_4 = new JLabel("Pesquisar");
+		label_4.setFont(new Font("Arial", Font.BOLD, 10));
+		label_4.setBounds(579, 69, 61, 25);
+		panProduto.add(label_4);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(517, 215, 195, 64);
+		panInferior.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblVoltar = new JLabel("Voltar");
+		lblVoltar.setBounds(20, 40, 40, 19);
+		panel.add(lblVoltar);
+		
+		JButton btnVoltar = new JButton("");
+		btnVoltar.setBounds(10, 11, 49, 25);
+		panel.add(btnVoltar);
+		btnVoltar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniBack.png")));
+		
+		JLabel lblLimpar = new JLabel("Limpar");
+		lblLimpar.setBounds(80, 40, 40, 19);
+		panel.add(lblLimpar);
+		
+		JButton btnLimpar = new JButton("");
+		btnLimpar.setBounds(70, 11, 49, 25);
+		panel.add(btnLimpar);
+		btnLimpar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniClear.png")));
+		
+		JButton btnSalvar = new JButton("");
+		btnSalvar.setBounds(130, 11, 49, 25);
+		panel.add(btnSalvar);
+		btnSalvar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniSalvar.png")));
+		
+		JLabel lblSalvar = new JLabel("Salvar");
+		lblSalvar.setBounds(139, 40, 40, 19);
+		panel.add(lblSalvar);
 		
 		btnSalvar.addActionListener(incluirprod);
 		

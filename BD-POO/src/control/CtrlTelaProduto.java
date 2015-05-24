@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 public class CtrlTelaProduto implements ActionListener {
 	 private JTextField txtIdProduto, txtNome,
 	   txtDescricao, txtValorVenda, txtValorCompra,txtIdFornecedor, txtIdLote, txtDataValidadeLote;
-	 private JButton btn
+	 private JButton btnIncluir,btnAlterar,btnExcluir,btnPesquisar//TODO
 
 	public CtrlTelaProduto(JTextField txtIdProduto, JTextField txtNome,
 			JTextField txtDescricao, JTextField txtValorVenda,

@@ -17,8 +17,6 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 
@@ -30,8 +28,6 @@ import javax.swing.JTable;
 import entity.Fornecedor;
 
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -40,8 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
-
-import persistence.FornecedorDAOImpl;
 
 public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	
@@ -276,20 +270,27 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	}
 	
 	private void acaoGravar(String cmd) {
+		Fornecedor f = new Fornecedor();
+		control = new CtrlFornecedor();
 		if("Alterar".equalsIgnoreCase(cmd)){
-			System.out.println("Alterando;;;");
-		}else if("Incluir".equalsIgnoreCase(cmd)){
-			Fornecedor f = new Fornecedor();
-			f.setIdTipo(4);
+			f.setId(Integer.parseInt(txtId.getText()));
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control = new CtrlFornecedor();
+			control.atualiza(f);
+			table.invalidate();
+			table.revalidate();
+			janela.repaint();
+			table.validate();
+		}else if("Incluir".equalsIgnoreCase(cmd)){
+			f.setIdTipo(4);
+			f.setNome(txtNome.getText());
+			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.inserir(f);
-			limpaCampos();
 		}else if("Excluir".equalsIgnoreCase(cmd)){
 			
 		}
-		
+		limpaCampos();
 	}
 
 	private void telaAlterarExcluirFornecedor() {
@@ -337,7 +338,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		Object[] valores = new Object[3];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
-
+		
 		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
@@ -379,17 +380,25 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			if (!txtNome.getText().equals("")) {
 				try {
 					lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
-					for (Fornecedor f : lista) {
-						Object[] linha = new Object[3];
-						linha[0] = f.getId();
-						linha[1] = f.getNome();
-						linha[2] = f.getTelefone();
-						modelo.addRow(linha);
-					} 
+					if (!lista.isEmpty()) {
+						for (Fornecedor f : lista) {
+							Object[] linha = new Object[3];
+							linha[0] = f.getId();
+							linha[1] = f.getNome();
+							linha[2] = f.getTelefone();
+							modelo.addRow(linha);
+						} 
+					}else{
+						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
 				}catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+		
 	}
+	
 }

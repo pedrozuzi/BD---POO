@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 
@@ -28,6 +30,10 @@ import javax.swing.JTable;
 import entity.Fornecedor;
 
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
 
 import persistence.FornecedorDAOImpl;
 
-public class FrmFornecedor implements ConfigTelas {
+public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableModelListener{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -217,6 +223,7 @@ public class FrmFornecedor implements ConfigTelas {
 		
 		table = new JTable();
 		table.setModel(modelo);
+		table.addMouseListener(this);
 		
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(268);
@@ -350,7 +357,23 @@ public class FrmFornecedor implements ConfigTelas {
 		table.setVisible(true);
 	}
 	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int linha = table.getSelectedRow();
+		
+		String valor = String.valueOf( table.getValueAt(linha, 0));
+		System.out.println(valor);
+
+	}
+	
 	public static void main(String[] args) {
 		new FrmFornecedor();
 	}
+
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

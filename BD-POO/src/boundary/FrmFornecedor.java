@@ -235,6 +235,11 @@ public class FrmFornecedor implements ConfigTelas {
 				linha[1] = f.getNome();
 				linha[2] = f.getTelefone();
 				modelo.addRow(linha);
+				table.invalidate();
+				table.revalidate();
+				panel.repaint();
+				panPrincipal.repaint();
+				
 			}
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage(),

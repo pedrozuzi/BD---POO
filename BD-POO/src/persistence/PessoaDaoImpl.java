@@ -22,14 +22,9 @@ private Connection c;
 
 	@Override
 	public int inserePessoa(Pessoa pes) throws SQLException { //FIXME
-		
 		String sql = "insert into pessoa (idTipo) values (?)";
 		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		
-//		System.out.println("Teste"+pes.getClass());
-//		System.exit(0);
-		
-		ps.setInt(1, pes.getIdTipo() );
+		ps.setInt(1, 4);
 		ps.execute();
 		
 		ResultSet rs = ps.getGeneratedKeys();
@@ -37,9 +32,27 @@ private Connection c;
 		
 		int id = rs.getInt(1);
 		pes.setId(id);
-		System.out.println("ID... "+pes.getId());
+		
 		ps.close();
 		return id;
+		
+//		String sql = "insert into pessoa (idTipo) values (?)";
+//		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//		
+////		System.out.println("Teste"+pes.getClass());
+////		System.exit(0);
+//		
+//		ps.setInt(1, pes.getIdTipo() );
+//		ps.execute();
+//		
+//		ResultSet rs = ps.getGeneratedKeys();
+//		rs.next();
+//		
+//		int id = rs.getInt(1);
+//		pes.setId(id);
+//		System.out.println("ID... "+pes.getId());
+//		ps.close();
+//		return id;
 	}
 				
 //		String sql = "INSERT INTO pessoa (id_tipo)"+

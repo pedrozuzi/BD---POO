@@ -46,11 +46,11 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 
 	@Override
-	public List<Fornecedor> consultaFornecedorId(String id) throws SQLException {
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+	public Fornecedor consultaFornecedorId(String id) throws SQLException {
+		Fornecedor f = new Fornecedor();
 		daoF = new FornecedorDAOImpl();
-		//lista = daoF.consultarFornecedor(id);
-		return lista;
+		f = daoF.consultarFornecedor(id);
+		return f;
 	}
 	
 	

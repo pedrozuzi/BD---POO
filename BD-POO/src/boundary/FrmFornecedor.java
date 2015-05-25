@@ -331,12 +331,17 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		Object[] valores = new Object[3];
 		int linha = table.getSelectedRow();
-		
-		String valor = String.valueOf( table.getValueAt(linha, 0));
-		System.out.println("id = " + valor);
-		
-		
+		int coluna = table.getSelectedColumn();
+
+		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+			valores[coluna] = table.getValueAt(linha, coluna);
+		}
+
+			txtId.setText( String.valueOf(valores[0]));
+			txtNome.setText( String.valueOf(valores[1]));
+			txtTelefone.setText(String.valueOf(valores[2])); 
 
 	}
 	

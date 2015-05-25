@@ -63,11 +63,12 @@ public class FornecedorDAOImpl implements FornecedorDAO{
 	}
 
 	@Override
-	public Fornecedor consultarFornecedor(Fornecedor f) throws SQLException {
+	public Fornecedor consultarFornecedor(String id) throws SQLException {
+		Fornecedor f = new Fornecedor();
 		String query = "select id, nome, telefone "
 				+ "from fornecedor where id = ?";
 		PreparedStatement ps = c.prepareStatement( query );
-		ps.setInt(1,  f.getId() );
+		ps.setInt(1,  Integer.parseInt(id) );
 		ResultSet rs = ps.executeQuery();
 		if( rs.next() ){
 			f.setId( rs.getInt("id") );

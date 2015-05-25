@@ -79,6 +79,23 @@ public class CtrlTelaProduto implements ActionListener {
              c[i].setEnabled(!c[i].isEnabled());  
          } 
 	 }
+	 
+	 //recebe um component e desabibita/reabilita for each compound
+	 public void comp(Component[] c){
+         for (int i = 0; i < c.length; i++) {  
+             c[i].setEnabled(!c[i].isEnabled());  
+         }  
+	 }
+	 
+	 public void inicio(){
+		 System.out.println("Inicio");
+		 Component[] c;
+		 comp(c=panProduto.getComponents());
+         comp(c=panLote.getComponents());  
+         comp(c=panAcoes2.getComponents());
+
+	 }
+	 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -87,6 +104,8 @@ public class CtrlTelaProduto implements ActionListener {
 				limpaCampos();
 			} else if (acao.equalsIgnoreCase("VOLTA")) {
 				resetaTela();
+			}else if(acao.equalsIgnoreCase("INCLUIR")){
+				inicio();
 			}
 	
 	}

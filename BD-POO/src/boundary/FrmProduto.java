@@ -375,10 +375,12 @@ public class FrmProduto {
 				btnExcluir, btnPesquisar, btnRewind, btnBack, btnNext,
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
-				panAcoes2, panProduto, panAcoes2);
+				panAcoes2, panProduto, panLote);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
+		btnIncluir.addActionListener(ctrltela);
+		ctrltela.inicio();
 
 	}
 

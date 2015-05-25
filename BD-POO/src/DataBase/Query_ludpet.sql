@@ -150,9 +150,10 @@ INSERT INTO funcionario (id,cpf,nome,salario) VALUES
 (10,33333333333,'Pedro Afonso',850.00)   --func
 
 INSERT INTO logins (id,username,passwor) VALUES
-(1,'hurygg','1234'),
-(2,'pedrozz','susi'),
-(3,'pedroaa','corinthias')
+(8,'hurygg','1234'),
+(5,'pedrozz','susi'),
+(10,'pedroaa','corinthias')
+
 
 INSERT INTO fornecedor (id,nome,telefone) VALUES
 (4,'burns',11111111),
@@ -179,13 +180,13 @@ INSERT INTO lote_produto(idProduto,idLote) VALUES
 (2,4)
 
 INSERT INTO lote_produto(idProduto,idLote) VALUES
-(5,7)
-
+(5,6)
 
 use master
 drop database ludpet
 
 select * from produto
+select * from lote
 
 SELECT IDENT_CURRENT('produto');
 SELECT IDENT_CURRENT('lote');

@@ -72,13 +72,17 @@ public class CtrlIncluiProduto implements ActionListener {
 		}
 
 		// XXX temporario
+		
+		
 		lotprod.setIdProduto(insereProduto(prod));
 		lotprod.setIdLote(insereLote(lot));
-
+		insereLoteProduto(lotprod);
+		
+		
 		//insereProduto(prod);
 		//insereLote(lot);
 
-		insereLoteProduto(lotprod);
+
 
 		System.out.println("prod: " + prod.getId() + " lot: " + lot.getId());
 
@@ -89,7 +93,7 @@ public class CtrlIncluiProduto implements ActionListener {
 		int id = 0;
 		try {
 			id = pDao.insereProduto(prod);
-			pDao.insereProduto(prod);
+		//	pDao.insereProduto(prod);
 			System.out.println("Produto Incluido");
 
 			// TODO limpa campos
@@ -106,7 +110,7 @@ public class CtrlIncluiProduto implements ActionListener {
 		int id = 0;
 		try {
 			id = lDao.insereLote(lot);
-			lDao.insereLote(lot);
+		//	lDao.insereLote(lot);
 			System.out.println("Lote incluido!");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO - Lote",
@@ -127,4 +131,21 @@ public class CtrlIncluiProduto implements ActionListener {
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public void insereLoteProduto(LoteProduto lotprod, int codprod, int codlot) {
+		 lpDao = new ProdutoDaoImpl();
+		try {
+			lotprod.setIdProduto(codprod);
+			lotprod.setIdLote(codlot);
+			lpDao.insereLoteProduto(lotprod);
+			System.out.println("LoteProduto Incluido!");
+			JOptionPane.showMessageDialog(null, "Produto incluido com Sucesso",
+					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
 }

@@ -322,11 +322,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtIdFornecedor.setBounds(417, 46, 126, 20);
 		panProduto.add(txtIdFornecedor);
 
-		JLabel lblBackGround = new JLabel("");
-		lblBackGround.setBounds(0, 0, 785, 562);
-		panPrincipal.add(lblBackGround);
-		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/backgroundBranco.png")));
-
 		// configs básicas de janela
 		janela.setSize(801, 624);
 		janela.setVisible(true);

@@ -28,6 +28,7 @@ import java.awt.Cursor;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
 public class FrmFuncionario implements ActionListener{
@@ -65,6 +66,7 @@ public class FrmFuncionario implements ActionListener{
 	private JButton btnPesquisarNome;
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
+	private DefaultTableModel model;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -127,15 +129,11 @@ public class FrmFuncionario implements ActionListener{
 		btnPesquisar.setBounds(326, 11, 69, 41);
 		panel.add(btnPesquisar);
 		
+		table = new JTable();
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 101, 546, 152);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
-		
-		table = new JTable();
-		table.setBackground(Color.WHITE);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
 		
 		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -275,9 +273,15 @@ public class FrmFuncionario implements ActionListener{
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
-				
+			
+		model = montarTabela();
 	}
 	
+	private DefaultTableModel montarTabela() {
+		
+		return null;
+	}
+
 	private void montarTela(int controle) {
 		if(controle == 1){
 			lblNome.setVisible(true);
@@ -410,7 +414,7 @@ public class FrmFuncionario implements ActionListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-			System.out.println("Procurar por aquele nome...");
+			model.setNumRows(0);
 		}
 
 	}

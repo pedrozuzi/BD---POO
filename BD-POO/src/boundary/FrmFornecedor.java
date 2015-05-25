@@ -30,7 +30,6 @@ import entity.Fornecedor;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -223,6 +222,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		btnLupaPesquisar.addActionListener(e -> {
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			buscarDadosTabelaPorNome(modelo);
+
 			limpaCampos();
 		});
 		
@@ -276,19 +276,17 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			f.setId(Integer.parseInt(txtId.getText()));
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
-			control = new CtrlFornecedor();
 			control.atualiza(f);
-			table.invalidate();
-			table.revalidate();
-			janela.repaint();
-			table.validate();
 		}else if("Incluir".equalsIgnoreCase(cmd)){
 			f.setIdTipo(4);
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.inserir(f);
 		}else if("Excluir".equalsIgnoreCase(cmd)){
-			
+			f.setId(Integer.parseInt(txtId.getText()));
+			f.setNome(txtNome.getText());
+			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
+			control.excluir(f);
 		}
 		limpaCampos();
 	}
@@ -374,7 +372,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	
 	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
 		controlTable = new CtrlFornecedor();
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		 List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		
 		if (txtId.getText().equals("")) {
 			if (!txtNome.getText().equals("")) {
@@ -398,7 +396,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 				}
 			}
 		}
-		
 	}
 	
 }

@@ -6,8 +6,7 @@ public class CtrlTabelaFornecedor extends DefaultTableModel {
 
 	private static final long serialVersionUID = 8665332737558983591L;
 
-	public CtrlTabelaFornecedor(
-			Object[][] dados, String[] cabecalho){
+	public CtrlTabelaFornecedor(Object[][] dados, String[] cabecalho){
 		super.setDataVector(dados, cabecalho);
 	}
 

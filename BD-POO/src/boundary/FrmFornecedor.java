@@ -42,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
 
 import persistence.FornecedorDAOImpl;
 
-public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableModelListener{
+public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -209,54 +209,22 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableMod
 		lblLogo.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogo);
 		
+		table = new JTable();
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 107, 549, 159);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
-		String[] cabecalho = new String[3];
-		cabecalho[0] = "Código";
-		cabecalho[1] = "Nome";
-		cabecalho[2] = "Telefone";
-		
-		DefaultTableModel modelo = new CtrlTabelaFornecedor(new Object[][]{}, cabecalho);
-		
-		table = new JTable();
-		table.setModel(modelo);
-		table.addMouseListener(this);
-		
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(268);
-		table.getColumnModel().getColumn(2).setPreferredWidth(143);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
-		
-		controlTable = new CtrlFornecedor();
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();
-		
-		try {
-			lista = controlTable.listaFornecedores();
-			for ( Fornecedor f : lista) {
-				Object[] linha = new Object[3];
-				linha[0] = f.getId();
-				linha[1] = f.getNome();
-				linha[2] = f.getTelefone();
-				modelo.addRow(linha);
-				table.invalidate();
-				table.revalidate();
-				panel.repaint();
-				panPrincipal.repaint();
-				
-			}
-		} catch (SQLException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(),
-					"ERRO", JOptionPane.ERROR_MESSAGE);
-		}
-		
 		janela.setSize(585,553);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);
+		
+		btnLupaPesquisar.addActionListener(e -> {
+			montarTabela();
+			 table.revalidate();
+			 janela.repaint();
+		});
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
 		
@@ -296,6 +264,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableMod
 			String cmd = e.getActionCommand();
 			acaoGravar(cmd);
 		});
+		
 		
 	}
 	
@@ -337,7 +306,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableMod
 		txtNome.setText("");
 		txtId.setText("");
 		txtTelefone.setText("");
-		
 	}
 
 	private void telaInserirFornecedor(){
@@ -362,18 +330,48 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas, TableMod
 		int linha = table.getSelectedRow();
 		
 		String valor = String.valueOf( table.getValueAt(linha, 0));
-		System.out.println(valor);
+		System.out.println("id = " + valor);
 
 	}
 	
 	public static void main(String[] args) {
 		new FrmFornecedor();
 	}
+	
+	public void montarTabela () {
+		try {
+			String[] colunas = new String[3];
+			colunas[0] = "Código";
+			colunas[1] = "Nome";
+			colunas[2] = "Telefone";
 
-	@Override
-	public void tableChanged(TableModelEvent e) {
-		// TODO Auto-generated method stub
-		
+			DefaultTableModel modelo = new CtrlTabelaFornecedor(
+					new Object[][] {}, colunas);
+
+			table.setModel(modelo);
+			table.addMouseListener(this);
+			table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+			table.getColumnModel().getColumn(0).setResizable(false);
+			table.getColumnModel().getColumn(1).setPreferredWidth(268);
+			table.getColumnModel().getColumn(2).setPreferredWidth(143);
+			table.setVisible(false);
+			scrollPane.setViewportView(table);
+
+			controlTable = new CtrlFornecedor();
+			List<Fornecedor> lista = new ArrayList<Fornecedor>();
+
+			lista = controlTable.listaFornecedores();
+			for (Fornecedor f : lista) {
+				Object[] linha = new Object[3];
+				linha[0] = f.getId();
+				linha[1] = f.getNome();
+				linha[2] = f.getTelefone();
+				modelo.addRow(linha);
+			}
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

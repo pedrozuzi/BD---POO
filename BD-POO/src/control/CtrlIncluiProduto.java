@@ -66,30 +66,20 @@ public class CtrlIncluiProduto implements ActionListener {
 			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			date = new java.sql.Date(
 					((java.util.Date) formatter.parse(data)).getTime());
-			lot.setData_validade(date); // FIXME
+			lot.setData_validade(date); 
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 
-		// XXX temporario
-		
 		
 		lotprod.setIdProduto(insereProduto(prod));
 		lotprod.setIdLote(insereLote(lot));
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		insereLoteProduto(lotprod);
-		
-		
-		//insereProduto(prod);
-		//insereLote(lot);
-
-
-
 		System.out.println("prod: " + prod.getId() + " lot: " + lot.getId());
 
 	}
@@ -99,7 +89,6 @@ public class CtrlIncluiProduto implements ActionListener {
 		int id = 0;
 		try {
 			id = pDao.insereProduto(prod);
-		//	pDao.insereProduto(prod);
 			System.out.println("Produto Incluido");
 
 			// TODO limpa campos
@@ -116,7 +105,6 @@ public class CtrlIncluiProduto implements ActionListener {
 		int id = 0;
 		try {
 			id = lDao.insereLote(lot);
-		//	lDao.insereLote(lot);
 			System.out.println("Lote incluido!");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO - Lote",

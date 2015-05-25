@@ -74,6 +74,7 @@ public class FrmProduto {
 				FrmPrincipal telaprincipal = new FrmPrincipal();
 				telaprincipal.main(null);
 				janela.dispose();
+				
 			}
 		});
 		// fim no action temporario
@@ -300,8 +301,7 @@ public class FrmProduto {
 		JLabel lblBackGround = new JLabel("");
 		lblBackGround.setBounds(0, 0, 785, 562);
 		panPrincipal.add(lblBackGround);
-		lblBackGround.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/BackGround.png")));
+		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/backgroundBranco.png")));
 
 		// configs básicas de janela
 		janela.setSize(801, 624);

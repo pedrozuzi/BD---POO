@@ -1,18 +1,18 @@
 package control;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JTextField;
 
 public final class TratamentoTextFields extends JTextField{
 	private static final long serialVersionUID = 4693065480438008645L;
 	
-	private  int tamanhoMaximo;
+	private int tamanhoMaximo;
 	
 	public TratamentoTextFields() {
-		addKeyListener(new java.awt.event.KeyAdapter() {
+		addKeyListener(new KeyAdapter() {
 			@Override
-		    public void keyTyped(java.awt.event.KeyEvent evt) {
+		    public void keyTyped(KeyEvent evt) {
 		        apenasLetras(evt);
 		    }
 		});
@@ -21,9 +21,9 @@ public final class TratamentoTextFields extends JTextField{
 	public TratamentoTextFields(int maximo) {
 	    setTamanhoCaracteres(maximo);
 	    
-	    addKeyListener(new java.awt.event.KeyAdapter() {
+	    addKeyListener(new KeyAdapter() {
 	    	 @Override
-	    	    public void keyTyped(java.awt.event.KeyEvent evt) {
+	    	    public void keyTyped(KeyEvent evt) {
 	    	        apenasNumeros(evt);
 	    	     }
 	    });

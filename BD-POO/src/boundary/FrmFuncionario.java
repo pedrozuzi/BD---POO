@@ -129,15 +129,11 @@ public class FrmFuncionario implements ActionListener{
 		btnPesquisar.setBounds(326, 11, 69, 41);
 		panel.add(btnPesquisar);
 		
+		table = new JTable();
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 101, 546, 152);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
-		
-		table = new JTable();
-		table.setBackground(Color.WHITE);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
 		
 		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));

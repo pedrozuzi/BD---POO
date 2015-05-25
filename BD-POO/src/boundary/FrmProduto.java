@@ -204,10 +204,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panSuperior.add(scrollPane);
 
 		tableProduto = new JTable();
+		
 		scrollPane.setViewportView(tableProduto);
-	//	scrollPane.setBounds(10, 107, 549, 159);
-		scrollPane.setVisible(false);
-		tableProduto.setVisible(true);
 		//panPrincipal.add(scrollPane);
 		modelo = montarTabela();
 		
@@ -486,6 +484,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 							modelo.addRow(linha);
 						} 
+						
+						lista.forEach(p -> {
+							System.out.println(p.getNome());
+						});
 					}else{
 						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
 								"Aviso", JOptionPane.INFORMATION_MESSAGE);

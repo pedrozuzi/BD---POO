@@ -12,7 +12,7 @@ import entity.Produto;
  */
 public interface ProdutoDao {
 
-	void insereProduto(Produto prod) throws SQLException;
+	int insereProduto(Produto prod) throws SQLException;
 
 	void atualizaProduto(Produto prod) throws SQLException;
 

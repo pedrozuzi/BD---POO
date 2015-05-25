@@ -13,7 +13,7 @@ import entity.Lote;
 
 public interface LoteDao {
 	
-	void insereLote(Lote lot) throws SQLException;
+	int insereLote(Lote lot) throws SQLException;
 
 	void atualizaLote(Lote lot) throws SQLException;
 

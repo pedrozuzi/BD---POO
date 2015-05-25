@@ -28,6 +28,7 @@ import java.awt.Cursor;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
 public class FrmFuncionario implements ActionListener{
@@ -65,6 +66,7 @@ public class FrmFuncionario implements ActionListener{
 	private JButton btnPesquisarNome;
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
+	private DefaultTableModel model;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -275,9 +277,15 @@ public class FrmFuncionario implements ActionListener{
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
-				
+			
+		model = montarTabela();
 	}
 	
+	private DefaultTableModel montarTabela() {
+		
+		return null;
+	}
+
 	private void montarTela(int controle) {
 		if(controle == 1){
 			lblNome.setVisible(true);
@@ -410,7 +418,7 @@ public class FrmFuncionario implements ActionListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-			System.out.println("Procurar por aquele nome...");
+			model.setNumRows(0);
 		}
 
 	}

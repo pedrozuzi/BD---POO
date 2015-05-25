@@ -42,6 +42,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		int id = rs.getInt(1);
 		prod.setId(id);
 		ps.close();
+		System.out.println("ID produto:"+id+" "+prod.getId());
 		return id;
 		
 	}
@@ -83,6 +84,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		int id = rs.getInt(1);
 		lot.setId(id);
 		ps.close();
+		System.out.println("ID Lote:"+id+" "+lot.getId());
 		return id;
 		
 	}
@@ -112,23 +114,15 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 //Metodos implementados LoteProduto
 	@Override
-	public int insereLoteProduto(LoteProduto lotProd) throws SQLException {
+	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
 		String sql = "INSERT INTO lote_produto (idProduto,idLote)"+
 		"VALUES(?,?)";
-		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1, lotProd.getIdLote());
 		ps.setInt(2, lotProd.getIdProduto());
 		ps.execute();
 		
-		
-		ResultSet rs = ps.getGeneratedKeys();
-		rs.next();
-		int id = rs.getInt(1);
-		
 		ps.close();
-		return id;
-		
-		
 		
 	}
 

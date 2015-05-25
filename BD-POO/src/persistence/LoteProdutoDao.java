@@ -7,7 +7,7 @@ import entity.LoteProduto;
 
 public interface LoteProdutoDao {
 	
-	int insereLoteProduto(LoteProduto lotProd) throws SQLException;
+	void insereLoteProduto(LoteProduto lotProd) throws SQLException;
 
 	void atualizaLoteProduto(LoteProduto lotProd) throws SQLException;
 

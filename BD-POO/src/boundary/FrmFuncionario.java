@@ -350,12 +350,12 @@ public class FrmFuncionario implements ActionListener{
 			montarTela(2);
 			btnGravar.setActionCommand("Remover");
 			btnGravar.setText("Excluir");
-			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniX.png")));
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setEnabled(true);			
 		}else if(btnAlterar.equals(acao)){
 			montarTela(2);
 			btnGravar.setText("Salvar");
-			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniEditar.png")));
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Alterar");
 		}else if(btnPesquisar.equals(acao)){

@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -174,7 +175,7 @@ public class FrmFuncionario implements ActionListener{
 		btnGravar = new JButton("Gravar");
 		btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnGravar.setBounds(432, 496, 96, 31);
+		btnGravar.setBounds(425, 496, 103, 31);
 		btnGravar.setVisible(false);
 		panPrincipal.add(btnGravar);
 			
@@ -330,19 +331,32 @@ public class FrmFuncionario implements ActionListener{
 		
 		if(btnIncluir.equals(acao)){
 			montarTela(1);
+			btnGravar.setText("Gravar");
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
+			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Incluir");
 		}else if(btnRemover.equals(acao)){
 			montarTela(2);
 			btnGravar.setActionCommand("Remover");
+			btnGravar.setText("Excluir");
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniX.png")));
+			btnGravar.setEnabled(true);			
 		}else if(btnAlterar.equals(acao)){
 			montarTela(2);
+			btnGravar.setText("Salvar");
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniEditar.png")));
+			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Alterar");
 		}else if(btnPesquisar.equals(acao)){
 			montarTela(2);
+			btnGravar.setText("Gravar");
+			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
+			btnGravar.setEnabled(false);
 			btnGravar.setActionCommand("Pesquisar");
 		}
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
+
 			ctrlFunc = new CtrlFuncionario();
 			Funcionario f = new Funcionario();
 			f.setNome( txtNome.getText() );
@@ -361,9 +375,19 @@ public class FrmFuncionario implements ActionListener{
 			}
 			limpaCampos();
 		}else if("Remover".equalsIgnoreCase(cmd)){
-			System.out.println("Gravar removendo");
+			if(txtNome.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Sem dados para processar",
+						"Erro", JOptionPane.QUESTION_MESSAGE);
+			}else{
+				System.out.println("Remover Funcionario");
+			}
 		}else if("Alterar".equalsIgnoreCase(cmd)){
-			System.out.println("Gravar alterando");
+			if(txtNome.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Sem dados para processar",
+						"Erro", JOptionPane.QUESTION_MESSAGE);
+			}else{
+				System.out.println("Remover Funcionario");
+			}
 		}else if("Pesquisar".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar pesquisando");
 		}

@@ -387,7 +387,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 				}catch (SQLException e) {
 					e.printStackTrace();
 				}
-	
 			}
 		}
 	}

@@ -11,12 +11,12 @@ import entity.Funcionario;
 
 public class FuncionarioDaoImpl implements FuncionarioDao {
 
-	private Connection c;
-	
 	public FuncionarioDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}
+	
+	private Connection c;
 	
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
@@ -29,9 +29,11 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		ps.setString(2, func.getCpf() );
 		ps.setString(3, func.getNome() );
 		ps.setDouble(4, func.getSalario() );
+		ps.execute();
+		ps.close();
 		
 		System.out.println("Funcionario inserido com sucesso");
-		ps.close();
+		
 	}
 
 	@Override

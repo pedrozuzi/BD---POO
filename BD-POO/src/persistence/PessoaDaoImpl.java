@@ -24,7 +24,7 @@ private Connection c;
 	public int inserePessoa(Pessoa pes) throws SQLException { //FIXME
 		String sql = "insert into pessoa (idTipo) values (?)";
 		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		ps.setInt(1, 4);
+		ps.setInt(1, 1);
 		ps.execute();
 		
 		ResultSet rs = ps.getGeneratedKeys();

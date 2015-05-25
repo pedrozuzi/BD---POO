@@ -319,40 +319,40 @@ public class FrmProduto {
 		label_4.setBounds(579, 69, 61, 25);
 		panProduto.add(label_4);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(517, 215, 195, 64);
-		panInferior.add(panel);
-		panel.setLayout(null);
+		JPanel panAcoes2 = new JPanel();
+		panAcoes2.setBounds(517, 215, 195, 64);
+		panInferior.add(panAcoes2);
+		panAcoes2.setLayout(null);
 
 		JLabel lblVoltar = new JLabel("Voltar");
 		lblVoltar.setBounds(20, 40, 40, 19);
-		panel.add(lblVoltar);
+		panAcoes2.add(lblVoltar);
 
 		JButton btnVolta = new JButton("");
 		btnVolta.setBounds(10, 11, 49, 25);
-		panel.add(btnVolta);
+		panAcoes2.add(btnVolta);
 		btnVolta.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniBack.png")));
 
 		JLabel lblLimpar = new JLabel("Limpar");
 		lblLimpar.setBounds(80, 40, 40, 19);
-		panel.add(lblLimpar);
+		panAcoes2.add(lblLimpar);
 
 		JButton btnLimpa = new JButton("");
 		btnLimpa.setBounds(70, 11, 49, 25);
-		panel.add(btnLimpa);
+		panAcoes2.add(btnLimpa);
 		btnLimpa.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniClear.png")));
 
 		JButton btnSalva = new JButton("");
 		btnSalva.setBounds(130, 11, 49, 25);
-		panel.add(btnSalva);
+		panAcoes2.add(btnSalva);
 		btnSalva.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniSalvar.png")));
 
 		JLabel lblSalvar = new JLabel("Salvar");
 		lblSalvar.setBounds(139, 40, 40, 19);
-		panel.add(lblSalvar);
+		panAcoes2.add(lblSalvar);
 
 		btnIncluir.setActionCommand("INCLUIR");
 		btnAlterar.setActionCommand("ALTERAR");
@@ -374,7 +374,8 @@ public class FrmProduto {
 				txtIdLote, txtDataValidadeLote, btnIncluir, btnAlterar,
 				btnExcluir, btnPesquisar, btnRewind, btnBack, btnNext,
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
-				btnLimpa, btnSalva, panAcoes);
+				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
+				panAcoes2, panProduto, panAcoes2);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);

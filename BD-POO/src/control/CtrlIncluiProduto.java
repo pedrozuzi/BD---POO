@@ -76,6 +76,12 @@ public class CtrlIncluiProduto implements ActionListener {
 		
 		lotprod.setIdProduto(insereProduto(prod));
 		lotprod.setIdLote(insereLote(lot));
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		insereLoteProduto(lotprod);
 		
 		

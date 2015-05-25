@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import control.CtrlFuncionario;
+import control.TratamentoTextFields;
 import entity.Funcionario;
 
 import java.awt.Cursor;
@@ -62,6 +63,8 @@ public class FrmFuncionario implements ActionListener{
 	private JRadioButton rdbtnAdministrador;
 	private ButtonGroup bg;
 	private JButton btnPesquisarNome;
+	private JLabel lblDadoObrigatorio;
+	private JLabel lblAlterar;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -99,7 +102,7 @@ public class FrmFuncionario implements ActionListener{
 		btnAlterar.setBounds(143, 11, 69, 41);
 		panel.add(btnAlterar);
 		
-		JLabel lblAlterar = new JLabel("Alterar");
+		lblAlterar = new JLabel("Alterar");
 		lblAlterar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAlterar.setBounds(153, 54, 44, 19);
 		panel.add(lblAlterar);
@@ -134,27 +137,27 @@ public class FrmFuncionario implements ActionListener{
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
 		
-		lblNome = new JLabel("Nome : ");
+		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNome.setBounds(33, 290, 68, 14);
 		lblNome.setVisible(false);
 		panPrincipal.add(lblNome);
 		
-		lblCpf = new JLabel("CPF : ");
+		lblCpf = new JLabel("CPF : *");
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCpf.setBounds(33, 322, 46, 14);
+		lblCpf.setBounds(33, 322, 60, 14);
 		lblCpf.setVisible(false);
 		panPrincipal.add(lblCpf);
 		
-		lblSalario = new JLabel("Sal\u00E1rio : ");
+		lblSalario = new JLabel("Sal\u00E1rio : *");
 		lblSalario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSalario.setBounds(33, 360, 60, 17);
+		lblSalario.setBounds(33, 360, 68, 17);
 		lblSalario.setVisible(false);
 		panPrincipal.add(lblSalario);
 		
-		lblCargo = new JLabel("Cargo : ");
+		lblCargo = new JLabel("Cargo : *");
 		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCargo.setBounds(33, 438, 60, 17);
+		lblCargo.setBounds(33, 438, 68, 17);
 		lblCargo.setVisible(false);
 		panPrincipal.add(lblCargo);
 		
@@ -179,24 +182,24 @@ public class FrmFuncionario implements ActionListener{
 		btnGravar.setVisible(false);
 		panPrincipal.add(btnGravar);
 			
-		txtNome = new JTextField();
+		txtNome = new TratamentoTextFields();
 		txtNome.setColumns(10);
 		txtNome.setBackground(SystemColor.info);
-		txtNome.setBounds(103, 288, 182, 22);
+		txtNome.setBounds(123, 288, 182, 22);
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
 		
-		txtCpf = new JTextField();
+		txtCpf = new TratamentoTextFields(11);
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.info);
-		txtCpf.setBounds(103, 320, 182, 22);
+		txtCpf.setBounds(123, 320, 182, 22);
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);
 		
 		txtSalario = new JTextField();
 		txtSalario.setColumns(10);
 		txtSalario.setBackground(SystemColor.info);
-		txtSalario.setBounds(103, 359, 182, 22);
+		txtSalario.setBounds(123, 359, 182, 22);
 		txtSalario.setVisible(false);
 		panPrincipal.add(txtSalario);
 		
@@ -205,15 +208,15 @@ public class FrmFuncionario implements ActionListener{
 		lblLogo.setBounds(10, 181, 546, 199);
 		panPrincipal.add(lblLogo);
 		
-		lblTelefone = new JLabel("Telefone :");
+		lblTelefone = new JLabel("Telefone : *\r\n");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTelefone.setBounds(33, 402, 68, 14);
+		lblTelefone.setBounds(33, 402, 89, 14);
 		lblTelefone.setVisible(false);
 		panPrincipal.add(lblTelefone);
 		
-		txtTelefone = new JTextField();
+		txtTelefone = new TratamentoTextFields(9);
 		txtTelefone.setBackground(SystemColor.info);
-		txtTelefone.setBounds(103, 401, 128, 20);
+		txtTelefone.setBounds(123, 401, 128, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
@@ -223,7 +226,7 @@ public class FrmFuncionario implements ActionListener{
 		rdbtnAdministrador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAdministrador.setBackground(Color.WHITE);
-		rdbtnAdministrador.setBounds(103, 436, 109, 23);
+		rdbtnAdministrador.setBounds(124, 436, 109, 23);
 		panPrincipal.add(rdbtnAdministrador);
 		
 		rdbtnAtendente = new JRadioButton("Atendente");
@@ -231,7 +234,7 @@ public class FrmFuncionario implements ActionListener{
 		rdbtnAtendente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAtendente.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAtendente.setBackground(Color.WHITE);
-		rdbtnAtendente.setBounds(227, 436, 109, 23);
+		rdbtnAtendente.setBounds(243, 436, 109, 23);
 		panPrincipal.add(rdbtnAtendente);
 		
 		rdbtnBanhistaTosador = new JRadioButton("Banhista/Tosador");
@@ -239,7 +242,7 @@ public class FrmFuncionario implements ActionListener{
 		rdbtnBanhistaTosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnBanhistaTosador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnBanhistaTosador.setBackground(Color.WHITE);
-		rdbtnBanhistaTosador.setBounds(346, 436, 128, 23);
+		rdbtnBanhistaTosador.setBounds(362, 436, 128, 23);
 		panPrincipal.add(rdbtnBanhistaTosador);
 		
 		bg = new ButtonGroup();
@@ -250,8 +253,14 @@ public class FrmFuncionario implements ActionListener{
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setVisible(false);
 		btnPesquisarNome.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniLupa.png")));
-		btnPesquisarNome.setBounds(295, 287, 40, 23);
+		btnPesquisarNome.setBounds(315, 287, 40, 23);
 		panPrincipal.add(btnPesquisarNome);
+		
+		lblDadoObrigatorio = new JLabel("* Dados obrigat\u00F3rios");
+		lblDadoObrigatorio.setVisible(false);
+		lblDadoObrigatorio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDadoObrigatorio.setBounds(410, 470, 128, 14);
+		panPrincipal.add(lblDadoObrigatorio);
 		
 		janela.setSize(582,600);
 		janela.setVisible(true);
@@ -276,6 +285,7 @@ public class FrmFuncionario implements ActionListener{
 			lblCpf.setVisible(true);
 			lblSalario.setVisible(true);
 			lblTelefone.setVisible(true);
+			lblDadoObrigatorio.setVisible(true);
 			rdbtnAdministrador.setVisible(true);
 			rdbtnAdministrador.setEnabled(true);
 			rdbtnAtendente.setVisible(true);
@@ -301,6 +311,7 @@ public class FrmFuncionario implements ActionListener{
 			lblCpf.setVisible(true);
 			lblSalario.setVisible(true);
 			lblTelefone.setVisible(true);
+			lblDadoObrigatorio.setVisible(true);
 			rdbtnAdministrador.setVisible(true);
 			rdbtnAdministrador.setEnabled(false);
 			rdbtnAtendente.setVisible(true);

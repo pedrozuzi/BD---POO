@@ -223,6 +223,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		btnLupaPesquisar.addActionListener(e -> {
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			buscarDadosTabelaPorNome(modelo);
+
 			limpaCampos();
 		});
 		

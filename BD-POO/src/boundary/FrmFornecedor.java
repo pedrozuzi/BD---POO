@@ -34,6 +34,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ import javax.swing.table.DefaultTableModel;
 
 import persistence.FornecedorDAOImpl;
 
-public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
+public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -357,8 +358,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 			colunas[1] = "Nome";
 			colunas[2] = "Telefone";
 
-			modelo = new CtrlTabelaFornecedor(
-					new Object[][] {}, colunas);
+			modelo = new CtrlTabelaFornecedor(new Object[][] {}, colunas);
 
 			table.setModel(modelo);
 			table.addMouseListener(this);

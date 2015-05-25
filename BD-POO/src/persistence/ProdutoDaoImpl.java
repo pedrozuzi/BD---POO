@@ -2,7 +2,9 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import connection.ConnectionImpl;
@@ -23,18 +25,24 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	//Metodos implementados Produto
 	@Override
-	public void insereProduto(Produto prod) throws SQLException {
+	public int insereProduto(Produto prod) throws SQLException {
 		
 		String sql = "INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra)"+
 		"VALUES(?,?,?,?,?)";
-		PreparedStatement ps = c.prepareStatement(sql);
+		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, prod.getNome());
 		ps.setString(2, prod.getDescricao());
 		ps.setInt(3, prod.getId_fornecedor());
 		ps.setInt(4, prod.getValor_venda());
 		ps.setInt(5, prod.getValor_compra());
 		ps.execute();
+		
+		ResultSet rs = ps.getGeneratedKeys();
+		rs.next();
+		int id = rs.getInt(1);
+		prod.setId(id);
 		ps.close();
+		return id;
 		
 	}
 
@@ -63,13 +71,19 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 	//Metodos implementados Lote
 	@Override
-	public void insereLote(Lote lot) throws SQLException {
+	public int insereLote(Lote lot) throws SQLException {
 		String sql = "INSERT INTO lote (data_validade)"+
 		"VALUES(?)";
-		PreparedStatement ps = c.prepareStatement(sql);
+		PreparedStatement ps = c.prepareStatement(sql,  Statement.RETURN_GENERATED_KEYS);
 		ps.setDate(1, lot.getData_validade());
 		ps.execute();
+			
+		ResultSet rs = ps.getGeneratedKeys();
+		rs.next();
+		int id = rs.getInt(1);
+		lot.setId(id);
 		ps.close();
+		return id;
 		
 	}
 
@@ -98,14 +112,23 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 //Metodos implementados LoteProduto
 	@Override
-	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
+	public int insereLoteProduto(LoteProduto lotProd) throws SQLException {
 		String sql = "INSERT INTO lote_produto (idProduto,idLote)"+
 		"VALUES(?,?)";
-		PreparedStatement ps = c.prepareStatement(sql);
+		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		ps.setInt(1, lotProd.getIdLote());
 		ps.setInt(2, lotProd.getIdProduto());
 		ps.execute();
+		
+		
+		ResultSet rs = ps.getGeneratedKeys();
+		rs.next();
+		int id = rs.getInt(1);
+		
 		ps.close();
+		return id;
+		
+		
 		
 	}
 

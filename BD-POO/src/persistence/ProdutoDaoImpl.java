@@ -118,8 +118,8 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		String sql = "INSERT INTO lote_produto (idProduto,idLote)"+
 		"VALUES(?,?)";
 		PreparedStatement ps = c.prepareStatement(sql);
-		ps.setInt(1, lotProd.getIdLote());
-		ps.setInt(2, lotProd.getIdProduto());
+		ps.setInt(1, lotProd.getIdProduto());
+		ps.setInt(2, lotProd.getIdLote());
 		ps.execute();
 		
 		ps.close();

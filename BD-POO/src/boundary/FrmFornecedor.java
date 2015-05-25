@@ -70,6 +70,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 	private CtrlFornecedor control;
 	private CtrlTableFornecedor controlTable;
 	private JButton btnLupaPesquisar;
+	private DefaultTableModel modelo;
 	
 	public FrmFornecedor() {
 		janela = new JFrame("Fornecedor");
@@ -215,15 +216,17 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
+		modelo = montarTabela();
+		
 		janela.setSize(585,553);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
-			montarTabela();
-			 table.revalidate();
-			 janela.repaint();
+			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			buscarDadosTabelaPorNome(modelo);
+			limpaCampos();
 		});
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
@@ -239,6 +242,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 		});
 		
 		btnIncluir.addActionListener( e -> {
+			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/MiniSalvar.png")));
@@ -331,6 +335,8 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 		
 		String valor = String.valueOf( table.getValueAt(linha, 0));
 		System.out.println("id = " + valor);
+		
+		
 
 	}
 	
@@ -338,14 +344,13 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 		new FrmFornecedor();
 	}
 	
-	public void montarTabela () {
-		try {
+	public DefaultTableModel montarTabela () {
 			String[] colunas = new String[3];
 			colunas[0] = "Código";
 			colunas[1] = "Nome";
 			colunas[2] = "Telefone";
 
-			DefaultTableModel modelo = new CtrlTabelaFornecedor(
+			modelo = new CtrlTabelaFornecedor(
 					new Object[][] {}, colunas);
 
 			table.setModel(modelo);
@@ -356,22 +361,29 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 			table.getColumnModel().getColumn(2).setPreferredWidth(143);
 			table.setVisible(false);
 			scrollPane.setViewportView(table);
-
-			controlTable = new CtrlFornecedor();
-			List<Fornecedor> lista = new ArrayList<Fornecedor>();
-
-			lista = controlTable.listaFornecedores();
-			for (Fornecedor f : lista) {
-				Object[] linha = new Object[3];
-				linha[0] = f.getId();
-				linha[1] = f.getNome();
-				linha[2] = f.getTelefone();
-				modelo.addRow(linha);
+			return modelo;
+	}
+	
+	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+		controlTable = new CtrlFornecedor();
+		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		
+		if (txtId.getText().equals("")) {
+			if (!txtNome.getText().equals("")) {
+				try {
+					lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
+					for (Fornecedor f : lista) {
+						Object[] linha = new Object[3];
+						linha[0] = f.getId();
+						linha[1] = f.getNome();
+						linha[2] = f.getTelefone();
+						modelo.addRow(linha);
+					} 
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
+	
 			}
-		} catch (SQLException e1) {
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRO",
-					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }

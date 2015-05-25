@@ -3,7 +3,9 @@ package control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import persistence.FornecedorDAO;
 import persistence.FornecedorDAOImpl;
 import persistence.PessoaDao;
@@ -30,11 +32,11 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 
 	@Override
-	public List<Fornecedor> listaFornecedores() throws SQLException {
+	public List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		daoF = new FornecedorDAOImpl();
 		try {
-			lista = daoF.consultarFornecedor();
+			lista = daoF.listaFornecedor(nome);
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
@@ -42,5 +44,15 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 		
 		return lista;
 	}
+
+	@Override
+	public List<Fornecedor> consultaFornecedorId(String id) throws SQLException {
+		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		daoF = new FornecedorDAOImpl();
+		//lista = daoF.consultarFornecedor(id);
+		return lista;
+	}
+	
+	
 
 }

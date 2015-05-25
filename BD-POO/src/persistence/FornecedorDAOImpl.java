@@ -63,36 +63,37 @@ public class FornecedorDAOImpl implements FornecedorDAO{
 	}
 
 	@Override
-	public List<Fornecedor> consultarFornecedor() throws SQLException {
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();
-		String sql = "SELECT id, nome, telefone FROM fornecedor";
-		PreparedStatement ps = c.prepareStatement(sql);
+	public Fornecedor consultarFornecedor(Fornecedor f) throws SQLException {
+		String query = "select id, nome, telefone "
+				+ "from fornecedor where id = ?";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1,  f.getId() );
 		ResultSet rs = ps.executeQuery();
-		while (rs.next()){
-			Fornecedor f = new Fornecedor();
-			f.setId(rs.getInt("id"));
-			f.setNome(rs.getString("nome"));
-			f.setTelefone(rs.getInt("telefone"));
-			lista.add(f);
+		if( rs.next() ){
+			f.setId( rs.getInt("id") );
+			f.setNome( rs.getString("nome") );	
+			f.setTelefone( rs.getInt("telefone"));
 		}
-		return lista;
-	}	
-		
-		
-//		String query = "select id, nome, telefone "
-//				+ "from fornecedor where id = ?";
-//		PreparedStatement ps = c.prepareStatement( query );
-//		ps.setInt(1,  f.getId() );
+		ps.close();
+		return f;
+	}
+//		List<Fornecedor> lista = new ArrayList<Fornecedor>();
+//		String sql = "SELECT id, nome, telefone FROM fornecedor";
+//		PreparedStatement ps = c.prepareStatement(sql);
 //		ResultSet rs = ps.executeQuery();
-//		if( rs.next() ){
-//			f.setId( rs.getInt("id") );
-//			f.setNome( rs.getString("nome") );	
-//			f.setTelefone( rs.getInt("telefone"));
+//		while (rs.next()){
+//			Fornecedor f = new Fornecedor();
+//			f.setId(rs.getInt("id"));
+//			f.setNome(rs.getString("nome"));
+//			f.setTelefone(rs.getInt("telefone"));
+//			lista.add(f);
 //		}
-//		ps.close();
-//		return f;
-//	}
+//		return lista;
+//	}	
+		
+	
 
+	@Override
 	public List<Fornecedor> listaFornecedor(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		
@@ -101,7 +102,7 @@ public class FornecedorDAOImpl implements FornecedorDAO{
 		ps.setString( 1, "%" + nome + "%" );
 		ResultSet rs = ps.executeQuery();
 		
-		while( rs.next() ){
+		while ( rs.next() ){
 			Fornecedor f = new Fornecedor();
 			f.setId( rs.getInt( "id") );
 			f.setNome( rs.getString( "nome" ) );

@@ -6,6 +6,6 @@ import entity.Fornecedor;
 
 public interface CtrlTableFornecedor {
 	
-	public List<Fornecedor> listaFornecedores() throws SQLException;
-
+	List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException;
+	List<Fornecedor> consultaFornecedorId(String id) throws SQLException;
 }

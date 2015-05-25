@@ -148,8 +148,10 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 		panel.add(btnPesquisar);
 		
 		txtId = new JTextField();
+		txtId.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtId.setBounds(137, 319, 109, 20);
 		txtId.setVisible(false);
+		txtId.setEnabled(false);
 		panPrincipal.add(txtId);
 		txtId.setColumns(10);
 		
@@ -292,7 +294,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 	private void telaAlterarExcluirFornecedor() {
 		btnLupaPesquisar.setVisible(true);
 		txtId.setVisible(true);
-		txtId.setEnabled(true);
 		txtNome.setVisible(true);
 		txtTelefone.setVisible(true);
 		lblId.setVisible(true);

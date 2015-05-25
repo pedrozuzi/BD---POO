@@ -277,6 +277,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas {
 			System.out.println("Alterando;;;");
 		}else if("Incluir".equalsIgnoreCase(cmd)){
 			Fornecedor f = new Fornecedor();
+			f.setIdTipo(4);
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control = new CtrlFornecedor();

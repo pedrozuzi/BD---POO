@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Funcionario;
@@ -32,7 +34,8 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		ps.execute();
 		ps.close();
 		
-		System.out.println("Funcionario inserido com sucesso");
+		JOptionPane.showMessageDialog(null, "Funcionario inserido.",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 

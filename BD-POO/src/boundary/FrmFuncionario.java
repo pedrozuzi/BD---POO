@@ -359,7 +359,7 @@ public class FrmFuncionario implements ActionListener{
 				f.setIdTipo(3);
 				ctrlFunc.incluir(f);
 			}
-			
+			limpaCampos();
 		}else if("Remover".equalsIgnoreCase(cmd)){
 			System.out.println("Gravar removendo");
 		}else if("Alterar".equalsIgnoreCase(cmd)){

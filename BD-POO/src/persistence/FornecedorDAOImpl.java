@@ -21,10 +21,10 @@ public class FornecedorDAOImpl implements FornecedorDAO{
 	private Connection c;
 
 	@Override
-	public void inserirFornecedor(Fornecedor f, int id) throws SQLException {
+	public void inserirFornecedor(Fornecedor f) throws SQLException {
 		String query = "insert into fornecedor values (?, ?, ?)";
 		PreparedStatement ps = c.prepareStatement( query );
-		ps.setInt(1, id);
+		ps.setInt(1, f.getId() );
 		ps.setString(2, f.getNome() );
 		ps.setInt(3, f.getTelefone() );
 		ps.execute();

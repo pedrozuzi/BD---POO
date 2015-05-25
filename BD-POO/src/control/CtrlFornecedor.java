@@ -19,12 +19,11 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	private PessoaDao daoP;
 	
 	public void inserir(Fornecedor f) {
-		Pessoa p = new Pessoa();
 		daoP = new PessoaDaoImpl();
 		daoF = new FornecedorDAOImpl();
 		try {
-			int id = daoP.inserePessoa(p);
-			daoF.inserirFornecedor(f, id);
+			daoP.inserePessoa(f);
+			daoF.inserirFornecedor(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);

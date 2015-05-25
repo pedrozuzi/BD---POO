@@ -7,7 +7,7 @@ import entity.Fornecedor;
 
 public interface FornecedorDAO {
 	
-	void inserirFornecedor(Fornecedor f, int id) throws SQLException;
+	void inserirFornecedor(Fornecedor f) throws SQLException;
 	void atualizarFornecedor(Fornecedor f) throws SQLException;
 	void excluirFornecedor(Fornecedor f) throws SQLException;
 	Fornecedor consultarFornecedor(String id) throws SQLException;

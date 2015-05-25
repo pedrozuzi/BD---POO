@@ -29,6 +29,16 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public void atualiza(Fornecedor f) {
+		daoF = new FornecedorDAOImpl();
+		try {
+			daoF.atualizarFornecedor(f);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
 	@Override
 	public List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException {

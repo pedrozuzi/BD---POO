@@ -71,6 +71,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JScrollPane scrollPane;
 	private CtrlTableProduto controlTable;
 	private CtrlProduto ctrlincluiprod;
+	private List<Produto> lista;
 
 	public FrmProduto() {
 
@@ -454,7 +455,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
 		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
-		tableProduto.setVisible(false);
+	//	tableProduto.setVisible(false);
 		scrollPane.setViewportView(tableProduto);
 		return modelo;
 }
@@ -463,7 +464,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
 		
-		List<Produto> lista = new ArrayList<Produto>();
+		lista = new ArrayList<Produto>();
 		
 		if (txtIdProduto.getText().equals("")) {
 			if (!txtNome.getText().equals("")) {
@@ -483,6 +484,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 							System.out.println(" for:"+p.getNome());
 
 							modelo.addRow(linha);
+							
 						} 
 						
 						lista.forEach(p -> {

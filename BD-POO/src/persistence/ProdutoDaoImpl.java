@@ -86,7 +86,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
 		// TODO Auto-generated method stub
-		Produto p = new Produto();
+		
 		List<Produto> lista = new ArrayList<Produto>();
 		String query = "SELECT * FROM produto WHERE nome like ?";
 		PreparedStatement ps = c.prepareStatement( query );
@@ -94,6 +94,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ResultSet rs = ps.executeQuery();
 		
 		while ( rs.next() ){
+			Produto p = new Produto();
 			p.setId(rs.getInt("id"));
 			p.setNome(rs.getString("nome"));
 		    p.setDescricao(rs.getString("descricao"));

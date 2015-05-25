@@ -26,11 +26,10 @@ import entity.Produto;
 public class CtrlIncluiProduto implements ActionListener {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
-	
+
 	private ProdutoDao pDao;
 	private LoteDao lDao;
 	private LoteProdutoDao lpDao;
-	
 
 	public CtrlIncluiProduto(JTextField txtIdProduto, JTextField txtNome,
 			JTextField txtDescricao, JTextField txtValorVenda,
@@ -57,7 +56,7 @@ public class CtrlIncluiProduto implements ActionListener {
 		prod.setDescricao(txtDescricao.getText());
 		prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
 		prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
-		prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText())); 
+		prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 
 		// data
 		try {
@@ -66,26 +65,26 @@ public class CtrlIncluiProduto implements ActionListener {
 			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			date = new java.sql.Date(
 					((java.util.Date) formatter.parse(data)).getTime());
-			lot.setData_validade(date); 
+			lot.setData_validade(date);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 
-		
-		lotprod.setIdProduto(insereProduto(prod));
-		lotprod.setIdLote(insereLote(lot));
 		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
+			lotprod.setIdProduto(insereProduto(prod));
+			lotprod.setIdLote(insereLote(lot));
+			insereLoteProduto(lotprod);
+			
+		} catch (Exception e2) {
+			// TODO: handle exception
 		}
-		insereLoteProduto(lotprod);
+
 		System.out.println("prod: " + prod.getId() + " lot: " + lot.getId());
 
 	}
 
 	public int insereProduto(Produto prod) {
-	    pDao = new ProdutoDaoImpl();
+		pDao = new ProdutoDaoImpl();
 		int id = 0;
 		try {
 			id = pDao.insereProduto(prod);
@@ -101,7 +100,7 @@ public class CtrlIncluiProduto implements ActionListener {
 	}
 
 	public int insereLote(Lote lot) {
-	 lDao = new ProdutoDaoImpl();
+		lDao = new ProdutoDaoImpl();
 		int id = 0;
 		try {
 			id = lDao.insereLote(lot);
@@ -114,7 +113,7 @@ public class CtrlIncluiProduto implements ActionListener {
 	}
 
 	public void insereLoteProduto(LoteProduto lotprod) {
-		 lpDao = new ProdutoDaoImpl();
+		lpDao = new ProdutoDaoImpl();
 		try {
 			lpDao.insereLoteProduto(lotprod);
 			System.out.println("LoteProduto Incluido!");
@@ -125,9 +124,9 @@ public class CtrlIncluiProduto implements ActionListener {
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	public void insereLoteProduto(LoteProduto lotprod, int codprod, int codlot) {
-		 lpDao = new ProdutoDaoImpl();
+		lpDao = new ProdutoDaoImpl();
 		try {
 			lotprod.setIdProduto(codprod);
 			lotprod.setIdLote(codlot);
@@ -140,6 +139,5 @@ public class CtrlIncluiProduto implements ActionListener {
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	
+
 }

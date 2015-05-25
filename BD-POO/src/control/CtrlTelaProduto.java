@@ -67,25 +67,33 @@ public class CtrlTelaProduto implements ActionListener {
 			txtIdLote.setText("");
 			txtDataValidadeLote.setText("");
 	 }
+	
+	 //recebe um component e desabibita/reabilita for each compound
+	 public void comp(Component[] c){
+        for (int i = 0; i < c.length; i++) {  
+            c[i].setEnabled(!c[i].isEnabled());  
+        }  
+	 } 
+	
+	
+	 public void desabilitaBotoesCrud(){
+		 Component[] c;
+		 comp(c=panAcoes.getComponents());
+	 }
 	 
 	 public void resetaTela(){
 		 System.out.println("resetado");
-		 Component[] c = panProduto.getComponents();  
-         for (int i = 0; i < c.length; i++) {  
-             c[i].setEnabled(!c[i].isEnabled());  
-         }  
-         c= panLote.getComponents(); 
-         for (int i = 0; i < c.length; i++) {  
-             c[i].setEnabled(!c[i].isEnabled());  
-         } 
+		 Component[] c;
+		 comp(c=panProduto.getComponents());
+         comp(c=panLote.getComponents());  
+         comp(c=panAcoes2.getComponents());
 	 }
 	 
-	 //recebe um component e desabibita/reabilita for each compound
-	 public void comp(Component[] c){
-         for (int i = 0; i < c.length; i++) {  
-             c[i].setEnabled(!c[i].isEnabled());  
-         }  
-	 }
+    public void inclui(){
+		 System.out.println("inclui");
+		 Component[] c;
+		 comp(c=panAcoes.getComponents());
+    }
 	 
 	 public void inicio(){
 		 System.out.println("Inicio");
@@ -105,7 +113,11 @@ public class CtrlTelaProduto implements ActionListener {
 			} else if (acao.equalsIgnoreCase("VOLTA")) {
 				resetaTela();
 			}else if(acao.equalsIgnoreCase("INCLUIR")){
-				inicio();
+				inclui();
+				resetaTela();
+			}else if(acao.equalsIgnoreCase("SALVA")){
+				desabilitaBotoesCrud();
+	
 			}
 	
 	}

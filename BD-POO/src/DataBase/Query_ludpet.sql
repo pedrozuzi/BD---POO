@@ -41,7 +41,8 @@ create table funcionario(
 id int not null,
 cpf varchar(11) not null,
 nome varchar(50) not null,
-salario decimal (7,2) not null
+salario decimal (7,2) not null,
+telefone int not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
 

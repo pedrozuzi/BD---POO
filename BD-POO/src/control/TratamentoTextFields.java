@@ -31,7 +31,7 @@ public final class TratamentoTextFields extends JTextField{
 	
 	
 	private void apenasLetras(KeyEvent e) {
-		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°*-+,=<>?|";
+		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|";
 		
 		if (caracteres.contains(e.getKeyChar() + "")) {
 			e.consume();

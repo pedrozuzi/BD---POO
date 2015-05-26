@@ -16,6 +16,7 @@ public class CtrlLogin {
 	}
 	
 	public void realizarLogin(Login l) {
+		System.out.println(l.getSenha());
 		//TODO
 	}
 

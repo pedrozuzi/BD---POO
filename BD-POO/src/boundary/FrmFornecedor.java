@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import control.ConfigTelas;
 import control.CtrlFornecedor;
-import control.CtrlTabelaFornecedor;
+import control.CtrlTabela;
 import control.CtrlTableFornecedor;
 import control.TratamentoTextFields;
 
@@ -357,7 +357,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			colunas[1] = "Nome";
 			colunas[2] = "Telefone";
 
-			modelo = new CtrlTabelaFornecedor(new Object[][] {}, colunas);
+			modelo = new CtrlTabela(new Object[][] {}, colunas);
 
 			table.setModel(modelo);
 			table.addMouseListener(this);

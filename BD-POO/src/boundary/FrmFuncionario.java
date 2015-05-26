@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 
 import control.CtrlFornecedor;
 import control.CtrlFuncionario;
-import control.CtrlTabelaFornecedor;
+import control.CtrlTabela;
 import control.TratamentoTextFields;
 import entity.Fornecedor;
 import entity.Funcionario;
@@ -346,7 +346,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		coluna[1] = "CPF";
 		coluna[2] = "Cargo";
 		
-		modelo = new CtrlTabelaFornecedor(new Object[][] {}, coluna);
+		modelo = new CtrlTabela(new Object[][] {}, coluna);
 		
 		table.setModel(modelo);
 		table.addMouseListener(this);

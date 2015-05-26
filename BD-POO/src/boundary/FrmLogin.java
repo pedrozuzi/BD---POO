@@ -86,10 +86,7 @@ public class FrmLogin implements ConfigTelas{
 			controlLogin.realizarLogin(l);
 		});
 	}
-	
-	
 	public static void main(String[] args) {
-
 		new FrmLogin();
 	}
 }

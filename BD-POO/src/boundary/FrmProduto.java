@@ -20,14 +20,17 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
 
 import control.CtrlIncluiProduto;
+import control.CtrlTabela;
 import control.CtrlTelaProduto;
 
 import javax.swing.JScrollPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 
 /**
  * 
@@ -35,7 +38,7 @@ import java.awt.event.ActionEvent;
  *
  */
 
-public class FrmProduto {
+public class FrmProduto extends MouseAdapter {
 
 	private JFrame janela = new JFrame("Produto");
 	private JTextField txtIdProduto;
@@ -53,6 +56,8 @@ public class FrmProduto {
 	private JTextField txtValorCompra;
 	private JTextField txtIdFornecedor;
 	private JTable tableProduto;
+	private DefaultTableModel modelo;
+	private JScrollPane scrollPane;
 
 	public FrmProduto() {
 
@@ -181,12 +186,13 @@ public class FrmProduto {
 		btnFoward.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniFoward.png")));
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 721, 134);
 		panSuperior.add(scrollPane);
 
 		tableProduto = new JTable();
 		scrollPane.setViewportView(tableProduto);
+		modelo = montarTabela();
 
 		JPanel panInferior = new JPanel();
 		panInferior
@@ -394,5 +400,27 @@ public class FrmProduto {
 	public static void main(String[] args) {
 		new FrmProduto();
 	}
+	
+	public DefaultTableModel montarTabela () {
+		String[] colunas = new String[5];
+		colunas[0] = "Nome";
+		colunas[1] = "Descricao";
+		colunas[2] = "nome fornec";
+		colunas[3] = "valor venda";
+		colunas[4] = "valor compra";
+		
+
+		modelo = new CtrlTabela(new Object[][] {}, colunas);
+
+		tableProduto.setModel(modelo);
+		tableProduto.addMouseListener(this);
+		tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+		tableProduto.getColumnModel().getColumn(0).setResizable(false);
+		tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
+		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
+		tableProduto.setVisible(false);
+		scrollPane.setViewportView(tableProduto);
+		return modelo;
+}
 
 }

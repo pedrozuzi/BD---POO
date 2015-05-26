@@ -235,8 +235,10 @@ public class FrmUsuario implements ActionListener{
 		if(acao.equalsIgnoreCase("Incluir")){
 			montarTelaIncluir();
 		} else if(acao.equalsIgnoreCase("Alterar")){
+			montarTelaIncluir();
 			montarTelaAlterarRemover();
 		}else if(acao.equalsIgnoreCase("Excluir")){
+			montarTelaIncluir();
 			montarTelaAlterarRemover();
 		}
 		
@@ -248,6 +250,7 @@ public class FrmUsuario implements ActionListener{
 	}
 
 	private void montarTelaIncluir() {
+		//FAZER OS ENABLE
 		table.setVisible(true);
 		scrollPane.setVisible(true);
 		panelFuncionario.setVisible(true);

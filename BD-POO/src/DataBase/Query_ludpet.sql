@@ -46,6 +46,14 @@ telefone int not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
 
+select * from funcionario
+
+select  f.id, f.nome, f.cpf, f.salario, f.telefone, p.idTipo 
+from funcionario f 
+inner join pessoa p 
+on f.id = p.idPessoa 
+where f.nome like '%p%' 
+
 CREATE TABLE logins(
 id int not null,
 username varchar(10) unique,

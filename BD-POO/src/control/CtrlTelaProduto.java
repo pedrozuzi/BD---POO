@@ -76,7 +76,7 @@ public class CtrlTelaProduto implements ActionListener {
 	 } 
 	
 	
-	 public void desabilitaBotoesCrud(){
+	 public void botoesCrud(){
 		 Component[] c;
 		 comp(c=panAcoes.getComponents());
 	 }
@@ -111,15 +111,16 @@ public class CtrlTelaProduto implements ActionListener {
 			if (acao.equalsIgnoreCase("LIMPA")) {
 				limpaCampos();
 			} else if (acao.equalsIgnoreCase("VOLTA")) {
-				resetaTela();
+				botoesCrud();
+	            resetaTela();
+	            limpaCampos();
 			}else if(acao.equalsIgnoreCase("INCLUIR")){
 				inclui();
 				resetaTela();
 			}else if(acao.equalsIgnoreCase("SALVA")){
-				desabilitaBotoesCrud();
-	
+				botoesCrud();
+	            resetaTela();
 			}
-	
 	}
 	
 }

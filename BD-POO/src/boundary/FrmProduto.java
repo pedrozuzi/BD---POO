@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import java.awt.Font;
 
 import javax.swing.JTable;
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -367,7 +366,7 @@ public class FrmProduto {
 				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 
-		btnSalva.addActionListener(incluirprod);
+		
 
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
@@ -381,6 +380,14 @@ public class FrmProduto {
 		btnVolta.addActionListener(ctrltela);
 		btnIncluir.addActionListener(ctrltela);
 		ctrltela.inicio();
+		//btnSalva.addActionListener(incluirprod);
+		
+		btnSalva.addActionListener(e ->{	
+		incluirprod.actionPerformed(e);
+		ctrltela.actionPerformed(e);
+		});
+		
+		
 
 	}
 

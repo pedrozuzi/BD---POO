@@ -477,9 +477,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	
 	private boolean validaCampos() {
 		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
-				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
-				rdbtnAdministrador.isSelected() || rdbtnAtendente.isSelected() ||
-				rdbtnBanhistaTosador.isSelected();
+				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty();
 	}
 
 	private void limpaCampos() {

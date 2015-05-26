@@ -1,6 +1,8 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -27,4 +29,18 @@ public class CtrlFuncionario {
 		}
 	}
 	
+	public List<Funcionario> pesquisarFuncionario( String nome ){
+		List<Funcionario> lista = new ArrayList<Funcionario>();
+		fDao = new FuncionarioDaoImpl();
+		
+		try {
+			lista = fDao.pesquisarFuncionario(nome);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return lista;
+		
+	}
 }

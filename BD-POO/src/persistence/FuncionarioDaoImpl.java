@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -65,28 +67,37 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, func.getId());
 		ps.execute();
-		System.out.println("Funcionario removido com sucesso");
+//		System.out.println("Funcionario removido com sucesso");
 		ps.close();
+	}
+	
+	@Override
+	public List<Funcionario> pesquisarFuncionario(String nome)
+			throws SQLException {
+			List<Funcionario> lista = new ArrayList<Funcionario>();
+			Funcionario f = new Funcionario();
+			String query = "select  f.id, f.nome, f.cpf, f.salario, t.idTipo as cargo "
+					+ "from funcionario f "
+					+ "inner join pessoa p "
+					+ "on f.id = p.idPessoa "
+					+ "where f.nome like '?'";
+			PreparedStatement ps = c.prepareStatement( query );
+			ps.setString(1,  '%'+nome+'%' );
+			ResultSet rs = ps.executeQuery();
+			if( rs.next() ){
+				f.setId( rs.getInt("id") );
+				f.setCpf( rs.getString("cpf") );
+				f.setNome( rs.getString("nome") );
+				f.setSalario( rs.getDouble("salario"));
+				f.setIdTipo( rs.getInt("idTipo") );
+				lista.add(f);
+			}
+			ps.close();
+			return lista;
+		
 	}
 
-	@Override
-	public Funcionario consultarFuncionario(Funcionario func)
-			throws SQLException {
-		
-		String query = "select id, cpf, nome, cargo, salario "
-				+ "from funcionario where id = ?";
-		PreparedStatement ps = c.prepareStatement( query );
-		ps.setInt(1,  func.getId() );
-		ResultSet rs = ps.executeQuery();
-		if( rs.next() ){
-			func.setId( rs.getInt("id") );
-			func.setCpf( rs.getString("cpf") );
-			func.setNome( rs.getString("nome") );
-			func.setSalario( rs.getDouble("salario"));
-		}
-		ps.close();
-		return func;
-	}
+
 
 
 }

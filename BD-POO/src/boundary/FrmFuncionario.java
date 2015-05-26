@@ -445,7 +445,21 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	
 	private void buscarDadosDaTabela() {
 		ctrlFunc = new CtrlFuncionario();
-		List<Fornecedor> lista = new ArrayList<Fornecedor>();		
+		List<Funcionario> lista = new ArrayList<Funcionario>();	
+		
+		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
+		if(lista.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+					"Aviso", JOptionPane.INFORMATION_MESSAGE);
+		}else{
+			for (Funcionario f : lista) {
+				Object[] linha = new Object[3];
+				linha[0] = f.getId();
+				linha[1] = f.getNome();
+				linha[2] = f.getTelefone();
+				modelo.addRow(linha);
+			} 
+		}
 	}
 
 	private void limpaCampos() {

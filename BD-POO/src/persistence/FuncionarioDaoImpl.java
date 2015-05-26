@@ -81,7 +81,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 					+ "from funcionario f "
 					+ "inner join pessoa p "
 					+ "on f.id = p.idPessoa "
-					+ "where f.nome like ?";
+					+ "where f.nome like ? ";
 			PreparedStatement ps = c.prepareStatement( query );
 			ps.setString(1,  "%"+nome+"%" );
 			ResultSet rs = ps.executeQuery();

@@ -74,7 +74,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
-	private List<Funcionario> lista;
+	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	
 	public FrmFuncionario(String nome) {
 	
@@ -306,8 +306,8 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			txtCpf.setEnabled(true);
 			txtTelefone.setVisible(true);
 			txtTelefone.setEnabled(true);
-			table.setVisible(true);
-			scrollPane.setVisible(true);
+			table.setVisible(false);
+			scrollPane.setVisible(false);
 			btnGravar.setVisible(true);
 			btnLimpar.setVisible(true);
 			btnVoltar.setVisible(true);
@@ -340,52 +340,36 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			btnPesquisarNome.setVisible(true);
 		}
 	}
-	
-	private DefaultTableModel montarTabela() {
-		String[] coluna = new String[3];
-		coluna[0] = "Nome";
-		coluna[1] = "CPF";
-		coluna[2] = "Cargo";
-		
-		modelo = new CtrlTabela(new Object[][] {}, coluna);
-		
-		table.setModel(modelo);
-		table.addMouseListener(this);
-		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(120);
-		table.getColumnModel().getColumn(2).setPreferredWidth(120);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
-		return modelo;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
-		limpaCampos();
 		
 		if(btnIncluir.equals(acao)){
+			limpaCampos();
 			montarTela(1);
 			btnGravar.setText("Gravar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Incluir");
 		}else if(btnRemover.equals(acao)){
+			limpaCampos();
 			montarTela(2);
 			btnGravar.setActionCommand("Remover");
 			btnGravar.setText("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setEnabled(true);			
 		}else if(btnAlterar.equals(acao)){
+			limpaCampos();
 			montarTela(2);
 			btnGravar.setText("Salvar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Alterar");
 		}else if(btnPesquisar.equals(acao)){
+			limpaCampos();
 			montarTela(2);
 			btnGravar.setText("Gravar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
@@ -442,22 +426,33 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		}
 		if(btnPesquisarNome.equals(acao)){
 			modelo.setNumRows(0);
-			buscarDadosDaTabela();
+			buscarDadosDaTabela(modelo);
 			limpaCampos();
 		}
 
 	}
 	
-	
-	private boolean validaCampos() {
-		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
-				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
-				bg.getSelection().isSelected();
+	private DefaultTableModel montarTabela() {
+		String[] coluna = new String[3];
+		coluna[0] = "Nome";
+		coluna[1] = "CPF";
+		coluna[2] = "Cargo";
+		
+		modelo = new CtrlTabela(new Object[][] {}, coluna);
+		
+		table.setModel(modelo);
+		table.addMouseListener(this);
+		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.getColumnModel().getColumn(2).setPreferredWidth(120);
+		table.setVisible(false);
+		scrollPane.setViewportView(table);
+		return modelo;
 	}
 
-	private void buscarDadosDaTabela() {
+	private void buscarDadosDaTabela(DefaultTableModel modelo) {
 		ctrlFunc = new CtrlFuncionario();
-		lista = new ArrayList<Funcionario>();	
 		
 		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
 		if(lista.isEmpty()){
@@ -475,10 +470,15 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				}else{
 					linha[2] = "Tosador/Banhista";
 				}
-				
 				modelo.addRow(linha);
 			} 
 		}
+	}
+	
+	private boolean validaCampos() {
+		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
+				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
+				bg.getSelection().isSelected();
 	}
 
 	private void limpaCampos() {
@@ -495,9 +495,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
 		valores[0] = table.getValueAt(linha, coluna);
-
+		
 		for (Funcionario f : lista) {
-			if(((String) valores[0]).equals(f.getNome())){
+			if(((String) valores[0]).contains(f.getNome())){
 				txtNome.setText( f.getNome() );
 				txtCpf.setText( f.getCpf() ); 
 				txtTelefone.setText( Integer.toString(f.getTelefone()) );

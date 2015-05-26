@@ -77,10 +77,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
-	/**
-	 * @wbp.nonvisual location=621,449
-	 */
-	private final JLabel label = new JLabel("New label");
 	private JPanel panelInformacao;
 	
 	public FrmFuncionario() {

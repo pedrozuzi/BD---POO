@@ -365,6 +365,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
+		limpaCampos();
 		
 		if(btnIncluir.equals(acao)){
 			montarTela(1);
@@ -393,24 +394,28 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		}
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
-
-			ctrlFunc = new CtrlFuncionario();
-			Funcionario f = new Funcionario();
-			f.setNome( txtNome.getText() );
-			f.setCpf( txtCpf.getText() );
-			f.setSalario( Double.parseDouble(txtSalario.getText()) );
-			f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
-			if(rdbtnAdministrador.isSelected()){
-				f.setIdTipo(1);
-				ctrlFunc.incluir(f);
-			}else if(rdbtnAtendente.isSelected()){
-				f.setIdTipo(2);
-				ctrlFunc.incluir(f);
-			}else if(rdbtnBanhistaTosador.isSelected()){
-				f.setIdTipo(3);
-				ctrlFunc.incluir(f);
+			if( !validaCampos() ){
+				ctrlFunc = new CtrlFuncionario();
+				Funcionario f = new Funcionario();
+				f.setNome( txtNome.getText() );
+				f.setCpf( txtCpf.getText() );
+				f.setSalario( Double.parseDouble(txtSalario.getText()) );
+				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
+				if(rdbtnAdministrador.isSelected()){
+					f.setIdTipo(1);
+					ctrlFunc.incluir(f);
+				}else if(rdbtnAtendente.isSelected()){
+					f.setIdTipo(2);
+					ctrlFunc.incluir(f);
+				}else if(rdbtnBanhistaTosador.isSelected()){
+					f.setIdTipo(3);
+					ctrlFunc.incluir(f);
+				}
+				limpaCampos();
+			}else{
+				JOptionPane.showMessageDialog(null, "Sem dados para processar",
+						"Erro", JOptionPane.QUESTION_MESSAGE);
 			}
-			limpaCampos();
 		}else if("Remover".equalsIgnoreCase(cmd)){
 			if(txtNome.getText().equals("")){
 				JOptionPane.showMessageDialog(null, "Sem dados para processar",
@@ -444,6 +449,12 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	}
 	
 	
+	private boolean validaCampos() {
+		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
+				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
+				bg.getSelection().isSelected();
+	}
+
 	private void buscarDadosDaTabela() {
 		ctrlFunc = new CtrlFuncionario();
 		lista = new ArrayList<Funcionario>();	

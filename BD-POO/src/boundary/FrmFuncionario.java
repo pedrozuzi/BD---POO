@@ -77,7 +77,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
-	private int id;
 	/**
 	 * @wbp.nonvisual location=621,449
 	 */
@@ -292,9 +291,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 			
-//		table.setBorder(new LineBorder(Color.black));
-//		table.setGridColor(Color.black);
-//		table.setShowGrid(true);
+		table.setBorder(new LineBorder(Color.black));
+		table.setGridColor(Color.black);
+		table.setShowGrid(true);
 		
 		modelo = montarTabela();
 	}
@@ -360,6 +359,8 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
+		modelo.setNumRows(0);
+		
 		
 		if(btnIncluir.equals(acao)){
 			limpaCampos();
@@ -516,20 +517,29 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
 		
-		id = lista.get(linha).getId();
 		for (Funcionario f : lista) {
+			if(valores[0].equals(f.getNome())){
 				txtNome.setText(String.valueOf(valores[0]));
 				txtCpf.setText(String.valueOf(valores[1]));
 				txtTelefone.setText( Integer.toString(f.getTelefone()) );
 				txtSalario.setText( Double.toString(f.getSalario()) );
 				if( f.getIdTipo() == 1 ){
 					rdbtnAdministrador.setSelected(true);
+					rdbtnBanhistaTosador.setSelected(false);
+					rdbtnAtendente.setSelected(false);
 				}else if( f.getIdTipo() == 2 ){
+					rdbtnAdministrador.setSelected(false);
+					rdbtnBanhistaTosador.setSelected(false);
 					rdbtnAtendente.setSelected(true);
 				}else{
+					rdbtnAdministrador.setSelected(false);
 					rdbtnBanhistaTosador.setSelected(true);
+					rdbtnAtendente.setSelected(false);
 				}
+			}
 		}
+		
+		
 	}
 
 	@Override

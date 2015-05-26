@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -23,7 +25,7 @@ import entity.LoteProduto;
 import entity.Pessoa;
 import entity.Produto;
 
-public class CtrlIncluiProduto implements ActionListener {
+public class CtrlIncluiProduto implements ActionListener, CtrlTableProduto {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
 
@@ -139,5 +141,26 @@ public class CtrlIncluiProduto implements ActionListener {
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	@Override
+	public List<Produto> BuscaProdutoPorNome(String nome) throws SQLException {
+		List<Produto> lista = new ArrayList<Produto>();
+		ProdutoDao daoP = new ProdutoDaoImpl();
+		try {
+			lista = daoP.listaProduto(nome);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return lista;
+	}
+
+	@Override
+	public Produto concultaProdutoId(String id) throws SQLException {
+		Produto p = new Produto();
+		ProdutoDao daoP = new ProdutoDaoImpl();
+		p = daoP.consultaProduto(id);
+		return p;
+	}	
 
 }

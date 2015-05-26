@@ -11,6 +11,12 @@ import entity.Produto;
  *
  */
 
+public class CtrlProdutoImpl {
+
+
+}
+
+/*
 public class CtrlProdutoImpl implements CtrlProduto {
 
 	@Override
@@ -26,3 +32,4 @@ public class CtrlProdutoImpl implements CtrlProduto {
 	}
 
 }
+*/

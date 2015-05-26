@@ -18,8 +18,8 @@ public interface ProdutoDao {
 
 	void excluiProduto(Produto prod) throws SQLException;
 
-	Produto consultaProduto(Produto prod) throws SQLException;
+	Produto consultaProduto(String id) throws SQLException; //Produto prod
 
-	List<Produto> listaProduto() throws SQLException;
+	List<Produto> listaProduto(String nome) throws SQLException;
 
 }

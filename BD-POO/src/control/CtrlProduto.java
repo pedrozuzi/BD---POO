@@ -11,10 +11,22 @@ import entity.Produto;
  * @author Hury
  *
  */
-public interface CtrlProduto {
+public class CtrlProduto implements CtrlTableProduto {
 
-	public void listaProduto() throws SQLException;
-	public List<Produto> listaFinalProduto() 
-			throws SQLException;
+	@Override
+	public List<Produto> BuscaProdutoPorNome(String nome) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Produto concultaProdutoId(String id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//public void listaProduto() throws SQLException;
+//	public List<Produto> listaFinalProduto() 
+	//		throws SQLException;
 	
 }

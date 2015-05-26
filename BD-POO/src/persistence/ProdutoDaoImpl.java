@@ -9,6 +9,7 @@ import java.util.List;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
+import entity.Fornecedor;
 import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
@@ -60,13 +61,29 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 
 	@Override
-	public Produto consultaProduto(Produto prod) throws SQLException {
+	public Produto consultaProduto(String id) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Produto p = new Produto();
+		String query = "SELECT id, nome, descricao, id_fornecedor, valor_venda, valor_compra "
+				+ "FROM produto WHERE id = ?";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1,  Integer.parseInt(id) );
+		ResultSet rs = ps.executeQuery();
+		if( rs.next() ){
+			p.setId(rs.getInt("id"));
+		    p.setDescricao(rs.getString("descricao"));
+		    p.setId_fornecedor(rs.getInt("id_fornecedor"));
+		    p.setValor_venda(rs.getInt("valor_venda"));
+		    p.setValor_compra(rs.getInt("valor_compra"));
+		}
+		ps.close();
+		return p;
+		
 	}
 
 	@Override
-	public List<Produto> listaProduto() throws SQLException {
+	public List<Produto> listaProduto(String nome) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

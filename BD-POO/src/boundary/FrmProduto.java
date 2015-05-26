@@ -1,6 +1,7 @@
 package boundary;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -22,15 +23,24 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+import control.CtrlFornecedor;
 import control.CtrlIncluiProduto;
+import control.CtrlProduto;
 import control.CtrlTabela;
+import control.CtrlTableProduto;
 import control.CtrlTelaProduto;
 
 import javax.swing.JScrollPane;
 
+import entity.Fornecedor;
+import entity.Produto;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -58,6 +68,8 @@ public class FrmProduto extends MouseAdapter {
 	private JTable tableProduto;
 	private DefaultTableModel modelo;
 	private JScrollPane scrollPane;
+	private CtrlTableProduto controlTable;
+	private CtrlIncluiProduto ctrlincluiprod;
 
 	public FrmProduto() {
 
@@ -393,7 +405,10 @@ public class FrmProduto extends MouseAdapter {
 		ctrltela.actionPerformed(e);
 		});
 		
-		
+		this.ctrlincluiprod = new CtrlIncluiProduto(txtIdProduto,   //verificar
+				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
+				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+
 
 	}
 
@@ -422,5 +437,40 @@ public class FrmProduto extends MouseAdapter {
 		scrollPane.setViewportView(tableProduto);
 		return modelo;
 }
+	
+	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+		controlTable = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
+				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
+		
+		List<Produto> lista = new ArrayList<Produto>();
+		
+		if (txtIdProduto.getText().equals("")) {
+			if (!txtNome.getText().equals("")) {
+				try {
+					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
+					if (!lista.isEmpty()) {
+						for (Produto p : lista) {
+							Object[] linha = new Object[6];
+							linha[0] = p.getId();
+							linha[1] = p.getNome();
+							linha[2] = p.getDescricao();
+							linha[3] = p.getValor_compra();
+							linha[4] = p.getValor_venda();
+							linha[5] = p.getId_fornecedor();
+							modelo.addRow(linha);
+						} 
+					}else{
+						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}else{
+				System.out.println("campo vazio");
+			}
+		}
+	}
 
 }

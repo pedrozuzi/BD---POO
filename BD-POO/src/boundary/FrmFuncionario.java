@@ -458,9 +458,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		table.setModel(modelo);
 		table.addMouseListener(this);
 		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(120);
-		table.getColumnModel().getColumn(2).setPreferredWidth(120);
+		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setPreferredWidth(50);
+		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
 		return modelo;

@@ -145,10 +145,10 @@ INSERT INTO pessoa (idTipo) VALUES
 (4), --9 forn 
 (5) --10 cli
 
-INSERT INTO funcionario (id,cpf,nome,salario) VALUES
-(8,11111111111,'Hury Gabriel',99999.99), --adm
-(5,22222222222,'Pedro ZUZI',1200.00), --atend
-(10,33333333333,'Pedro Afonso',850.00)   --func
+INSERT INTO funcionario (id,cpf,nome,salario,telefone) VALUES
+(8,11111111111,'Hury Gabriel',99999.99,11111111), --adm
+(5,22222222222,'Pedro ZUZI',1200.00,11111111), --atend
+(10,33333333333,'Pedro Afonso',850.00,11111111)   --func
 
 INSERT INTO logins (id,username,passwor) VALUES
 (8,'hurygg','1234'),

@@ -71,6 +71,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JScrollPane scrollPane;
 	private CtrlTableProduto controlTable;
 	private CtrlProduto ctrlincluiprod;
+	private List<Produto> lista;
 
 	public FrmProduto() {
 
@@ -204,10 +205,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panSuperior.add(scrollPane);
 
 		tableProduto = new JTable();
+		
 		scrollPane.setViewportView(tableProduto);
-	//	scrollPane.setBounds(10, 107, 549, 159);
-		scrollPane.setVisible(false);
-		tableProduto.setVisible(true);
 		//panPrincipal.add(scrollPane);
 		modelo = montarTabela();
 		
@@ -321,11 +320,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtIdFornecedor.setColumns(10);
 		txtIdFornecedor.setBounds(417, 46, 126, 20);
 		panProduto.add(txtIdFornecedor);
-
-		JLabel lblBackGround = new JLabel("");
-		lblBackGround.setBounds(0, 0, 785, 562);
-		panPrincipal.add(lblBackGround);
-		lblBackGround.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/backgroundBranco.png")));
 
 		// configs básicas de janela
 		janela.setSize(801, 624);
@@ -461,7 +455,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
 		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
-		tableProduto.setVisible(false);
+	//	tableProduto.setVisible(false);
 		scrollPane.setViewportView(tableProduto);
 		return modelo;
 }
@@ -470,7 +464,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
 		
-		List<Produto> lista = new ArrayList<Produto>();
+		lista = new ArrayList<Produto>();
 		
 		if (txtIdProduto.getText().equals("")) {
 			if (!txtNome.getText().equals("")) {
@@ -490,7 +484,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 							System.out.println(" for:"+p.getNome());
 
 							modelo.addRow(linha);
+							
 						} 
+						
+						lista.forEach(p -> {
+							System.out.println(p.getNome());
+						});
 					}else{
 						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
 								"Aviso", JOptionPane.INFORMATION_MESSAGE);

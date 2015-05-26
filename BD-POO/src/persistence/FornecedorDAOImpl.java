@@ -56,6 +56,7 @@ public class FornecedorDAOImpl implements FornecedorDAO{
 				+ " where id = ?";
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, f.getId());
+		System.out.println(f.getId());
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso!");
 		ps.close();

@@ -222,7 +222,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		btnLupaPesquisar.addActionListener(e -> {
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			buscarDadosTabelaPorNome(modelo);
-
 			limpaCampos();
 		});
 		
@@ -253,7 +252,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			btnGravar.setText("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/trash.png")));
-			btnExcluir.setActionCommand("Excluir");
+			btnGravar.setActionCommand("Excluir");
 			telaAlterarExcluirFornecedor();
 		});
 		
@@ -394,6 +393,8 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 				}catch (SQLException e) {
 					e.printStackTrace();
 				}
+			}else{
+				System.out.println("campo vazio");
 			}
 		}
 	}

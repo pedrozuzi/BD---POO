@@ -74,6 +74,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
+	private List<Funcionario> lista;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -352,8 +353,8 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		table.addMouseListener(this);
 		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
 		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(268);
-		table.getColumnModel().getColumn(2).setPreferredWidth(143);
+		table.getColumnModel().getColumn(1).setPreferredWidth(120);
+		table.getColumnModel().getColumn(2).setPreferredWidth(120);
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
 		return modelo;
@@ -445,7 +446,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	
 	private void buscarDadosDaTabela() {
 		ctrlFunc = new CtrlFuncionario();
-		List<Funcionario> lista = new ArrayList<Funcionario>();	
+		lista = new ArrayList<Funcionario>();	
 		
 		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
 		if(lista.isEmpty()){
@@ -454,9 +455,16 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		}else{
 			for (Funcionario f : lista) {
 				Object[] linha = new Object[3];
-				linha[0] = f.getId();
-				linha[1] = f.getNome();
-				linha[2] = f.getTelefone();
+				linha[0] = f.getNome();
+				linha[1] = f.getCpf();
+				if( f.getIdTipo() == 1 ){
+					linha[2] = "Administrador";
+				}else if( f.getIdTipo() == 2 ){
+					linha[2] = "Atendente";
+				}else{
+					linha[2] = "Tosador/Banhista";
+				}
+				
 				modelo.addRow(linha);
 			} 
 		}
@@ -472,17 +480,27 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[5];
+		Object[] valores = new Object[3];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
-		
-		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
-			valores[coluna] = table.getValueAt(linha, coluna);
+		valores[0] = table.getValueAt(linha, coluna);
+
+		for (Funcionario f : lista) {
+			if(((String) valores[0]).equals(f.getNome())){
+				txtNome.setText( f.getNome() );
+				txtCpf.setText( f.getCpf() ); 
+				txtTelefone.setText( Integer.toString(f.getTelefone()) );
+				txtSalario.setText( Double.toString(f.getSalario()) );
+				if( f.getIdTipo() == 1 ){
+					rdbtnAdministrador.setSelected(true);
+				}else if( f.getIdTipo() == 2 ){
+					rdbtnAtendente.setSelected(true);
+				}else{
+					rdbtnBanhistaTosador.setSelected(true);
+				}
+
+			}
 		}
-//
-//		txtId.setText( String.valueOf(valores[0]));
-//		txtNome.setText( String.valueOf(valores[1]));
-//		txtTelefone.setText(String.valueOf(valores[2])); 
 	}
 
 	@Override

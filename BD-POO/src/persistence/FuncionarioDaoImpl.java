@@ -25,14 +25,15 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
 
-		String queryFuncionario = "insert into funcionario (id, cpf, nome, salario)"
-				+ " values(?, ?, ?, ?)";
+		String queryFuncionario = "insert into funcionario (id, cpf, nome, salario, telefone)"
+				+ " values(?, ?, ?, ?, ?)";
 		PreparedStatement ps = c.prepareStatement( queryFuncionario );
 		System.out.println("TESTE... "+func.getId());
 		ps.setInt(1, func.getId() );
 		ps.setString(2, func.getCpf() );
 		ps.setString(3, func.getNome() );
 		ps.setDouble(4, func.getSalario() );
+		ps.setInt(5, func.getTelefone() );
 		ps.execute();
 		ps.close();
 		
@@ -76,7 +77,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 			throws SQLException {
 			List<Funcionario> lista = new ArrayList<Funcionario>();
 			Funcionario f = new Funcionario();
-			String query = "select  f.id, f.nome, f.cpf, f.salario, p.idTipo "
+			String query = "select  f.id, f.nome, f.cpf, f.salario, f.telefone, p.idTipo "
 					+ "from funcionario f "
 					+ "inner join pessoa p "
 					+ "on f.id = p.idPessoa "
@@ -90,6 +91,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 				f.setNome( rs.getString("nome") );
 				f.setSalario( rs.getDouble("salario"));
 				f.setIdTipo( rs.getInt("idTipo") );
+				f.setTelefone( rs.getInt("telefone") );
 				lista.add(f);
 			}
 			ps.close();

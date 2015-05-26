@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -20,18 +22,23 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import control.CtrlFornecedor;
 import control.CtrlFuncionario;
+import control.CtrlTabelaFornecedor;
 import control.TratamentoTextFields;
+import entity.Fornecedor;
 import entity.Funcionario;
 
 import java.awt.Cursor;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
-public class FrmFuncionario implements ActionListener{
+public class FrmFuncionario implements ActionListener, MouseListener{
 
 	private JFrame janela;
 	private JPanel panPrincipal;
@@ -66,7 +73,7 @@ public class FrmFuncionario implements ActionListener{
 	private JButton btnPesquisarNome;
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
-	private DefaultTableModel model;
+	private DefaultTableModel modelo;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -274,14 +281,9 @@ public class FrmFuncionario implements ActionListener{
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 			
-		model = montarTabela();
+		modelo = montarTabela();
 	}
 	
-	private DefaultTableModel montarTabela() {
-		
-		return null;
-	}
-
 	private void montarTela(int controle) {
 		if(controle == 1){
 			lblNome.setVisible(true);
@@ -336,6 +338,25 @@ public class FrmFuncionario implements ActionListener{
 			btnVoltar.setVisible(true);
 			btnPesquisarNome.setVisible(true);
 		}
+	}
+	
+	private DefaultTableModel montarTabela() {
+		String[] coluna = new String[3];
+		coluna[0] = "Nome";
+		coluna[1] = "CPF";
+		coluna[2] = "Cargo";
+		
+		modelo = new CtrlTabelaFornecedor(new Object[][] {}, coluna);
+		
+		table.setModel(modelo);
+		table.addMouseListener(this);
+		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(268);
+		table.getColumnModel().getColumn(2).setPreferredWidth(143);
+		table.setVisible(false);
+		scrollPane.setViewportView(table);
+		return modelo;
 	}
 
 	@Override
@@ -414,12 +435,19 @@ public class FrmFuncionario implements ActionListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-			model.setNumRows(0);
+			modelo.setNumRows(0);
+			buscarDadosDaTabela();
+			limpaCampos();
 		}
 
 	}
 	
 	
+	private void buscarDadosDaTabela() {
+		ctrlFunc = new CtrlFuncionario();
+		List<Fornecedor> lista = new ArrayList<Fornecedor>();		
+	}
+
 	private void limpaCampos() {
 		bg.clearSelection();
 		txtCpf.setText("");
@@ -427,7 +455,42 @@ public class FrmFuncionario implements ActionListener{
 		txtSalario.setText("");
 		txtTelefone.setText("");
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Object[] valores = new Object[5];
+		int linha = table.getSelectedRow();
+		int coluna = table.getSelectedColumn();
+		
+		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+			valores[coluna] = table.getValueAt(linha, coluna);
+		}
+//
+//		txtId.setText( String.valueOf(valores[0]));
+//		txtNome.setText( String.valueOf(valores[1]));
+//		txtTelefone.setText(String.valueOf(valores[2])); 
+	}
 
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub	
+	}
+	
 	public static void main(String[] args) {
 		new FrmFuncionario("Funcionario");
 	}

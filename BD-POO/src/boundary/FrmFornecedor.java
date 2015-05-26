@@ -372,7 +372,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	
 	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
 		controlTable = new CtrlFornecedor();
-		 List<Fornecedor> lista = new ArrayList<Fornecedor>();
+		List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		
 		if (txtId.getText().equals("")) {
 			if (!txtNome.getText().equals("")) {

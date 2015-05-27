@@ -32,6 +32,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 	private ProdutoDao pDao;
 	private LoteDao lDao;
 	private LoteProdutoDao lpDao;
+	
 
 	public CtrlProduto(JTextField txtIdProduto, JTextField txtNome,
 			JTextField txtDescricao, JTextField txtValorVenda,
@@ -145,21 +146,22 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 	@Override
 	public List<Produto> BuscaProdutoPorNome(String nome) throws SQLException {
 		List<Produto> lista = new ArrayList<Produto>();
-		ProdutoDao daoP = new ProdutoDaoImpl();
+	 pDao = new ProdutoDaoImpl();
 		try {
-			lista = daoP.listaProduto(nome);
+			lista = pDao.listaProduto(nome);
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
 		}
+
 		return lista;
 	}
 
 	@Override
 	public Produto concultaProdutoId(String id) throws SQLException {
 		Produto p = new Produto();
-		ProdutoDao daoP = new ProdutoDaoImpl();
-		p = daoP.consultaProduto(id);
+	   pDao = new ProdutoDaoImpl();
+		p = pDao.consultaProduto(id);
 		return p;
 	}	
 

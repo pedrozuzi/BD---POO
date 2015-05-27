@@ -23,6 +23,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+import control.ConfigTelas;
 import control.CtrlFornecedor;
 import control.CtrlProduto;
 import control.CtrlTabela;
@@ -48,7 +49,7 @@ import java.util.List;
  *
  */
 
-public class FrmProduto extends MouseAdapter {
+public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JFrame janela = new JFrame("Produto");
 	private JTextField txtIdProduto;
@@ -204,7 +205,13 @@ public class FrmProduto extends MouseAdapter {
 
 		tableProduto = new JTable();
 		scrollPane.setViewportView(tableProduto);
+	//	scrollPane.setBounds(10, 107, 549, 159);
+		scrollPane.setVisible(false);
+		tableProduto.setVisible(true);
+		//panPrincipal.add(scrollPane);
 		modelo = montarTabela();
+		
+		
 
 		JPanel panInferior = new JPanel();
 		panInferior
@@ -411,9 +418,7 @@ public class FrmProduto extends MouseAdapter {
 
 		});
 		
-		this.ctrlincluiprod = new CtrlProduto(txtIdProduto,   //verificar
-				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
-				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+
 
 
 	}
@@ -437,12 +442,13 @@ public class FrmProduto extends MouseAdapter {
 	}
 	
 	public DefaultTableModel montarTabela () {
-		String[] colunas = new String[5];
+		String[] colunas = new String[6];
 		colunas[0] = "Nome";
 		colunas[1] = "Descricao";
 		colunas[2] = "nome fornec";
 		colunas[3] = "valor venda";
 		colunas[4] = "valor compra";
+		colunas[5] = "test";
 		
 
 		modelo = new CtrlTabela(new Object[][] {}, colunas);
@@ -453,6 +459,8 @@ public class FrmProduto extends MouseAdapter {
 		tableProduto.getColumnModel().getColumn(0).setResizable(false);
 		tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
 		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
+		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
 		tableProduto.setVisible(false);
 		scrollPane.setViewportView(tableProduto);
 		return modelo;
@@ -468,15 +476,19 @@ public class FrmProduto extends MouseAdapter {
 			if (!txtNome.getText().equals("")) {
 				try {
 					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
+					
 					if (!lista.isEmpty()) {
 						for (Produto p : lista) {
 							Object[] linha = new Object[6];
 							linha[0] = p.getId();
 							linha[1] = p.getNome();
 							linha[2] = p.getDescricao();
-							linha[3] = p.getValor_compra();
+							linha[3] = p.getId_fornecedor();
 							linha[4] = p.getValor_venda();
-							linha[5] = p.getId_fornecedor();
+							linha[5] = p.getValor_compra();
+							
+							System.out.println(" for:"+p.getNome());
+
 							modelo.addRow(linha);
 						} 
 					}else{

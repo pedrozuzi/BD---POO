@@ -95,10 +95,14 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		
 		while ( rs.next() ){
 			p.setId(rs.getInt("id"));
+			p.setNome(rs.getString("nome"));
 		    p.setDescricao(rs.getString("descricao"));
 		    p.setId_fornecedor(rs.getInt("id_fornecedor"));
 		    p.setValor_venda(rs.getInt("valor_venda"));
 		    p.setValor_compra(rs.getInt("valor_compra"));
+		    lista.add(p);
+		    
+		    System.out.println(p.getNome());
 		}
 		
 		ps.close();

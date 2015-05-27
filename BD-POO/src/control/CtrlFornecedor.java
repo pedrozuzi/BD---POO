@@ -15,15 +15,15 @@ import entity.Pessoa;
 
 public class CtrlFornecedor implements CtrlTableFornecedor{
 	
-	private FornecedorDAO daoF;
-	private PessoaDao daoP;
+	private FornecedorDAO fDao;
+	private PessoaDao pDao;
 	
 	public void inserir(Fornecedor f) {
-		daoP = new PessoaDaoImpl();
-		daoF = new FornecedorDAOImpl();
+		pDao = new PessoaDaoImpl();
+		fDao = new FornecedorDAOImpl();
 		try {
-			daoP.inserePessoa(f);
-			daoF.inserirFornecedor(f);
+			pDao.inserePessoa(f);
+			fDao.inserirFornecedor(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
@@ -31,9 +31,9 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 	
 	public void atualiza(Fornecedor f) {
-		daoF = new FornecedorDAOImpl();
+		fDao = new FornecedorDAOImpl();
 		try {
-			daoF.atualizarFornecedor(f);
+			fDao.atualizarFornecedor(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
@@ -41,9 +41,9 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 	
 	public void excluir(Fornecedor f) {
-		daoF = new FornecedorDAOImpl();
+		fDao = new FornecedorDAOImpl();
 		try {
-			daoF.excluirFornecedor(f);
+			fDao.excluirFornecedor(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
@@ -53,9 +53,9 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	@Override
 	public List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
-		daoF = new FornecedorDAOImpl();
+		fDao = new FornecedorDAOImpl();
 		try {
-			lista = daoF.listaFornecedor(nome);
+			lista = fDao.listaFornecedor(nome);
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
@@ -67,8 +67,8 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	@Override
 	public Fornecedor consultaFornecedorId(String id) throws SQLException {
 		Fornecedor f = new Fornecedor();
-		daoF = new FornecedorDAOImpl();
-		f = daoF.consultarFornecedor(id);
+		fDao = new FornecedorDAOImpl();
+		f = fDao.consultarFornecedor(id);
 		return f;
 	}
 	

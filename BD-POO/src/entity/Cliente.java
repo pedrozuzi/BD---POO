@@ -11,30 +11,11 @@ package entity;
  * varchar(100) not null, numero int not null, bairro varchar(60) not null,
  * senha int null primary key(id), foreign key(id) references pessoa(idPessoa))
  */
-public class Cliente {
+public class Cliente extends Pessoa{
 
-	private int id;
-	private String nome;
 	private String logradouro;
 	private int numero;
 	private String bairro;
-	private int telefone;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 
 	public String getLogradouro() {
 		return logradouro;
@@ -58,14 +39,6 @@ public class Cliente {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
-
-	public int getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
 	}
 
 }

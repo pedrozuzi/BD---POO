@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -39,6 +40,10 @@ public class FrmCliente {
 	private JLabel lblTelefone;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JButton btnLupaPesquisar;
+	private JButton btnGravar;
+	private JButton btnLimpar;
+	private JButton btnVoltar;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -68,7 +73,7 @@ public class FrmCliente {
 		txtLogradouro.setColumns(10);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(129, 336, 269, 20);
+		txtNome.setBounds(129, 336, 318, 20);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
 		
@@ -78,7 +83,7 @@ public class FrmCliente {
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(62, 11, 426, 79);
+		panel.setBounds(112, 11, 426, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -133,6 +138,36 @@ public class FrmCliente {
 		btnPesquisar.setBounds(326, 11, 69, 41);
 		panel.add(btnPesquisar);
 		
+		btnGravar = new JButton("Gravar");
+		btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+				("/img/MiniSalvar.png")));
+		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGravar.setVisible(false);
+		btnGravar.setBounds(495, 531, 96, 31);
+		panPrincipal.add(btnGravar);
+		
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+				("/img/MiniClear.png")));
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLimpar.setBounds(285, 531, 96, 31);
+		btnLimpar.setVisible(false);
+		panPrincipal.add(btnLimpar);
+		
+		btnVoltar = new JButton("Voltar");
+		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+				("/img/MiniBack.png")));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnVoltar.setBounds(83, 531, 96, 31);
+		btnVoltar.setVisible(false);
+		panPrincipal.add(btnVoltar);
+		
+		btnLupaPesquisar = new JButton("");
+		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnLupaPesquisar.setBounds(479, 322, 65, 31);
+		btnLupaPesquisar.setVisible(false);
+		panPrincipal.add(btnLupaPesquisar);
+		
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource
 				("/img/LogoLudpet.png")));
@@ -140,7 +175,7 @@ public class FrmCliente {
 		panPrincipal.add(lblLogo);
 		
 		
-		janela.setSize(685,593);
+		janela.setSize(685,622);
 		janela.setContentPane( panPrincipal);
 		
 		txtNumero = new JTextField();
@@ -167,11 +202,38 @@ public class FrmCliente {
 		panPrincipal.add(lblBairro);
 		
 		lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(45, 476, 46, 14);
+		lblTelefone.setBounds(45, 476, 69, 14);
 		panPrincipal.add(lblTelefone);
 		ConfigTelas.centralizarFrame(janela);
+		
+		
+		btnLimpar.addActionListener(l -> limpaCampos() );
+		
+		btnIncluir.addActionListener(l -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Gravar");
+			btnGravar.setActionCommand("Incluir");
+			telaInserirFornecedor();
+		});
+		
+		
 	}
 	
+	private void telaInserirFornecedor() {
+		//TODO
+		
+	}
+
+	private void limpaCampos() {
+		txtNome.setText("");
+		txtLogradouro.setText("");
+		txtNumero.setText("");
+		txtBairro.setText("");
+		txtTelefone.setText("");
+	}
+
 	public static void main(String[] args) {
 		new FrmCliente();
 	}

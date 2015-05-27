@@ -2,13 +2,14 @@ package entity;
 
 public class Fornecedor extends Pessoa{
 	
-	private int id;
-	
-	public int getId() {
-		return id;
+	private String empresa;
+
+	public String getEmpresa() {
+		return empresa;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 }

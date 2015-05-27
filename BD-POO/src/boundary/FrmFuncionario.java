@@ -81,6 +81,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	 * @wbp.nonvisual location=621,449
 	 */
 	private final JLabel label = new JLabel("New label");
+	private JPanel panelInformacao;
 	
 	public FrmFuncionario(String nome) {
 	
@@ -274,9 +275,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		janela.setContentPane( panPrincipal);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 541, 576, 21);
-		panPrincipal.add(panel_1);
+		panelInformacao = new JPanel();
+		panelInformacao.setBounds(0, 541, 576, 21);
+		panPrincipal.add(panelInformacao);
+		
 		janela.setSize(582,600);
 		ConfigTelas.centralizarFrame(janela);
 		

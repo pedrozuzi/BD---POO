@@ -22,7 +22,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	
 	@Override
 	public void inserirCliente(Cliente c) throws SQLException {
-		String query = "insert into cliente values (?, ?, ?, ?, ?)";
+		String query = "insert into cliente values (?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setInt( 1, c.getId() );
 		ps.setString( 2, c.getNome() );

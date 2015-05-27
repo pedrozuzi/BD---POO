@@ -11,9 +11,9 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Fornecedor;
 
-public class FornecedorDAOImpl implements FornecedorDAO{
+public class FornecedorDaoImpl implements FornecedorDao{
 	
-	public FornecedorDAOImpl() {
+	public FornecedorDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}

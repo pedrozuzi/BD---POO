@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import persistence.FornecedorDAOImpl;
+import persistence.FornecedorDaoImpl;
 import persistence.LoteDao;
 import persistence.LoteProdutoDao;
 import persistence.PessoaDaoImpl;

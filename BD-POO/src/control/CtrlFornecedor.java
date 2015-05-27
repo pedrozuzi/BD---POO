@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import persistence.FornecedorDAO;
-import persistence.FornecedorDAOImpl;
+import persistence.FornecedorDao;
+import persistence.FornecedorDaoImpl;
 import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
 import entity.Fornecedor;
@@ -15,12 +15,12 @@ import entity.Pessoa;
 
 public class CtrlFornecedor implements CtrlTableFornecedor{
 	
-	private FornecedorDAO fDao;
+	private FornecedorDao fDao;
 	private PessoaDao pDao;
 	
 	public void inserir(Fornecedor f) {
 		pDao = new PessoaDaoImpl();
-		fDao = new FornecedorDAOImpl();
+		fDao = new FornecedorDaoImpl();
 		try {
 			pDao.inserePessoa(f);
 			fDao.inserirFornecedor(f);
@@ -31,7 +31,7 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 	
 	public void atualiza(Fornecedor f) {
-		fDao = new FornecedorDAOImpl();
+		fDao = new FornecedorDaoImpl();
 		try {
 			fDao.atualizarFornecedor(f);
 		} catch (SQLException e) {
@@ -41,7 +41,7 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	}
 	
 	public void excluir(Fornecedor f) {
-		fDao = new FornecedorDAOImpl();
+		fDao = new FornecedorDaoImpl();
 		try {
 			fDao.excluirFornecedor(f);
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	@Override
 	public List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
-		fDao = new FornecedorDAOImpl();
+		fDao = new FornecedorDaoImpl();
 		try {
 			lista = fDao.listaFornecedor(nome);
 		} catch (NullPointerException e) {
@@ -67,7 +67,7 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 	@Override
 	public Fornecedor consultaFornecedorId(String id) throws SQLException {
 		Fornecedor f = new Fornecedor();
-		fDao = new FornecedorDAOImpl();
+		fDao = new FornecedorDaoImpl();
 		f = fDao.consultarFornecedor(id);
 		return f;
 	}

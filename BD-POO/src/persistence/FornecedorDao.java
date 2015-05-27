@@ -5,7 +5,7 @@ import java.util.List;
 
 import entity.Fornecedor;
 
-public interface FornecedorDAO {
+public interface FornecedorDao {
 	
 	void inserirFornecedor(Fornecedor f) throws SQLException;
 	void atualizarFornecedor(Fornecedor f) throws SQLException;

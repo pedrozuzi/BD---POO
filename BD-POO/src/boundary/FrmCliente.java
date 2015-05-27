@@ -9,14 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
-
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
+import control.CtrlCliente;
+import entity.Cliente;
 
 public class FrmCliente {
 	
@@ -44,6 +45,12 @@ public class FrmCliente {
 	private JButton btnGravar;
 	private JButton btnLimpar;
 	private JButton btnVoltar;
+	private CtrlCliente control;
+	private int id;
+	private JLabel lblNome;
+	private JLabel lblLogradouro;
+	private JLabel lblNumero;
+	private JLabel lblBairro;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -58,21 +65,26 @@ public class FrmCliente {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		scrollPane.setVisible(false);
 		
-		JLabel lblLogradouro = new JLabel("Logradouro:");
+		lblLogradouro = new JLabel("Logradouro:");
+		lblLogradouro.setVisible(false);
 		lblLogradouro.setBounds(45, 387, 74, 14);
 		panPrincipal.add(lblLogradouro);
 		
-		JLabel lblNome = new JLabel("Nome:");
+		lblNome = new JLabel("Nome:");
+		lblNome.setVisible(false);
 		lblNome.setBounds(45, 339, 46, 14);
 		panPrincipal.add(lblNome);
 		
 		txtLogradouro = new JTextField();
+		txtLogradouro.setVisible(false);
 		txtLogradouro.setBounds(129, 384, 318, 20);
 		panPrincipal.add(txtLogradouro);
 		txtLogradouro.setColumns(10);
 		
 		txtNome = new JTextField();
+		txtNome.setVisible(false);
 		txtNome.setBounds(129, 336, 318, 20);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
@@ -179,29 +191,35 @@ public class FrmCliente {
 		janela.setContentPane( panPrincipal);
 		
 		txtNumero = new JTextField();
+		txtNumero.setVisible(false);
 		txtNumero.setBounds(128, 419, 86, 20);
 		panPrincipal.add(txtNumero);
 		txtNumero.setColumns(10);
 		
 		txtBairro = new JTextField();
+		txtBairro.setVisible(false);
 		txtBairro.setBounds(290, 419, 269, 20);
 		panPrincipal.add(txtBairro);
 		txtBairro.setColumns(10);
 		
 		txtTelefone = new JTextField();
+		txtTelefone.setVisible(false);
 		txtTelefone.setBounds(129, 473, 133, 20);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
-		JLabel lblNumero = new JLabel("N\u00FAmero:");
+		lblNumero = new JLabel("N\u00FAmero:");
+		lblNumero.setVisible(false);
 		lblNumero.setBounds(45, 425, 61, 14);
 		panPrincipal.add(lblNumero);
 		
-		JLabel lblBairro = new JLabel("Bairro:");
+		lblBairro = new JLabel("Bairro:");
+		lblBairro.setVisible(false);
 		lblBairro.setBounds(234, 422, 46, 14);
 		panPrincipal.add(lblBairro);
 		
 		lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setVisible(false);
 		lblTelefone.setBounds(45, 476, 69, 14);
 		panPrincipal.add(lblTelefone);
 		ConfigTelas.centralizarFrame(janela);
@@ -218,12 +236,47 @@ public class FrmCliente {
 			telaInserirFornecedor();
 		});
 		
+		btnGravar.addActionListener(e -> {
+			String cmd = e.getActionCommand();
+			acaoGravar(cmd);
+		});
+		
 		
 	}
 	
-	private void telaInserirFornecedor() {
-		//TODO
+	private void acaoGravar(String cmd) {
+		Cliente c = new Cliente();
+		control = new CtrlCliente();
 		
+		 if("Incluir".equalsIgnoreCase(cmd)){
+				c.setIdTipo(5);
+				c.setNome(txtNome.getText());
+				c.setLogradouro(txtLogradouro.getText());
+				c.setNumero(Integer.parseInt(txtNumero.getText()));
+				c.setBairro(txtBairro.getText());
+				c.setTelefone(Integer.parseInt(txtTelefone.getText()));
+				control.inserir(c);
+		 }
+	}
+
+	private void telaInserirFornecedor() {
+		btnLupaPesquisar.setVisible(false);
+		txtNome.setVisible(true);
+		txtLogradouro.setVisible(true);
+		txtNumero.setVisible(true);
+		txtBairro.setVisible(true);
+		txtTelefone.setVisible(true);
+		lblNome.setVisible(true);
+		lblLogradouro.setVisible(true);
+		lblNumero.setVisible(true);
+		lblBairro.setVisible(true);
+		lblTelefone.setVisible(true);
+		btnGravar.setVisible(true);
+		btnLimpar.setVisible(true);
+		btnVoltar.setVisible(true);
+		lblLogo.setVisible(false);
+		scrollPane.setVisible(true);
+		table.setVisible(true);
 	}
 
 	private void limpaCampos() {

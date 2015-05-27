@@ -76,16 +76,18 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	public List<Funcionario> pesquisarFuncionario(String nome)
 			throws SQLException {
 			List<Funcionario> lista = new ArrayList<Funcionario>();
-			Funcionario f = new Funcionario();
+			
 			String query = "select  f.id, f.nome, f.cpf, f.salario, f.telefone, p.idTipo "
 					+ "from funcionario f "
 					+ "inner join pessoa p "
 					+ "on f.id = p.idPessoa "
 					+ "where f.nome like ? ";
 			PreparedStatement ps = c.prepareStatement( query );
-			ps.setString(1,  "%"+nome+"%" );
+			ps.setString( 1, "%" + nome + "%" );
 			ResultSet rs = ps.executeQuery();
-			if( rs.next() ){
+			
+			while ( rs.next() ){
+				Funcionario f = new Funcionario();
 				f.setId( rs.getInt("id") );
 				f.setCpf( rs.getString("cpf") );
 				f.setNome( rs.getString("nome") );

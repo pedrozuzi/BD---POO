@@ -77,15 +77,16 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
+	private int id;
 	/**
 	 * @wbp.nonvisual location=621,449
 	 */
 	private final JLabel label = new JLabel("New label");
 	private JPanel panelInformacao;
 	
-	public FrmFuncionario(String nome) {
+	public FrmFuncionario() {
 	
-		janela = new JFrame("Fornecedor");
+		janela = new JFrame("Funcionário");
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
@@ -485,6 +486,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				}
 				modelo.addRow(linha);
 			} 
+			
+			lista.forEach(f -> {
+				System.out.println("id - " + f.getId() +" cpf - " + f.getCpf());
+			});
 		}
 	}
 	
@@ -506,12 +511,15 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object[] valores = new Object[3];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
-		valores[0] = table.getValueAt(linha, coluna);
 		
+		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+			valores[coluna] = table.getValueAt(linha, coluna);
+		}
+		
+		id = lista.get(linha).getId();
 		for (Funcionario f : lista) {
-			if(((String) valores[0]).contains(f.getNome())){
-				txtNome.setText( f.getNome() );
-				txtCpf.setText( f.getCpf() ); 
+				txtNome.setText(String.valueOf(valores[0]));
+				txtCpf.setText(String.valueOf(valores[1]));
 				txtTelefone.setText( Integer.toString(f.getTelefone()) );
 				txtSalario.setText( Double.toString(f.getSalario()) );
 				if( f.getIdTipo() == 1 ){
@@ -521,8 +529,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				}else{
 					rdbtnBanhistaTosador.setSelected(true);
 				}
-
-			}
 		}
 	}
 
@@ -547,6 +553,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	}
 	
 	public static void main(String[] args) {
-		new FrmFuncionario("Funcionario");
+		new FrmFuncionario();
 	}
 }

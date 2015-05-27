@@ -24,7 +24,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
 import control.CtrlFornecedor;
-import control.CtrlIncluiProduto;
 import control.CtrlProduto;
 import control.CtrlTabela;
 import control.CtrlTableProduto;
@@ -38,6 +37,7 @@ import entity.Produto;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class FrmProduto extends MouseAdapter {
 	private DefaultTableModel modelo;
 	private JScrollPane scrollPane;
 	private CtrlTableProduto controlTable;
-	private CtrlIncluiProduto ctrlincluiprod;
+	private CtrlProduto ctrlincluiprod;
 
 	public FrmProduto() {
 
@@ -380,7 +380,7 @@ public class FrmProduto extends MouseAdapter {
 		btnLimpa.setActionCommand("LIMPA");
 		btnSalva.setActionCommand("SALVA");
 
-		CtrlIncluiProduto incluirprod = new CtrlIncluiProduto(txtIdProduto,
+		CtrlProduto incluirprod = new CtrlProduto(txtIdProduto,
 				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 
@@ -405,10 +405,30 @@ public class FrmProduto extends MouseAdapter {
 		ctrltela.actionPerformed(e);
 		});
 		
-		this.ctrlincluiprod = new CtrlIncluiProduto(txtIdProduto,   //verificar
+		btnPesquisaProduto.addActionListener(e -> {
+			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			buscarDadosTabelaPorNome(modelo);
+
+		});
+		
+		this.ctrlincluiprod = new CtrlProduto(txtIdProduto,   //verificar
 				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 
+
+	}
+	public void mouseClicked(MouseEvent e) {
+		Object[] valores = new Object[3];
+		int linha = tableProduto.getSelectedRow();
+		int coluna = tableProduto.getSelectedColumn();
+		
+		for (coluna = 0; coluna < tableProduto.getColumnCount(); coluna++) {
+			valores[coluna] = tableProduto.getValueAt(linha, coluna);
+		}
+
+			txtIdProduto.setText( String.valueOf(valores[0]));
+			txtNome.setText( String.valueOf(valores[1]));
+			//txtTelefone.setText(String.valueOf(valores[2])); 
 
 	}
 
@@ -439,7 +459,7 @@ public class FrmProduto extends MouseAdapter {
 }
 	
 	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-		controlTable = new CtrlIncluiProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
+		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
 		
 		List<Produto> lista = new ArrayList<Produto>();

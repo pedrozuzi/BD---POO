@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionImpl;
@@ -85,7 +86,24 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Produto p = new Produto();
+		List<Produto> lista = new ArrayList<Produto>();
+		String query = "SELECT * FROM produto WHERE nome like ?";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setString( 1, "%" + nome + "%" );
+		ResultSet rs = ps.executeQuery();
+		
+		while ( rs.next() ){
+			p.setId(rs.getInt("id"));
+		    p.setDescricao(rs.getString("descricao"));
+		    p.setId_fornecedor(rs.getInt("id_fornecedor"));
+		    p.setValor_venda(rs.getInt("valor_venda"));
+		    p.setValor_compra(rs.getInt("valor_compra"));
+		}
+		
+		ps.close();
+		return lista;
+		
 	}
 	//Metodos implementados Lote
 	@Override

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 
@@ -76,6 +77,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblAlterar;
 	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
+	/**
+	 * @wbp.nonvisual location=621,449
+	 */
+	private final JLabel label = new JLabel("New label");
 	
 	public FrmFuncionario(String nome) {
 	
@@ -138,7 +143,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		table = new JTable();
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 101, 546, 152);
+		scrollPane.setBounds(10, 101, 556, 153);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
@@ -268,6 +273,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panPrincipal.add(lblDadoObrigatorio);
 		
 		janela.setContentPane( panPrincipal);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 541, 576, 21);
+		panPrincipal.add(panel_1);
 		janela.setSize(582,600);
 		ConfigTelas.centralizarFrame(janela);
 		
@@ -280,6 +289,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 			
+//		table.setBorder(new LineBorder(Color.black));
+//		table.setGridColor(Color.black);
+//		table.setShowGrid(true);
+		
 		modelo = montarTabela();
 	}
 	

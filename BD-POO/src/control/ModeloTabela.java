@@ -7,8 +7,7 @@ public class ModeloTabela implements TableModel {
 	
 	Object dados[][];
 	String[] colunas;
-	
-	
+
 
 	public ModeloTabela(Object[][] dados, String[] colunas) {
 		this.dados = dados;

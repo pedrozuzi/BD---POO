@@ -9,8 +9,11 @@ import javax.swing.JFrame;
 
 public interface ConfigTelas {
 	
-	default void centralizarFrame(JFrame janela) {
+	static void centralizarFrame(JFrame janela) {
         janela.setLocationRelativeTo(null);
+        janela.setResizable(false);
+        janela.setVisible(true);
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

@@ -62,7 +62,6 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
-		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
 		btnLupaPesquisar = new JButton("");
@@ -193,9 +192,8 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		modelo = montarTabela();
 		
 		janela.setSize(581,511);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		centralizarFrame(janela);
+		janela.setContentPane( panPrincipal);
+		ConfigTelas.centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta

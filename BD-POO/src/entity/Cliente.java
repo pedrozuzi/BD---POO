@@ -18,6 +18,7 @@ public class Cliente {
 	private String logradouro;
 	private int numero;
 	private String bairro;
+	private int telefone;
 
 	public int getId() {
 		return id;
@@ -57,6 +58,14 @@ public class Cliente {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public int getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
 	}
 
 }

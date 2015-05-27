@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import control.ConfigTelas;
 import control.CtrlFornecedor;
 import control.CtrlFuncionario;
 import control.CtrlTabela;
@@ -82,8 +83,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
-		
-		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
 		panel = new JPanel();
@@ -268,10 +267,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblDadoObrigatorio.setBounds(410, 470, 128, 14);
 		panPrincipal.add(lblDadoObrigatorio);
 		
+		janela.setContentPane( panPrincipal);
 		janela.setSize(582,600);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setLocationRelativeTo(null);
+		ConfigTelas.centralizarFrame(janela);
 		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);

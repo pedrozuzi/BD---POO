@@ -36,8 +36,6 @@ public class FrmLogin implements ConfigTelas{
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setLayout(null);
 		
-		janela.setContentPane( panPrincipal );
-		
 		txtUsuario = new JTextField();
 		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -72,10 +70,9 @@ public class FrmLogin implements ConfigTelas{
 		lblNewLabel.setBounds(-39, 0, 417, 129);
 		panPrincipal.add(lblNewLabel);
 		
+		janela.setContentPane( panPrincipal );
 		janela.setSize(398,313);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		centralizarFrame(janela);
+		ConfigTelas.centralizarFrame(janela);
 		
 		btnLogar.addActionListener(e -> {
 			Login l = new Login();

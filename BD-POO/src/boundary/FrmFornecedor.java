@@ -239,11 +239,20 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		});
 		
 		btnGravar.addActionListener(e -> {
-			String cmd = e.getActionCommand();
-			acaoGravar(cmd);
+			if (!validaCampos()) {
+				String cmd = e.getActionCommand();
+				acaoGravar(cmd);
+			}else{
+				JOptionPane.showMessageDialog(null, "Digite nome e telefone para gravar",
+						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+			}
 		});
 		
 		
+	}
+	
+	private boolean validaCampos() {
+		return txtNome.getText().isEmpty() || txtTelefone.getText().isEmpty();
 	}
 	
 	private void acaoGravar(String cmd) {

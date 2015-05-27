@@ -41,24 +41,24 @@ public class FrmLogin implements ConfigTelas{
 		txtUsuario = new JTextField();
 		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtUsuario.setBounds(95, 83, 241, 28);
+		txtUsuario.setBounds(70, 151, 241, 28);
 		panPrincipal.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		pwdSenha = new JPasswordField();
 		pwdSenha.setBackground(SystemColor.info);
 		pwdSenha.setFont(new Font("Arial", Font.PLAIN, 14));
-		pwdSenha.setBounds(95, 147, 241, 28);
+		pwdSenha.setBounds(70, 197, 241, 28);
 		panPrincipal.add(pwdSenha);
 		
 		lblUsuario = new JLabel("Usuário:");
 		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblUsuario.setBounds(10, 89, 61, 14);
+		lblUsuario.setBounds(10, 157, 61, 14);
 		panPrincipal.add(lblUsuario);
 		
 		lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblSenha.setBounds(10, 152, 61, 14);
+		lblSenha.setBounds(10, 202, 61, 14);
 		panPrincipal.add(lblSenha);
 		
 		btnLogar = new JButton("");
@@ -66,10 +66,15 @@ public class FrmLogin implements ConfigTelas{
 				("/img/icon_Login_in.png")));
 		btnLogar.setToolTipText("Realizar Login no Sistema");
 		btnLogar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnLogar.setBounds(281, 186, 55, 36);
+		btnLogar.setBounds(349, 230, 55, 36);
 		panPrincipal.add(btnLogar);
 		
-		janela.setSize(564,398);
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/LogoPetShop100.png")));
+		lblNewLabel.setBounds(-39, 0, 417, 129);
+		panPrincipal.add(lblNewLabel);
+		
+		janela.setSize(430,315);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);

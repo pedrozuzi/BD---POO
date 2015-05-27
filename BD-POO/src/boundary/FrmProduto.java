@@ -62,6 +62,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JLabel lblNewLabel_1;
 	private JLabel lblId_1;
 	private JLabel lblDataDeValidade;
+	private JLabel lblAcao;
 	private JTextField txtDescricao;
 	private JTextField txtValorVenda;
 	private JTextField txtValorCompra;
@@ -368,9 +369,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		btnSalva.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniSalvar.png")));
 
-		JLabel lblSalvar = new JLabel("Salvar");
-		lblSalvar.setBounds(139, 40, 40, 19);
-		panAcoes2.add(lblSalvar);
+		lblAcao = new JLabel("Salvar");
+		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAcao.setBounds(130, 39, 55, 19);
+		panAcoes2.add(lblAcao);
 
 		btnIncluir.setActionCommand("INCLUIR");
 		btnAlterar.setActionCommand("ALTERAR");
@@ -379,13 +381,11 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		btnVolta.setActionCommand("VOLTA");
 		btnLimpa.setActionCommand("LIMPA");
-		btnSalva.setActionCommand("SALVA");
+	//	btnSalva.setActionCommand("SALVA");
 
-		CtrlProduto incluirprod = new CtrlProduto(txtIdProduto,
+		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto,
 				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
 				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
-
-		
 
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
@@ -393,16 +393,22 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnExcluir, btnPesquisar, btnRewind, btnBack, btnNext,
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
-				panAcoes2, panProduto, panLote);
+				panAcoes2, panProduto, panLote, lblAcao);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
+		
 		btnIncluir.addActionListener(ctrltela);
+
+		
+		btnAlterar.addActionListener(ctrltela);
+		btnExcluir.addActionListener(ctrltela);
+		btnPesquisar.addActionListener(ctrltela);
+		
 		ctrltela.inicio();
-		//btnSalva.addActionListener(incluirprod);
 		
 		btnSalva.addActionListener(e ->{	
-		incluirprod.actionPerformed(e);
+		ctrlprod.actionPerformed(e);
 		ctrltela.actionPerformed(e);
 		});
 		
@@ -417,7 +423,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	}
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[3];
+		Object[] valores = new Object[6];
 		int linha = tableProduto.getSelectedRow();
 		int coluna = tableProduto.getSelectedColumn();
 		
@@ -427,7 +433,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 			txtIdProduto.setText( String.valueOf(valores[0]));
 			txtNome.setText( String.valueOf(valores[1]));
-			//txtTelefone.setText(String.valueOf(valores[2])); 
+			txtDescricao.setText(String.valueOf(valores[2]));
+			txtIdFornecedor.setText(String.valueOf(valores[3]));
+			txtValorCompra.setText(String.valueOf(valores[4]));
+			txtValorVenda.setText(String.valueOf(valores[5]));
 
 	}
 
@@ -437,12 +446,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	
 	public DefaultTableModel montarTabela () {
 		String[] colunas = new String[6];
-		colunas[0] = "Nome";
-		colunas[1] = "Descricao";
-		colunas[2] = "nome fornec";
-		colunas[3] = "valor venda";
-		colunas[4] = "valor compra";
-		colunas[5] = "test";
+		colunas[0] = "ID";
+		colunas[1] = "Nome";
+		colunas[2] = "Descricao";
+		colunas[3] = "ID: Fornecedor";
+		colunas[4] = "Compra R$:";
+		colunas[5] = "Venda R$:";
 		
 
 		modelo = new CtrlTabela(new Object[][] {}, colunas);
@@ -466,8 +475,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		
 		lista = new ArrayList<Produto>();
 		
-		if (txtIdProduto.getText().equals("")) {
-			if (!txtNome.getText().equals("")) {
+		if (true) {
+			if (!txtNome.getText().equals("")) {  //FIXME if
 				try {
 					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
 					

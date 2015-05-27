@@ -34,6 +34,7 @@ nome varchar(60) not null,
 logradouro varchar(100) not null,
 numero int not null,
 bairro varchar(60) not null,
+telefone int not null
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
 

@@ -27,7 +27,6 @@ public class FrmLogin implements ConfigTelas{
 	private JButton btnLogar;
 	private CtrlLogin controlLogin;
 	private JPanel panPrincipal;
-	private JLabel lblLogo;
 
 	public FrmLogin(){
 		
@@ -37,17 +36,19 @@ public class FrmLogin implements ConfigTelas{
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setLayout(null);
 		
-		janela.setContentPane( panPrincipal);
+		janela.setContentPane( panPrincipal );
 		
 		txtUsuario = new JTextField();
+		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtUsuario.setBounds(95, 83, 241, 28);
 		panPrincipal.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		pwdSenha = new JPasswordField();
+		pwdSenha.setBackground(SystemColor.info);
 		pwdSenha.setFont(new Font("Arial", Font.PLAIN, 14));
-		pwdSenha.setBounds(95, 146, 241, 28);
+		pwdSenha.setBounds(95, 147, 241, 28);
 		panPrincipal.add(pwdSenha);
 		
 		lblUsuario = new JLabel("Usuário:");
@@ -56,7 +57,7 @@ public class FrmLogin implements ConfigTelas{
 		panPrincipal.add(lblUsuario);
 		
 		lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblSenha.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblSenha.setBounds(10, 152, 61, 14);
 		panPrincipal.add(lblSenha);
 		
@@ -65,16 +66,10 @@ public class FrmLogin implements ConfigTelas{
 				("/img/icon_Login_in.png")));
 		btnLogar.setToolTipText("Realizar Login no Sistema");
 		btnLogar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnLogar.setBounds(281, 194, 55, 57);
+		btnLogar.setBounds(281, 186, 55, 36);
 		panPrincipal.add(btnLogar);
 		
-		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmLogin.class.getResource
-				("/img/ludpetLogin.png")));
-		lblLogo.setBounds(33, 11, 326, 61);
-		panPrincipal.add(lblLogo);
-		
-		janela.setSize(400,300);
+		janela.setSize(564,398);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);

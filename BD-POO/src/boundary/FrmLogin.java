@@ -41,18 +41,18 @@ public class FrmLogin implements ConfigTelas{
 		txtUsuario = new JTextField();
 		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtUsuario.setBounds(70, 151, 241, 28);
+		txtUsuario.setBounds(99, 152, 241, 28);
 		panPrincipal.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		pwdSenha = new JPasswordField();
 		pwdSenha.setBackground(SystemColor.info);
 		pwdSenha.setFont(new Font("Arial", Font.PLAIN, 14));
-		pwdSenha.setBounds(70, 197, 241, 28);
+		pwdSenha.setBounds(99, 197, 241, 28);
 		panPrincipal.add(pwdSenha);
 		
 		lblUsuario = new JLabel("Usuário:");
-		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblUsuario.setBounds(10, 157, 61, 14);
 		panPrincipal.add(lblUsuario);
 		
@@ -61,12 +61,10 @@ public class FrmLogin implements ConfigTelas{
 		lblSenha.setBounds(10, 202, 61, 14);
 		panPrincipal.add(lblSenha);
 		
-		btnLogar = new JButton("");
-		btnLogar.setIcon(new ImageIcon(FrmLogin.class.getResource
-				("/img/icon_Login_in.png")));
+		btnLogar = new JButton("Entrar");
 		btnLogar.setToolTipText("Realizar Login no Sistema");
-		btnLogar.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnLogar.setBounds(349, 230, 55, 36);
+		btnLogar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLogar.setBounds(257, 236, 83, 28);
 		panPrincipal.add(btnLogar);
 		
 		JLabel lblNewLabel = new JLabel("New label");
@@ -74,7 +72,7 @@ public class FrmLogin implements ConfigTelas{
 		lblNewLabel.setBounds(-39, 0, 417, 129);
 		panPrincipal.add(lblNewLabel);
 		
-		janela.setSize(430,315);
+		janela.setSize(398,313);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centralizarFrame(janela);

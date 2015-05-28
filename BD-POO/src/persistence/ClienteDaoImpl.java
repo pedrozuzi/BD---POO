@@ -46,12 +46,12 @@ public class ClienteDaoImpl implements ClienteDao{
 				+ "telefone = ? "
 				+ "where id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt( 1, c.getId() );
-		ps.setString( 2, c.getNome() );
-		ps.setString( 3 , c.getLogradouro() );
-		ps.setInt( 4 , c.getNumero() );
-		ps.setString( 5 , c.getBairro() );
-		ps.setInt( 6 , c.getTelefone() );
+		ps.setString( 1, c.getNome() );
+		ps.setString( 2, c.getLogradouro() );
+		ps.setInt( 3, c.getNumero() );
+		ps.setString( 4, c.getBairro() );
+		ps.setInt( 5, c.getTelefone() );
+		ps.setInt( 6, c.getId() );
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Dados atualizados");
 		ps.close();

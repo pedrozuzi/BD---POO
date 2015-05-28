@@ -26,6 +26,7 @@ import control.ConfigTelas;
 import control.CtrlCliente;
 import control.CtrlTabela;
 import control.CtrlTableCliente;
+import control.TratamentoTextFields;
 import entity.Cliente;
 
 public class FrmCliente extends MouseAdapter {
@@ -75,28 +76,32 @@ public class FrmCliente extends MouseAdapter {
 		scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
 		scrollPane.setVisible(false);
-		scrollPane.setBounds(10, 113, 649, 186);
+		scrollPane.setBounds(10, 113, 717, 186);
 		panPrincipal.add(scrollPane);
 		
 		lblLogradouro = new JLabel("Logradouro:");
+		lblLogradouro.setFont(new Font("Arial", Font.BOLD, 14));
 		lblLogradouro.setVisible(false);
-		lblLogradouro.setBounds(45, 387, 74, 14);
+		lblLogradouro.setBounds(45, 387, 96, 14);
 		panPrincipal.add(lblLogradouro);
 		
 		lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNome.setVisible(false);
-		lblNome.setBounds(45, 339, 46, 14);
+		lblNome.setBounds(45, 339, 62, 14);
 		panPrincipal.add(lblNome);
 		
-		txtLogradouro = new JTextField();
+		txtLogradouro = new TratamentoTextFields();
+		txtLogradouro.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtLogradouro.setVisible(false);
-		txtLogradouro.setBounds(129, 384, 318, 20);
+		txtLogradouro.setBounds(160, 385, 318, 20);
 		panPrincipal.add(txtLogradouro);
 		txtLogradouro.setColumns(10);
 		
-		txtNome = new JTextField();
+		txtNome = new TratamentoTextFields();
+		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNome.setVisible(false);
-		txtNome.setBounds(129, 336, 318, 20);
+		txtNome.setBounds(160, 337, 318, 20);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
 		
@@ -187,7 +192,7 @@ public class FrmCliente extends MouseAdapter {
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnLupaPesquisar.setBounds(479, 322, 65, 31);
+		btnLupaPesquisar.setBounds(510, 323, 65, 31);
 		btnLupaPesquisar.setVisible(false);
 		panPrincipal.add(btnLupaPesquisar);
 		
@@ -198,38 +203,44 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.add(lblLogo);
 		
 		
-		janela.setSize(685,622);
+		janela.setSize(753,624);
 		janela.setContentPane( panPrincipal);
 		
-		txtNumero = new JTextField();
+		txtNumero = new TratamentoTextFields(8);
+		txtNumero.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNumero.setVisible(false);
-		txtNumero.setBounds(128, 419, 86, 20);
+		txtNumero.setBounds(112, 428, 86, 20);
 		panPrincipal.add(txtNumero);
 		txtNumero.setColumns(10);
 		
-		txtBairro = new JTextField();
+		txtBairro = new TratamentoTextFields();
+		txtBairro.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtBairro.setVisible(false);
-		txtBairro.setBounds(290, 419, 269, 20);
+		txtBairro.setBounds(285, 428, 269, 20);
 		panPrincipal.add(txtBairro);
 		txtBairro.setColumns(10);
 		
-		txtTelefone = new JTextField();
+		txtTelefone = new TratamentoTextFields(9);
+		txtTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtTelefone.setVisible(false);
-		txtTelefone.setBounds(129, 473, 133, 20);
+		txtTelefone.setBounds(124, 474, 133, 20);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
 		lblNumero = new JLabel("N\u00FAmero:");
+		lblNumero.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNumero.setVisible(false);
-		lblNumero.setBounds(45, 425, 61, 14);
+		lblNumero.setBounds(45, 433, 62, 14);
 		panPrincipal.add(lblNumero);
 		
 		lblBairro = new JLabel("Bairro:");
+		lblBairro.setFont(new Font("Arial", Font.BOLD, 14));
 		lblBairro.setVisible(false);
-		lblBairro.setBounds(234, 422, 46, 14);
+		lblBairro.setBounds(221, 430, 72, 14);
 		panPrincipal.add(lblBairro);
 		
 		lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setFont(new Font("Arial", Font.BOLD, 14));
 		lblTelefone.setVisible(false);
 		lblTelefone.setBounds(45, 476, 69, 14);
 		panPrincipal.add(lblTelefone);
@@ -254,6 +265,21 @@ public class FrmCliente extends MouseAdapter {
 					("/img/MiniSalvar.png")));
 			btnGravar.setText("Alterar");
 			btnGravar.setActionCommand("Alterar");
+			telaAlterarExcluirPesquisarFornecedor();
+		});
+		
+		btnExcluir.addActionListener(l -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setText("Excluir");
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/trash.png")));
+			btnGravar.setActionCommand("Excluir");
+			telaAlterarExcluirPesquisarFornecedor();
+		});
+		
+		btnPesquisar.addActionListener(e -> {
+			btnLupaPesquisar.setVisible(true);
+			btnGravar.setEnabled(false);
 			telaAlterarExcluirPesquisarFornecedor();
 		});
 		
@@ -291,6 +317,15 @@ public class FrmCliente extends MouseAdapter {
 				c.setBairro(txtBairro.getText());
 				c.setTelefone(Integer.parseInt(txtTelefone.getText()));
 				control.atualiza(c);
+				modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+		 }else if("Excluir".equalsIgnoreCase(cmd)){
+				c.setId(id);
+				c.setNome(txtNome.getText());
+				c.setLogradouro(txtLogradouro.getText());
+				c.setNumero(Integer.parseInt(txtNumero.getText()));
+				c.setBairro(txtBairro.getText());
+				c.setTelefone(Integer.parseInt(txtTelefone.getText()));
+				control.excluir(c);
 				modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 		 }
 		 limpaCampos();
@@ -357,9 +392,11 @@ public class FrmCliente extends MouseAdapter {
 		table.setModel(modelo);
 		table.addMouseListener(this);
 		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(250);
-		table.getColumnModel().getColumn(1).setPreferredWidth(60);
+		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(30);
+		table.getColumnModel().getColumn(3).setPreferredWidth(150);
+		table.getColumnModel().getColumn(4).setPreferredWidth(40);
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
 		return modelo;
@@ -407,7 +444,6 @@ public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
 		}
 		
 		id = lista.get(linha).getId();
-		System.out.println(id);
 		txtNome.setText( String.valueOf(valores[0]));
 		txtLogradouro.setText(String.valueOf(valores[1])); 
 		txtNumero.setText(String.valueOf(valores[2]));

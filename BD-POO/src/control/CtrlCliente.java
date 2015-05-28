@@ -53,4 +53,16 @@ public class CtrlCliente implements CtrlTableCliente {
 		return lista;
 	}
 
+	public void excluir(Cliente c) {
+		cDao = new ClienteDaoImpl();
+		
+		try {
+			cDao.excluirCliente(c);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+
 }

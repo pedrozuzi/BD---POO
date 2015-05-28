@@ -82,6 +82,17 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 				// TODO: handle exception
 			}
 			System.out.println("prod: " + prod.getId() + " lot: " + lot.getId());
+			
+		}else if (acao.equalsIgnoreCase("ACAOGRAVA")){
+			Produto prod = new Produto();
+			prod.setId(Integer.parseInt(txtIdProduto.getText()));
+			prod.setNome(txtNome.getText());
+			prod.setDescricao(txtDescricao.getText());
+			prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
+			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
+			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
+			
+			atualizaProduto(prod);
 		}
 		
 		
@@ -165,6 +176,21 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 		pDao = new ProdutoDaoImpl();
 		p = pDao.consultaProduto(id);
 		return p;
+	}
+	
+	private void atualizaProduto(Produto prod){
+		ProdutoDao pDao = new ProdutoDaoImpl();
+		try {
+			pDao.atualizaProduto(prod);
+		//	carregaCombo();
+			JOptionPane.showMessageDialog(null, 
+					"Produto Atualizado com sucesso!","Sucesso",
+					JOptionPane.INFORMATION_MESSAGE);
+		//	limpaCampos();		
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					"ERRO", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

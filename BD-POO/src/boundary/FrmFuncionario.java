@@ -402,7 +402,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				limpaCampos();
 			}
 		}else if("Alterar".equalsIgnoreCase(cmd)){
-			if(txtNome.getText().equals("")){
+			if(validaCampos()){
 				JOptionPane.showMessageDialog(null, "Sem dados para processar",
 						"Erro", JOptionPane.QUESTION_MESSAGE);
 			}else{
@@ -413,13 +413,13 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 				if(rdbtnAdministrador.isSelected()){
 					f.setIdTipo(1);
-					ctrlFunc.incluir(f);
+					ctrlFunc.alterar(f);
 				}else if(rdbtnAtendente.isSelected()){
 					f.setIdTipo(2);
-					ctrlFunc.incluir(f);
+					ctrlFunc.alterar(f);
 				}else if(rdbtnBanhistaTosador.isSelected()){
 					f.setIdTipo(3);
-					ctrlFunc.incluir(f);
+					ctrlFunc.alterar(f);
 				}
 				limpaCampos();
 			}
@@ -480,10 +480,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				}
 				modelo.addRow(linha);
 			} 
-			
-			lista.forEach(f -> {
-				System.out.println("id - " + f.getId() +" cpf - " + f.getCpf());
-			});
 		}
 	}
 	

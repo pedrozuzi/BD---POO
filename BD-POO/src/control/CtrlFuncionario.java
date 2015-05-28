@@ -36,6 +36,7 @@ public class CtrlFuncionario {
 		pDao = new PessoaDaoImpl();
 		
 		try {
+			pDao.excluiPessoa(f);
 			fDao.excluirFuncionario(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
@@ -45,8 +46,10 @@ public class CtrlFuncionario {
 	
 	public void alterar(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
+		pDao = new PessoaDaoImpl();
 		
 		try {
+			pDao.atualizaPessoa(f);
 			fDao.atualizarFuncionario(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 

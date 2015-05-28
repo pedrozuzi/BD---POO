@@ -47,18 +47,19 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		String query = "update funcionario set "
 				+ "cpf = ?,"
 				+ "nome = ?,"
-				+ "cargo = ?,"
 				+ "salario= ?"
 				+ "where id = ?";
 				
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, func.getCpf() );
 		ps.setString(2, func.getNome() );
-		ps.setDouble(4, func.getSalario() );
-		ps.setInt(5, func.getId() );
+		ps.setDouble(3, func.getSalario() );
+		ps.setInt(4, func.getId() );
 		ps.execute();
-		System.out.println("Dados atualizados");
 		ps.close();
+		
+		JOptionPane.showMessageDialog(null, "Dados atualizados.",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
@@ -69,6 +70,9 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		ps.setInt(1, func.getId());
 		ps.execute();
 		ps.close();
+		
+		JOptionPane.showMessageDialog(null, "Funcionario excluido.",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	@Override

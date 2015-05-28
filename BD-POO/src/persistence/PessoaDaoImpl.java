@@ -32,42 +32,32 @@ private Connection c;
 		pes.setId(rs.getInt(1));
 		
 		ps.close();
-		
-//		String sql = "insert into pessoa (idTipo) values (?)";
-//		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//		
-////		System.out.println("Teste"+pes.getClass());
-////		System.exit(0);
-//		
-//		ps.setInt(1, pes.getIdTipo() );
-//		ps.execute();
-//		
-//		ResultSet rs = ps.getGeneratedKeys();
-//		rs.next();
-//		
-//		int id = rs.getInt(1);
-//		pes.setId(id);
-//		System.out.println("ID... "+pes.getId());
-//		ps.close();
-//		return id;
+
 	}
-				
-//		String sql = "INSERT INTO pessoa (id_tipo)"+
-//				"VALUES(?)";
-//		PreparedStatement ps = c.prepareStatement(sql);
-//		ps.setInt(1, pes.getIdTipo());
-//		ps.execute();
-//		ps.close();
 		
 	@Override
 	public void atualizaPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
+		String query = "update pessoa set "
+				+ "idTipo = ?"
+				+ "where id = ?";
+				
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, pes.getIdTipo() );
+		ps.setInt(2, pes.getId() );
+		ps.execute();
+		ps.close();
 		
 	}
 
 	@Override
 	public void excluiPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "delete pessoa "
+				+ "where idTipo = ?";
+		
+		PreparedStatement ps = c.prepareStatement( sql );
+		ps.setInt(1, pes.getIdTipo() );
+		ps.execute();
+		ps.close();
 		
 	}
 

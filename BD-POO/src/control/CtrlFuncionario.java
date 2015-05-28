@@ -11,6 +11,7 @@ import persistence.FuncionarioDao;
 import persistence.FuncionarioDaoImpl;
 import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
+import sun.misc.FpUtils;
 import entity.Funcionario;
 
 public class CtrlFuncionario {
@@ -32,6 +33,7 @@ public class CtrlFuncionario {
 	
 	public void remover(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
+		pDao = new PessoaDaoImpl();
 		
 		try {
 			fDao.excluirFuncionario(f);

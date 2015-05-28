@@ -345,6 +345,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblLogo.setVisible(false);
 		modelo.setNumRows(0);
 		Funcionario f = new Funcionario();
+		ctrlFunc = new CtrlFuncionario();
 		
 		
 		if(btnIncluir.equals(acao)){
@@ -372,7 +373,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
 			if( !validaCampos() ){
-				ctrlFunc = new CtrlFuncionario();
 				f.setNome( txtNome.getText() );
 				f.setCpf( txtCpf.getText() );
 				f.setSalario( Double.parseDouble(txtSalario.getText()) );
@@ -408,6 +408,20 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			}else{
 				f.setId(id);
 				f.setNome( txtNome.getText() );
+				f.setCpf( txtCpf.getText() );
+				f.setSalario( Double.parseDouble(txtSalario.getText()) );
+				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
+				if(rdbtnAdministrador.isSelected()){
+					f.setIdTipo(1);
+					ctrlFunc.incluir(f);
+				}else if(rdbtnAtendente.isSelected()){
+					f.setIdTipo(2);
+					ctrlFunc.incluir(f);
+				}else if(rdbtnBanhistaTosador.isSelected()){
+					f.setIdTipo(3);
+					ctrlFunc.incluir(f);
+				}
+				limpaCampos();
 			}
 		}
 		
@@ -452,6 +466,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
 					"Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}else{
+			habilitarCampos();
 			for (Funcionario f : lista) {
 				Object[] linha = new Object[3];
 				linha[0] = f.getNome();
@@ -516,9 +531,17 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 					rdbtnAtendente.setSelected(false);
 				}
 			}
+			
 		}
-		
-		
+	}
+
+	private void habilitarCampos() {
+		txtCpf.setEnabled(true);
+		txtSalario.setEnabled(true);
+		txtTelefone.setEnabled(true);
+		rdbtnBanhistaTosador.setEnabled(true);
+		rdbtnAtendente.setEnabled(true);
+		rdbtnAdministrador.setEnabled(true);
 	}
 
 	@Override

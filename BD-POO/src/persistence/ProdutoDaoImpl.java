@@ -51,7 +51,19 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
-		// TODO Auto-generated method stub
+		
+		String sql = "UPDATE produto SET nome = ?, descricao = ?, id_fornecedor = ?, valor_venda = ?, valor_compra = ?"+
+		        "WHERE id = ? VALUES(?,?,?,?,?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, prod.getNome());
+		ps.setString(2, prod.getDescricao());
+		ps.setInt(3, prod.getId_fornecedor());
+		ps.setInt(4, prod.getValor_venda());
+		ps.setInt(5, prod.getValor_compra());
+		
+		ps.execute();
+		ps.close();
 		
 	}
 
@@ -131,7 +143,14 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public void atualizaLote(Lote lot) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE lote SET data_validade = ?"+
+		        "WHERE id = ? VALUES(?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setDate(1, lot.getData_validade());
+
+		ps.execute();
+		ps.close();
 		
 	}
 
@@ -168,7 +187,15 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public void atualizaLoteProduto(LoteProduto lotProd) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE lote_produto SET idProduto = ?, idLote = ?"+
+		        "WHERE id = ? VALUES(?,?)";
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setInt(1, lotProd.getIdProduto());
+		ps.setInt(2, lotProd.getIdLote());
+
+		ps.execute();
+		ps.close();
 		
 	}
 

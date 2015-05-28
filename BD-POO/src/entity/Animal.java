@@ -8,6 +8,7 @@ public class Animal {
 	private String rga;
 	private String nome;
 	private String raca;
+	private String sexo;
 	private Especie especie;
 	private String cor;
 	
@@ -46,6 +47,12 @@ public class Animal {
 	}
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 }

@@ -171,14 +171,14 @@ public class FrmCliente extends MouseAdapter {
 				("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGravar.setVisible(false);
-		btnGravar.setBounds(495, 531, 96, 31);
+		btnGravar.setBounds(524, 531, 96, 31);
 		panPrincipal.add(btnGravar);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(285, 531, 96, 31);
+		btnLimpar.setBounds(314, 531, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipal.add(btnLimpar);
 		
@@ -186,7 +186,7 @@ public class FrmCliente extends MouseAdapter {
 		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(83, 531, 96, 31);
+		btnVoltar.setBounds(112, 531, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipal.add(btnVoltar);
 		

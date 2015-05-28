@@ -36,8 +36,8 @@ public class CtrlFuncionario {
 		pDao = new PessoaDaoImpl();
 		
 		try {
-			pDao.excluiPessoa(f);
 			fDao.excluirFuncionario(f);
+			pDao.excluiPessoa(f);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
 					"Erro", JOptionPane.ERROR_MESSAGE);

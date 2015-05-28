@@ -39,7 +39,7 @@ private Connection c;
 	public void atualizaPessoa(Pessoa pes) throws SQLException {
 		String query = "update pessoa set "
 				+ "idTipo = ?"
-				+ "where id = ?";
+				+ "where idPessoa = ?";
 				
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, pes.getIdTipo() );
@@ -52,10 +52,10 @@ private Connection c;
 	@Override
 	public void excluiPessoa(Pessoa pes) throws SQLException {
 		String sql = "delete pessoa "
-				+ "where idTipo = ?";
+				+ "where idPessoa = ?";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
-		ps.setInt(1, pes.getIdTipo() );
+		ps.setInt(1, pes.getId() );
 		ps.execute();
 		ps.close();
 		

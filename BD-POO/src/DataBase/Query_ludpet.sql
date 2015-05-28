@@ -1,3 +1,10 @@
+insert into cliente (id, nome, logradouro, numero, bairro, telefone) values
+	(10, 'Pedro', 'Rua da boa vista', 400, 'mooca', 12122334)
+
+
+
+
+
 create database ludpet
 
 use ludpet

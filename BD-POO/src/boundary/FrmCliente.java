@@ -76,7 +76,7 @@ public class FrmCliente extends MouseAdapter {
 		scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
 		scrollPane.setVisible(false);
-		scrollPane.setBounds(10, 113, 717, 186);
+		scrollPane.setBounds(10, 112, 717, 186);
 		panPrincipal.add(scrollPane);
 		
 		lblLogradouro = new JLabel("Logradouro:");
@@ -111,7 +111,7 @@ public class FrmCliente extends MouseAdapter {
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(112, 11, 426, 79);
+		panel.setBounds(160, 11, 426, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -199,11 +199,11 @@ public class FrmCliente extends MouseAdapter {
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource
 				("/img/LogoLudpet.png")));
-		lblLogo.setBounds(45, 154, 546, 199);
+		lblLogo.setBounds(106, 154, 546, 199);
 		panPrincipal.add(lblLogo);
 		
 		
-		janela.setSize(753,624);
+		janela.setSize(746,624);
 		janela.setContentPane( panPrincipal);
 		
 		txtNumero = new TratamentoTextFields(8);

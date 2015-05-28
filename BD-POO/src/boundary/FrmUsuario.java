@@ -254,6 +254,9 @@ public class FrmUsuario implements ActionListener{
 			limpaCampos();
 		}
 		
+		table.invalidate();
+		table.revalidate();
+		
 	}
 	
 	private void limpaCampos() {

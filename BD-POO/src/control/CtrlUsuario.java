@@ -18,14 +18,12 @@ public class CtrlUsuario implements TableModel{
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 
 	@Override
-	public String getColumnName(int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getColumnName(int coluna) {
+		return nomes[coluna];
 	}
 
 	@Override
@@ -35,7 +33,6 @@ public class CtrlUsuario implements TableModel{
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

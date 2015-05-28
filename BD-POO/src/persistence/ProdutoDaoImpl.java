@@ -52,8 +52,12 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
 		
-		String sql = "UPDATE produto SET nome = ?, descricao = ?, id_fornecedor = ?, valor_venda = ?, valor_compra = ?"+
-		        "WHERE id = ? VALUES(?,?,?,?,?)";
+		String sql = "UPDATE produto SET nome = ?, "
+				+ "descricao = ?, "
+				+ "id_fornecedor = ?, "
+				+ "valor_venda = ?, "
+				+ "valor_compra = ? "+
+		        "WHERE id = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		
 		ps.setString(1, prod.getNome());

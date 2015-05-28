@@ -43,7 +43,7 @@ public class ClienteDaoImpl implements ClienteDao{
 				+ "logradouro = ?,"
 				+ "numero = ?,"
 				+ "bairro = ?,"
-				+ "telefone = ?"
+				+ "telefone = ? "
 				+ "where id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt( 1, c.getId() );
@@ -83,6 +83,7 @@ public class ClienteDaoImpl implements ClienteDao{
 			c.setNome( rs.getString("nome") );
 			c.setLogradouro( rs.getString("logradouro") );
 			c.setNumero( rs.getInt("numero") );
+			c.setBairro( rs.getString("bairro") );
 			c.setTelefone( rs.getInt("telefone") );
 			lista.add( c );
 		}

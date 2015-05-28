@@ -264,7 +264,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.atualiza(f);
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			//buscarDadosTabelaPorNome(modelo);
+//			buscarDadosTabelaPorNome(modelo);
 		}else if("Incluir".equalsIgnoreCase(cmd)){
 			f.setIdTipo(4);
 			f.setNome(txtNome.getText());
@@ -276,7 +276,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.excluir(f);
 			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			//buscarDadosTabelaPorNome(modelo);
+//			buscarDadosTabelaPorNome(modelo);
 		}
 		limpaCampos();
 	}

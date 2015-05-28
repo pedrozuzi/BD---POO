@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlUsuario;
 
 import java.awt.Color;
 
@@ -55,8 +56,8 @@ public class FrmUsuario implements ActionListener{
 	private JButton btnLimpar;
 	private JButton btnGravar;
 	private JLabel lblDadosObrigatorios;
-	private JLabel lblLogoLudPet;
-	
+//	private JLabel lblLogoLudPet;
+	private CtrlUsuario control;
 	
 	public FrmUsuario() {
 
@@ -113,7 +114,7 @@ public class FrmUsuario implements ActionListener{
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable(control);
 		scrollPane.setViewportView(table);
 		
 		panelFuncionario = new JPanel();

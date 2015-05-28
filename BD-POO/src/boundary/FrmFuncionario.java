@@ -55,7 +55,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JButton btnAlterar;
 	private JLabel lblRemover;
 	private JButton btnRemover;
-	private JLabel lblPesquisar;
 	private JLabel lblNome;
 	private JLabel lblCpf;
 	private JLabel lblSalario;
@@ -63,7 +62,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JButton btnVoltar;
 	private JButton btnLimpar;
 	private JButton btnGravar;
-	private JButton btnPesquisar;
 	private JTextField txtTelefone;
 	private JLabel lblTelefone;
 	private JScrollPane scrollPane;
@@ -78,6 +76,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private JPanel panelInformacao;
+	private int id;
 	
 	public FrmFuncionario() {
 	
@@ -92,7 +91,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panel.setForeground(Color.WHITE);
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(64, 11, 426, 79);
+		panel.setBounds(123, 28, 328, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -128,85 +127,75 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblRemover.setBounds(242, 54, 39, 19);
 		panel.add(lblRemover);
 		
-		lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPesquisar.setBounds(336, 54, 59, 19);
-		panel.add(lblPesquisar);
-		
-		btnPesquisar = new JButton("");
-		btnPesquisar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/View.png")));
-		btnPesquisar.setBounds(326, 11, 69, 41);
-		panel.add(btnPesquisar);
-		
 		table = new JTable();
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 101, 556, 153);
+		scrollPane.setBounds(10, 118, 556, 153);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
 		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNome.setBounds(33, 290, 68, 14);
+		lblNome.setBounds(33, 300, 68, 14);
 		lblNome.setVisible(false);
 		panPrincipal.add(lblNome);
 		
 		lblCpf = new JLabel("CPF : *");
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCpf.setBounds(33, 322, 60, 14);
+		lblCpf.setBounds(33, 340, 60, 14);
 		lblCpf.setVisible(false);
 		panPrincipal.add(lblCpf);
 		
 		lblSalario = new JLabel("Sal\u00E1rio : *");
 		lblSalario.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSalario.setBounds(33, 360, 68, 17);
+		lblSalario.setBounds(33, 380, 68, 17);
 		lblSalario.setVisible(false);
 		panPrincipal.add(lblSalario);
 		
 		lblCargo = new JLabel("Cargo : *");
 		lblCargo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCargo.setBounds(33, 438, 68, 17);
+		lblCargo.setBounds(33, 466, 68, 17);
 		lblCargo.setVisible(false);
 		panPrincipal.add(lblCargo);
 		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(33, 496, 96, 31);
+		btnVoltar.setBounds(33, 523, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipal.add(btnVoltar);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(240, 496, 96, 31);
+		btnLimpar.setBounds(243, 523, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipal.add(btnLimpar);
 		
 		btnGravar = new JButton("Gravar");
 		btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnGravar.setBounds(425, 496, 103, 31);
+		btnGravar.setBounds(429, 523, 103, 31);
 		btnGravar.setVisible(false);
 		panPrincipal.add(btnGravar);
 			
 		txtNome = new TratamentoTextFields();
 		txtNome.setColumns(10);
 		txtNome.setBackground(SystemColor.info);
-		txtNome.setBounds(123, 288, 182, 22);
+		txtNome.setBounds(123, 298, 182, 22);
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
 		
 		txtCpf = new TratamentoTextFields(11);
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.info);
-		txtCpf.setBounds(123, 320, 182, 22);
+		txtCpf.setBounds(123, 338, 182, 22);
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);
 		
 		txtSalario = new JTextField();
 		txtSalario.setColumns(10);
 		txtSalario.setBackground(SystemColor.info);
-		txtSalario.setBounds(123, 359, 182, 22);
+		txtSalario.setBounds(123, 379, 182, 22);
 		txtSalario.setVisible(false);
 		panPrincipal.add(txtSalario);
 		
@@ -217,13 +206,13 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		lblTelefone = new JLabel("Telefone : *\r\n");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTelefone.setBounds(33, 402, 89, 14);
+		lblTelefone.setBounds(33, 422, 89, 14);
 		lblTelefone.setVisible(false);
 		panPrincipal.add(lblTelefone);
 		
 		txtTelefone = new TratamentoTextFields(9);
 		txtTelefone.setBackground(SystemColor.info);
-		txtTelefone.setBounds(123, 401, 128, 20);
+		txtTelefone.setBounds(123, 421, 128, 20);
 		txtTelefone.setVisible(false);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
@@ -233,7 +222,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		rdbtnAdministrador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAdministrador.setBackground(Color.WHITE);
-		rdbtnAdministrador.setBounds(124, 436, 109, 23);
+		rdbtnAdministrador.setBounds(124, 464, 109, 23);
 		panPrincipal.add(rdbtnAdministrador);
 		
 		rdbtnAtendente = new JRadioButton("Atendente");
@@ -241,7 +230,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		rdbtnAtendente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnAtendente.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnAtendente.setBackground(Color.WHITE);
-		rdbtnAtendente.setBounds(243, 436, 109, 23);
+		rdbtnAtendente.setBounds(242, 464, 109, 23);
 		panPrincipal.add(rdbtnAtendente);
 		
 		rdbtnBanhistaTosador = new JRadioButton("Banhista/Tosador");
@@ -249,7 +238,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		rdbtnBanhistaTosador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnBanhistaTosador.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rdbtnBanhistaTosador.setBackground(Color.WHITE);
-		rdbtnBanhistaTosador.setBounds(362, 436, 128, 23);
+		rdbtnBanhistaTosador.setBounds(354, 464, 128, 23);
 		panPrincipal.add(rdbtnBanhistaTosador);
 		
 		bg = new ButtonGroup();
@@ -260,27 +249,26 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setVisible(false);
 		btnPesquisarNome.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniLupa.png")));
-		btnPesquisarNome.setBounds(315, 287, 40, 23);
+		btnPesquisarNome.setBounds(312, 297, 40, 23);
 		panPrincipal.add(btnPesquisarNome);
 		
 		lblDadoObrigatorio = new JLabel("* Dados obrigat\u00F3rios");
 		lblDadoObrigatorio.setVisible(false);
 		lblDadoObrigatorio.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDadoObrigatorio.setBounds(410, 470, 128, 14);
+		lblDadoObrigatorio.setBounds(404, 498, 128, 14);
 		panPrincipal.add(lblDadoObrigatorio);
 		
 		janela.setContentPane( panPrincipal);
 		
 		panelInformacao = new JPanel();
-		panelInformacao.setBounds(0, 541, 576, 21);
+		panelInformacao.setBounds(0, 565, 576, 21);
 		panPrincipal.add(panelInformacao);
 		
-		janela.setSize(582,600);
+		janela.setSize(582,625);
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
-		btnPesquisar.addActionListener(this);
 		btnRemover.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
@@ -356,6 +344,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
 		modelo.setNumRows(0);
+		Funcionario f = new Funcionario();
 		
 		
 		if(btnIncluir.equals(acao)){
@@ -379,19 +368,11 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Alterar");
-		}else if(btnPesquisar.equals(acao)){
-			limpaCampos();
-			montarTela(2);
-			btnGravar.setText("Gravar");
-			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
-			btnGravar.setEnabled(false);
-			btnGravar.setActionCommand("Pesquisar");
 		}
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
 			if( !validaCampos() ){
 				ctrlFunc = new CtrlFuncionario();
-				Funcionario f = new Funcionario();
 				f.setNome( txtNome.getText() );
 				f.setCpf( txtCpf.getText() );
 				f.setSalario( Double.parseDouble(txtSalario.getText()) );
@@ -416,17 +397,18 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				JOptionPane.showMessageDialog(null, "Sem dados para processar",
 						"Erro", JOptionPane.QUESTION_MESSAGE);
 			}else{
-				System.out.println("Remover Funcionario");
+				f.setId( id );
+				ctrlFunc.remover(f);
+				limpaCampos();
 			}
 		}else if("Alterar".equalsIgnoreCase(cmd)){
 			if(txtNome.getText().equals("")){
 				JOptionPane.showMessageDialog(null, "Sem dados para processar",
 						"Erro", JOptionPane.QUESTION_MESSAGE);
 			}else{
-				System.out.println("Remover Funcionario");
+				f.setId(id);
+				f.setNome( txtNome.getText() );
 			}
-		}else if("Pesquisar".equalsIgnoreCase(cmd)){
-			System.out.println("Gravar pesquisando");
 		}
 		
 		if(btnVoltar.equals(acao)){
@@ -513,6 +495,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
 		
+		id = lista.get(linha).getId();
 		for (Funcionario f : lista) {
 			if(valores[0].equals(f.getNome())){
 				txtNome.setText(String.valueOf(valores[0]));

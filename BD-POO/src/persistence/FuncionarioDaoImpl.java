@@ -68,7 +68,6 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, func.getId());
 		ps.execute();
-//		System.out.println("Funcionario removido com sucesso");
 		ps.close();
 	}
 	

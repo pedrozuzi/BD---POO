@@ -30,6 +30,28 @@ public class CtrlFuncionario {
 		}
 	}
 	
+	public void remover(Funcionario f){
+		fDao = new FuncionarioDaoImpl();
+		
+		try {
+			fDao.excluirFuncionario(f);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void alterar(Funcionario f){
+		fDao = new FuncionarioDaoImpl();
+		
+		try {
+			fDao.atualizarFuncionario(f);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	public List<Funcionario> pesquisarFuncionario( String nome ){
 		List<Funcionario> lista = new ArrayList<Funcionario>();
 		fDao = new FuncionarioDaoImpl();

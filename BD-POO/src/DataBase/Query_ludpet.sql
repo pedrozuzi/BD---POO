@@ -192,3 +192,9 @@ select * from lote
 
 SELECT IDENT_CURRENT('produto');
 SELECT IDENT_CURRENT('lote');
+
+
+select nome as nome, logradouro + ', ' + cast(numero as varchar(9))
+	+ ', ' + bairro as endereço_completo, telefone
+	from cliente
+	order by nome

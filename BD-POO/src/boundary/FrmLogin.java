@@ -15,9 +15,9 @@ import javax.swing.JButton;
 
 import control.ConfigTelas;
 import control.CtrlLogin;
-import entity.Login;
+import entity.Usuario;
 
-public class FrmLogin implements ConfigTelas{
+public class FrmLogin {
 
 	private JFrame janela = new JFrame("Realizar Login");
 	private JTextField txtUsuario;
@@ -75,10 +75,10 @@ public class FrmLogin implements ConfigTelas{
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLogar.addActionListener(e -> {
-			Login l = new Login();
-			l.setUsuario(txtUsuario.getText());
-			l.setSenha(new String (pwdSenha.getPassword()));
-			controlLogin.realizarLogin(l);
+			Usuario u = new Usuario();
+			u.setNome(txtUsuario.getText());
+			u.setSenha(new String (pwdSenha.getPassword()));
+			controlLogin.realizarLogin(u);
 		});
 	}
 	public static void main(String[] args) {

@@ -47,11 +47,11 @@ telefone int not null
 primary key (id),
 foreign key(id) references pessoa(idPessoa))
 
-CREATE TABLE logins(
+CREATE TABLE usuario(
 id int not null,
 username varchar(10) unique,
 passwor varchar(10),
---primary key(username),
+primary key(username),
 foreign key(id) references funcionario(id))
 
 create table fornecedor(

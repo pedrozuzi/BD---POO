@@ -5,8 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import entity.Login;
+
+import entity.Usuario;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -16,7 +19,7 @@ public class FrmPrincipal {
 	private JButton btnRealizarVenda;
 	private JPanel panPrincipal;
 	private JPanel panel;
-	private Login login;
+	private Usuario usuario;
 	private JButton btnRealizarServico;
 	private JButton btnRelatorio;
 	private JButton btnCadastros;

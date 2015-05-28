@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
-import entity.Login;
+import entity.Usuario;
 
 public class CtrlLogin {
 	
@@ -15,7 +15,7 @@ public class CtrlLogin {
 		c = gc.getConnection();
 	}
 	
-	public void realizarLogin(Login l) {
+	public void realizarLogin(Usuario l) {
 		System.out.println(l.getSenha());
 		//TODO
 	}

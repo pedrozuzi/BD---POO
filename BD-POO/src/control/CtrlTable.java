@@ -6,22 +6,17 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-public class CtrlUsuario<T> implements TableModel{
+public class CtrlTable<T> implements TableModel{
 
 	private String[] nomes = {"Nome", "CPF","Cargo"};
 	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
-	private JTable tabela;
-	
-//	public CtrlUsuario(JTable tabela) {
-//		this.tabela = tabela;
-//	}
-	
+
 	// campos = {"nome", "cpf", "cargo"}
 	
 	private Class<T> tipo;
 	private String[] campos;
 	
-	public CtrlUsuario(Class<T> tipo, String[] campos) { 
+	public CtrlTable(Class<T> tipo, String[] campos) { 
 		this.tipo = tipo;
 		this.campos = campos;
 		for (String campo : campos) { 
@@ -29,7 +24,7 @@ public class CtrlUsuario<T> implements TableModel{
 			for (Method m : metodos) { 
 				if (m.getName().equals( "get" + campo )) { 
 					Class<?> classe = m.getReturnType();
-					Object valor = m.invoke( instanciaDoObjeto , new Object[] {});
+					Object valor = m.invoke( /*instancia do objeto*/, new Object[] {});
 				}
 			}
 		}
@@ -68,19 +63,16 @@ public class CtrlUsuario<T> implements TableModel{
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void addTableModelListener(TableModelListener l) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void removeTableModelListener(TableModelListener l) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

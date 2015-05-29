@@ -68,13 +68,15 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblDadosObrigatorios;
 	private JLabel lblLogoLudPet;
 	private CtrlUsuario control;
-	private DefaultTableModel modelo;
+//	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private int id;
 	private CtrlFuncionario ctrlFunc;
 	
 	public FrmUsuario() {
 
+		
+		control = new CtrlUsuario();
 		janela = new JFrame("Usuario");
 		janela.setTitle("Usu\u00E1rio");
 		panelPrincipal = new JPanel();
@@ -250,29 +252,29 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		btnLimpar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 		
-		modelo = montarTabela();
+//		modelo = montarTabela();
 		
 	}
 	
-	private DefaultTableModel montarTabela() {
-		String[] coluna = new String[3];
-		coluna[0] = "Nome";
-		coluna[1] = "CPF";
-		coluna[2] = "Cargo";
-		
-		modelo = new CtrlTabela(new Object[][] {}, coluna);
-		
-		table.setModel(modelo);
-		table.addMouseListener(this);
-		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(50);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
-		
-		return modelo;
-	}
+//	private DefaultTableModel montarTabela() {
+//		String[] coluna = new String[3];
+//		coluna[0] = "Nome";
+//		coluna[1] = "CPF";
+//		coluna[2] = "Cargo";
+//		
+//		modelo = new CtrlTabela(new Object[][] {}, coluna);
+//		
+//		table.setModel(modelo);
+//		table.addMouseListener(this);
+//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(50);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(50);
+//		table.setVisible(false);
+//		scrollPane.setViewportView(table);
+//		
+//		return modelo;
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -296,9 +298,8 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		}
 		
 		if(acao.equalsIgnoreCase("PesquisarNome")){
-			modelo.setNumRows(0);
-			buscarDadosDaTabela(modelo);
-			
+//			modelo.setNumRows(0);
+//			buscarDadosDaTabela(modelo);
 		}
 		
 		if(acao.equalsIgnoreCase("Gravar")){

@@ -1,19 +1,43 @@
 package control;
 
-import java.sql.Date;
+import java.lang.reflect.Method;
 
+import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class CtrlUsuario implements TableModel{
+public class CtrlUsuario<T> implements TableModel{
 
 	private String[] nomes = {"Nome", "CPF","Cargo"};
 	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
+	private JTable tabela;
 	
+//	public CtrlUsuario(JTable tabela) {
+//		this.tabela = tabela;
+//	}
+	
+	// campos = {"nome", "cpf", "cargo"}
+	
+	private Class<T> tipo;
+	private String[] campos;
+	
+	public CtrlUsuario(Class<T> tipo, String[] campos) { 
+		this.tipo = tipo;
+		this.campos = campos;
+		for (String campo : campos) { 
+			Method[] metodos = tipo.getDeclaredMethods();
+			for (Method m : metodos) { 
+				if (m.getName().equals( "get" + campo )) { 
+					Class<?> classe = m.getReturnType();
+					Object valor = m.invoke( instanciaDoObjeto , new Object[] {});
+				}
+			}
+		}
+	}
+	 
 	@Override
 	public int getRowCount() {
-		return 3;
+		return 0;
 	}
 
 	@Override
@@ -23,7 +47,7 @@ public class CtrlUsuario implements TableModel{
 
 	@Override
 	public String getColumnName(int coluna) {
-		return nomes[coluna];
+		return campos[coluna];
 	}
 
 	@Override
@@ -38,8 +62,7 @@ public class CtrlUsuario implements TableModel{
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return nomes[rowIndex];
 	}
 
 	@Override

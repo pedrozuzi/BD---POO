@@ -22,7 +22,8 @@ import javax.swing.JScrollPane;
 
 public class FrmAnimal {
 	
-	private JFrame janela; 
+	private JFrame janelaAnimal;
+	private JFrame janelaBusca;
 	private JPanel panPrincipal;
 	private JPanel panel;
 	private JButton btnIncluir;
@@ -53,8 +54,8 @@ public class FrmAnimal {
 	private JComboBox<String> comboBoxSexo;
 	
 	public FrmAnimal(String nome) {
-		janela = new JFrame();
-		janela.setTitle("Cliente");
+		janelaAnimal = new JFrame();
+		janelaAnimal.setTitle("Cliente");
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
@@ -211,27 +212,34 @@ public class FrmAnimal {
 		panPrincipal.add(textField_1);
 		textField_1.setColumns(10);
 		
-		janela.setSize(627,656);
-		janela.setContentPane( panPrincipal );
-		ConfigTelas.centralizarFrame( janela );
+		janelaAnimal.setSize(627,656);
+		janelaAnimal.setContentPane( panPrincipal );
+		ConfigTelas.centralizarFrame( janelaAnimal );
 		
 		btnLupaPesquisar.addActionListener(l -> {
 			//TODO
+			//btnLupaPesquisar.setEnabled(false);
+				new FrmAnimal();
 		});
 	}
 	
 	public FrmAnimal() {
 		//TODO
-		janela = new JFrame();
-		janela.setTitle("Buscar um Cliente");
+		janelaBusca = new JFrame();
+		janelaBusca.setTitle("Buscar um Cliente");
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		janela.setSize(400,400);
-		janela.setContentPane( panPrincipal );
-		ConfigTelas.telaBuscaCliente(janela);
+		janelaBusca.setSize(400,400);
+		janelaBusca.setContentPane( panPrincipal );
+		ConfigTelas.telaBuscaCliente(janelaBusca);
+		
+//		if ( janelaBusca.getState() == 0){
+//			System.out.println("fechou");
+//		}
+		
 	}
 	
 	public static void main(String[] args) {

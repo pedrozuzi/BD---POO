@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -220,8 +221,20 @@ public class FrmAnimal extends MouseAdapter {
 		modelo = montarTabela();
 		
 		btnLupaPesquisar.addActionListener(l -> {
-				new FrmBuscaCliente();
+			new FrmAnimal(new JDialog(janelaAnimal));
 		});
+	}
+	
+	public FrmAnimal(JDialog jd) {
+		
+		jd.setSize(500,500);
+		jd.setModal(true);
+		jd.setLocationRelativeTo(null);
+		jd.setVisible(true);
+//		jd.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+		
+		
+	
 	}
 	
 	public DefaultTableModel montarTabela () {

@@ -193,7 +193,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);
 		
-		txtSalario = new JTextField();
+		txtSalario = new TratamentoTextFields(8);
 		txtSalario.setColumns(10);
 		txtSalario.setBackground(SystemColor.info);
 		txtSalario.setBounds(123, 379, 182, 22);

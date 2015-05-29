@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+
 import javax.swing.JTextField;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
@@ -38,11 +39,22 @@ public class FrmAnimal {
 	private JTextField txtRga;
 	private JTextField txtRaca;
 	private JTextField txtCor;
-	private JTextField textField;
 	private JTable table;
+	private JLabel lblCliente;
+	private JTextField textField_1;
+	private JLabel lblEspecie;
+	private JComboBox<String> comboBoxEspecie;
+	private JScrollPane scrollPane;
+	private JLabel lblRaca;
+	private JLabel lblCor;
+	private JLabel lblSexo;
+	private JLabel lblRga;
+	private FrmAnimal f = null;
+	private JComboBox<String> comboBoxSexo;
 	
-	public FrmAnimal() {
-		janela = new JFrame("Cliente");
+	public FrmAnimal(String nome) {
+		janela = new JFrame();
+		janela.setTitle("Cliente");
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
@@ -101,14 +113,14 @@ public class FrmAnimal {
 				("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGravar.setVisible(false);
-		btnGravar.setBounds(407, 501, 96, 31);
+		btnGravar.setBounds(406, 543, 96, 31);
 		panPrincipal.add(btnGravar);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(248, 501, 96, 31);
+		btnLimpar.setBounds(247, 543, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipal.add(btnLimpar);
 		
@@ -116,82 +128,113 @@ public class FrmAnimal {
 		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(84, 501, 96, 31);
+		btnVoltar.setBounds(83, 543, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipal.add(btnVoltar);
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnLupaPesquisar.setBounds(422, 288, 65, 31);
-		btnLupaPesquisar.setVisible(false);
 		panPrincipal.add(btnLupaPesquisar);
 		
-		janela.setSize(627,602);
-		janela.setContentPane( panPrincipal );
-		
 		txtNome = new JTextField();
-		txtNome.setBounds(156, 299, 238, 20);
+		txtNome.setBounds(155, 341, 238, 20);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblNome = new JLabel("Nome: ");
-		lblNome.setBounds(82, 302, 46, 14);
+		lblNome.setBounds(81, 344, 46, 14);
 		panPrincipal.add(lblNome);
 		
 		txtRga = new JTextField();
-		txtRga.setBounds(156, 340, 128, 20);
+		txtRga.setBounds(155, 382, 128, 20);
 		panPrincipal.add(txtRga);
 		txtRga.setColumns(10);
 		
-		JLabel lblRga = new JLabel("RGA:");
-		lblRga.setBounds(82, 340, 46, 14);
+		lblRga = new JLabel("RGA:");
+		lblRga.setBounds(81, 382, 46, 14);
 		panPrincipal.add(lblRga);
 		
 		txtRaca = new JTextField();
-		txtRaca.setBounds(156, 378, 138, 20);
+		txtRaca.setBounds(155, 420, 138, 20);
 		panPrincipal.add(txtRaca);
 		txtRaca.setColumns(10);
 		
-		JLabel lblRaca = new JLabel("Ra\u00E7a:");
-		lblRaca.setBounds(82, 381, 46, 14);
+		lblRaca = new JLabel("Ra\u00E7a:");
+		lblRaca.setBounds(81, 423, 46, 14);
 		panPrincipal.add(lblRaca);
 		
-		JLabel lblCor = new JLabel("Cor:");
-		lblCor.setBounds(314, 381, 46, 14);
+		lblCor = new JLabel("Cor:");
+		lblCor.setBounds(313, 423, 46, 14);
 		panPrincipal.add(lblCor);
 		
 		txtCor = new JTextField();
-		txtCor.setBounds(357, 378, 86, 20);
+		txtCor.setBounds(356, 420, 86, 20);
 		panPrincipal.add(txtCor);
 		txtCor.setColumns(10);
 		
-		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(82, 415, 46, 14);
+		lblSexo = new JLabel("Sexo:");
+		lblSexo.setBounds(81, 457, 46, 14);
 		panPrincipal.add(lblSexo);
 		
-		textField = new JTextField();
-		textField.setBounds(156, 412, 24, 20);
-		panPrincipal.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblEspecie = new JLabel("Esp\u00E9cie:");
-		lblEspecie.setBounds(206, 412, 68, 14);
+		lblEspecie = new JLabel("Esp\u00E9cie:");
+		lblEspecie.setBounds(205, 454, 68, 14);
 		panPrincipal.add(lblEspecie);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(273, 409, 138, 20);
-		panPrincipal.add(comboBox);
+		comboBoxEspecie = new JComboBox<String>();
+		comboBoxEspecie.setBounds(272, 451, 138, 20);
+		comboBoxEspecie.addItem(Especie.CACHORRO.getESPECIE());
+		comboBoxEspecie.addItem(Especie.GATO.getESPECIE());	
+		panPrincipal.add(comboBoxEspecie);
+			
+		comboBoxSexo = new JComboBox<String>();
+		comboBoxSexo.setBounds(127, 454, 38, 20);
+		comboBoxSexo.addItem(SexoAnimal.MACHO.getSEXO());
+		comboBoxSexo.addItem(SexoAnimal.FEMEA.getSEXO());
+		panPrincipal.add(comboBoxSexo);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 138, 601, 124);
 		panPrincipal.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		lblCliente = new JLabel("Cliente: ");
+		lblCliente.setBounds(83, 299, 52, 20);
+		panPrincipal.add(lblCliente);
+		
+		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
+		textField_1.setBounds(155, 299, 238, 20);
+		panPrincipal.add(textField_1);
+		textField_1.setColumns(10);
+		
+		janela.setSize(627,656);
+		janela.setContentPane( panPrincipal );
 		ConfigTelas.centralizarFrame( janela );
+		
+		btnLupaPesquisar.addActionListener(l -> {
+			//TODO
+		});
+	}
+	
+	public FrmAnimal() {
+		//TODO
+		janela = new JFrame();
+		janela.setTitle("Buscar um Cliente");
+		panPrincipal = new JPanel();
+		panPrincipal.setBackground(SystemColor.text);
+		panPrincipal.setForeground(Color.WHITE);
+		panPrincipal.setLayout(null);
+		
+		janela.setSize(400,400);
+		janela.setContentPane( panPrincipal );
+		ConfigTelas.telaBuscaCliente(janela);
 	}
 	
 	public static void main(String[] args) {
-		new FrmAnimal();
+		new FrmAnimal("Cliente");
 	}
 }

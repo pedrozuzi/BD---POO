@@ -15,5 +15,12 @@ public interface ConfigTelas {
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+	
+	static void telaBuscaCliente(JFrame janela){
+		janela.setLocationRelativeTo(null);
+        janela.setResizable(false);
+        janela.setVisible(true);
+        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
 
 }

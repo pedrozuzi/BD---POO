@@ -426,6 +426,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		});
 		
+        
 
 
 
@@ -450,6 +451,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	public static void main(String[] args) {
 		new FrmProduto();
+		
 	}
 	
 	public DefaultTableModel montarTabelaProduto () {

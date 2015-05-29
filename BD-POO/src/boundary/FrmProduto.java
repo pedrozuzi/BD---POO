@@ -73,6 +73,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private CtrlTableProduto controlTable;
 	private CtrlProduto ctrlincluiprod;
 	private List<Produto> lista;
+	private JTable tableLote;
 
 	public FrmProduto() {
 
@@ -172,7 +173,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JPanel panSuperior = new JPanel();
 		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panSuperior.setBounds(20, 86, 741, 170);
+		panSuperior.setBounds(20, 86, 896, 170);
 		panPrincipal.add(panSuperior);
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
@@ -202,14 +203,14 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				.getResource("/img/MiniFoward.png")));
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 721, 134);
+		scrollPane.setBounds(10, 11, 681, 134);
 		panSuperior.add(scrollPane);
 
 		tableProduto = new JTable();
 		
 		scrollPane.setViewportView(tableProduto);
 		//panPrincipal.add(scrollPane);
-		modelo = montarTabela();
+		modelo = montarTabelaProduto();
 		
 		
 
@@ -323,7 +324,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panProduto.add(txtIdFornecedor);
 
 		// configs básicas de janela
-		janela.setSize(801, 624);
+		janela.setSize(942, 624);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -394,6 +395,13 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(701, 11, 185, 134);
+		panSuperior.add(scrollPane_1);
+		
+		tableLote = new JTable();
+		scrollPane_1.setViewportView(tableLote);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -444,7 +452,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		new FrmProduto();
 	}
 	
-	public DefaultTableModel montarTabela () {
+	public DefaultTableModel montarTabelaProduto () {
 		String[] colunas = new String[6];
 		colunas[0] = "ID";
 		colunas[1] = "Nome";
@@ -468,6 +476,17 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		scrollPane.setViewportView(tableProduto);
 		return modelo;
 }
+	
+	public DefaultTableModel montarTabelaLote(){
+		
+		String[] colunas = new String[2];
+		colunas[0] = "Lote";
+		colunas[1] = "Qtde";
+		
+		modelo = new CtrlTabela(new Object[][] {}, colunas);
+		
+		return modelo;
+	}
 	
 	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
 		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
@@ -512,5 +531,4 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 			}
 		}
 	}
-
 }

@@ -72,7 +72,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 				lot.setData_validade(date);
 			} catch (ParseException e1) {
 				e1.printStackTrace();
-			}
+			} 
 
 			try {
 				lotprod.setIdProduto(insereProduto(prod));

@@ -221,17 +221,15 @@ public class FrmAnimal extends MouseAdapter {
 		modelo = montarTabela();
 		
 		btnLupaPesquisar.addActionListener(l -> {
-			new FrmAnimal(new JDialog(janelaAnimal));
+			new FrmAnimal(new JDialog(janelaAnimal, true));
 		});
 	}
 	
 	public FrmAnimal(JDialog jd) {
 		
 		jd.setSize(500,500);
-		jd.setModal(true);
 		jd.setLocationRelativeTo(null);
 		jd.setVisible(true);
-//		jd.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		
 		
 	

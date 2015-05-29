@@ -1,10 +1,3 @@
-insert into cliente (id, nome, logradouro, numero, bairro, telefone) values
-	(10, 'Pedro', 'Rua da boa vista', 400, 'mooca', 12122334)
-
-
-
-
-
 create database ludpet
 
 use ludpet
@@ -82,7 +75,8 @@ id_cliente int not null,
 rga int not null,
 nome varchar(60) not null,
 raca varchar(50) not null,
-especie varchar(50) null,
+especie varchar(50) not null,
+sexo varchar(1) check(sexo='M' or sexo='F') not null,
 cor varchar(50) null
 primary key (id, id_cliente),
 foreign key (id_cliente) references cliente(id))
@@ -201,7 +195,19 @@ SELECT IDENT_CURRENT('produto');
 SELECT IDENT_CURRENT('lote');
 
 
+insert into cliente (id, nome, logradouro, numero, bairro, telefone) values
+	(5, 'Pedro', 'Rua da boa vista', 400, 'mooca', 12122334)
+
+insert into animal (id_cliente, rga, nome, raca, especie, sexo, cor) values
+	(5, 1223344, 'logan', 'husky', 'cachorro', 'M', 'Branco')
+	
 select nome as nome, logradouro + ', ' + cast(numero as varchar(9))
 	+ ', ' + bairro as endereço_completo, telefone
 	from cliente
 	order by nome
+	
+--inner join cliente/animal
+select cli.id as id_cliente, cli.nome, an.id as id_animal, an.nome
+	from cliente cli
+	inner join animal an
+	on cli.id = an.id_cliente	

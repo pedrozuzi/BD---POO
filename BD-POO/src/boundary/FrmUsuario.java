@@ -316,7 +316,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 	}
 	
-	private void buscarDadosDaTabela(DefaultTableModel modelo2) {
+	private void buscarDadosDaTabela(DefaultTableModel modelo) {
 		ctrlFunc = new CtrlFuncionario();
 		
 		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
@@ -325,8 +325,8 @@ public class FrmUsuario implements ActionListener, MouseListener{
 					"Aviso", JOptionPane.INFORMATION_MESSAGE);
 		}else{
 			System.out.println("ENTROU...");
-			habilitarCampos();
 			for (Funcionario f : lista) {
+				System.out.println("ENTROU...2");
 				Object[] linha = new Object[3];
 				linha[0] = f.getNome();
 				linha[1] = f.getCpf();
@@ -340,10 +340,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 				modelo.addRow(linha);
 			} 
 		}
-		
-	}
-
-	private void habilitarCampos() {
 		
 	}
 

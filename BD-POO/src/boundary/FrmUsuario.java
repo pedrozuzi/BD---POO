@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlFuncionario;
 import control.CtrlTabela;
 import control.CtrlUsuario;
 
@@ -25,13 +26,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JMenuBar;
+
+import entity.Funcionario;
 
 public class FrmUsuario implements ActionListener, MouseListener{
 
@@ -64,6 +69,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblLogoLudPet;
 	private CtrlUsuario control;
 	private DefaultTableModel modelo;
+	private List<Funcionario> lista;
+	private int id;
+	private CtrlFuncionario ctrlFunc;
 	
 	public FrmUsuario() {
 
@@ -234,18 +242,19 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		janela.setSize(633, 671);		
 		ConfigTelas.centralizarFrame(janela);
 		
-		montarTabela();
-		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
 		btnExcluir.addActionListener(this);
 		btnGravar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnLimpar.addActionListener(this);
+		btnPesquisarNome.addActionListener(this);
+		
+		modelo = montarTabela();
 		
 	}
 	
-	private void montarTabela() {
+	private DefaultTableModel montarTabela() {
 		String[] coluna = new String[3];
 		coluna[0] = "Nome";
 		coluna[1] = "CPF";
@@ -261,12 +270,15 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		table.setVisible(false);
 		scrollPane.setViewportView(table);
+		
+		return modelo;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 		lblLogoLudPet.setVisible(false);
+		modelo.setNumRows(0);
 		montarTela();
 		
 		if(acao.equalsIgnoreCase("Incluir")){
@@ -283,25 +295,58 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			btnGravar.setText("Excluir");
 		}
 		
+		if(acao.equalsIgnoreCase("PesquisarNome")){
+			modelo.setNumRows(0);
+			buscarDadosDaTabela(modelo);
+			
+		}
+		
 		if(acao.equalsIgnoreCase("Gravar")){
 			System.out.println("Gravando...");
 		}else if(acao.equalsIgnoreCase("Mudar")){
 			
 		}else if(acao.equalsIgnoreCase("Deletar")){
 			
-		}
-		
-		if(acao.equalsIgnoreCase("Voltar")){
+		}else if(acao.equalsIgnoreCase("Voltar")){
 			
 		}else if(acao.equalsIgnoreCase("Limpar")){
 			limpaCampos();
 		}
 		
-		table.invalidate();
-		table.revalidate();
 		
 	}
 	
+	private void buscarDadosDaTabela(DefaultTableModel modelo2) {
+		ctrlFunc = new CtrlFuncionario();
+		
+		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
+		if(lista.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+					"Aviso", JOptionPane.INFORMATION_MESSAGE);
+		}else{
+			System.out.println("ENTROU...");
+			habilitarCampos();
+			for (Funcionario f : lista) {
+				Object[] linha = new Object[3];
+				linha[0] = f.getNome();
+				linha[1] = f.getCpf();
+				if( f.getIdTipo() == 1 ){
+					linha[2] = "Administrador";
+				}else if( f.getIdTipo() == 2 ){
+					linha[2] = "Atendente";
+				}else{
+					linha[2] = "Tosador/Banhista";
+				}
+				modelo.addRow(linha);
+			} 
+		}
+		
+	}
+
+	private void habilitarCampos() {
+		
+	}
+
 	private void montarTela() {
 		panelFuncionario.setVisible(true);
 		scrollPane.setVisible(true);
@@ -334,8 +379,21 @@ public class FrmUsuario implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		Object[] valores = new Object[3];
+		int linha = table.getSelectedRow();
+		int coluna = table.getSelectedColumn();
 		
+		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+			valores[coluna] = table.getValueAt(linha, coluna);
+		}
+		
+		id = lista.get(linha).getId();
+		for (Funcionario f : lista) {
+			if(valores[0].equals(f.getNome())){
+				txtNome.setText(String.valueOf(valores[0]));
+				
+			}
+		}
 	}
 
 	@Override

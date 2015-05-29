@@ -22,5 +22,7 @@ public interface ConfigTelas {
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
+	
+
 
 }

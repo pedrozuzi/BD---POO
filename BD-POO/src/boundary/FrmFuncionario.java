@@ -185,7 +185,8 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		txtNome.setVisible(false);
 		panPrincipal.add(txtNome);
 		
-		txtCpf = new TratamentoTextFields(11);
+		txtCpf = new JTextField();
+		txtCpf = TratamentoTextFields.mascaraCpf(txtCpf);
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.info);
 		txtCpf.setBounds(123, 338, 182, 22);
@@ -374,7 +375,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		if("Incluir".equalsIgnoreCase(cmd)){
 			if( !validaCampos() ){
 				f.setNome( txtNome.getText() );
-				f.setCpf( txtCpf.getText() );
+				f.setCpf( txtCpf.getText().replace("-", "").replace(".", ""));
 				f.setSalario( Double.parseDouble(txtSalario.getText()) );
 				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 				if(rdbtnAdministrador.isSelected()){

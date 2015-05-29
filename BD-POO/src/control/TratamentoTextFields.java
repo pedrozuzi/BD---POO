@@ -2,7 +2,11 @@ package control;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public final class TratamentoTextFields extends JTextField{
 	private static final long serialVersionUID = 4693065480438008645L;
@@ -48,6 +52,17 @@ public final class TratamentoTextFields extends JTextField{
 			e.consume();
 			setText(getText().substring(0, getTamanhoMaximo()));
 		}
+	}
+	
+	public static JTextField mascaraCpf(JTextField txtField) {
+		try {
+			MaskFormatter maskCpk = new MaskFormatter("###.###.###-##");
+			txtField = new JFormattedTextField(maskCpk);
+			return txtField;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public int getTamanhoMaximo() {

@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
 import control.ConfigTelas;
 import control.CtrlCliente;
 import control.CtrlTabela;
@@ -39,8 +37,6 @@ public class FrmCliente extends MouseAdapter {
 	private JButton btnAlterar;
 	private JLabel lblAlterar;
 	private JLabel lblExcluir;
-	private JLabel lblPesquisar;
-	private JButton btnPesquisar;
 	private JButton btnExcluir;
 	private JLabel lblLogo;
 	private JTextField txtNome;
@@ -111,17 +107,17 @@ public class FrmCliente extends MouseAdapter {
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(160, 11, 426, 79);
+		panel.setBounds(186, 11, 343, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
+		btnIncluir.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+				("/img/Insert.png")));
 		btnIncluir.setBounds(49, 11, 69, 41);
 		btnIncluir.setVisible(true);
 		panel.add(btnIncluir);
 		
 		lblIncluir = new JLabel("(F2) Incluir");
-		btnIncluir.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-				("/img/Insert.png")));
 		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblIncluir.setVisible(true);
 		lblIncluir.setBounds(54, 54, 69, 19);
@@ -152,19 +148,6 @@ public class FrmCliente extends MouseAdapter {
 		lblExcluir.setVisible(true);
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panel.add(lblExcluir);
-		
-		lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblPesquisar.setVisible(true);
-		lblPesquisar.setBounds(336, 53, 59, 19);
-		panel.add(lblPesquisar);
-		
-		btnPesquisar = new JButton("");
-		btnPesquisar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-				("/img/View.png")));
-		btnPesquisar.setVisible(true);
-		btnPesquisar.setBounds(326, 11, 69, 41);
-		panel.add(btnPesquisar);
 		
 		btnGravar = new JButton("Gravar");
 		btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
@@ -265,7 +248,7 @@ public class FrmCliente extends MouseAdapter {
 					("/img/MiniSalvar.png")));
 			btnGravar.setText("Alterar");
 			btnGravar.setActionCommand("Alterar");
-			telaAlterarExcluirPesquisarFornecedor();
+			telaAlterarExcluirFornecedor();
 		});
 		
 		btnExcluir.addActionListener(l -> {
@@ -274,13 +257,7 @@ public class FrmCliente extends MouseAdapter {
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/trash.png")));
 			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirPesquisarFornecedor();
-		});
-		
-		btnPesquisar.addActionListener(e -> {
-			btnLupaPesquisar.setVisible(true);
-			btnGravar.setEnabled(false);
-			telaAlterarExcluirPesquisarFornecedor();
+			telaAlterarExcluirFornecedor();
 		});
 		
 		btnGravar.addActionListener(e -> {
@@ -351,7 +328,7 @@ public class FrmCliente extends MouseAdapter {
 		table.setVisible(false);
 	}
 	
-	private void telaAlterarExcluirPesquisarFornecedor() {
+	private void telaAlterarExcluirFornecedor() {
 		lblLogo.setVisible(false);
 		btnLupaPesquisar.setVisible(true);
 		txtNome.setVisible(true);

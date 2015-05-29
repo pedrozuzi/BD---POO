@@ -35,7 +35,6 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JMenuBar;
 
 import entity.Funcionario;
 
@@ -330,6 +329,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 				System.out.println("ENTROU...2");
 				Object[] linha = new Object[3];
 				linha[0] = f.getNome();
+				System.out.println(f.getNome());
 				linha[1] = f.getCpf();
 				if( f.getIdTipo() == 1 ){
 					linha[2] = "Administrador";

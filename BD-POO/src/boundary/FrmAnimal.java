@@ -230,8 +230,7 @@ public class FrmAnimal extends MouseAdapter {
 		jd.setSize(500,500);
 		jd.setLocationRelativeTo(null);
 		jd.setVisible(true);
-		
-		
+				
 	
 	}
 	

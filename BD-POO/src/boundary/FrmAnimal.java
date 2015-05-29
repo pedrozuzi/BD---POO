@@ -3,6 +3,7 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,19 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import control.ConfigTelas;
+import control.CtrlTabela;
 
 import javax.swing.JTextField;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-public class FrmAnimal {
+public class FrmAnimal extends MouseAdapter {
 	
 	private JFrame janelaAnimal;
-	private JFrame janelaBusca;
 	private JPanel panPrincipal;
 	private JPanel panel;
 	private JButton btnIncluir;
@@ -50,10 +51,10 @@ public class FrmAnimal {
 	private JLabel lblCor;
 	private JLabel lblSexo;
 	private JLabel lblRga;
-	private FrmAnimal f = null;
 	private JComboBox<String> comboBoxSexo;
+	private DefaultTableModel modelo;
 	
-	public FrmAnimal(String nome) {
+	public FrmAnimal(int idAnimal) {
 		janelaAnimal = new JFrame();
 		janelaAnimal.setTitle("Cliente");
 		panPrincipal = new JPanel();
@@ -216,33 +217,34 @@ public class FrmAnimal {
 		janelaAnimal.setContentPane( panPrincipal );
 		ConfigTelas.centralizarFrame( janelaAnimal );
 		
+		modelo = montarTabela();
+		
 		btnLupaPesquisar.addActionListener(l -> {
-			//TODO
-			//btnLupaPesquisar.setEnabled(false);
-				new FrmAnimal();
+				new FrmBuscaCliente();
 		});
 	}
 	
-	public FrmAnimal() {
-		//TODO
-		janelaBusca = new JFrame();
-		janelaBusca.setTitle("Buscar um Cliente");
-		panPrincipal = new JPanel();
-		panPrincipal.setBackground(SystemColor.text);
-		panPrincipal.setForeground(Color.WHITE);
-		panPrincipal.setLayout(null);
+	public DefaultTableModel montarTabela () {
+		String[] colunas = new String[4];
+		colunas[0] = "Nome";
+		colunas[1] = "Raça";
+		colunas[2] = "Sexo";
+		colunas[3] = "Espécie";
 		
-		janelaBusca.setSize(400,400);
-		janelaBusca.setContentPane( panPrincipal );
-		ConfigTelas.telaBuscaCliente(janelaBusca);
-		
-//		if ( janelaBusca.getState() == 0){
-//			System.out.println("fechou");
-//		}
-		
-	}
-	
+		modelo = new CtrlTabela(new Object[][] {}, colunas);
+
+		table.setModel(modelo);
+		table.addMouseListener(this);
+		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		scrollPane.setViewportView(table);
+		return modelo;
+}
+
 	public static void main(String[] args) {
-		new FrmAnimal("Cliente");
+		int idAnimal = 0;
+		new FrmAnimal(idAnimal);
 	}
 }

@@ -4,11 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlTabela;
 import control.CtrlUsuario;
 
 import java.awt.Color;
 
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,6 +23,8 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -28,7 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JMenuBar;
 
-public class FrmUsuario implements ActionListener{
+public class FrmUsuario implements ActionListener, MouseListener{
 
 	private JFrame janela;
 	private JPanel panelPrincipal;
@@ -58,6 +63,7 @@ public class FrmUsuario implements ActionListener{
 	private JLabel lblDadosObrigatorios;
 //	private JLabel lblLogoLudPet;
 	private CtrlUsuario control;
+	private DefaultTableModel modelo;
 	
 	public FrmUsuario() {
 
@@ -110,12 +116,15 @@ public class FrmUsuario implements ActionListener{
 		lblExcluir.setBounds(242, 54, 39, 19);
 		panelAcoes.add(lblExcluir);
 		
+		table = new JTable(control);
 		scrollPane = new JScrollPane();
+		scrollPane.setViewportView(table);
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
 		
-		table = new JTable(control);
-		scrollPane.setViewportView(table);
+		table.setBorder(new LineBorder(Color.black));
+		table.setGridColor(Color.black);
+		table.setShowGrid(true);
 		
 		panelFuncionario = new JPanel();
 		panelFuncionario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Funcionario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -212,6 +221,8 @@ public class FrmUsuario implements ActionListener{
 		janela.setSize(633, 671);		
 		ConfigTelas.centralizarFrame(janela);
 		
+		montarTabela();
+		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
 		btnExcluir.addActionListener(this);
@@ -221,6 +232,24 @@ public class FrmUsuario implements ActionListener{
 		
 	}
 	
+	private void montarTabela() {
+		String[] coluna = new String[3];
+		coluna[0] = "Nome";
+		coluna[1] = "CPF";
+		coluna[2] = "Cargo";
+		
+		modelo = new CtrlTabela(new Object[][] {}, coluna);
+		
+		table.setModel(modelo);
+		table.addMouseListener(this);
+		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setPreferredWidth(50);
+		table.getColumnModel().getColumn(2).setPreferredWidth(50);
+		table.setVisible(false);
+		scrollPane.setViewportView(table);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
@@ -282,5 +311,35 @@ public class FrmUsuario implements ActionListener{
 
 	public static void main(String[] args) {
 		new FrmUsuario();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

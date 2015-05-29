@@ -27,6 +27,7 @@ public class FrmLogin {
 	private JButton btnLogar;
 	private CtrlLogin controlLogin;
 	private JPanel panPrincipal;
+	private JLabel lblLogoLudPet;
 
 	public FrmLogin(){
 		
@@ -65,10 +66,10 @@ public class FrmLogin {
 		btnLogar.setBounds(257, 236, 83, 28);
 		panPrincipal.add(btnLogar);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/LogoPetShop100.png")));
-		lblNewLabel.setBounds(-39, 0, 417, 129);
-		panPrincipal.add(lblNewLabel);
+		lblLogoLudPet = new JLabel("");
+		lblLogoLudPet.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/LogoPetShop100.png")));
+		lblLogoLudPet.setBounds(-39, 0, 417, 129);
+		panPrincipal.add(lblLogoLudPet);
 		
 		janela.setContentPane( panPrincipal );
 		janela.setSize(398,313);

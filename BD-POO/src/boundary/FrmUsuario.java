@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import control.ConfigTelas;
 import control.CtrlFuncionario;
 import control.CtrlTabela;
-import control.CtrlTable;
+import control.CtrlUsuario;
 
 import java.awt.Color;
 
@@ -68,7 +68,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JButton btnGravar;
 	private JLabel lblDadosObrigatorios;
 	private JLabel lblLogoLudPet;
-	private CtrlTable control;
+	private CtrlUsuario controlUsuario;
 //	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private int id;
@@ -76,8 +76,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	
 	public FrmUsuario() {
 
-		
-		
 		janela = new JFrame("Usuario");
 		janela.setTitle("Usu\u00E1rio");
 		panelPrincipal = new JPanel();
@@ -128,8 +126,8 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		panelAcoes.add(lblExcluir);
 		
 		String[] campos = {"Nome", "Cpf","Cargo"};
-		control = new CtrlTable<FrmUsuario>( null , campos);
-		table = new JTable(control);
+		controlUsuario = new CtrlUsuario();
+		table = new JTable(controlUsuario);
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
 		scrollPane.setViewportView(table);

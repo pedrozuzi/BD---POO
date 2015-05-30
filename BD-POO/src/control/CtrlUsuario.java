@@ -4,31 +4,31 @@ import java.lang.reflect.Method;
 
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-public class CtrlTable<T> implements TableModel{
+public class CtrlUsuario implements TableModel{
 
 	private String[] nomes = {"Nome", "CPF","Cargo"};
 	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
-
-	// campos = {"nome", "cpf", "cargo"}
+//  campos = {"nome", "cpf", "cargo"}	
+//	private Class<T> tipo;
+//	private String[] campos;
 	
-	private Class<T> tipo;
-	private String[] campos;
 	
-	public CtrlTable(Class<T> tipo, String[] campos) { 
-		this.tipo = tipo;
-		this.campos = campos;
-		for (String campo : campos) { 
-			Method[] metodos = tipo.getDeclaredMethods();
-			for (Method m : metodos) { 
-				if (m.getName().equals( "get" + campo )) { 
-					Class<?> classe = m.getReturnType();
-					Object valor = m.invoke( /*instancia do objeto*/, new Object[] {});
-				}
-			}
-		}
-	}
+//	public CtrlUsuario(Class<T> tipo, String[] campos) { 
+//		this.tipo = tipo;
+//		this.campos = campos;
+//		for (String campo : campos) { 
+//			Method[] metodos = tipo.getDeclaredMethods();
+//			for (Method m : metodos) { 
+//				if (m.getName().equals( "get" + campo )) { 
+//					Class<?> classe = m.getReturnType();
+//					Object valor = m.invoke( /*instancia do objeto*/, new Object[] {});
+//				}
+//			}
+//		}
+//	}
 	 
 	@Override
 	public int getRowCount() {
@@ -42,7 +42,7 @@ public class CtrlTable<T> implements TableModel{
 
 	@Override
 	public String getColumnName(int coluna) {
-		return campos[coluna];
+		return nomes[coluna];
 	}
 
 	@Override

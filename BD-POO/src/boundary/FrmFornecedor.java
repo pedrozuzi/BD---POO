@@ -5,38 +5,27 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import control.ConfigTelas;
 import control.CtrlFornecedor;
-import control.CtrlTabela;
 import control.CtrlTableFornecedor;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
-
 import javax.swing.JLabel;
-
 import java.awt.Color;
-
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JButton;
-
 import java.awt.Font;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import entity.Fornecedor;
-
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.table.DefaultTableModel;
 
 public class FrmFornecedor extends MouseAdapter{
 	
@@ -64,7 +53,6 @@ public class FrmFornecedor extends MouseAdapter{
 	private CtrlFornecedor control;
 	private CtrlTableFornecedor controlTable;
 	private JButton btnLupaPesquisar;
-	//private DefaultTableModel modelo;
 	private int id;
 	private List<Fornecedor> lista;
 	private ModeloTabela modelo;
@@ -205,7 +193,7 @@ public class FrmFornecedor extends MouseAdapter{
 		scrollPane.getViewport().setBorder(null);
 		scrollPane.getViewport().add(table);
 		scrollPane.setBounds(10, 107, 549, 159);
-		scrollPane.setVisible(true);
+		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
 		//modelo = montarTabela();
@@ -223,6 +211,7 @@ public class FrmFornecedor extends MouseAdapter{
 				lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
 				if (!lista.isEmpty()) {
 					modelo = new ModeloTabela(lista);
+					table.getTableHeader().setReorderingAllowed(false);
 					table.setModel(modelo);
 				}else{
 					JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
@@ -250,6 +239,7 @@ public class FrmFornecedor extends MouseAdapter{
 		});
 		
 		btnIncluir.addActionListener( e -> {
+			scrollPane.setVisible(false);
 			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
@@ -347,8 +337,6 @@ public class FrmFornecedor extends MouseAdapter{
 		btnLimpar.setVisible(true);
 		btnVoltar.setVisible(true);
 		lblLogo.setVisible(false);
-		scrollPane.setVisible(true);
-		table.setVisible(true);
 	}
 	
 	@Override
@@ -363,7 +351,7 @@ public class FrmFornecedor extends MouseAdapter{
 		
 			id = lista.get(linha).getId();
 			txtNome.setText( String.valueOf(valores[0]));
-			txtTelefone.setText(String.valueOf(valores[1])); 
+			txtTelefone.setText(String.valueOf(valores[1]));
 
 	}
 	

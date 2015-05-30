@@ -221,8 +221,14 @@ public class FrmFornecedor extends MouseAdapter{
 			//buscarDadosTabelaPorNome(modelo);
 			try {
 				lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
-				modelo = new ModeloTabela(lista);
-				table.setModel(modelo);
+				if (!lista.isEmpty()) {
+					modelo = new ModeloTabela(lista);
+					table.setModel(modelo);
+				}else{
+					JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			} catch (NullPointerException e1) {
 				System.out.println("NullPointer");
 			} catch (SQLException e2) {
@@ -305,7 +311,7 @@ public class FrmFornecedor extends MouseAdapter{
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.excluir(f);
-			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//table.remove(lista.size()); //apagar Jtable para uma nova consulta
 //			buscarDadosTabelaPorNome(modelo);
 		}
 		limpaCampos();

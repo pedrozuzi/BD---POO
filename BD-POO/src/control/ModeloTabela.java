@@ -69,5 +69,4 @@ public class ModeloTabela extends AbstractTableModel {
 		return "";
 	}
 	
-	
 }

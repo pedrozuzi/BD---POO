@@ -47,7 +47,7 @@ public class CtrlFuncionario extends AbstractTableModel {
 					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		fireTableRowsDeleted(indiceLinha, indiceLinha); 
+//		fireTableRowsDeleted(indiceLinha, indiceLinha); 
 	}
 	
 	public void alterar(Funcionario f){

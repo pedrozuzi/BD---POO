@@ -5,25 +5,22 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import control.ConfigTelas;
 import control.CtrlCliente;
-import control.CtrlTabela;
-import control.CtrlTableCliente;
+import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Cliente;
 
@@ -57,11 +54,10 @@ public class FrmCliente extends MouseAdapter {
 	private JLabel lblLogradouro;
 	private JLabel lblNumero;
 	private JLabel lblBairro;
-	private DefaultTableModel modelo;
 	private List<Cliente> lista;
-	private CtrlTableCliente controlTable;
 	private JTextField txtCpf;
 	private JLabel lblCpf;
+	private ModeloTabela modelo;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -69,13 +65,6 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
-		
-		table = new JTable();
-		scrollPane = new JScrollPane();
-		scrollPane.setViewportView(table);
-		scrollPane.setVisible(false);
-		scrollPane.setBounds(10, 112, 717, 167);
-		panPrincipal.add(scrollPane);
 		
 		lblLogradouro = new JLabel("Logradouro:");
 		lblLogradouro.setFont(new Font("Arial", Font.BOLD, 14));
@@ -187,10 +176,6 @@ public class FrmCliente extends MouseAdapter {
 		lblLogo.setBounds(106, 154, 546, 199);
 		panPrincipal.add(lblLogo);
 		
-		
-		janela.setSize(749,677);
-		janela.setContentPane( panPrincipal);
-		
 		txtNumero = new TratamentoTextFields(8);
 		txtNumero.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNumero.setVisible(false);
@@ -242,9 +227,25 @@ public class FrmCliente extends MouseAdapter {
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);
 		txtCpf.setColumns(10);
+		
+		table = new JTable();
+		table.addMouseListener(this);
+		table.setBorder(new LineBorder(Color.BLACK));
+		table.setGridColor(Color.BLACK);
+		table.setShowGrid(true);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.getViewport().setBorder(null);
+		scrollPane.getViewport().add(table);
+		scrollPane.setBounds(10, 112, 717, 167);
+		scrollPane.setVisible(false);
+		panPrincipal.add(scrollPane);
+		
+		janela.setSize(749,677);
+		janela.setContentPane( panPrincipal);
 		ConfigTelas.centralizarFrame(janela);
 		
-		modelo = montarTabela();
+		//modelo = montarTabela();
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
 		
@@ -281,8 +282,21 @@ public class FrmCliente extends MouseAdapter {
 		});
 		
 		btnLupaPesquisar.addActionListener(l -> {
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			buscarDadosTabelaPorNome(modelo);
+			control = new CtrlCliente();
+			lista = new ArrayList<Cliente>();
+			
+			try {
+				lista = control.buscaClientePorNome(txtNome.getText());
+				if (!lista.isEmpty()) {
+					modelo = new ModeloTabela(lista);
+					table.getTableHeader().setReorderingAllowed(false);
+					table.setModel(modelo);
+				}
+			} catch (Exception e1) {
+			}
+			
+			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//buscarDadosTabelaPorNome(modelo);
 			limpaCampos();
 		});
 		
@@ -311,7 +325,7 @@ public class FrmCliente extends MouseAdapter {
 				c.setBairro(txtBairro.getText());
 				c.setTelefone(Integer.parseInt(txtTelefone.getText()));
 				control.atualiza(c);
-				modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+				//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 		 }else if("Excluir".equalsIgnoreCase(cmd)){
 				c.setId(id);
 				c.setNome(txtNome.getText());
@@ -321,7 +335,7 @@ public class FrmCliente extends MouseAdapter {
 				c.setBairro(txtBairro.getText());
 				c.setTelefone(Integer.parseInt(txtTelefone.getText()));
 				control.excluir(c);
-				modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+				//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 		 }
 		 limpaCampos();
 	}
@@ -379,63 +393,63 @@ public class FrmCliente extends MouseAdapter {
 		txtTelefone.setText("");
 	}
 	
-	public DefaultTableModel montarTabela () {
-		String[] colunas = new String[5];
-		colunas[0] = "Nome";
-		colunas[1] = "Logradouro";
-		colunas[2] = "Número";
-		colunas[3] = "Bairro";
-		colunas[4] = "Telefone";
-
-		modelo = new CtrlTabela(new Object[][] {}, colunas);
-
-		table.setModel(modelo);
-		table.addMouseListener(this);
-		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setPreferredWidth(200);
-		table.getColumnModel().getColumn(1).setPreferredWidth(150);
-		table.getColumnModel().getColumn(2).setPreferredWidth(30);
-		table.getColumnModel().getColumn(3).setPreferredWidth(150);
-		table.getColumnModel().getColumn(4).setPreferredWidth(40);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
-		return modelo;
-}
-
-public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-	controlTable = new CtrlCliente(); //instanciado comoa tribulto
-	lista = new ArrayList<Cliente>();
-	
-		if (!txtNome.getText().equals("")) {
-			try {
-				lista = controlTable.buscaClientePorNome(txtNome.getText());
-				if (!lista.isEmpty()) {
-					for (Cliente c : lista) {
-						Object[] linha = new Object[5];
-						linha[0] = c.getNome();
-						linha[1] = c.getLogradouro();
-						linha[2] = c.getNumero();
-						linha[3] = c.getBairro();
-						linha[4] = c.getTelefone();
-						modelo.addRow(linha);
-					} 
-				}else{
-					JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-							"Aviso", JOptionPane.INFORMATION_MESSAGE);
-				}
-				
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}else{
-			JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
-					"Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
+//	public DefaultTableModel montarTabela () {
+//		String[] colunas = new String[5];
+//		colunas[0] = "Nome";
+//		colunas[1] = "Logradouro";
+//		colunas[2] = "Número";
+//		colunas[3] = "Bairro";
+//		colunas[4] = "Telefone";
+//
+//		modelo = new CtrlTabela(new Object[][] {}, colunas);
+//
+//		table.setModel(modelo);
+//		table.addMouseListener(this);
+//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(30);
+//		table.getColumnModel().getColumn(3).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(4).setPreferredWidth(40);
+//		table.setVisible(false);
+//		scrollPane.setViewportView(table);
+//		return modelo;
+//}
+//
+//public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+//	controlTable = new CtrlCliente(); //instanciado comoa tribulto
+//	lista = new ArrayList<Cliente>();
+//	
+//		if (!txtNome.getText().equals("")) {
+//			try {
+//				lista = controlTable.buscaClientePorNome(txtNome.getText());
+//				if (!lista.isEmpty()) {
+//					for (Cliente c : lista) {
+//						Object[] linha = new Object[5];
+//						linha[0] = c.getNome();
+//						linha[1] = c.getLogradouro();
+//						linha[2] = c.getNumero();
+//						linha[3] = c.getBairro();
+//						linha[4] = c.getTelefone();
+//						modelo.addRow(linha);
+//					} 
+//				}else{
+//					JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+//							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//				}
+//				
+//			}catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}else{
+//			JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
+//					"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[5];
+		Object[] valores = new Object[6];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
 		
@@ -445,10 +459,13 @@ public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
 		
 		id = lista.get(linha).getId();
 		txtNome.setText( String.valueOf(valores[0]));
-		txtLogradouro.setText(String.valueOf(valores[1])); 
-		txtNumero.setText(String.valueOf(valores[2]));
-		txtBairro.setText(String.valueOf(valores[3]));
-		txtTelefone.setText(String.valueOf(valores[4]));
+		System.out.println(valores[1]);
+		txtCpf.setText(String.valueOf(valores[1]));
+		txtLogradouro.setText(String.valueOf(valores[2])); 
+		txtNumero.setText(String.valueOf(valores[3]));
+		txtBairro.setText(String.valueOf(valores[4]));
+		txtTelefone.setText(String.valueOf(valores[5]));
+		
 	}
 
 	public static void main(String[] args) {

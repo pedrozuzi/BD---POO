@@ -13,7 +13,7 @@ import persistence.PessoaDaoImpl;
 import entity.Fornecedor;
 import entity.Pessoa;
 
-public class CtrlFornecedor implements CtrlTableFornecedor{
+public class CtrlFornecedor{
 	
 	private FornecedorDao fDao;
 	private PessoaDao pDao;
@@ -50,7 +50,6 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 		}
 	}
 
-	@Override
 	public List<Fornecedor> buscaFornecedorPorNome(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();
 		fDao = new FornecedorDaoImpl();
@@ -63,15 +62,5 @@ public class CtrlFornecedor implements CtrlTableFornecedor{
 		
 		return lista;
 	}
-
-	@Override
-	public Fornecedor consultaFornecedorId(String id) throws SQLException {
-		Fornecedor f = new Fornecedor();
-		fDao = new FornecedorDaoImpl();
-		f = fDao.consultarFornecedor(id);
-		return f;
-	}
 	
-	
-
 }

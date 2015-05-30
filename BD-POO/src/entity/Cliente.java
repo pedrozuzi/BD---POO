@@ -13,11 +13,23 @@ package entity;
  */
 public class Cliente extends Pessoa{
 
+	private String nome;
 	private String logradouro;
 	private int numero;
 	private String bairro;
 	private String cpf;
-
+	private int telefone;
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	@Coluna(nome="Nome", posicao=0)
+	public String getNome() {
+		return nome;
+	}
+	
+	@Coluna(nome="Logradouro", posicao=2)
 	public String getLogradouro() {
 		return logradouro;
 	}
@@ -26,6 +38,7 @@ public class Cliente extends Pessoa{
 		this.logradouro = logradouro;
 	}
 
+	@Coluna(nome="Número", posicao=3)
 	public int getNumero() {
 		return numero;
 	}
@@ -34,6 +47,7 @@ public class Cliente extends Pessoa{
 		this.numero = numero;
 	}
 
+	@Coluna(nome="Bairro", posicao=4)
 	public String getBairro() {
 		return bairro;
 	}
@@ -42,12 +56,21 @@ public class Cliente extends Pessoa{
 		this.bairro = bairro;
 	}
 
+	@Coluna(nome="CPF", posicao=1)
 	public String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+	
+	@Coluna(nome="Telefone", posicao=5)
+	public int getTelefone() {
+		return telefone;
 	}
 
 }

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import control.ConfigTelas;
 import control.CtrlFornecedor;
-import control.CtrlTableFornecedor;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
 import javax.swing.JLabel;
@@ -51,7 +50,6 @@ public class FrmFornecedor extends MouseAdapter{
 	private JButton btnVoltar;
 	private JLabel lblLogo;
 	private CtrlFornecedor control;
-	private CtrlTableFornecedor controlTable;
 	private JButton btnLupaPesquisar;
 	private int id;
 	private List<Fornecedor> lista;
@@ -203,12 +201,12 @@ public class FrmFornecedor extends MouseAdapter{
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
-			controlTable = new CtrlFornecedor();
+			control = new CtrlFornecedor();
 			lista = new ArrayList<Fornecedor>();
 			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			//buscarDadosTabelaPorNome(modelo);
 			try {
-				lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
+				lista = control.buscaFornecedorPorNome(txtNome.getText());
 				if (!lista.isEmpty()) {
 					modelo = new ModeloTabela(lista);
 					table.getTableHeader().setReorderingAllowed(false);

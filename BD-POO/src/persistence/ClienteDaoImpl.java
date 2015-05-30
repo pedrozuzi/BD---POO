@@ -41,6 +41,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	public void atualizarCliente(Cliente c) throws SQLException {
 		String sql = "update cliente set "
 				+ "nome = ?,"
+				+ "cpf = ?,"
 				+ "logradouro = ?,"
 				+ "numero = ?,"
 				+ "bairro = ?,"
@@ -48,11 +49,12 @@ public class ClienteDaoImpl implements ClienteDao{
 				+ "where id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString( 1, c.getNome() );
-		ps.setString( 2, c.getLogradouro() );
-		ps.setInt( 3, c.getNumero() );
-		ps.setString( 4, c.getBairro() );
-		ps.setInt( 5, c.getTelefone() );
-		ps.setInt( 6, c.getId() );
+		ps.setString( 2, c.getCpf() );
+		ps.setString( 3, c.getLogradouro() );
+		ps.setInt( 4, c.getNumero() );
+		ps.setString( 5, c.getBairro() );
+		ps.setInt( 6, c.getTelefone() );
+		ps.setInt( 7, c.getId() );
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Dados atualizados");
 		ps.close();
@@ -82,6 +84,7 @@ public class ClienteDaoImpl implements ClienteDao{
 			Cliente c = new Cliente();
 			c.setId( rs.getInt("id") );
 			c.setNome( rs.getString("nome") );
+			c.setCpf( rs.getString("cpf") );
 			c.setLogradouro( rs.getString("logradouro") );
 			c.setNumero( rs.getInt("numero") );
 			c.setBairro( rs.getString("bairro") );

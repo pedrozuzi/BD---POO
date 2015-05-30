@@ -1,60 +1,73 @@
 package control;
 
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
+import java.lang.reflect.Method;
+import java.util.List;
 
-public class ModeloTabela implements TableModel {
+import javax.swing.table.AbstractTableModel;
+
+import entity.Coluna;
+
+public class ModeloTabela extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
 	
-	Object dados[][];
-	String[] colunas;
 
+	private final List<?> lista;
+	private Class<?> classe;
+	
+	
 
-	public ModeloTabela(Object[][] dados, String[] colunas) {
-		this.dados = dados;
-		this.colunas = colunas;
+	public ModeloTabela(List<?> lista) {
+		this.lista = lista;
+		this.classe = lista.get(0).getClass();
 	}
 
 	@Override
 	public int getRowCount() {
-		return dados[0].length;
+		return lista.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		return dados.length;
-	}
-
-	@Override
-	public String getColumnName(int coluna) {
-		return colunas[coluna];
-	}
-
-	@Override
-	public Class<?> getColumnClass(int coluna) {
-		return getValueAt(0, coluna).getClass();
-	}
-
-	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return false;
+		int colunas = 0;
+		
+		for ( Method metodo : classe.getDeclaredMethods()) {
+			if (metodo.isAnnotationPresent(Coluna.class)) {
+				colunas++;
+			}
+		}
+		return colunas;
 	}
 
 	@Override
 	public Object getValueAt(int linha, int coluna) {
-		return dados[linha][coluna];
+		try {
+			Object objeto = lista.get(linha);
+			for (Method metodo : classe.getDeclaredMethods()) {
+				if (metodo.isAnnotationPresent(Coluna.class)) {
+					Coluna anotacao = metodo.getAnnotation(Coluna.class);
+					if (anotacao.posicao() == coluna) {
+						return metodo.invoke(objeto);
+					}
+				}
+			}
+		} catch (Exception e) {
+			return "ERRO";
+		}
+		return "";
 	}
-
+	
 	@Override
-	public void setValueAt(Object valor, int linha, int coluna) {
-		dados[linha][coluna] = valor;
+	public String getColumnName(int coluna) {
+		for (Method metodo : classe.getDeclaredMethods()) {
+			if (metodo.isAnnotationPresent(Coluna.class)) {
+				Coluna anotacao = metodo.getAnnotation(Coluna.class);
+				if (anotacao.posicao() == coluna) {
+					return anotacao.nome();
+				}
+			}
+		}
+		return "";
 	}
-
-	@Override
-	public void addTableModelListener(TableModelListener l) {
-	}
-
-	@Override
-	public void removeTableModelListener(TableModelListener l) {
-	}
-
+	
+	
 }

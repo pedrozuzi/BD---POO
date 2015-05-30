@@ -5,29 +5,40 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import control.ConfigTelas;
 import control.CtrlFornecedor;
 import control.CtrlTabela;
 import control.CtrlTableFornecedor;
+import control.ModeloTabela;
 import control.TratamentoTextFields;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import entity.Fornecedor;
+
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 
-public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
+public class FrmFornecedor extends MouseAdapter{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -53,9 +64,10 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 	private CtrlFornecedor control;
 	private CtrlTableFornecedor controlTable;
 	private JButton btnLupaPesquisar;
-	private DefaultTableModel modelo;
+	//private DefaultTableModel modelo;
 	private int id;
 	private List<Fornecedor> lista;
+	private ModeloTabela modelo;
 	
 	public FrmFornecedor() {
 		janela = new JFrame("Fornecedor");
@@ -184,20 +196,38 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		panPrincipal.add(lblLogo);
 		
 		table = new JTable();
+		table.addMouseListener(this);
+		table.setBorder(new LineBorder(Color.BLACK));
+		table.setGridColor(Color.BLACK);
+		table.setShowGrid(true);
+		
 		scrollPane = new JScrollPane();
+		scrollPane.getViewport().setBorder(null);
+		scrollPane.getViewport().add(table);
 		scrollPane.setBounds(10, 107, 549, 159);
-		scrollPane.setVisible(false);
+		scrollPane.setVisible(true);
 		panPrincipal.add(scrollPane);
 		
-		modelo = montarTabela();
+		//modelo = montarTabela();
 		
 		janela.setSize(581,511);
 		janela.setContentPane( panPrincipal);
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			buscarDadosTabelaPorNome(modelo);
+			controlTable = new CtrlFornecedor();
+			lista = new ArrayList<Fornecedor>();
+			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//buscarDadosTabelaPorNome(modelo);
+			try {
+				lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
+				modelo = new ModeloTabela(lista);
+				table.setModel(modelo);
+			} catch (NullPointerException e1) {
+				System.out.println("NullPointer");
+			} catch (SQLException e2) {
+				System.out.println("ERRO - SQL");
+			}
 			limpaCampos();
 		});
 		
@@ -214,7 +244,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		});
 		
 		btnIncluir.addActionListener( e -> {
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/MiniSalvar.png")));
@@ -263,7 +293,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.atualiza(f);
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 //			buscarDadosTabelaPorNome(modelo);
 		}else if("Incluir".equalsIgnoreCase(cmd)){
 			f.setIdTipo(4);
@@ -275,7 +305,7 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.excluir(f);
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 //			buscarDadosTabelaPorNome(modelo);
 		}
 		limpaCampos();
@@ -335,49 +365,49 @@ public class FrmFornecedor extends MouseAdapter implements ConfigTelas{
 		new FrmFornecedor();
 	}
 	
-	public DefaultTableModel montarTabela () {
-			String[] colunas = new String[2];
-			colunas[0] = "Nome";
-			colunas[1] = "Telefone";
-
-			modelo = new CtrlTabela(new Object[][] {}, colunas);
-
-			table.setModel(modelo);
-			table.addMouseListener(this);
-			table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-			table.getColumnModel().getColumn(0).setResizable(false);
-			table.getColumnModel().getColumn(0).setPreferredWidth(250);
-			table.getColumnModel().getColumn(1).setPreferredWidth(60);
-			table.setVisible(false);
-			scrollPane.setViewportView(table);
-			return modelo;
-	}
-	
-	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-		controlTable = new CtrlFornecedor(); //instanciado comoa tribulto
-		lista = new ArrayList<Fornecedor>();
-		
-			if (!txtNome.getText().equals("")) {
-				try {
-					lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
-					if (!lista.isEmpty()) {
-						for (Fornecedor f : lista) {
-							Object[] linha = new Object[2];
-							linha[0] = f.getNome();
-							linha[1] = f.getTelefone();
-							modelo.addRow(linha);
-						} 
-					}else{
-						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-								"Aviso", JOptionPane.INFORMATION_MESSAGE);
-					}
-					
-				}catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}else{
-				JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
-						"Aviso", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
+//	public DefaultTableModel montarTabela () {
+//			String[] colunas = new String[2];
+//			colunas[0] = "Nome";
+//			colunas[1] = "Telefone";
+//
+//			modelo = new CtrlTabela(new Object[][] {}, colunas);
+//
+//			table.setModel(modelo);
+//			table.addMouseListener(this);
+//			table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//			table.getColumnModel().getColumn(0).setResizable(false);
+//			table.getColumnModel().getColumn(0).setPreferredWidth(250);
+//			table.getColumnModel().getColumn(1).setPreferredWidth(60);
+//			table.setVisible(false);
+//			scrollPane.setViewportView(table);
+//			return modelo;
+//	}
+//	
+//	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+//		controlTable = new CtrlFornecedor(); //instanciado comoa tribulto
+//		lista = new ArrayList<Fornecedor>();
+//		
+//			if (!txtNome.getText().equals("")) {
+//				try {
+//					lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
+//					if (!lista.isEmpty()) {
+//						for (Fornecedor f : lista) {
+//							Object[] linha = new Object[2];
+//							linha[0] = f.getNome();
+//							linha[1] = f.getTelefone();
+//							modelo.addRow(linha);
+//						} 
+//					}else{
+//						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+//								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//					}
+//					
+//				}catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}else{
+//				JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
+//						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//			}
+//		}
 }

@@ -193,4 +193,31 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 		}
 	}
 
+	
+//	@Override
+//	public List<Produto> BuscaProdutoLote(Lote lot) throws SQLException {
+//		List<Produto> lista = new ArrayList<Produto>();
+//		pDao = new ProdutoDaoImpl();
+//		try {
+//			lista = pDao.listaProduto(nome);
+//		} catch (NullPointerException e) {
+//			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
+//					JOptionPane.ERROR_MESSAGE);
+//		}
+//
+//		return lista;
+//	}
+//
+//	@Override
+//	public Produto concultaLoteid(String id) throws SQLException {
+//		Produto p = new Produto();
+//		pDao = new ProdutoDaoImpl();
+//		p = pDao.consultaProduto(id);
+//		return p;
+//	}
+	
+	
+	
+	
+	
 }

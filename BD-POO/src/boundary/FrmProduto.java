@@ -67,6 +67,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JTextField txtValorVenda;
 	private JTextField txtValorCompra;
 	private JTextField txtIdFornecedor;
+
 	private JTable tableProduto;
 	private DefaultTableModel modelo;
 	private JScrollPane scrollPane;
@@ -88,6 +89,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		// TODO action temporario
 		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
+		
 		mntmMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -97,8 +99,9 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				
 			}
 		});
-		// fim no action temporario
+	
 
+		
 		mntmMenuPrincipal.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/HomeMenu.png")));
 		mnMenu.add(mntmMenuPrincipal);
@@ -173,37 +176,37 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JPanel panSuperior = new JPanel();
 		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panSuperior.setBounds(20, 86, 896, 170);
+		panSuperior.setBounds(20, 86, 896, 191);
 		panPrincipal.add(panSuperior);
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
 
 		JButton btnRewind = new JButton("");
-		btnRewind.setBounds(241, 152, 69, 18);
+		btnRewind.setBounds(241, 162, 69, 18);
 		panSuperior.add(btnRewind);
 		btnRewind.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniRewind.png")));
 
 		JButton btnBack = new JButton("");
-		btnBack.setBounds(309, 152, 69, 18);
+		btnBack.setBounds(309, 162, 69, 18);
 		panSuperior.add(btnBack);
 		btnBack.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniBack.png")));
 
 		JButton btnNext = new JButton("");
-		btnNext.setBounds(379, 152, 69, 18);
+		btnNext.setBounds(379, 162, 69, 18);
 		panSuperior.add(btnNext);
 		btnNext.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniNext.png")));
 
 		JButton btnFoward = new JButton("");
-		btnFoward.setBounds(447, 152, 69, 18);
+		btnFoward.setBounds(447, 162, 69, 18);
 		panSuperior.add(btnFoward);
 		btnFoward.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniFoward.png")));
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 681, 134);
+		scrollPane.setBounds(10, 21, 681, 134);
 		panSuperior.add(scrollPane);
 
 		tableProduto = new JTable();
@@ -217,7 +220,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JPanel panInferior = new JPanel();
 		panInferior
 				.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panInferior.setBounds(20, 263, 741, 290);
+		panInferior.setBounds(20, 288, 741, 290);
 		panPrincipal.add(panInferior);
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
@@ -324,7 +327,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panProduto.add(txtIdFornecedor);
 
 		// configs básicas de janela
-		janela.setSize(942, 624);
+		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -397,11 +400,19 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				panAcoes2, panProduto, panLote, lblAcao);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(701, 11, 185, 134);
+		scrollPane_1.setBounds(701, 21, 185, 134);
 		panSuperior.add(scrollPane_1);
 		
 		tableLote = new JTable();
 		scrollPane_1.setViewportView(tableLote);
+		
+		JLabel lblProduto = new JLabel("Produto");
+		lblProduto.setBounds(10, 0, 69, 18);
+		panSuperior.add(lblProduto);
+		
+		JLabel lblLote = new JLabel("Lote");
+		lblLote.setBounds(701, 0, 69, 18);
+		panSuperior.add(lblLote);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -533,4 +544,5 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 			}
 		}
 	}
-}
+	
+}//end class

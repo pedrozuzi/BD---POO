@@ -16,6 +16,7 @@ public class Cliente extends Pessoa{
 	private String logradouro;
 	private int numero;
 	private String bairro;
+	private String cpf;
 
 	public String getLogradouro() {
 		return logradouro;
@@ -39,6 +40,14 @@ public class Cliente extends Pessoa{
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 }

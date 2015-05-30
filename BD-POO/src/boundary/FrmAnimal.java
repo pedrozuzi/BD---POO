@@ -196,7 +196,6 @@ public class FrmAnimal extends MouseAdapter {
 		comboBoxSexo.addItem(SexoAnimal.FEMEA.getSEXO());
 		panPrincipal.add(comboBoxSexo);
 		
-		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 138, 601, 124);
 		panPrincipal.add(scrollPane);

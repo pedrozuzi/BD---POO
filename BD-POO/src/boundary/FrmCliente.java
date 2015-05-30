@@ -60,6 +60,8 @@ public class FrmCliente extends MouseAdapter {
 	private DefaultTableModel modelo;
 	private List<Cliente> lista;
 	private CtrlTableCliente controlTable;
+	private JTextField txtCpf;
+	private JLabel lblCpf;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -72,32 +74,32 @@ public class FrmCliente extends MouseAdapter {
 		scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
 		scrollPane.setVisible(false);
-		scrollPane.setBounds(10, 112, 717, 186);
+		scrollPane.setBounds(10, 112, 717, 167);
 		panPrincipal.add(scrollPane);
 		
 		lblLogradouro = new JLabel("Logradouro:");
 		lblLogradouro.setFont(new Font("Arial", Font.BOLD, 14));
 		lblLogradouro.setVisible(false);
-		lblLogradouro.setBounds(45, 387, 96, 14);
+		lblLogradouro.setBounds(90, 398, 96, 14);
 		panPrincipal.add(lblLogradouro);
 		
 		lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNome.setVisible(false);
-		lblNome.setBounds(45, 339, 62, 14);
+		lblNome.setBounds(90, 325, 62, 14);
 		panPrincipal.add(lblNome);
 		
 		txtLogradouro = new TratamentoTextFields();
 		txtLogradouro.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtLogradouro.setVisible(false);
-		txtLogradouro.setBounds(160, 385, 318, 20);
+		txtLogradouro.setBounds(205, 396, 318, 20);
 		panPrincipal.add(txtLogradouro);
 		txtLogradouro.setColumns(10);
 		
 		txtNome = new TratamentoTextFields();
 		txtNome.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNome.setVisible(false);
-		txtNome.setBounds(160, 337, 318, 20);
+		txtNome.setBounds(205, 323, 318, 20);
 		panPrincipal.add(txtNome);
 		txtNome.setColumns(10);
 		
@@ -154,14 +156,14 @@ public class FrmCliente extends MouseAdapter {
 				("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGravar.setVisible(false);
-		btnGravar.setBounds(524, 531, 96, 31);
+		btnGravar.setBounds(518, 539, 96, 31);
 		panPrincipal.add(btnGravar);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(314, 531, 96, 31);
+		btnLimpar.setBounds(308, 539, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipal.add(btnLimpar);
 		
@@ -169,13 +171,13 @@ public class FrmCliente extends MouseAdapter {
 		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(112, 531, 96, 31);
+		btnVoltar.setBounds(106, 539, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipal.add(btnVoltar);
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnLupaPesquisar.setBounds(510, 323, 65, 31);
+		btnLupaPesquisar.setBounds(555, 309, 65, 31);
 		btnLupaPesquisar.setVisible(false);
 		panPrincipal.add(btnLupaPesquisar);
 		
@@ -186,47 +188,60 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.add(lblLogo);
 		
 		
-		janela.setSize(746,624);
+		janela.setSize(749,677);
 		janela.setContentPane( panPrincipal);
 		
 		txtNumero = new TratamentoTextFields(8);
 		txtNumero.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNumero.setVisible(false);
-		txtNumero.setBounds(112, 428, 86, 20);
+		txtNumero.setBounds(157, 439, 86, 20);
 		panPrincipal.add(txtNumero);
 		txtNumero.setColumns(10);
 		
 		txtBairro = new TratamentoTextFields();
 		txtBairro.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtBairro.setVisible(false);
-		txtBairro.setBounds(285, 428, 269, 20);
+		txtBairro.setBounds(330, 439, 269, 20);
 		panPrincipal.add(txtBairro);
 		txtBairro.setColumns(10);
 		
 		txtTelefone = new TratamentoTextFields(9);
 		txtTelefone.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtTelefone.setVisible(false);
-		txtTelefone.setBounds(124, 474, 133, 20);
+		txtTelefone.setBounds(169, 485, 133, 20);
 		panPrincipal.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
 		lblNumero = new JLabel("N\u00FAmero:");
 		lblNumero.setFont(new Font("Arial", Font.BOLD, 14));
 		lblNumero.setVisible(false);
-		lblNumero.setBounds(45, 433, 62, 14);
+		lblNumero.setBounds(90, 444, 62, 14);
 		panPrincipal.add(lblNumero);
 		
 		lblBairro = new JLabel("Bairro:");
 		lblBairro.setFont(new Font("Arial", Font.BOLD, 14));
 		lblBairro.setVisible(false);
-		lblBairro.setBounds(221, 430, 72, 14);
+		lblBairro.setBounds(266, 441, 72, 14);
 		panPrincipal.add(lblBairro);
 		
 		lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setFont(new Font("Arial", Font.BOLD, 14));
 		lblTelefone.setVisible(false);
-		lblTelefone.setBounds(45, 476, 69, 14);
+		lblTelefone.setBounds(90, 487, 69, 14);
 		panPrincipal.add(lblTelefone);
+		
+		lblCpf = new JLabel("CPF: ");
+		lblCpf.setVisible(false);
+		lblCpf.setFont(new Font("Arial", Font.BOLD, 14));
+		lblCpf.setBounds(90, 360, 46, 14);
+		panPrincipal.add(lblCpf);
+		
+		txtCpf = new JTextField();
+		txtCpf = TratamentoTextFields.mascaraCpf(txtCpf);
+		txtCpf.setBounds(205, 360, 121, 20);
+		txtCpf.setVisible(false);
+		panPrincipal.add(txtCpf);
+		txtCpf.setColumns(10);
 		ConfigTelas.centralizarFrame(janela);
 		
 		modelo = montarTabela();
@@ -281,6 +296,7 @@ public class FrmCliente extends MouseAdapter {
 		 if("Incluir".equalsIgnoreCase(cmd)){
 				c.setIdTipo(5);
 				c.setNome(txtNome.getText());
+				c.setCpf(txtCpf.getText().replace("-", "").replace(".", ""));
 				c.setLogradouro(txtLogradouro.getText());
 				c.setNumero(Integer.parseInt(txtNumero.getText()));
 				c.setBairro(txtBairro.getText());
@@ -289,6 +305,7 @@ public class FrmCliente extends MouseAdapter {
 		 }else if("Alterar".equalsIgnoreCase(cmd)){
 				c.setId(id);
 				c.setNome(txtNome.getText());
+				c.setCpf(txtCpf.getText().replace("-", "").replace(".", ""));
 				c.setLogradouro(txtLogradouro.getText());
 				c.setNumero(Integer.parseInt(txtNumero.getText()));
 				c.setBairro(txtBairro.getText());
@@ -298,6 +315,7 @@ public class FrmCliente extends MouseAdapter {
 		 }else if("Excluir".equalsIgnoreCase(cmd)){
 				c.setId(id);
 				c.setNome(txtNome.getText());
+				c.setCpf(txtCpf.getText().replace("-", "").replace(".", ""));
 				c.setLogradouro(txtLogradouro.getText());
 				c.setNumero(Integer.parseInt(txtNumero.getText()));
 				c.setBairro(txtBairro.getText());
@@ -310,6 +328,8 @@ public class FrmCliente extends MouseAdapter {
 
 	private void telaInserirFornecedor() {
 		btnLupaPesquisar.setVisible(false);
+		txtCpf.setVisible(true);
+		lblCpf.setVisible(true);
 		txtNome.setVisible(true);
 		txtLogradouro.setVisible(true);
 		txtNumero.setVisible(true);
@@ -332,6 +352,8 @@ public class FrmCliente extends MouseAdapter {
 		lblLogo.setVisible(false);
 		btnLupaPesquisar.setVisible(true);
 		txtNome.setVisible(true);
+		txtCpf.setVisible(true);
+		lblCpf.setVisible(true);
 		txtLogradouro.setVisible(true);
 		txtNumero.setVisible(true);
 		txtBairro.setVisible(true);
@@ -350,6 +372,7 @@ public class FrmCliente extends MouseAdapter {
 
 	private void limpaCampos() {
 		txtNome.setText("");
+		txtCpf.setText("");
 		txtLogradouro.setText("");
 		txtNumero.setText("");
 		txtBairro.setText("");

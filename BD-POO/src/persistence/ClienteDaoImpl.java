@@ -22,14 +22,15 @@ public class ClienteDaoImpl implements ClienteDao{
 	
 	@Override
 	public void inserirCliente(Cliente c) throws SQLException {
-		String query = "insert into cliente values (?, ?, ?, ?, ?, ?)";
+		String query = "insert into cliente values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setInt( 1, c.getId() );
 		ps.setString( 2, c.getNome() );
-		ps.setString( 3 , c.getLogradouro() );
-		ps.setInt( 4 , c.getNumero() );
-		ps.setString( 5 , c.getBairro() );
-		ps.setInt( 6 , c.getTelefone() );
+		ps.setString(3, c.getCpf() );
+		ps.setString( 4 , c.getLogradouro() );
+		ps.setInt( 5 , c.getNumero() );
+		ps.setString( 6 , c.getBairro() );
+		ps.setInt( 7 , c.getTelefone() );
 		ps.execute();
 		ps.close();
 		JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!",

@@ -1,6 +1,11 @@
 package control;
 
+import java.text.ParseException;
+
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 /**
  * 
  * @author Zuzi
@@ -22,7 +27,4 @@ public interface ConfigTelas {
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-	
-
-
 }

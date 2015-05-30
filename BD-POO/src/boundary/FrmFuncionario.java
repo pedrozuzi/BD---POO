@@ -37,7 +37,6 @@ import java.util.List;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
 
 public class FrmFuncionario implements ActionListener, MouseListener{
@@ -73,7 +72,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JButton btnPesquisarNome;
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
-	private DefaultTableModel modelo;
+//	private DefaultTableModel modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private JPanel panelInformacao;
 	private int id;
@@ -127,7 +126,8 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblRemover.setBounds(242, 54, 39, 19);
 		panel.add(lblRemover);
 		
-		table = new JTable();
+		ctrlFunc = new CtrlFuncionario();
+		table = new JTable(ctrlFunc);
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 118, 556, 153);
 		scrollPane.setVisible(false);
@@ -276,11 +276,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 			
-		table.setBorder(new LineBorder(Color.black));
-		table.setGridColor(Color.black);
-		table.setShowGrid(true);
-		
-		modelo = montarTabela();
+//		modelo = montarTabela();
 	}
 	
 	private void montarTela(int controle) {
@@ -344,11 +340,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
-		modelo.setNumRows(0);
+//		modelo.setNumRows(0);
 		Funcionario f = new Funcionario();
-		ctrlFunc = new CtrlFuncionario();
-		
-		
+				
 		if(btnIncluir.equals(acao)){
 			limpaCampos();
 			montarTela(1);
@@ -433,56 +427,55 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-			modelo.setNumRows(0);
-			buscarDadosDaTabela(modelo);
-			limpaCampos();
+//			modelo.setNumRows(0);
+//			buscarDadosDaTabela(modelo);
+//			limpaCampos();
 		}
 
 	}
 	
-	private DefaultTableModel montarTabela() {
-		String[] coluna = new String[3];
-		coluna[0] = "Nome";
-		coluna[1] = "CPF";
-		coluna[2] = "Cargo";
-		
-		modelo = new CtrlTabela(new Object[][] {}, coluna);
-		
-		table.setModel(modelo);
-		table.addMouseListener(this);
-		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(50);
-		table.setVisible(false);
-		scrollPane.setViewportView(table);
-		return modelo;
-	}
+//	private DefaultTableModel montarTabela() {
+//		String[] coluna = new String[3];
+//		coluna[0] = "Nome";
+//		coluna[1] = "CPF";
+//		coluna[2] = "Cargo";
+//		
+//		modelo = new CtrlTabela(new Object[][] {}, coluna);
+//		
+//		table.setModel(modelo);
+//		table.addMouseListener(this);
+//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(50);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(50);
+//		scrollPane.setViewportView(table);
+//		return modelo;
+//	}
 
-	private void buscarDadosDaTabela(DefaultTableModel modelo) {
-		ctrlFunc = new CtrlFuncionario();
-		
-		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
-		if(lista.isEmpty()){
-			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-					"Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}else{
-			habilitarCampos();
-			for (Funcionario f : lista) {
-				Object[] linha = new Object[3];
-				linha[0] = f.getNome();
-				linha[1] = f.getCpf();
-				if( f.getIdTipo() == 1 ){
-					linha[2] = "Administrador";
-				}else if( f.getIdTipo() == 2 ){
-					linha[2] = "Atendente";
-				}else{
-					linha[2] = "Tosador/Banhista";
-				}
-				modelo.addRow(linha);
-			} 
-		}
-	}
+//	private void buscarDadosDaTabela(DefaultTableModel modelo) {
+//		ctrlFunc = new CtrlFuncionario();
+//		
+//		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
+//		if(lista.isEmpty()){
+//			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+//					"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}else{
+//			habilitarCampos();
+//			for (Funcionario f : lista) {
+//				Object[] linha = new Object[3];
+//				linha[0] = f.getNome();
+//				linha[1] = f.getCpf();
+//				if( f.getIdTipo() == 1 ){
+//					linha[2] = "Administrador";
+//				}else if( f.getIdTipo() == 2 ){
+//					linha[2] = "Atendente";
+//				}else{
+//					linha[2] = "Tosador/Banhista";
+//				}
+//				modelo.addRow(linha);
+//			} 
+//		}
+//	}
 	
 	private boolean validaCampos() {
 		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 

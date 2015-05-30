@@ -125,7 +125,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		lblExcluir.setBounds(242, 54, 39, 19);
 		panelAcoes.add(lblExcluir);
 		
-		String[] campos = {"Nome", "Cpf","Cargo"};
 		controlUsuario = new CtrlUsuario();
 		table = new JTable(controlUsuario);
 		scrollPane = new JScrollPane();
@@ -133,10 +132,14 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		scrollPane.setViewportView(table);
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
-		
+	
 		table.setBorder(new LineBorder(Color.black));
 		table.setGridColor(Color.black);
 		table.setShowGrid(true);
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+		table.getColumnModel().getColumn(1).setPreferredWidth(50);
+		table.getColumnModel().getColumn(2).setPreferredWidth(50);
 		
 		panelFuncionario = new JPanel();
 		panelFuncionario.setVisible(false);

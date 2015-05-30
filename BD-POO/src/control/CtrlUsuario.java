@@ -1,19 +1,25 @@
 package control;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-public class CtrlUsuario implements TableModel{
+import entity.Funcionario;
 
-	private String[] nomes = {"Nome", "CPF","Cargo"};
+public class CtrlUsuario extends AbstractTableModel{
+
+	private String[] colunas = {"Nome", "CPF","Cargo"};
 	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
-//  campos = {"nome", "cpf", "cargo"}	
+	private List<Funcionario> lista = new ArrayList<Funcionario>();
+	//  campos = {"nome", "cpf", "cargo"}	
 //	private Class<T> tipo;
-//	private String[] campos;
+	private String[] campos;
 	
 	
 //	public CtrlUsuario(Class<T> tipo, String[] campos) { 
@@ -29,25 +35,29 @@ public class CtrlUsuario implements TableModel{
 //			}
 //		}
 //	}
+	
+	public CtrlUsuario() {
+		setValueAt(classes, 1, 1);
+	}
 	 
 	@Override
 	public int getRowCount() {
-		return 0;
+		return lista.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return colunas.length;
 	}
 
 	@Override
 	public String getColumnName(int coluna) {
-		return nomes[coluna];
+		return colunas[coluna];
 	}
 
 	@Override
 	public Class<?> getColumnClass(int coluna) {
-		return classes[coluna];
+		return String.class;//todas sao String
 	}
 
 	@Override
@@ -56,23 +66,27 @@ public class CtrlUsuario implements TableModel{
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		return nomes[rowIndex];
+	public Object getValueAt(int linha, int coluna) {
+//		Funcionario f = lista.get(linha);
+		return lista.get(linha);
 	}
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
+	
 	}
 
 	@Override
 	public void addTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void removeTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void fireTableRowsDeleted(int firstRow, int lastRow) {
+		super.fireTableRowsDeleted(firstRow, lastRow);
 	}
 
 }

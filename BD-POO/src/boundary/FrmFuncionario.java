@@ -140,12 +140,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
-//		table = new JTable();
-//		scrollPane = new JScrollPane();
-//		scrollPane.setBounds(10, 118, 556, 153);
-//		scrollPane.setVisible(false);
-//		panPrincipal.add(scrollPane);
-		
 		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNome.setBounds(33, 300, 68, 14);
@@ -438,7 +432,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-			System.out.println("ENTROU NO BOTAO");
 			pesquisar();
 		}
 
@@ -448,7 +441,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		try{
 			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
 			if (!lista.isEmpty()) {
-				System.out.println("ENTROU NA LISTA");
 				modelo = new ModeloTabela(lista);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);

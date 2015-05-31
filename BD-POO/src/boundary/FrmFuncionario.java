@@ -27,11 +27,13 @@ import control.ConfigTelas;
 import control.CtrlFornecedor;
 import control.CtrlFuncionario;
 import control.CtrlTabela;
+import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Fornecedor;
 import entity.Funcionario;
 
 import java.awt.Cursor;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +74,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JButton btnPesquisarNome;
 	private JLabel lblDadoObrigatorio;
 	private JLabel lblAlterar;
-//	private DefaultTableModel modelo;
+	private ModeloTabela modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private JPanel panelInformacao;
 	private int id;
@@ -99,9 +101,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panel.add(btnIncluir);
 		
 		lblIncluir = new JLabel("Incluir");
-		lblIncluir.setVerticalTextPosition(SwingConstants.TOP);
-		lblIncluir.setLabelFor(panel);
-		lblIncluir.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		lblIncluir.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblIncluir.setBounds(59, 54, 39, 19);
 		panel.add(lblIncluir);
@@ -127,7 +126,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panel.add(lblRemover);
 		
 		ctrlFunc = new CtrlFuncionario();
-		table = new JTable(ctrlFunc);
+		table = new JTable();
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 118, 556, 153);
 		scrollPane.setVisible(false);
@@ -276,7 +275,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnGravar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);
 			
-//		modelo = montarTabela();
 	}
 	
 	private void montarTela(int controle) {
@@ -340,7 +338,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
-//		modelo.setNumRows(0);
 		Funcionario f = new Funcionario();
 				
 		if(btnIncluir.equals(acao)){
@@ -427,56 +424,29 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			limpaCampos();
 		}
 		if(btnPesquisarNome.equals(acao)){
-//			modelo.setNumRows(0);
-//			buscarDadosDaTabela(modelo);
-//			limpaCampos();
+			System.out.println("ENTROU NO BOTAO");
+			pesquisar();
 		}
 
 	}
 	
-//	private DefaultTableModel montarTabela() {
-//		String[] coluna = new String[3];
-//		coluna[0] = "Nome";
-//		coluna[1] = "CPF";
-//		coluna[2] = "Cargo";
-//		
-//		modelo = new CtrlTabela(new Object[][] {}, coluna);
-//		
-//		table.setModel(modelo);
-//		table.addMouseListener(this);
-//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-//		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-//		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-//		table.getColumnModel().getColumn(2).setPreferredWidth(50);
-//		scrollPane.setViewportView(table);
-//		return modelo;
-//	}
+	private void pesquisar() {
+		try{
+			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
+			if (!lista.isEmpty()) {
+				System.out.println("ENTROU NA LISTA");
+				modelo = new ModeloTabela(lista);
+				table.getTableHeader().setReorderingAllowed(false);
+				table.setModel(modelo);
+			}else{
+				JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (NullPointerException e1) {
+			System.out.println("NullPointer");
+		}
+	}
 
-//	private void buscarDadosDaTabela(DefaultTableModel modelo) {
-//		ctrlFunc = new CtrlFuncionario();
-//		
-//		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
-//		if(lista.isEmpty()){
-//			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-//					"Aviso", JOptionPane.INFORMATION_MESSAGE);
-//		}else{
-//			habilitarCampos();
-//			for (Funcionario f : lista) {
-//				Object[] linha = new Object[3];
-//				linha[0] = f.getNome();
-//				linha[1] = f.getCpf();
-//				if( f.getIdTipo() == 1 ){
-//					linha[2] = "Administrador";
-//				}else if( f.getIdTipo() == 2 ){
-//					linha[2] = "Atendente";
-//				}else{
-//					linha[2] = "Tosador/Banhista";
-//				}
-//				modelo.addRow(linha);
-//			} 
-//		}
-//	}
-	
 	private boolean validaCampos() {
 		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
 				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty();

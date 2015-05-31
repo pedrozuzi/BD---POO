@@ -11,9 +11,9 @@ import java.lang.annotation.Inherited;
 public class Pessoa {
 	
 	private int id;
-	private String nome;
 	private int idTipo;
 	private int telefone;
+	private String nome;
 	
 
 	public int getId() {
@@ -28,15 +28,12 @@ public class Pessoa {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
-	
-	@Coluna(nome="Nome", posicao=0)
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Coluna(nome="Telefone", posicao=1)
 	public int getTelefone() {
 		return telefone;
 	}

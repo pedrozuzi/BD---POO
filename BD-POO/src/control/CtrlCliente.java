@@ -12,7 +12,7 @@ import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
 import entity.Cliente;
 
-public class CtrlCliente implements CtrlTableCliente {
+public class CtrlCliente {
 	
 	private PessoaDao pDao;
 	private ClienteDao cDao;
@@ -40,7 +40,6 @@ public class CtrlCliente implements CtrlTableCliente {
 		
 	}
 
-	@Override
 	public List<Cliente> buscaClientePorNome(String nome) throws SQLException {
 		List<Cliente> lista = new ArrayList<Cliente>();
 		cDao = new ClienteDaoImpl();

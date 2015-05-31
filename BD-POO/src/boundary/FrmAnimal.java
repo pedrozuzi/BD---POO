@@ -204,8 +204,8 @@ public class FrmAnimal extends MouseAdapter {
 		
 		comboBoxEspecie = new JComboBox<String>();
 		comboBoxEspecie.setBounds(272, 451, 138, 20);
-		comboBoxEspecie.addItem(Especie.CACHORRO.getESPECIE());
-		comboBoxEspecie.addItem(Especie.GATO.getESPECIE());	
+		comboBoxEspecie.addItem("Cachorro");
+		comboBoxEspecie.addItem("Gato");	
 		panPrincipalAnimal.add(comboBoxEspecie);
 			
 		comboBoxSexo = new JComboBox<String>();

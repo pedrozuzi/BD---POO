@@ -1,6 +1,5 @@
 package entity;
 
-import boundary.Especie;
 
 public class Animal {
 	
@@ -9,7 +8,7 @@ public class Animal {
 	private String nome;
 	private String raca;
 	private String sexo;
-	private Especie especie;
+	private String especie;
 	private String cor;
 	
 	public int getId() {
@@ -43,13 +42,8 @@ public class Animal {
 		this.raca = raca;
 	}
 	
-	@Coluna(nome="Espécie", posicao=3)
-	public Especie getEspecie() {
-		return especie;
-	}
-	public void setEspecie(Especie especie) {
-		this.especie = especie;
-	}
+	
+
 	
 	@Coluna(nome="Cor", posicao=5)
 	public String getCor() {
@@ -65,6 +59,14 @@ public class Animal {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	
+	@Coluna(nome="Espécie", posicao=3)
+	public String getEspecie() {
+		return especie;
+	}
+	public void setEspecie(String especie) {
+		this.especie = especie;
 	}
 
 }

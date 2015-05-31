@@ -126,11 +126,25 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panel.add(lblRemover);
 		
 		ctrlFunc = new CtrlFuncionario();
+		
 		table = new JTable();
+		table.addMouseListener(this);
+		table.setBorder(new LineBorder(Color.BLACK));
+		table.setGridColor(Color.BLACK);
+		table.setShowGrid(true);
+		
 		scrollPane = new JScrollPane();
+		scrollPane.getViewport().setBorder(null);
+		scrollPane.getViewport().add(table);
 		scrollPane.setBounds(10, 118, 556, 153);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
+		
+//		table = new JTable();
+//		scrollPane = new JScrollPane();
+//		scrollPane.setBounds(10, 118, 556, 153);
+//		scrollPane.setVisible(false);
+//		panPrincipal.add(scrollPane);
 		
 		lblNome = new JLabel("Nome : *");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));

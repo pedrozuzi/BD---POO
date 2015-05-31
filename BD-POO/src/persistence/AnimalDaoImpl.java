@@ -39,9 +39,10 @@ public class AnimalDaoImpl implements AnimalDao{
 			a.setNome( rs.getString("nome") );
 			a.setRga( rs.getString("rga") );
 			a.setRaca( rs.getString("raca") );
-			a.setEspecie((rs.getString("especie")));
+			a.setEspecie(rs.getString("especie") );
 			a.setSexo( rs.getString("sexo") );
 			a.setCor( rs.getString("cor") );
+			a.setId( rs.getInt("id"));
 			lista.add(a);
 		}
 		ps.close();

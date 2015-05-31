@@ -31,6 +31,7 @@ foreign key(idTipo) references tipo(id))
 create table cliente(
 id int not null,
 nome varchar(60) not null,
+cpf varchar(11) not null,
 logradouro varchar(100) not null,
 numero int not null,
 bairro varchar(60) not null,

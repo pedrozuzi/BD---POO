@@ -2,6 +2,7 @@ package control;
 
 import java.text.ParseException;
 
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -21,10 +22,9 @@ public interface ConfigTelas {
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 	
-	static void telaBuscaCliente(JFrame janela){
-		janela.setLocationRelativeTo(null);
-        janela.setResizable(false);
-        janela.setVisible(true);
-        janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	static void telaBuscaCliente(JDialog jd){
+		jd.setSize(650,300);
+		jd.setLocationRelativeTo(null);
+		jd.setVisible(true);
 	}
 }

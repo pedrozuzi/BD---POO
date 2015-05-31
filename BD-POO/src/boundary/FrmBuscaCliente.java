@@ -58,7 +58,6 @@ public class FrmBuscaCliente extends MouseAdapter implements WindowListener {
 		
 		tableBuscaCliente = new JTable();
 		scrollPaneBuscaCliente.setViewportView(tableBuscaCliente);
-		ConfigTelas.telaBuscaCliente(janelaBusca);
 		
 		modelo = montarTabela();
 		

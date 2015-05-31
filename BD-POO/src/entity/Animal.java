@@ -51,7 +51,7 @@ public class Animal {
 		this.especie = especie;
 	}
 	
-	@Coluna(nome="Cor", posicao=4)
+	@Coluna(nome="Cor", posicao=5)
 	public String getCor() {
 		return cor;
 	}
@@ -59,7 +59,7 @@ public class Animal {
 		this.cor = cor;
 	}
 	
-	@Coluna(nome="Sexo", posicao=5)
+	@Coluna(nome="Sexo", posicao=4)
 	public String getSexo() {
 		return sexo;
 	}

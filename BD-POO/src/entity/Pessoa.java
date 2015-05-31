@@ -1,10 +1,13 @@
 package entity;
 
+import java.lang.annotation.Inherited;
+
 /**
  * 
  * @author Hury
  *
  */
+
 public class Pessoa {
 	
 	private int id;
@@ -25,6 +28,7 @@ public class Pessoa {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
+	
 	@Coluna(nome="Nome", posicao=0)
 	public String getNome() {
 		return nome;

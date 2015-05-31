@@ -3,8 +3,6 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -13,23 +11,23 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-
+import entity.Animal;
 import entity.Cliente;
 
 public class FrmAnimal extends MouseAdapter {
@@ -64,14 +62,16 @@ public class FrmAnimal extends MouseAdapter {
 	private JLabel lblRga;
 	private JComboBox<String> comboBoxSexo;
 	private ModeloTabela modelo;
-	private CtrlCliente control;
-	private List<Cliente> lista;
+	private CtrlCliente controlCliente;
+	private List<Cliente> listaCliente;
+	private List<Animal> listaAnimal;
 	private JPanel panPrincipalBusca;
 	private JScrollPane scrollPaneBusca;
 	private JButton btnLupaPesquisarBusca;
 	private JTextField txtBuscaCliente;
 	private JLabel lblNome;
 	private int idCliente;
+	private CtrlAnimal controlAnimal;
 	
 	public FrmAnimal() {
 		janelaAnimal = new JFrame();
@@ -288,13 +288,13 @@ public class FrmAnimal extends MouseAdapter {
 	}
 	
 	private void buscaCliente() {
-		control = new CtrlCliente();
-		lista = new ArrayList<Cliente>();
+		controlCliente = new CtrlCliente();
+		listaCliente = new ArrayList<Cliente>();
 
 			try {
-				lista = control.buscaClientePorNome(txtBuscaCliente.getText());
-				if (!lista.isEmpty()) {
-					modelo = new ModeloTabela(lista);
+				listaCliente = controlCliente.buscaClientePorNome(txtBuscaCliente.getText());
+				if (!listaCliente.isEmpty()) {
+					modelo = new ModeloTabela(listaCliente);
 					tableBusca.getTableHeader().setReorderingAllowed(false);
 					tableBusca.setModel(modelo);
 				}
@@ -320,7 +320,7 @@ public class FrmAnimal extends MouseAdapter {
 		Object valorCliente;
 		if (tableBusca.equals(acao)) {
 			int linha = tableBusca.getSelectedRow();
-			idCliente = lista.get(linha).getId();
+			idCliente = listaCliente.get(linha).getId();
 			valorCliente = tableBusca.getValueAt(linha, 0);
 			txtCliente.setText(String.valueOf(valorCliente));
 			
@@ -329,8 +329,20 @@ public class FrmAnimal extends MouseAdapter {
 	}
 
 	private void buscaAnimaisDoCliente() {
-		// TODO
+		controlAnimal = new CtrlAnimal();
+		listaAnimal = new ArrayList<Animal>();
 		
+		try {
+			listaAnimal = controlAnimal.buscaCliente(idCliente);
+			
+			if (!listaAnimal.isEmpty()) {
+				modelo = new ModeloTabela(listaAnimal);
+				tableAnimal.getTableHeader().setReorderingAllowed(false);
+				tableAnimal.setModel(modelo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

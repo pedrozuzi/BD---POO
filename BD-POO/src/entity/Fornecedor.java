@@ -15,6 +15,17 @@ public class Fornecedor extends Pessoa{
 		this.empresa = empresa;
 	}
 	
+	@Coluna(nome="Nome", posicao=0)
+	@Override
+	public String getNome() {
+		return super.getNome();
+	}
+	
+	@Coluna(nome="Telefone", posicao=1)
+	@Override
+	public int getTelefone() {
+		return super.getTelefone();
+	}	
 //	public void setNome(String nome) {
 //		this.nome = nome;
 //	}

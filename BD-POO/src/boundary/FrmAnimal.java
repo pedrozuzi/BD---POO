@@ -49,7 +49,7 @@ public class FrmAnimal extends MouseAdapter {
 	private JTextField txtRga;
 	private JTextField txtRaca;
 	private JTextField txtCor;
-	private JTable tableAnimal;
+	private static JTable tableAnimal;
 	private JTable tableBusca;
 	private JLabel lblCliente;
 	private static JTextField txtCliente;
@@ -339,6 +339,8 @@ public class FrmAnimal extends MouseAdapter {
 				modelo = new ModeloTabela(listaAnimal);
 				tableAnimal.getTableHeader().setReorderingAllowed(false);
 				tableAnimal.setModel(modelo);
+			}else{
+				System.out.println("LISTA VAZIA");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

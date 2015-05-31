@@ -15,7 +15,7 @@ public class CtrlAnimal {
 	public List<Animal> buscaCliente(int idCliente) throws SQLException{
 		List<Animal> lista = new ArrayList<Animal>();
 		aDao = new AnimalDaoImpl();
-		aDao.listaAnimal(idCliente);
+		lista = aDao.listaAnimal(idCliente);
 		return lista;
 	}
 

@@ -32,7 +32,7 @@ public class AnimalDaoImpl implements AnimalDao{
 		ps.setInt(1, idCliente);
 		ResultSet rs = ps.executeQuery();
 		
-		if ( rs.next() ) {
+		while ( rs.next() ) {
 			Animal a = new Animal();
 			a.setNome( rs.getString("nome") );
 			a.setRga( rs.getString("rga") );
@@ -40,7 +40,7 @@ public class AnimalDaoImpl implements AnimalDao{
 			a.setEspecie(rs.getString("especie") );
 			a.setSexo( rs.getString("sexo") );
 			a.setCor( rs.getString("cor") );
-			a.setId( rs.getInt("id"));
+			//a.setId( rs.getInt("id"));
 			lista.add(a);
 		}
 		ps.close();

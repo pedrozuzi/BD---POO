@@ -13,8 +13,6 @@ public class ModeloTabela extends AbstractTableModel {
 
 	private final List<?> lista;
 	private Class<?> classe;
-	
-	
 
 	public ModeloTabela(List<?> lista) {
 		this.lista = lista;
@@ -24,6 +22,7 @@ public class ModeloTabela extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		return lista.size();
+		
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
 import control.ConfigTelas;
 import control.CtrlAnimal;
 import control.CtrlCliente;
@@ -51,7 +49,6 @@ public class FrmAnimal extends MouseAdapter {
 	private JTextField txtCor;
 	private JTable tableAnimal;
 	private JTable tableBusca;
-	private JLabel lblCliente;
 	private JTextField txtCliente;
 	private JLabel lblEspecie;
 	private JComboBox<String> comboBoxEspecie;
@@ -82,6 +79,12 @@ public class FrmAnimal extends MouseAdapter {
 		panPrincipalAnimal.setBackground(SystemColor.text);
 		panPrincipalAnimal.setForeground(Color.WHITE);
 		panPrincipalAnimal.setLayout(null);
+		
+		txtCliente = new JTextField();
+		txtCliente.setEnabled(false);
+		txtCliente.setBounds(145, 301, 238, 20);
+		panPrincipalAnimal.add(txtCliente);
+		txtCliente.setColumns(10);
 		
 		panelAnimal = new JPanel();
 		panelAnimal.setLayout(null);
@@ -136,14 +139,14 @@ public class FrmAnimal extends MouseAdapter {
 				("/img/MiniSalvar.png")));
 		btnGravar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGravar.setVisible(false);
-		btnGravar.setBounds(406, 543, 96, 31);
+		btnGravar.setBounds(417, 543, 96, 31);
 		panPrincipalAnimal.add(btnGravar);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniClear.png")));
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(247, 543, 96, 31);
+		btnLimpar.setBounds(258, 543, 96, 31);
 		btnLimpar.setVisible(false);
 		panPrincipalAnimal.add(btnLimpar);
 		
@@ -151,67 +154,67 @@ public class FrmAnimal extends MouseAdapter {
 		btnVoltar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniBack.png")));
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(83, 543, 96, 31);
+		btnVoltar.setBounds(94, 543, 96, 31);
 		btnVoltar.setVisible(false);
 		panPrincipalAnimal.add(btnVoltar);
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnLupaPesquisar.setBounds(422, 288, 65, 31);
+		btnLupaPesquisar.setBounds(417, 290, 65, 31);
 		panPrincipalAnimal.add(btnLupaPesquisar);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(155, 341, 238, 20);
+		txtNome.setBounds(157, 369, 238, 20);
 		panPrincipalAnimal.add(txtNome);
 		txtNome.setColumns(10);
 		
 		lblNome = new JLabel("Nome: ");
-		lblNome.setBounds(81, 344, 46, 14);
+		lblNome.setBounds(83, 372, 46, 14);
 		panPrincipalAnimal.add(lblNome);
 		
 		txtRga = new JTextField();
-		txtRga.setBounds(155, 382, 128, 20);
+		txtRga.setBounds(157, 410, 128, 20);
 		panPrincipalAnimal.add(txtRga);
 		txtRga.setColumns(10);
 		
 		lblRga = new JLabel("RGA:");
-		lblRga.setBounds(81, 382, 46, 14);
+		lblRga.setBounds(83, 410, 46, 14);
 		panPrincipalAnimal.add(lblRga);
 		
 		txtRaca = new JTextField();
-		txtRaca.setBounds(155, 420, 138, 20);
+		txtRaca.setBounds(157, 448, 138, 20);
 		panPrincipalAnimal.add(txtRaca);
 		txtRaca.setColumns(10);
 		
 		lblRaca = new JLabel("Ra\u00E7a:");
-		lblRaca.setBounds(81, 423, 46, 14);
+		lblRaca.setBounds(83, 451, 46, 14);
 		panPrincipalAnimal.add(lblRaca);
 		
 		lblCor = new JLabel("Cor:");
-		lblCor.setBounds(313, 423, 46, 14);
+		lblCor.setBounds(315, 451, 46, 14);
 		panPrincipalAnimal.add(lblCor);
 		
 		txtCor = new JTextField();
-		txtCor.setBounds(356, 420, 86, 20);
+		txtCor.setBounds(358, 448, 86, 20);
 		panPrincipalAnimal.add(txtCor);
 		txtCor.setColumns(10);
 		
 		lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(81, 457, 46, 14);
+		lblSexo.setBounds(83, 485, 46, 14);
 		panPrincipalAnimal.add(lblSexo);
 		
 		lblEspecie = new JLabel("Esp\u00E9cie:");
-		lblEspecie.setBounds(205, 454, 68, 14);
+		lblEspecie.setBounds(207, 482, 68, 14);
 		panPrincipalAnimal.add(lblEspecie);
 		
 		comboBoxEspecie = new JComboBox<String>();
-		comboBoxEspecie.setBounds(272, 451, 138, 20);
+		comboBoxEspecie.setBounds(274, 479, 138, 20);
 		comboBoxEspecie.addItem("Cachorro");
 		comboBoxEspecie.addItem("Gato");	
 		panPrincipalAnimal.add(comboBoxEspecie);
 			
 		comboBoxSexo = new JComboBox<String>();
-		comboBoxSexo.setBounds(127, 454, 38, 20);
+		comboBoxSexo.setBounds(129, 482, 38, 20);
 		comboBoxSexo.addItem(SexoAnimal.MACHO.getSEXO());
 		comboBoxSexo.addItem(SexoAnimal.FEMEA.getSEXO());
 		panPrincipalAnimal.add(comboBoxSexo);
@@ -229,15 +232,12 @@ public class FrmAnimal extends MouseAdapter {
 		scrollPane.setVisible(true);
 		panPrincipalAnimal.add(scrollPane);
 		
-		lblCliente = new JLabel("Cliente: ");
-		lblCliente.setBounds(83, 299, 52, 20);
-		panPrincipalAnimal.add(lblCliente);
-		
-		txtCliente = new JTextField();
-		txtCliente.setEnabled(false);
-		txtCliente.setBounds(155, 299, 238, 20);
-		panPrincipalAnimal.add(txtCliente);
-		txtCliente.setColumns(10);
+		JPanel panel = new JPanel();
+		panel.setForeground(Color.WHITE);
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(129, 278, 363, 65);
+		panPrincipalAnimal.add(panel);
 		
 		janelaAnimal.setSize(627,656);
 		janelaAnimal.setContentPane( panPrincipalAnimal );
@@ -330,7 +330,6 @@ public class FrmAnimal extends MouseAdapter {
 		}
 		
 		if (tableAnimal.equals(acao)) {
-			Animal a = new Animal();
 			System.out.println("Tabela animal");
 			int linha = tableAnimal.getSelectedRow();
 			int coluna = tableAnimal.getSelectedColumn();
@@ -345,7 +344,8 @@ public class FrmAnimal extends MouseAdapter {
 			txtNome.setText( String.valueOf(valoresAnimal[0]));
 			txtRga.setText( String.valueOf(valoresAnimal[1]));
 			txtRaca.setText( String.valueOf(valoresAnimal[2]));
-			System.out.println(a.getSexo());
+			comboBoxEspecie.setSelectedItem(valoresAnimal[3]);
+			comboBoxSexo.setSelectedItem(valoresAnimal[4]);
 			txtCor.setText( String.valueOf(valoresAnimal[5]));
 		}
 	}

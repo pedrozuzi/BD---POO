@@ -25,14 +25,14 @@ public class Pessoa {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
-	
+	@Coluna(nome="Nome", posicao=0)
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+	@Coluna(nome="Telefone", posicao=1)
 	public int getTelefone() {
 		return telefone;
 	}

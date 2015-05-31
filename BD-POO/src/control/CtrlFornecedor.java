@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 
 import persistence.FornecedorDao;
 import persistence.FornecedorDaoImpl;
@@ -17,6 +18,7 @@ public class CtrlFornecedor{
 	
 	private FornecedorDao fDao;
 	private PessoaDao pDao;
+	private AbstractTableModel mt;
 	
 	public void inserir(Fornecedor f) {
 		pDao = new PessoaDaoImpl();
@@ -42,6 +44,7 @@ public class CtrlFornecedor{
 	
 	public void excluir(Fornecedor f) {
 		fDao = new FornecedorDaoImpl();
+		
 		try {
 			fDao.excluirFornecedor(f);
 		} catch (SQLException e) {

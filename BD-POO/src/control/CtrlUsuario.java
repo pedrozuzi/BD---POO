@@ -37,7 +37,7 @@ public class CtrlUsuario extends AbstractTableModel{
 //	}
 	
 	public CtrlUsuario() {
-		setValueAt(classes, 1, 1);
+		
 	}
 	 
 	@Override

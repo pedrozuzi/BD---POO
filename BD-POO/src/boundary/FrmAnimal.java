@@ -49,10 +49,10 @@ public class FrmAnimal extends MouseAdapter {
 	private JTextField txtRga;
 	private JTextField txtRaca;
 	private JTextField txtCor;
-	private static JTable tableAnimal;
+	private JTable tableAnimal;
 	private JTable tableBusca;
 	private JLabel lblCliente;
-	private static JTextField txtCliente;
+	private JTextField txtCliente;
 	private JLabel lblEspecie;
 	private JComboBox<String> comboBoxEspecie;
 	private JScrollPane scrollPane;
@@ -72,6 +72,8 @@ public class FrmAnimal extends MouseAdapter {
 	private JLabel lblNome;
 	private int idCliente;
 	private CtrlAnimal controlAnimal;
+	private int idAnimal;
+	private JDialog jd;
 	
 	public FrmAnimal() {
 		janelaAnimal = new JFrame();
@@ -242,12 +244,12 @@ public class FrmAnimal extends MouseAdapter {
 		ConfigTelas.centralizarFrame( janelaAnimal );
 		
 		btnLupaPesquisar.addActionListener(l -> {
-			new FrmAnimal(new JDialog(janelaAnimal, "Buscar Cliente", true));
+			animal(jd);
 		});
 	}
 	
-	public FrmAnimal(JDialog jd) {
-		
+	public  void animal(JDialog jd) {
+		jd = new JDialog(jd, "Buscar Cliente", true);
 		panPrincipalBusca = new JPanel();
 		panPrincipalBusca.setBackground(SystemColor.text);
 		panPrincipalBusca.setForeground(Color.WHITE);
@@ -325,6 +327,26 @@ public class FrmAnimal extends MouseAdapter {
 			txtCliente.setText(String.valueOf(valorCliente));
 			
 			buscaAnimaisDoCliente();
+		}
+		
+		if (tableAnimal.equals(acao)) {
+			Animal a = new Animal();
+			System.out.println("Tabela animal");
+			int linha = tableAnimal.getSelectedRow();
+			int coluna = tableAnimal.getSelectedColumn();
+			Object[] valoresAnimal = new Object[6];
+			
+			for (coluna = 0; coluna < tableAnimal.getColumnCount(); coluna++) {
+				valoresAnimal[coluna] = tableAnimal.getValueAt(linha, coluna);
+			}
+			
+			idAnimal = listaAnimal.get(linha).getId();
+			System.out.println(idAnimal);
+			txtNome.setText( String.valueOf(valoresAnimal[0]));
+			txtRga.setText( String.valueOf(valoresAnimal[1]));
+			txtRaca.setText( String.valueOf(valoresAnimal[2]));
+			System.out.println(a.getSexo());
+			txtCor.setText( String.valueOf(valoresAnimal[5]));
 		}
 	}
 

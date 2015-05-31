@@ -54,7 +54,7 @@ public class FrmAnimal extends MouseAdapter {
 	private JTable tableAnimal;
 	private JTable tableBusca;
 	private JLabel lblCliente;
-	private JTextField txtCliente;
+	private static JTextField txtCliente;
 	private JLabel lblEspecie;
 	private JComboBox<String> comboBoxEspecie;
 	private JScrollPane scrollPane;
@@ -68,7 +68,6 @@ public class FrmAnimal extends MouseAdapter {
 	private List<Cliente> lista;
 	private JPanel panPrincipalBusca;
 	private JScrollPane scrollPaneBusca;
-	private JPanel panelBusca;
 	private JButton btnLupaPesquisarBusca;
 	private JTextField txtBuscaCliente;
 	private JLabel lblNome;
@@ -308,27 +307,30 @@ public class FrmAnimal extends MouseAdapter {
 	}
 
 	private void limpaCampos() {
-//	txtNome.setText("");
-//	txtCor.setText("");
-//	txtRaca.setText("");
-//	txtRga.setText("");
+	//	txtNome.setText("");
+	//	txtCor.setText("");
+	//	txtRaca.setText("");
+	//	txtRga.setText("");
 	
 }
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object acao = e.getSource();
-		Object[] valorCliente = new Object[1];
+		Object valorCliente;
 		if (tableBusca.equals(acao)) {
 			int linha = tableBusca.getSelectedRow();
 			idCliente = lista.get(linha).getId();
-			//txtCliente.setText(String.valueOf());
-			valorCliente[0] = tableBusca.getValueAt(linha, 0);
-			txtCliente.setText(String.valueOf(valorCliente[0]));
+			valorCliente = tableBusca.getValueAt(linha, 0);
+			txtCliente.setText(String.valueOf(valorCliente));
+			
+			buscaAnimaisDoCliente();
 		}
-		
-		
+	}
 
+	private void buscaAnimaisDoCliente() {
+		// TODO
+		
 	}
 
 	public static void main(String[] args) {

@@ -62,7 +62,6 @@ public class ModeloTabela extends AbstractTableModel {
 			if (metodo.isAnnotationPresent(Coluna.class)) {
 				Coluna anotacao = metodo.getAnnotation(Coluna.class);
 				if (anotacao.posicao() == coluna) {
-					System.out.println(anotacao.nome());
 					return anotacao.nome();
 				}
 			}
@@ -70,13 +69,20 @@ public class ModeloTabela extends AbstractTableModel {
 		return "";
 	}
 	
-//	@Override
-//	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-//	    Funcionario f = (Funcionario) lista.get(rowIndex);
-//	    
-//	    if(columnIndex == 3){
-//	    	f.s
-//	    }
-//	}
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+	    Funcionario f = (Funcionario) lista.get(rowIndex);
+	    System.out.println(classe.getName());
+	    System.out.println("TESTE");
+	    if(classe.getName() == "entity.Funcionario"){
+	    	System.out.println("Entrou");
+	    }
+	    fireTableCellUpdated(rowIndex, columnIndex);
+	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex == 2;
+	}
 	
 }

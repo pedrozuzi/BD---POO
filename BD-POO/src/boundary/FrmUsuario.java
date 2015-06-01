@@ -23,6 +23,10 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -37,7 +41,7 @@ import javax.swing.JPasswordField;
 
 import entity.Funcionario;
 
-public class FrmUsuario implements ActionListener, MouseListener{
+public class FrmUsuario implements ActionListener, MouseListener, KeyListener, FocusListener{
 
 	private JFrame janela;
 	private JPanel panelPrincipal;
@@ -243,6 +247,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		ConfigTelas.centralizarFrame(janela);
 		
 		ctrlFunc = new CtrlFuncionario();
+		controlUsuario = new CtrlUsuario();
 		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
@@ -251,6 +256,10 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		btnVoltar.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);	
+		
+		txtUsuario.addFocusListener(this);
+		pwdSenha.addFocusListener(this);
+		pwdConfirmarSenha.addFocusListener(this);
 	}
 
 	@Override
@@ -358,7 +367,8 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			}
 		}
 		
-		
+		txtUsuario.setEditable(true);
+		txtUsuario.grabFocus();
 	}
 
 	@Override
@@ -375,5 +385,32 @@ public class FrmUsuario implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		Object obj = e.getSource();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		Object obj = e.getSource();
+		
+		if(txtUsuario.equals(obj)){
+			System.out.println("ENTROU");			
+		}
 	}
 }

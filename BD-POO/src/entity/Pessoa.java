@@ -1,13 +1,5 @@
 package entity;
 
-import java.lang.annotation.Inherited;
-
-/**
- * 
- * @author Hury
- *
- */
-
 public class Pessoa {
 	
 	private int id;
@@ -15,7 +7,6 @@ public class Pessoa {
 	private int telefone;
 	private String nome;
 	
-
 	public int getId() {
 		return id;
 	}

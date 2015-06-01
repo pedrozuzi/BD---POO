@@ -7,6 +7,7 @@ import control.ConfigTelas;
 import control.CtrlFuncionario;
 import control.CtrlTabela;
 import control.CtrlUsuario;
+import control.ModeloTabela;
 
 import java.awt.Color;
 
@@ -69,7 +70,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblDadosObrigatorios;
 	private JLabel lblLogoLudPet;
 	private CtrlUsuario controlUsuario;
-//	private DefaultTableModel modelo;
+	private ModeloTabela modelo;
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private int id;
 	private CtrlFuncionario ctrlFunc;
@@ -302,8 +303,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		}
 		
 		if(acao.equalsIgnoreCase("PesquisarNome")){
-//			modelo.setNumRows(0);
-//			buscarDadosDaTabela(modelo);
+			pesquisar();
 		}
 		
 		if(acao.equalsIgnoreCase("Gravar")){
@@ -321,32 +321,23 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 	}
 	
-	private void buscarDadosDaTabela(DefaultTableModel modelo) {
-		ctrlFunc = new CtrlFuncionario();
-		
-		lista = ctrlFunc.pesquisarFuncionario( txtNome.getText() );
-		if(lista.isEmpty()){
-			JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-					"Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}else{
-			System.out.println("ENTROU...");
-			for (Funcionario f : lista) {
-				System.out.println("ENTROU...2");
-				Object[] linha = new Object[3];
-				linha[0] = f.getNome();
-				System.out.println(f.getNome());
-				linha[1] = f.getCpf();
-				if( f.getIdTipo() == 1 ){
-					linha[2] = "Administrador";
-				}else if( f.getIdTipo() == 2 ){
-					linha[2] = "Atendente";
-				}else{
-					linha[2] = "Tosador/Banhista";
-				}
-				modelo.addRow(linha);
-			} 
+	private void pesquisar() {
+
+		try {
+			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
+			if (!lista.isEmpty()) {
+				modelo = new ModeloTabela(lista);
+				table.getTableHeader().setReorderingAllowed(false);
+				table.setModel(modelo);
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Nenhum registro encontrado", "Aviso",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (NullPointerException e1) {
+			System.out.println("NullPointer");
 		}
-		
+
 	}
 
 	private void montarTela() {

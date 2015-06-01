@@ -28,7 +28,6 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		String queryFuncionario = "insert into funcionario (id, cpf, nome, salario, telefone)"
 				+ " values(?, ?, ?, ?, ?)";
 		PreparedStatement ps = c.prepareStatement( queryFuncionario );
-		System.out.println("TESTE... "+func.getId());
 		ps.setInt(1, func.getId() );
 		ps.setString(2, func.getCpf() );
 		ps.setString(3, func.getNome() );
@@ -80,7 +79,7 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 			throws SQLException {
 			List<Funcionario> lista = new ArrayList<Funcionario>();
 			
-			String query = "select  f.id, f.nome, f.cpf, f.salario, f.telefone, p.idTipo "
+			String query = "select  f.id, f.nome, SUBSTRING(f.cpf,1,9)+'-'+SUBSTRING(f.cpf,10,11)as cpf, f.salario, f.telefone, p.idTipo "
 					+ "from funcionario f "
 					+ "inner join pessoa p "
 					+ "on f.id = p.idPessoa "

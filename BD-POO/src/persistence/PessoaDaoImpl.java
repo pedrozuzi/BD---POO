@@ -21,7 +21,7 @@ private Connection c;
 	}
 
 	@Override
-	public void inserePessoa(Pessoa pes) throws SQLException { //FIXME
+	public void inserePessoa(Pessoa pes) throws SQLException { 
 		String sql = "insert into pessoa (idTipo) values (?)";
 		PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		ps.setInt(1, pes.getIdTipo() );

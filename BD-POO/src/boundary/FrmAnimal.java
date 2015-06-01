@@ -5,9 +5,11 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.peer.PanelPeer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import control.ConfigTelas;
 import control.CtrlAnimal;
 import control.CtrlCliente;
@@ -71,6 +74,8 @@ public class FrmAnimal extends MouseAdapter {
 	private CtrlAnimal controlAnimal;
 	private int idAnimal;
 	private JDialog jd;
+	private JPanel panelCliente;
+	private JLabel lblLogo;
 	
 	public FrmAnimal() {
 		janelaAnimal = new JFrame();
@@ -82,6 +87,13 @@ public class FrmAnimal extends MouseAdapter {
 		
 		txtCliente = new JTextField();
 		txtCliente.setEnabled(false);
+		txtCliente.setVisible(false);
+		
+		lblLogo = new JLabel("");
+		lblLogo.setBounds(37, 277, 546, 199);
+		panPrincipalAnimal.add(lblLogo);
+		lblLogo.setIcon(new ImageIcon(FrmAnimal.class.getResource
+				("/img/LogoLudpet.png")));
 		txtCliente.setBounds(145, 301, 238, 20);
 		panPrincipalAnimal.add(txtCliente);
 		txtCliente.setColumns(10);
@@ -101,12 +113,6 @@ public class FrmAnimal extends MouseAdapter {
 		btnIncluir.setBounds(49, 11, 69, 41);
 		btnIncluir.setVisible(true);
 		panelAnimal.add(btnIncluir);
-		
-		lblIncluir = new JLabel("(F2) Incluir");
-		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblIncluir.setVisible(true);
-		lblIncluir.setBounds(54, 54, 69, 19);
-		panelAnimal.add(lblIncluir);
 		
 		btnAlterar = new JButton("");
 		btnAlterar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
@@ -134,6 +140,12 @@ public class FrmAnimal extends MouseAdapter {
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panelAnimal.add(lblExcluir);
 		
+		lblIncluir = new JLabel("(F2) Incluir");
+		lblIncluir.setBounds(49, 54, 69, 19);
+		panelAnimal.add(lblIncluir);
+		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblIncluir.setVisible(true);
+		
 		btnGravar = new JButton("Gravar");
 		btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 				("/img/MiniSalvar.png")));
@@ -159,85 +171,100 @@ public class FrmAnimal extends MouseAdapter {
 		panPrincipalAnimal.add(btnVoltar);
 		
 		btnLupaPesquisar = new JButton("");
+		btnLupaPesquisar.setVisible(false);
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnLupaPesquisar.setBounds(417, 290, 65, 31);
 		panPrincipalAnimal.add(btnLupaPesquisar);
 		
 		txtNome = new JTextField();
+		txtNome.setVisible(false);
 		txtNome.setBounds(157, 369, 238, 20);
 		panPrincipalAnimal.add(txtNome);
 		txtNome.setColumns(10);
 		
 		lblNome = new JLabel("Nome: ");
+		lblNome.setVisible(false);
 		lblNome.setBounds(83, 372, 46, 14);
 		panPrincipalAnimal.add(lblNome);
 		
 		txtRga = new JTextField();
+		txtRga.setVisible(false);
 		txtRga.setBounds(157, 410, 128, 20);
 		panPrincipalAnimal.add(txtRga);
 		txtRga.setColumns(10);
 		
 		lblRga = new JLabel("RGA:");
+		lblRga.setVisible(false);
 		lblRga.setBounds(83, 410, 46, 14);
 		panPrincipalAnimal.add(lblRga);
 		
 		txtRaca = new JTextField();
+		txtRaca.setVisible(false);
 		txtRaca.setBounds(157, 448, 138, 20);
 		panPrincipalAnimal.add(txtRaca);
 		txtRaca.setColumns(10);
 		
 		lblRaca = new JLabel("Ra\u00E7a:");
+		lblRaca.setVisible(false);
 		lblRaca.setBounds(83, 451, 46, 14);
 		panPrincipalAnimal.add(lblRaca);
 		
 		lblCor = new JLabel("Cor:");
+		lblCor.setVisible(false);
 		lblCor.setBounds(315, 451, 46, 14);
 		panPrincipalAnimal.add(lblCor);
 		
 		txtCor = new JTextField();
+		txtCor.setVisible(false);
 		txtCor.setBounds(358, 448, 86, 20);
 		panPrincipalAnimal.add(txtCor);
 		txtCor.setColumns(10);
 		
 		lblSexo = new JLabel("Sexo:");
+		lblSexo.setVisible(false);
 		lblSexo.setBounds(83, 485, 46, 14);
 		panPrincipalAnimal.add(lblSexo);
 		
 		lblEspecie = new JLabel("Esp\u00E9cie:");
+		lblEspecie.setVisible(false);
 		lblEspecie.setBounds(207, 482, 68, 14);
 		panPrincipalAnimal.add(lblEspecie);
 		
 		comboBoxEspecie = new JComboBox<String>();
+		comboBoxEspecie.setVisible(false);
 		comboBoxEspecie.setBounds(274, 479, 138, 20);
 		comboBoxEspecie.addItem("Cachorro");
 		comboBoxEspecie.addItem("Gato");	
 		panPrincipalAnimal.add(comboBoxEspecie);
 			
 		comboBoxSexo = new JComboBox<String>();
+		comboBoxSexo.setVisible(false);
 		comboBoxSexo.setBounds(129, 482, 38, 20);
 		comboBoxSexo.addItem(SexoAnimal.MACHO.getSEXO());
 		comboBoxSexo.addItem(SexoAnimal.FEMEA.getSEXO());
 		panPrincipalAnimal.add(comboBoxSexo);
 		
 		tableAnimal = new JTable();
+		tableAnimal.setVisible(false);
 		tableAnimal.addMouseListener(this);
 		tableAnimal.setBorder(new LineBorder(Color.BLACK));
 		tableAnimal.setGridColor(Color.BLACK);
 		tableAnimal.setShowGrid(true);
 		
 		scrollPane = new JScrollPane();
+		scrollPane.setVisible(false);
 		scrollPane.getViewport().setBorder(null);
 		scrollPane.setViewportView(tableAnimal);
 		scrollPane.setBounds(10, 107, 591, 159);
-		scrollPane.setVisible(true);
 		panPrincipalAnimal.add(scrollPane);
 		
-		JPanel panel = new JPanel();
-		panel.setForeground(Color.WHITE);
-		panel.setBackground(Color.WHITE);
-		panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(129, 278, 363, 65);
-		panPrincipalAnimal.add(panel);
+		panelCliente = new JPanel();
+		panelCliente.setVisible(false);
+		panelCliente.setForeground(Color.WHITE);
+		panelCliente.setBackground(Color.WHITE);
+		panelCliente.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelCliente.setBounds(129, 278, 363, 65);
+		panPrincipalAnimal.add(panelCliente);
 		
 		janelaAnimal.setSize(627,656);
 		janelaAnimal.setContentPane( panPrincipalAnimal );
@@ -246,8 +273,34 @@ public class FrmAnimal extends MouseAdapter {
 		btnLupaPesquisar.addActionListener(l -> {
 			animal(jd);
 		});
+		
+		btnIncluir.addActionListener(l -> montarTela());
 	}
 	
+	private void montarTela() {
+		lblLogo.setVisible(false);
+		tableAnimal.setVisible(true);
+		scrollPane.setVisible(true);
+		panelCliente.setVisible(true);
+		txtCliente.setVisible(true);
+		btnLupaPesquisar.setVisible(true);
+		lblNome.setVisible(true);
+		txtNome.setVisible(true);
+		lblRga.setVisible(true);
+		txtRga.setVisible(true);
+		comboBoxSexo.setVisible(true);
+		comboBoxEspecie.setVisible(true);
+		lblSexo.setVisible(true);
+		lblEspecie.setVisible(true);
+		txtCor.setVisible(true);
+		lblCor.setVisible(true);
+		txtRaca.setVisible(true);
+		lblRaca.setVisible(true);
+		btnGravar.setVisible(true);
+		btnLimpar.setVisible(true);
+		btnVoltar.setVisible(true);
+	}
+
 	public  void animal(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
 		panPrincipalBusca = new JPanel();

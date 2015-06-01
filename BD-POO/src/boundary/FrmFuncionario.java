@@ -468,19 +468,23 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[3];
+		Object[] valores = new Object[2];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
 		
 		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
+//		valores[coluna] = table.getValueAt(linha, coluna); NAO FUNCIONA SOMENTE COM ESTA LINHA POIS NAO PEGARA O 
+//															VALOR DAS DUAS COLUNAS.
 		
 		id = lista.get(linha).getId();
 		for (Funcionario f : lista) {
 			if(valores[0].equals(f.getNome())){
-				txtNome.setText(String.valueOf(valores[0]));
-				txtCpf.setText(String.valueOf(valores[1]));
+//				txtNome.setText(String.valueOf(valores[0]));
+//				txtCpf.setText(String.valueOf(valores[1]));
+				txtNome.setText(f.getNome());
+				txtCpf.setText(f.getCpf());
 				txtTelefone.setText( Integer.toString(f.getTelefone()) );
 				txtSalario.setText( Double.toString(f.getSalario()) );
 				if( f.getIdTipo() == 1 ){

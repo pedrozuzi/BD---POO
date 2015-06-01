@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 
 import control.ConfigTelas;
 import control.CtrlFuncionario;
-import control.CtrlTabela;
 import control.CtrlUsuario;
 import control.ModeloTabela;
 
@@ -13,7 +12,6 @@ import java.awt.Color;
 
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -38,7 +36,6 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 import entity.Funcionario;
-import entity.Usuario;
 
 public class FrmUsuario implements ActionListener, MouseListener{
 
@@ -126,22 +123,18 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		lblExcluir.setBounds(242, 54, 39, 19);
 		panelAcoes.add(lblExcluir);
 		
-		controlUsuario = new CtrlUsuario();
-		table = new JTable(controlUsuario);
+		table = new JTable();
+		table.setBorder(new LineBorder(Color.black));
+		table.setGridColor(Color.black);
+		table.setShowGrid(true);
+		table.addMouseListener(this);
+		
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
 		scrollPane.setViewportView(table);
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
-	
-		table.setBorder(new LineBorder(Color.black));
-		table.setGridColor(Color.black);
-		table.setShowGrid(true);
-		table.getTableHeader().setReorderingAllowed(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-		table.getColumnModel().getColumn(2).setPreferredWidth(50);
-		
+
 		panelFuncionario = new JPanel();
 		panelFuncionario.setVisible(false);
 		panelFuncionario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Funcionario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -249,43 +242,21 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		janela.setSize(633, 671);		
 		ConfigTelas.centralizarFrame(janela);
 		
+		ctrlFunc = new CtrlFuncionario();
+		
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
 		btnExcluir.addActionListener(this);
 		btnGravar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnLimpar.addActionListener(this);
-		btnPesquisarNome.addActionListener(this);
-		
-//		modelo = montarTabela();
-		
+		btnPesquisarNome.addActionListener(this);	
 	}
-	
-//	private DefaultTableModel montarTabela() {
-//		String[] coluna = new String[3];
-//		coluna[0] = "Nome";
-//		coluna[1] = "CPF";
-//		coluna[2] = "Cargo";
-//		
-//		modelo = new CtrlTabela(new Object[][] {}, coluna);
-//		
-//		table.setModel(modelo);
-//		table.addMouseListener(this);
-//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-//		table.getColumnModel().getColumn(0).setPreferredWidth(150);
-//		table.getColumnModel().getColumn(1).setPreferredWidth(50);
-//		table.getColumnModel().getColumn(2).setPreferredWidth(50);
-//		table.setVisible(false);
-//		scrollPane.setViewportView(table);
-//		
-//		return modelo;
-//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 		lblLogoLudPet.setVisible(false);
-//		modelo.setNumRows(0);
 		montarTela();
 		
 		if(acao.equalsIgnoreCase("Incluir")){
@@ -372,7 +343,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[3];
+		Object[] valores = new Object[2];
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
 		
@@ -384,32 +355,25 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		for (Funcionario f : lista) {
 			if(valores[0].equals(f.getNome())){
 				txtNome.setText(String.valueOf(valores[0]));
-				
 			}
 		}
+		
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

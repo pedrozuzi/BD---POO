@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import entity.Coluna;
+import entity.Funcionario;
 
 public class ModeloTabela extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
@@ -61,11 +62,21 @@ public class ModeloTabela extends AbstractTableModel {
 			if (metodo.isAnnotationPresent(Coluna.class)) {
 				Coluna anotacao = metodo.getAnnotation(Coluna.class);
 				if (anotacao.posicao() == coluna) {
+					System.out.println(anotacao.nome());
 					return anotacao.nome();
 				}
 			}
 		}
 		return "";
 	}
+	
+//	@Override
+//	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+//	    Funcionario f = (Funcionario) lista.get(rowIndex);
+//	    
+//	    if(columnIndex == 3){
+//	    	f.s
+//	    }
+//	}
 	
 }

@@ -23,9 +23,9 @@ public class Funcionario extends Pessoa{
 	public String getNome() {
 		return super.getNome();
 	}
-//	@Coluna(nome="Cargo", posicao=2)
-//	@Override
-//	public int getIdTipo() {
-//		return super.getIdTipo();
-//	}
+	@Coluna(nome="Cargo", posicao=2)
+	@Override
+	public int getIdTipo() {
+		return super.getIdTipo();
+	}
 }

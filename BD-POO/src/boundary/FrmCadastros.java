@@ -2,11 +2,20 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
 
 public class FrmCadastros {
 	
@@ -97,7 +106,22 @@ public class FrmCadastros {
 		lblCliente.setBounds(45, 325, 97, 14);
 		panPrincipal.add(lblCliente);
 		
+		ActionMap am = panPrincipal.getActionMap();
+		am.put("animal", new AbstractAction() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmAnimal();
+			}
+		});
+		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
+		
 		btnAnimal.addActionListener(e -> new FrmAnimal());
+		
+		
+		
+		
 		btnCliente.addActionListener(e -> new FrmCliente());
 		btnFornecedor.addActionListener(e -> new FrmFornecedor());
 		btnFuncionario.addActionListener(e -> new FrmFuncionario());

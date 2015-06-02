@@ -289,7 +289,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		
 		if(acao.equalsIgnoreCase("Gravar")){
 			if(pwdSenha.getText().equals(pwdConfirmarSenha.getText())){
-				System.out.println("SENHAS IGUAIS");
+				System.out.println("Incluir usuario");
 			} else {
 				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);

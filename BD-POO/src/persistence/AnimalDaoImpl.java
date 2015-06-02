@@ -92,4 +92,15 @@ public class AnimalDaoImpl implements AnimalDao{
 		JOptionPane.showMessageDialog(null, "Dados atualizados");
 	}
 
+	@Override
+	public void excluiAnimal(Animal a) throws SQLException {
+		String query = "delete animal where id = ?";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, a.getId());
+		ps.execute();
+		JOptionPane.showMessageDialog(null, "Animal excluido com sucesso!");
+		ps.close();
+		
+	}
+
 }

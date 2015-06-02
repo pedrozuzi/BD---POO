@@ -274,13 +274,27 @@ public class FrmAnimal extends MouseAdapter {
 		});
 		
 		btnIncluir.addActionListener(l -> {
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Gravar");
 			montarTela();
 			btnGravar.setActionCommand("Incluir");
 		});
 		
 		btnAlterar.addActionListener(l -> {
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Alterar");
 			montarTela();
 			btnGravar.setActionCommand("Alterar");
+		});
+		
+		btnExcluir.addActionListener(l -> {
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/trash.png")));
+			btnGravar.setText("Excluir");
+			montarTela();
+			btnGravar.setActionCommand("Excluir");
 		});
 		
 		btnGravar.addActionListener(e -> {
@@ -371,7 +385,6 @@ public class FrmAnimal extends MouseAdapter {
 			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
 			a.setRga(txtRga.getText());
 			controlAnimal.inserir(a);
-
 		}else if ("Alterar".equalsIgnoreCase(cmd)) {
 			a.setId(idAnimal);
 			a.setNome(txtNome.getText());
@@ -381,6 +394,15 @@ public class FrmAnimal extends MouseAdapter {
 			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
 			a.setRga(txtRga.getText());
 			controlAnimal.atualiza(a);
+		}else if ("Excluir".equalsIgnoreCase(cmd)) {
+			a.setId(idAnimal);
+			a.setNome(txtNome.getText());
+			a.setRaca(txtRaca.getText());
+			a.setCor(txtCor.getText());
+			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+			a.setRga(txtRga.getText());
+			controlAnimal.excluir(a);
 		}
 		
 	}

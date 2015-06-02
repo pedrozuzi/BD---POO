@@ -28,5 +28,10 @@ public class CtrlAnimal {
 		aDao = new AnimalDaoImpl();
 		aDao.atualizaAnimal(a);
 	}
+	
+	public void excluir ( Animal a ) throws SQLException {
+		aDao = new AnimalDaoImpl();
+		aDao.excluiAnimal(a);
+	}
 
 }

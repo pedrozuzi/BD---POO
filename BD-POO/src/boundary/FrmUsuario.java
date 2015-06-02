@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+import sun.font.StrikeCache;
 import entity.Funcionario;
 
 public class FrmUsuario implements ActionListener, MouseListener, KeyListener, FocusListener{
@@ -288,7 +289,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		}
 		
 		if(acao.equalsIgnoreCase("Gravar")){
-			if(pwdSenha.getText().equals(pwdConfirmarSenha.getText())){
+			if(new String(pwdSenha.getPassword()).equals(new String(pwdConfirmarSenha.getPassword()))){
 				System.out.println("Incluir usuario");
 			} else {
 				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 

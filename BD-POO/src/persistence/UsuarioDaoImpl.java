@@ -38,7 +38,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public boolean buscarUsario(String nome) throws SQLException {
-		boolean verifica;
 		
 		String query = "select "
 				+ "case "
@@ -51,11 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, nome);
 		ResultSet rs = ps.executeQuery();
-		
-		verifica = rs.getBoolean("verificacao");
-		return verifica;
+		rs.next();
+		return rs.getBoolean("verificacao");
 	}
-
-
-
 }

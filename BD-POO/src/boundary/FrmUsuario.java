@@ -7,6 +7,7 @@ import control.ConfigTelas;
 import control.CtrlFuncionario;
 import control.CtrlUsuario;
 import control.ModeloTabela;
+import control.TratamentoTextFields;
 
 import java.awt.Color;
 
@@ -177,7 +178,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		lblSenha.setBounds(38, 443, 80, 14);
 		panelPrincipal.add(lblSenha);
 		
-		txtUsuario = new JTextField();
+		txtUsuario = new TratamentoTextFields();
 		txtUsuario.setVisible(false);
 		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setBounds(128, 406, 141, 23);
@@ -393,7 +394,6 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		Object obj = e.getSource();
 	}
 
 	@Override
@@ -410,7 +410,11 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		Object obj = e.getSource();
 		
 		if(txtUsuario.equals(obj)){
-			System.out.println("ENTROU");			
-		}
+			controlUsuario.verificarNomeUsuario( txtUsuario.getText() );			
+		} 
+//		if(btnGravar.getActionCommand().equals("Gravar")){
+//			
+//
+//		}
 	}
 }

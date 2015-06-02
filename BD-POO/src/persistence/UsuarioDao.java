@@ -9,5 +9,6 @@ public interface UsuarioDao {
 	public void inserirUsuario(Usuario u) throws SQLException;
 	public void alterarUsuario(Usuario u) throws SQLException;
 	public void excluirUsuario(Usuario u) throws SQLException;
+	public boolean buscarUsario(String nome) throws SQLException;
 
 }

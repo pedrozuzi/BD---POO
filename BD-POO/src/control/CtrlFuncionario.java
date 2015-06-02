@@ -5,23 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 import persistence.FuncionarioDao;
 import persistence.FuncionarioDaoImpl;
 import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
-import sun.misc.FpUtils;
 import entity.Funcionario;
 
-public class CtrlFuncionario extends AbstractTableModel {
+public class CtrlFuncionario {
 
 	private FuncionarioDao fDao;
 	private PessoaDao pDao;
-	private String[] nomes = {"Nome", "CPF","Cargo"};
-	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
 	
 	public void incluir(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
@@ -75,51 +69,6 @@ public class CtrlFuncionario extends AbstractTableModel {
 		}
 		
 		return lista;
-		
-	}
-
-	@Override
-	public int getRowCount() {
-		return 0;
-	}
-
-	@Override
-	public int getColumnCount() {
-		return 3;
-	}
-
-	@Override
-	public String getColumnName(int column) {
-		return nomes[column];
-	}
-
-	@Override
-	public Class<?> getColumnClass(int column) {
-		return classes[column];
-	}
-
-	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return false;
-	}
-
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		return null;
-	}
-
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		
-	}
-
-	@Override
-	public void addTableModelListener(TableModelListener l) {
-		
-	}
-
-	@Override
-	public void removeTableModelListener(TableModelListener l) {
 		
 	}
 }

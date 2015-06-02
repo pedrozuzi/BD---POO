@@ -1,7 +1,17 @@
 package control;
 
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import persistence.UsuarioDao;
+import persistence.UsuarioDaoImpl;
+import entity.Usuario;
+
 public class CtrlUsuario {
 
+	private UsuarioDao uDao;
+	
 //	private String[] colunas = {"Nome", "CPF","Cargo"};
 //	private Class<?>[] classes = new Class[]{String.class, String.class, String.class};
 //	private List<Funcionario> lista = new ArrayList<Funcionario>();
@@ -24,7 +34,26 @@ public class CtrlUsuario {
 //		}
 //	}
 	
-	public void adicionarUsuario(){
+	public void adicionarUsuario(Usuario us){
+		uDao = new UsuarioDaoImpl();
+		
+		try {
+			uDao.inserirUsuario(us);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void verificarNomeUsuario(String nome){
+		
+	}
+	
+	public void alterarUsuario(Usuario us){
+		
+	}
+	
+	public void deletarUsuario(Usuario us){
 		
 	}
 

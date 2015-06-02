@@ -33,6 +33,7 @@ import control.CtrlTelaProduto;
 import javax.swing.JScrollPane;
 
 import entity.Fornecedor;
+import entity.Lote;
 import entity.Produto;
 
 import java.awt.event.ActionListener;
@@ -74,6 +75,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private CtrlTableProduto controlTable;
 	private CtrlProduto ctrlincluiprod;
 	private List<Produto> lista;
+	private List<Lote> listalote;
 	private JTable tableLote;
 
 	public FrmProduto() {
@@ -490,6 +492,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		return modelo;
 }
 	
+	
+	
 	public DefaultTableModel montarTabelaLote(){
 		
 		String[] colunas = new String[2];
@@ -497,6 +501,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		colunas[1] = "Qtde";
 		
 		modelo = new CtrlTabela(new Object[][] {}, colunas);
+		
+		modelo = new CtrlTabela(new Object[][] {}, colunas);
+
+		tableProduto.setModel(modelo);
+		tableProduto.addMouseListener(this);
+		//scrollPane.setViewportView(   );
 		
 		return modelo;
 	}

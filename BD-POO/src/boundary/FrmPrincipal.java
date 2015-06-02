@@ -42,17 +42,17 @@ public class FrmPrincipal {
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
-		labelImagemTxt = new JLabel("");
-		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
-				("/img/textoLudPet.png")));
-		labelImagemTxt.setBounds(38, 11, 375, 81);
-		panPrincipal.add(labelImagemTxt);
-		
 		lblImagem = new JLabel("");
 		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/dog.png")));
 		lblImagem.setBounds(311, 89, 190, 123);
 		panPrincipal.add(lblImagem);
+		
+		labelImagemTxt = new JLabel("");
+		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/LogoPetShop100.png")));
+		labelImagemTxt.setBounds(42, 11, 439, 107);
+		panPrincipal.add(labelImagemTxt);
 		
 		btnRealizarVenda = new JButton("");
 		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipal.class.getResource
@@ -92,7 +92,7 @@ public class FrmPrincipal {
 		btnDeslogar = new JButton("");
 		btnDeslogar.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/icon_login_out.png")));
-		btnDeslogar.setToolTipText("Deslogar-se");
+		btnDeslogar.setToolTipText("Deslogar");
 		btnDeslogar.setBounds(499, 367, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
@@ -133,17 +133,17 @@ public class FrmPrincipal {
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		
-		labelImagemTxt = new JLabel("");
-		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
-				("/img/textoLudPet.png")));
-		labelImagemTxt.setBounds(21, 11, 375, 81);
-		panPrincipal.add(labelImagemTxt);
-		
 		lblImagem = new JLabel("");
 		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/dog.png")));
 		lblImagem.setBounds(172, 103, 190, 123);
 		panPrincipal.add(lblImagem);
+		
+		labelImagemTxt = new JLabel("");
+		labelImagemTxt.setIcon(new ImageIcon(FrmPrincipal.class.getResource
+				("/img/LogoPetShop100.png")));
+		labelImagemTxt.setBounds(0, 11, 418, 123);
+		panPrincipal.add(labelImagemTxt);
 		
 		btnRealizarVenda = new JButton("");
 		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipal.class.getResource
@@ -198,7 +198,7 @@ public class FrmPrincipal {
 	
 	public void deslogar(){
 		Object[] opcoes = {"Sim", "Não"};
-		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar-se ?", 
+		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar ?", 
 				"Aviso", JOptionPane.DEFAULT_OPTION, 
 				JOptionPane.WARNING_MESSAGE, 
 				null, opcoes, opcoes[1]);
@@ -213,6 +213,6 @@ public class FrmPrincipal {
 	public static void main(String[] args) {
 		String s = null;
 		new FrmPrincipal(s);
-		new FrmPrincipal();
+		//new FrmPrincipal();
 	}
 }

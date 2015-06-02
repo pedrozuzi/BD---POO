@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.peer.PanelPeer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -274,7 +273,15 @@ public class FrmAnimal extends MouseAdapter {
 			animal(jd);
 		});
 		
-		btnIncluir.addActionListener(l -> montarTela());
+		btnIncluir.addActionListener(l -> {
+			montarTela();
+			btnGravar.setActionCommand("Incluir");
+		});
+		
+		btnGravar.addActionListener(e -> {
+			String cmd = e.getActionCommand();
+			acaoGravar(cmd);
+		});
 	}
 	
 	private void montarTela() {
@@ -342,6 +349,27 @@ public class FrmAnimal extends MouseAdapter {
 		
 	}
 	
+	private void acaoGravar(String cmd) {
+		Animal a = new Animal();
+		controlAnimal = new CtrlAnimal();
+		
+		if("Incluir".equalsIgnoreCase(cmd)){
+			a.setId(idCliente);
+			a.setNome(txtNome.getText());
+			a.setRaca(txtRaca.getText());
+			a.setCor(txtCor.getText());
+			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+			a.setRga(txtRga.getText());
+			try {
+				controlAnimal.inserir(a);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
 	private void buscaCliente() {
 		controlCliente = new CtrlCliente();
 		listaCliente = new ArrayList<Cliente>();

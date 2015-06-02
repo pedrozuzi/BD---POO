@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Animal;
@@ -23,7 +26,7 @@ public class AnimalDaoImpl implements AnimalDao{
 	public List<Animal> listaAnimal(int idCliente) throws SQLException {
 		
 		List<Animal> lista = new ArrayList<Animal>();
-		String query = "select an.nome, an.rga, an.raca, an.especie, an.sexo, an.cor "
+		String query = "select an.id, an.nome, an.rga, an.raca, an.especie, an.sexo, an.cor "
 						+ "from cliente cli "
 						+ "inner join animal an "
 						+ "on cli.id = an.id_cliente "
@@ -40,11 +43,29 @@ public class AnimalDaoImpl implements AnimalDao{
 			a.setEspecie(rs.getString("especie") );
 			a.setSexo( rs.getString("sexo") );
 			a.setCor( rs.getString("cor") );
-			//a.setId( rs.getInt("id"));
+			a.setId( rs.getInt("id"));
 			lista.add(a);
 		}
 		ps.close();
 		return lista;
+	}
+
+	@Override
+	public void inserirAnimal(Animal a) throws SQLException {
+		String query = "insert into animal (id_cliente, rga, nome, raca, especie, sexo, cor) "
+				+ "values (?,?,?,?,?,?,?)";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, a.getId() );
+		ps.setString(2, a.getRga() );
+		ps.setString(3, a.getNome() );
+		ps.setString(4, a.getRaca() );
+		ps.setString(5, a.getEspecie() );
+		ps.setString(6, a.getSexo() );
+		ps.setString(7, a.getCor() );
+		ps.execute();
+		ps.close();
+		JOptionPane.showMessageDialog(null, "Animal inserido com sucesso!",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

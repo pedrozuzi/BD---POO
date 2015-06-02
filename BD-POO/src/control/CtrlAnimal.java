@@ -18,5 +18,10 @@ public class CtrlAnimal {
 		lista = aDao.listaAnimal(idCliente);
 		return lista;
 	}
+	
+	public void inserir( Animal a ) throws SQLException{
+		aDao = new AnimalDaoImpl();
+		aDao.inserirAnimal(a);
+	}
 
 }

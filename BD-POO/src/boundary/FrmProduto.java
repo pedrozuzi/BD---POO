@@ -71,7 +71,11 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JTable tableProduto;
 	private DefaultTableModel modelo;
-	private JScrollPane scrollPane;
+	
+	private JScrollPane scrollProduto;
+	private JScrollPane scrollLote;
+	
+	
 	private CtrlTableProduto controlTable;
 	private CtrlProduto ctrlincluiprod;
 	private List<Produto> lista;
@@ -207,13 +211,13 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		btnFoward.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniFoward.png")));
 
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 681, 134);
-		panSuperior.add(scrollPane);
+		scrollProduto = new JScrollPane();
+		scrollProduto.setBounds(10, 21, 681, 134);
+		panSuperior.add(scrollProduto);
 
 		tableProduto = new JTable();
 		
-		scrollPane.setViewportView(tableProduto);
+		scrollProduto.setViewportView(tableProduto);
 		//panPrincipal.add(scrollPane);
 		modelo = montarTabelaProduto();
 		
@@ -401,12 +405,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(701, 21, 185, 134);
-		panSuperior.add(scrollPane_1);
+		scrollLote = new JScrollPane();
+		scrollLote.setBounds(701, 21, 185, 134);
+		panSuperior.add(scrollLote);
 		
 		tableLote = new JTable();
-		scrollPane_1.setViewportView(tableLote);
+		scrollLote.setViewportView(tableLote);
 		
 		JLabel lblProduto = new JLabel("Produto");
 		lblProduto.setBounds(10, 0, 69, 18);
@@ -421,7 +425,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		
 		btnIncluir.addActionListener(ctrltela);
 
-		
 		btnAlterar.addActionListener(ctrltela);
 		btnExcluir.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
@@ -439,11 +442,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		});
 		
-        
-
-
-
 	}
+	
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[6];
 		int linha = tableProduto.getSelectedRow();
@@ -488,7 +488,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
 	//	tableProduto.setVisible(false);
-		scrollPane.setViewportView(tableProduto);
+		scrollProduto.setViewportView(tableProduto);
 		return modelo;
 }
 	

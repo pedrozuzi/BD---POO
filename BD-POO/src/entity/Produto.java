@@ -23,6 +23,14 @@ public class Produto {
 	private int valor_venda;
 	private int valor_compra;
 
+//	colunas[0] = "ID";
+//	colunas[1] = "Nome";
+//	colunas[2] = "Descricao";
+//	colunas[3] = "ID: Fornecedor";
+//	colunas[4] = "Compra R$:";
+//	colunas[5] = "Venda R$:";
+	
+	@Coluna(nome="id", posicao=0)
 	public int getId() {
 		return id;
 	}
@@ -31,6 +39,7 @@ public class Produto {
 		this.id = id;
 	}
 
+	@Coluna(nome="nome", posicao=1)
 	public String getNome() {
 		return nome;
 	}
@@ -39,6 +48,7 @@ public class Produto {
 		this.nome = nome;
 	}
 
+	@Coluna(nome="descricao", posicao=2)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -47,6 +57,7 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
+	@Coluna(nome="id_fornecedor", posicao=3)
 	public int getId_fornecedor() {
 		return id_fornecedor;
 	}
@@ -55,6 +66,7 @@ public class Produto {
 		this.id_fornecedor = id_fornecedor;
 	}
 
+	@Coluna(nome="valor_venda", posicao=4)
 	public int getValor_venda() {
 		return valor_venda;
 	}
@@ -63,6 +75,7 @@ public class Produto {
 		this.valor_venda = valor_venda;
 	}
 
+	@Coluna(nome="valor_compra", posicao=5)
 	public int getValor_compra() {
 		return valor_compra;
 	}

@@ -2,11 +2,9 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import control.ConfigTelas;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -14,6 +12,19 @@ public class FrmCadastros {
 	
 	private JFrame janela;
 	private JPanel panPrincipal;
+	private JButton btnFornecedor;
+	private JButton btnFuncionario;
+	private JButton btnProduto;
+	private JButton btnUsuario;
+	private JButton btnCliente;
+	private JButton btnAnimal;
+	private JLabel lblLogo;
+	private JLabel lblCliente;
+	private JLabel lblUsuario;
+	private JLabel lblAnimal;
+	private JLabel lblProduto;
+	private JLabel lblFuncionario;
+	private JLabel lblFornecedor;
 	
 	public FrmCadastros() {
 		janela = new JFrame();
@@ -24,36 +35,74 @@ public class FrmCadastros {
 		panPrincipal.setLayout(null);
 		
 		
-		janela.setSize(623,323);
+		janela.setSize(453,389);
 		janela.setContentPane( panPrincipal );
 		
-		JButton btnFornecedor = new JButton("Fornecedor");
-		btnFornecedor.setBounds(46, 86, 89, 77);
+		btnFornecedor = new JButton("");
+		btnFornecedor.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/fornecedor.png")));
+		btnFornecedor.setBounds(45, 119, 97, 89);
 		panPrincipal.add(btnFornecedor);
 		
-		JButton btnFuncionario = new JButton("Funcionario");
-		btnFuncionario.setBounds(170, 86, 87, 77);
+		btnFuncionario = new JButton("");
+		btnFuncionario.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/funcionario.png")));
+		btnFuncionario.setBounds(169, 119, 97, 89);
 		panPrincipal.add(btnFuncionario);
 		
-		JButton btnProduto = new JButton("Produto");
-		btnProduto.setBounds(292, 86, 87, 76);
+		btnProduto = new JButton("");
+		btnProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/produto.png")));
+		btnProduto.setBounds(291, 119, 97, 88);
 		panPrincipal.add(btnProduto);
 		
-		JButton btnUsuario = new JButton("Usuario");
-		btnUsuario.setBounds(411, 86, 89, 77);
+		btnUsuario = new JButton("");
+		btnUsuario.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/usuario.png")));
+		btnUsuario.setBounds(291, 235, 97, 89);
 		panPrincipal.add(btnUsuario);
 		
-		JButton btnCliente = new JButton("Cliente");
-		btnCliente.setBounds(46, 174, 89, 77);
+		btnCliente = new JButton("");
+		btnCliente.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/cliente.png")));
+		btnCliente.setBounds(45, 236, 97, 89);
 		panPrincipal.add(btnCliente);
 		
-		JButton btnAnimal = new JButton("Animal");
-		btnAnimal.setBounds(168, 174, 89, 77);
+		btnAnimal = new JButton("");
+		btnAnimal.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/pata.png")));
+		btnAnimal.setBounds(167, 236, 99, 89);
 		panPrincipal.add(btnAnimal);
 		
-		JLabel lblLogo = new JLabel("Logo");
-		lblLogo.setBounds(244, 29, 46, 14);
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/LogoPetShop100.png")));
+		lblLogo.setBounds(-11, 11, 433, 112);
 		panPrincipal.add(lblLogo);
+		
+		lblFornecedor = new JLabel("(F1) Fornecedor");
+		lblFornecedor.setBounds(55, 206, 97, 14);
+		panPrincipal.add(lblFornecedor);
+		
+		lblFuncionario = new JLabel("(F2) Funcion\u00E1rio");
+		lblFuncionario.setBounds(169, 206, 97, 14);
+		panPrincipal.add(lblFuncionario);
+		
+		lblProduto = new JLabel("(F3) Produto");
+		lblProduto.setBounds(288, 206, 100, 14);
+		panPrincipal.add(lblProduto);
+		
+		lblAnimal = new JLabel("(F5) Animal");
+		lblAnimal.setBounds(169, 325, 97, 14);
+		panPrincipal.add(lblAnimal);
+		
+		lblUsuario = new JLabel("(F6) Usu\u00E1rio");
+		lblUsuario.setBounds(291, 325, 97, 14);
+		panPrincipal.add(lblUsuario);
+		
+		lblCliente = new JLabel("(F4) Cliente");
+		lblCliente.setBounds(45, 325, 97, 14);
+		panPrincipal.add(lblCliente);
+		
+		btnAnimal.addActionListener(e -> new FrmAnimal());
+		btnCliente.addActionListener(e -> new FrmCliente());
+		btnFornecedor.addActionListener(e -> new FrmFornecedor());
+		btnFuncionario.addActionListener(e -> new FrmFuncionario());
+		btnProduto.addActionListener(e -> new FrmProduto());
+		btnUsuario.addActionListener(e -> new FrmUsuario());
 		
 		janela.setLocationRelativeTo(null);
 		janela.setResizable(false);

@@ -45,7 +45,7 @@ public class FrmPrincipal {
 		lblImagem = new JLabel("");
 		lblImagem.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/dog.png")));
-		lblImagem.setBounds(311, 89, 190, 123);
+		lblImagem.setBounds(312, 108, 190, 123);
 		panPrincipal.add(lblImagem);
 		
 		labelImagemTxt = new JLabel("");
@@ -58,35 +58,35 @@ public class FrmPrincipal {
 		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/venda.png")));
 		btnRealizarVenda.setToolTipText("Realizar uma venda");
-		btnRealizarVenda.setBounds(42, 115, 137, 88);
+		btnRealizarVenda.setBounds(43, 134, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
 		btnRealizarServico = new JButton("");
 		btnRealizarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/servico.png")));
 		btnRealizarServico.setToolTipText("Realizar um Serviço");
-		btnRealizarServico.setBounds(189, 115, 132, 88);
+		btnRealizarServico.setBounds(190, 134, 132, 88);
 		panPrincipal.add(btnRealizarServico);
 		
 		btnRelatorio = new JButton("");
 		btnRelatorio.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/relatorio.png")));
 		btnRelatorio.setToolTipText("Abrir Relatórios");
-		btnRelatorio.setBounds(41, 248, 137, 88);
+		btnRelatorio.setBounds(42, 267, 137, 88);
 		panPrincipal.add(btnRelatorio);
 		
 		btnCadastros = new JButton("");
 		btnCadastros.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/cadastros.png")));
 		btnCadastros.setToolTipText("Cadastrar/Consultar/Aterar/Remover");
-		btnCadastros.setBounds(188, 248, 132, 88);
+		btnCadastros.setBounds(189, 267, 132, 88);
 		panPrincipal.add(btnCadastros);
 		
 		btnAgendarServico = new JButton("");
 		btnAgendarServico.setIcon(new ImageIcon(FrmPrincipal.class.getResource
 				("/img/calendar.png")));
 		btnAgendarServico.setToolTipText("Agendar um serviço");
-		btnAgendarServico.setBounds(330, 248, 132, 88);
+		btnAgendarServico.setBounds(331, 267, 132, 88);
 		panPrincipal.add(btnAgendarServico);
 		
 		btnDeslogar = new JButton("");
@@ -97,23 +97,23 @@ public class FrmPrincipal {
 		panPrincipal.add(btnDeslogar);
 		
 		lblAgendarServio = new JLabel("(F5) Agendar Serviço");
-		lblAgendarServio.setBounds(340, 336, 122, 14);
+		lblAgendarServio.setBounds(341, 355, 122, 14);
 		panPrincipal.add(lblAgendarServio);
 		
 		lblRelatrios = new JLabel("(F3) Relatórios");
-		lblRelatrios.setBounds(64, 336, 98, 14);
+		lblRelatrios.setBounds(65, 355, 98, 14);
 		panPrincipal.add(lblRelatrios);
 		
 		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
-		lblfRealizarVenda.setBounds(52, 203, 110, 14);
+		lblfRealizarVenda.setBounds(53, 222, 110, 14);
 		panPrincipal.add(lblfRealizarVenda);
 		
 		lblfCadastros = new JLabel("(F4) Cadastros");
-		lblfCadastros.setBounds(210, 336, 98, 14);
+		lblfCadastros.setBounds(211, 355, 98, 14);
 		panPrincipal.add(lblfCadastros);
 		
 		lblfRealizarServio = new JLabel("(F2) Realizar Serviço");
-		lblfRealizarServio.setBounds(199, 203, 122, 14);
+		lblfRealizarServio.setBounds(200, 222, 122, 14);
 		panPrincipal.add(lblfRealizarServio);
 		
 		btnDeslogar.addActionListener( e -> deslogar() );

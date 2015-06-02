@@ -9,5 +9,5 @@ public interface AnimalDao {
 	
 	List<Animal> listaAnimal(int idCliente) throws SQLException;
 	void inserirAnimal( Animal a ) throws SQLException;
-
+	void atualizaAnimal ( Animal a ) throws SQLException;
 }

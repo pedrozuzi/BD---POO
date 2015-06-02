@@ -12,16 +12,21 @@ public class CtrlAnimal {
 	
 	private AnimalDao aDao;
 	
-	public List<Animal> buscaCliente(int idCliente) throws SQLException{
+	public List<Animal> buscaCliente(int idCliente) throws SQLException {
 		List<Animal> lista = new ArrayList<Animal>();
 		aDao = new AnimalDaoImpl();
 		lista = aDao.listaAnimal(idCliente);
 		return lista;
 	}
 	
-	public void inserir( Animal a ) throws SQLException{
+	public void inserir( Animal a ) throws SQLException {
 		aDao = new AnimalDaoImpl();
 		aDao.inserirAnimal(a);
+	}
+	
+	public void atualiza( Animal a ) throws SQLException {
+		aDao = new AnimalDaoImpl();
+		aDao.atualizaAnimal(a);
 	}
 
 }

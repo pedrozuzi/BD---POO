@@ -67,5 +67,29 @@ public class AnimalDaoImpl implements AnimalDao{
 		JOptionPane.showMessageDialog(null, "Animal inserido com sucesso!",
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
+	@Override
+	public void atualizaAnimal( Animal a ) throws SQLException {
+		String query = "update animal set "
+				+ "rga = ?,"
+				+ "nome = ?,"
+				+ "raca = ?,"
+				+ "especie = ?,"
+				+ "sexo = ?,"
+				+ "cor = ?"
+				+ "where id = ?";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setString(1, a.getRga() );
+		ps.setString(2, a.getNome() );
+		ps.setString(3, a.getRaca() );
+		ps.setString(4, a.getEspecie() );
+		ps.setString(5, a.getSexo() );
+		ps.setString(6, a.getCor() );
+		ps.setInt(7, a.getId() );
+		ps.execute();
+		ps.close();
+		JOptionPane.showMessageDialog(null, "Dados atualizados");
+	}
 
 }

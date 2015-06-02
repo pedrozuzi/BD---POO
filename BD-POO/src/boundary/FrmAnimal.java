@@ -278,9 +278,18 @@ public class FrmAnimal extends MouseAdapter {
 			btnGravar.setActionCommand("Incluir");
 		});
 		
+		btnAlterar.addActionListener(l -> {
+			montarTela();
+			btnGravar.setActionCommand("Alterar");
+		});
+		
 		btnGravar.addActionListener(e -> {
 			String cmd = e.getActionCommand();
-			acaoGravar(cmd);
+			try {
+				acaoGravar(cmd);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		});
 	}
 	
@@ -349,7 +358,7 @@ public class FrmAnimal extends MouseAdapter {
 		
 	}
 	
-	private void acaoGravar(String cmd) {
+	private void acaoGravar(String cmd) throws SQLException {
 		Animal a = new Animal();
 		controlAnimal = new CtrlAnimal();
 		
@@ -361,11 +370,17 @@ public class FrmAnimal extends MouseAdapter {
 			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
 			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
 			a.setRga(txtRga.getText());
-			try {
-				controlAnimal.inserir(a);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			controlAnimal.inserir(a);
+
+		}else if ("Alterar".equalsIgnoreCase(cmd)) {
+			a.setId(idAnimal);
+			a.setNome(txtNome.getText());
+			a.setRaca(txtRaca.getText());
+			a.setCor(txtCor.getText());
+			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+			a.setRga(txtRga.getText());
+			controlAnimal.atualiza(a);
 		}
 		
 	}

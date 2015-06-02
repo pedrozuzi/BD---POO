@@ -118,6 +118,8 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
+		btnCadastros.addActionListener(e -> new FrmCadastros());
+		
 		
 		janela.setSize(576,465);
 		janela.setLocationRelativeTo(null);
@@ -194,6 +196,8 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
+		
+		
 	}
 	
 	public void deslogar(){
@@ -212,7 +216,7 @@ public class FrmPrincipal {
 	
 	public static void main(String[] args) {
 		String s = null;
-		new FrmPrincipal(s);
-		//new FrmPrincipal();
+		//new FrmPrincipal(s);
+		new FrmPrincipal();
 	}
 }

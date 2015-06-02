@@ -45,8 +45,21 @@ public class CtrlUsuario {
 		}
 	}
 	
-	public void verificarNomeUsuario(String nome){
+	public boolean verificarNomeUsuario(String nome){
+		uDao = new UsuarioDaoImpl();
 		
+		try {
+			if(uDao.buscarUsario(nome)){
+				return true;
+			}else{
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+		return false;
 	}
 	
 	public void alterarUsuario(Usuario us){

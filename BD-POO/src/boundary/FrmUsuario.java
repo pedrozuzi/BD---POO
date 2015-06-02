@@ -190,7 +190,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		pwdSenha.setVisible(false);
 		pwdSenha.setBackground(SystemColor.info);
 		pwdSenha.setBounds(128, 441, 141, 23);
-		pwdSenha.setEnabled(false);
+		pwdSenha.setEditable(false);
 		panelPrincipal.add(pwdSenha);
 		
 		lblConfirmaSenha = new JLabel("Confirmar senha : *");
@@ -203,7 +203,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		pwdConfirmarSenha.setVisible(false);
 		pwdConfirmarSenha.setBackground(SystemColor.info);
 		pwdConfirmarSenha.setBounds(189, 478, 141, 23);
-		pwdConfirmarSenha.setEnabled(false);
+		pwdConfirmarSenha.setEditable(false);
 		panelPrincipal.add(pwdConfirmarSenha);
 		
 		btnVerificar = new JButton("Verificar");
@@ -288,7 +288,15 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		}
 		
 		if(acao.equalsIgnoreCase("Gravar")){
-			System.out.println("Gravando...");
+			if(pwdSenha.getText().equals(pwdConfirmarSenha.getText())){
+				System.out.println("Incluir usuario");
+			} else {
+				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
+						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				pwdSenha.setText("");
+				pwdConfirmarSenha.setText("");
+				pwdSenha.grabFocus();
+			}
 		}else if(acao.equalsIgnoreCase("Mudar")){
 			
 		}else if(acao.equalsIgnoreCase("Deletar")){
@@ -410,11 +418,17 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		Object obj = e.getSource();
 		
 		if(txtUsuario.equals(obj)){
-			controlUsuario.verificarNomeUsuario( txtUsuario.getText() );			
+			if(controlUsuario.verificarNomeUsuario( txtUsuario.getText() )){
+				JOptionPane.showMessageDialog(null,"Usuário já existente", 
+						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				txtNome.grabFocus();
+				limpaCampos();
+			} else {
+				System.out.println("ENTROU");
+				pwdSenha.setEditable(true);
+				pwdConfirmarSenha.setEditable(true);
+				pwdSenha.grabFocus();
+			}
 		} 
-//		if(btnGravar.getActionCommand().equals("Gravar")){
-//			
-//
-//		}
 	}
 }

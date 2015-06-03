@@ -8,14 +8,21 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+
+
 import javax.swing.JButton;
+
+
 
 import control.ConfigTelas;
 import control.CtrlLogin;
+import entity.Funcionario;
 import entity.Usuario;
 
 public class FrmLogin {
@@ -29,6 +36,7 @@ public class FrmLogin {
 	private CtrlLogin controlLogin;
 	private JPanel panPrincipal;
 	private JLabel lblLogoLudPet;
+	public static int ID_TIPO;
 
 	public FrmLogin(){
 		
@@ -83,8 +91,14 @@ public class FrmLogin {
 				u.setSenha(new String (pwdSenha.getPassword()));
 				
 				if ( controlLogin.realizarLogin(u) ) {
-					new FrmPrincipalAdm();
-					janela.dispose();
+					if (ID_TIPO != 1) {
+						new FrmPrincipal();
+						janela.dispose();
+					}else{
+						new FrmPrincipalAdm();
+						janela.dispose();
+					}
+					
 				}else{
 					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
 				}

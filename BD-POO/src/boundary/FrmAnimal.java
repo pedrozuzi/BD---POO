@@ -3,12 +3,15 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -301,6 +304,7 @@ public class FrmAnimal extends MouseAdapter {
 			String cmd = e.getActionCommand();
 			try {
 				acaoGravar(cmd);
+				buscaAnimaisDoCliente();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

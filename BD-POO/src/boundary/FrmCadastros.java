@@ -118,13 +118,31 @@ public class FrmCadastros {
 //		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
 //		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
 		
-		btnAnimal.addActionListener(e -> new FrmAnimal());
+		btnAnimal.addActionListener(e -> {
+			new FrmAnimal();
+			fechar();
+		});
 		
-		btnCliente.addActionListener(e -> new FrmCliente());
-		btnFornecedor.addActionListener(e -> new FrmFornecedor());
-		btnFuncionario.addActionListener(e -> new FrmFuncionario());
-		btnProduto.addActionListener(e -> new FrmProduto());
-		btnUsuario.addActionListener(e -> new FrmUsuario());
+		btnCliente.addActionListener(e -> {
+			new FrmCliente();
+			fechar();
+		});
+		btnFornecedor.addActionListener(e -> {
+			new FrmFornecedor();
+			fechar();
+		});
+		btnFuncionario.addActionListener(e -> {
+			new FrmFuncionario();
+			fechar();
+		});
+		btnProduto.addActionListener(e -> {
+			new FrmProduto();
+			fechar();
+		});
+		btnUsuario.addActionListener(e -> {
+			new FrmUsuario();
+			fechar();
+		});
 		
 		janela.setLocationRelativeTo(null);
 		janela.setResizable(false);
@@ -132,6 +150,10 @@ public class FrmCadastros {
 		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
+	private void fechar() {
+		janela.dispose();
+	}
+
 	public static void main(String[] args) {
 		new FrmCadastros();
 	}

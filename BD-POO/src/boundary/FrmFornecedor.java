@@ -36,13 +36,11 @@ public class FrmFornecedor extends MouseAdapter{
 	private JPanel panel;
 	private JLabel lblAlterar;
 	private JLabel lblExcluir;
-	private JLabel lblPesquisar;
 	private JLabel lblTelefone;
 	private JLabel lblNome;
 	private JButton btnIncluir;
 	private JButton btnAlterar;
 	private JButton btnExcluir;
-	private JButton btnPesquisar;
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JButton btnGravar;
@@ -74,7 +72,7 @@ public class FrmFornecedor extends MouseAdapter{
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(62, 11, 426, 79);
+		panel.setBounds(107, 11, 344, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -115,19 +113,6 @@ public class FrmFornecedor extends MouseAdapter{
 		lblExcluir.setVisible(true);
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panel.add(lblExcluir);
-		
-		lblPesquisar = new JLabel("Pesquisar");
-		lblPesquisar.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblPesquisar.setVisible(true);
-		lblPesquisar.setBounds(336, 53, 59, 19);
-		panel.add(lblPesquisar);
-		
-		btnPesquisar = new JButton("");
-		btnPesquisar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-				("/img/View.png")));
-		btnPesquisar.setVisible(true);
-		btnPesquisar.setBounds(326, 11, 69, 41);
-		panel.add(btnPesquisar);
 		
 		txtNome = new TratamentoTextFields();
 		txtNome.setBounds(126, 302, 296, 20);
@@ -189,7 +174,7 @@ public class FrmFornecedor extends MouseAdapter{
 		
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().setBorder(null);
-		scrollPane.getViewport().add(table);
+		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 107, 549, 159);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
@@ -253,12 +238,6 @@ public class FrmFornecedor extends MouseAdapter{
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/trash.png")));
 			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirPesquisarFornecedor();
-		});
-		
-		btnPesquisar.addActionListener(e -> {
-			btnLupaPesquisar.setVisible(true);
-			btnGravar.setEnabled(false);
 			telaAlterarExcluirPesquisarFornecedor();
 		});
 		

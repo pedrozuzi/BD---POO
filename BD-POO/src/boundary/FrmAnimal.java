@@ -3,15 +3,11 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
 import control.ConfigTelas;
 import control.CtrlAnimal;
 import control.CtrlCliente;
@@ -309,6 +304,13 @@ public class FrmAnimal extends MouseAdapter {
 				e1.printStackTrace();
 			}
 		});
+		
+		btnLimpar.addActionListener(e -> limpaCampos() );
+		
+		btnVoltar.addActionListener(e -> {
+			new FrmCadastros();
+			janelaAnimal.dispose();
+		});
 	}
 	
 	private void montarTela() {
@@ -431,11 +433,10 @@ public class FrmAnimal extends MouseAdapter {
 	}
 
 	private void limpaCampos() {
-	//	txtNome.setText("");
-	//	txtCor.setText("");
-	//	txtRaca.setText("");
-	//	txtRga.setText("");
-	
+		txtNome.setText("");
+		txtCor.setText("");
+		txtRaca.setText("");
+		txtRga.setText("");
 }
 	
 	@Override

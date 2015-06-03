@@ -1,7 +1,10 @@
 package control;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
+import persistence.LoginDao;
+import persistence.LoginDaoImpl;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Usuario;
@@ -9,15 +12,20 @@ import entity.Usuario;
 public class CtrlLogin {
 	
 	private Connection c;
+	private LoginDao lDao;
 	
 	public CtrlLogin() {
-		GenericConnection gc = new ConnectionImpl();
-		c = gc.getConnection();
+		
 	}
 	
-	public void realizarLogin(Usuario l) {
-		System.out.println(l.getSenha());
-		//TODO
+	public boolean realizarLogin(Usuario u) {
+		lDao = new LoginDaoImpl();
+		try {
+			return lDao.realizarLogin(u);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

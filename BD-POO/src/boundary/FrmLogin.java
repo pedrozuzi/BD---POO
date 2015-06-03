@@ -2,6 +2,7 @@ package boundary;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -76,11 +77,23 @@ public class FrmLogin {
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLogar.addActionListener(e -> {
-			Usuario u = new Usuario();
-			u.setNome(txtUsuario.getText());
-			u.setSenha(new String (pwdSenha.getPassword()));
-			controlLogin.realizarLogin(u);
+			if ( !validaCampos() ) {
+				Usuario u = new Usuario();
+				u.setNome(txtUsuario.getText());
+				u.setSenha(new String (pwdSenha.getPassword()));
+				boolean login = controlLogin.realizarLogin(u);
+				
+				if (login) {
+					new FrmPrincipal();
+				}else{
+					JOptionPane.showMessageDialog(null, "Login ou senha incorretos");
+				}
+			}
+			
 		});
+	}
+	private boolean validaCampos() {
+		return txtUsuario.getText().isEmpty() || pwdSenha.getPassword().equals("");
 	}
 	public static void main(String[] args) {
 		new FrmLogin();

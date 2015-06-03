@@ -212,3 +212,29 @@ select cli.id as id_cliente, cli.nome, an.id as id_animal, an.nome
 	from cliente cli
 	inner join animal an
 	on cli.id = an.id_cliente	
+	
+	
+--inner join para verificar o tipo do funcionario(atendente, adm etc)
+select  f.id, f.nome, SUBSTRING(f.cpf,1,9)+'-'+SUBSTRING(f.cpf,10,11)as cpf, f.salario, f.telefone, t.descricao
+	from funcionario f 
+	inner join pessoa p
+	on f.id = p.idPessoa
+	inner join tipo t
+	on p.idtipo = t.id
+	where f.nome like '%p%'
+
+--inner join para verificar qual é o cargo de um funcionario de um determinado login	
+select f.nome, l.username, l.passwor, t.descricao as cargo
+	from logins l
+	inner join funcionario f
+	on l.id = f.id
+	inner join pessoa p
+	on f.id = p.idPessoa
+	inner join tipo t
+	on p.idtipo = t.id
+	where username = 'pedrozz'	and passwor = '1234'
+	
+	
+select username, passwor 
+	from logins 
+	where username = 'pedrozz'	and passwor = '1234' 

@@ -196,7 +196,7 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
-		
+		btnCadastros.addActionListener(e -> new FrmCadastros());
 		
 	}
 	

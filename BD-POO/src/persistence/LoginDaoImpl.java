@@ -21,7 +21,7 @@ public class LoginDaoImpl implements LoginDao{
 	@Override
 	public boolean realizarLogin( Usuario u ) throws SQLException {
 		String query = "select username, passwor "
-						+"from logins "
+						+"from usuario "
 						+ "where username = ? and passwor = ?";
 		
 		PreparedStatement ps = c.prepareStatement(query);

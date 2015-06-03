@@ -225,7 +225,7 @@ select  f.id, f.nome, SUBSTRING(f.cpf,1,9)+'-'+SUBSTRING(f.cpf,10,11)as cpf, f.s
 
 --inner join para verificar qual é o cargo de um funcionario de um determinado login	
 select f.nome, l.username, l.passwor, t.descricao as cargo
-	from logins l
+	from usuario l
 	inner join funcionario f
 	on l.id = f.id
 	inner join pessoa p
@@ -236,5 +236,5 @@ select f.nome, l.username, l.passwor, t.descricao as cargo
 	
 	
 select username, passwor 
-	from logins 
+	from usuario 
 	where username = 'pedrozz'	and passwor = '1234' 

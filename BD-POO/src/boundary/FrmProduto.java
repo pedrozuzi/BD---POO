@@ -1,48 +1,36 @@
 package boundary;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-
 import java.awt.Color;
-
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JButton;
-
 import java.awt.Font;
-
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
-
-import control.ConfigTelas;
-import control.CtrlFornecedor;
-import control.CtrlProduto;
-import control.CtrlTabela;
-import control.CtrlTableProduto;
-import control.CtrlTelaProduto;
-
-import javax.swing.JScrollPane;
-
-import entity.Fornecedor;
-import entity.Lote;
-import entity.Produto;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+import control.ConfigTelas;
+import control.CtrlProduto;
+import control.CtrlTableProduto;
+import control.CtrlTelaProduto;
+import control.ModeloTabela;
+import entity.Lote;
+import entity.Produto;
 
 /**
  * 
@@ -70,7 +58,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JTextField txtIdFornecedor;
 
 	private JTable tableProduto;
-	private DefaultTableModel modelo;
+	private ModeloTabela modeloProduto;
 	
 	private JScrollPane scrollProduto;
 	private JScrollPane scrollLote;
@@ -219,9 +207,13 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		
 		scrollProduto.setViewportView(tableProduto);
 		//panPrincipal.add(scrollPane);
-		modelo = montarTabelaProduto();
+		//modelo = montarTabelaProduto();
 		
+		listaProduto = controlTable.BuscaProdutoPorNome(txtNome.getText());
+		modeloProduto = new ModeloTabela(lista);
 		
+		ListaLote = ...
+				modeloLote = new ModeloTabela(ListaLote);
 
 		JPanel panInferior = new JPanel();
 		panInferior
@@ -467,92 +459,92 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		
 	}
 	
-	public DefaultTableModel montarTabelaProduto () {
-		String[] colunas = new String[6];
-		colunas[0] = "ID";
-		colunas[1] = "Nome";
-		colunas[2] = "Descricao";
-		colunas[3] = "ID: Fornecedor";
-		colunas[4] = "Compra R$:";
-		colunas[5] = "Venda R$:";
-		
-
-		modelo = new CtrlTabela(new Object[][] {}, colunas);
-
-		tableProduto.setModel(modelo);
-		tableProduto.addMouseListener(this);
-		tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-		tableProduto.getColumnModel().getColumn(0).setResizable(false);
-		tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
-		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
-		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
-		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
-	//	tableProduto.setVisible(false);
-		scrollProduto.setViewportView(tableProduto);
-		return modelo;
+//	public DefaultTableModel montarTabelaProduto () {
+//		String[] colunas = new String[6];
+//		colunas[0] = "ID";
+//		colunas[1] = "Nome";
+//		colunas[2] = "Descricao";
+//		colunas[3] = "ID: Fornecedor";
+//		colunas[4] = "Compra R$:";
+//		colunas[5] = "Venda R$:";
+//		
+//
+//		modelo = new CtrlTabela(new Object[][] {}, colunas);
+//
+//		tableProduto.setModel(modelo);
+//		tableProduto.addMouseListener(this);
+//		tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//		tableProduto.getColumnModel().getColumn(0).setResizable(false);
+//		tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
+//		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
+//		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
+//		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
+//	//	tableProduto.setVisible(false);
+//		scrollProduto.setViewportView(tableProduto);
+//		return modelo;
 }
 	
 	
 	
-	public DefaultTableModel montarTabelaLote(){
-		
-		String[] colunas = new String[2];
-		colunas[0] = "Lote";
-		colunas[1] = "Qtde";
-		
-		modelo = new CtrlTabela(new Object[][] {}, colunas);
-		
-		modelo = new CtrlTabela(new Object[][] {}, colunas);
-
-		tableProduto.setModel(modelo);
-		tableProduto.addMouseListener(this);
-		//scrollPane.setViewportView(   );
-		
-		return modelo;
-	}
+//	public DefaultTableModel montarTabelaLote(){
+//		
+//		String[] colunas = new String[2];
+//		colunas[0] = "Lote";
+//		colunas[1] = "Qtde";
+//		
+//		modelo = new CtrlTabela(new Object[][] {}, colunas);
+//		
+//		modelo = new CtrlTabela(new Object[][] {}, colunas);
+//
+//		tableProduto.setModel(modelo);
+//		tableProduto.addMouseListener(this);
+//		//scrollPane.setViewportView(   );
+//		
+//		return modelo;
+//	}
 	
-	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
-				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
-		
-		lista = new ArrayList<Produto>();
-		
-		if (true) {
-			if (!txtNome.getText().equals("")) {  //FIXME if
-				try {
-					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
-					
-					if (!lista.isEmpty()) {
-						for (Produto p : lista) {
-							Object[] linha = new Object[6];
-							linha[0] = p.getId();
-							linha[1] = p.getNome();
-							linha[2] = p.getDescricao();
-							linha[3] = p.getId_fornecedor();
-							linha[4] = p.getValor_venda();
-							linha[5] = p.getValor_compra();
-							
-							System.out.println(" for:"+p.getNome());
-
-							modelo.addRow(linha);
-							
-						} 
-						
-						lista.forEach(p -> {
-							System.out.println(p.getNome());
-						});
-					}else{
-						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-								"Aviso", JOptionPane.INFORMATION_MESSAGE);
-					}
-					
-				}catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}else{
-				System.out.println("campo vazio");
-			}
-		}
+//	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+//		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
+//				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
+//		
+//		lista = new ArrayList<Produto>();
+//		
+//		if (true) {
+//			if (!txtNome.getText().equals("")) {  //FIXME if
+//				try {
+//					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
+//					
+//					if (!lista.isEmpty()) {
+//						for (Produto p : lista) {
+//							Object[] linha = new Object[6];
+//							linha[0] = p.getId();
+//							linha[1] = p.getNome();
+//							linha[2] = p.getDescricao();
+//							linha[3] = p.getId_fornecedor();
+//							linha[4] = p.getValor_venda();
+//							linha[5] = p.getValor_compra();
+//							
+//							System.out.println(" for:"+p.getNome());
+//
+//							modelo.addRow(linha);
+//							
+//						} 
+//						
+//						lista.forEach(p -> {
+//							System.out.println(p.getNome());
+//						});
+//					}else{
+//						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+//								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//					}
+//					
+//				}catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}else{
+//				System.out.println("campo vazio");
+//			}
+//		}
 	}
 	
 }//end class

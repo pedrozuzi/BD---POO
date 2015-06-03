@@ -107,16 +107,16 @@ public class FrmCadastros {
 		lblCliente.setBounds(45, 325, 97, 14);
 		panPrincipal.add(lblCliente);
 		
-//		ActionMap am = panPrincipal.getActionMap();
-//		am.put("animal", new AbstractAction() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmAnimal();
-//			}
-//		});
-//		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
+		ActionMap am = panPrincipal.getActionMap();
+		am.put("animal", new AbstractAction() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmAnimal();
+			}
+		});
+		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
 		
 		btnAnimal.addActionListener(e -> {
 			new FrmAnimal();

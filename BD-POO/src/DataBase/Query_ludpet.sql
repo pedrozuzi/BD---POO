@@ -85,7 +85,8 @@ foreign key (id_cliente) references cliente(id))
 create table lote(
 id int identity not null,
 data_validade datetime not null
-primary key(id))
+ primary key(id)
+)
 
 create table produto(
 id int identity not null,
@@ -94,15 +95,16 @@ descricao varchar(60),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,
-primary key(id),
-foreign key(id_fornecedor) references fornecedor(id),)
+primary key(id) ,
+foreign key(id_fornecedor) references fornecedor(id)
+)
 
 create table lote_produto(
 idProduto int not null,
 idLote int not null,
 primary key(idProduto, idLote),
-foreign key(idProduto)references produto (id),
-foreign key(idLote)references lote (id))
+foreign key(idProduto)references produto (id) ON DELETE CASCADE,
+foreign key(idLote)references lote (id) ON DELETE CASCADE)
 
 create table venda_produto(
 data_venda datetime not null,
@@ -157,7 +159,6 @@ INSERT INTO logins (id,username,passwor) VALUES
 (8,'hurygg','1234'),
 (5,'pedrozz','susi'),
 (10,'pedroaa','corinthias')
-
 
 INSERT INTO fornecedor (id,nome,telefone) VALUES
 (4,'burns',11111111),
@@ -238,3 +239,32 @@ select f.nome, l.username, l.passwor, t.descricao as cargo
 select username, passwor 
 	from usuario 
 	where username = 'pedrozz'	and passwor = '1234' 
+
+	--inner join, retorna todos os lotes de um determinado produto
+
+	select * from produto
+	select * from lote
+	select * from lote_produto
+
+select lot.data_validade, lot.id as id_lote
+from lote lot
+inner join lote_produto lp
+on lot.id = lp.idLote
+inner join produto prod
+on prod.id = lp.idProduto
+where prod.id = 1
+order by prod.id
+
+	
+--Nome do cliente e Quantos produtos cada um comprou ordenado pela quantidade
+
+Select cli.nome, COUNT(prod.codigo) as qtde
+from cliente cli
+inner join venda ven
+on cli.cpf = ven.cliente
+inner join produto prod
+on ven.produto = prod.codigo
+group by cli.nome
+order by qtde
+
+	--inner join, retorna todos os produtos de um determinado lote

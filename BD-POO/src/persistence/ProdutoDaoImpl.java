@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Fornecedor;
@@ -62,6 +64,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.setInt(3, prod.getId_fornecedor());
 		ps.setInt(4, prod.getValor_venda());
 		ps.setInt(5, prod.getValor_compra());
+		ps.setInt(6, prod.getId());
 
 		ps.execute();
 		ps.close();
@@ -72,6 +75,14 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	public void excluiProduto(Produto prod) throws SQLException {
 		// TODO Auto-generated method stub
 
+		String query = "delete produto "
+				+ " where id = ?";
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, prod.getId());
+		ps.execute();
+		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
+		ps.close();
+			
 	}
 
 	@Override

@@ -52,7 +52,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 
-		if (acao.equalsIgnoreCase("ACAOSALVA")) {
+		if (acao.equalsIgnoreCase("ACAOSALVA")) { //insere um novo produto e lote
 			Produto prod = new Produto();
 			Lote lot = new Lote();
 			LoteProduto lotprod = new LoteProduto();
@@ -93,6 +93,11 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 			
 			atualizaProduto(prod);
+		}else if (acao.equalsIgnoreCase("ACAOEXCLUI")){
+			Produto prod = new Produto();
+			prod.setId(Integer.parseInt(txtIdProduto.getText()));
+			
+			excluiProduto(prod);
 		}
 		
 		
@@ -113,6 +118,17 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 					"ERRO - Produto", JOptionPane.ERROR_MESSAGE);
 		}
 		return id;
+	}
+	
+	public void excluiProduto(Produto prod){
+		pDao = new ProdutoDaoImpl();
+		try {
+			pDao.excluiProduto(prod);
+			System.out.println("Produto Excluido");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),
+					"ERRO - Produto", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public int insereLote(Lote lot) {

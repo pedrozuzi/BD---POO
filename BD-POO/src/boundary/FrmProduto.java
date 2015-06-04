@@ -260,7 +260,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panLote.setOpaque(false);
 
 		txtIdLote = new JTextField();
-		txtIdLote.setBounds(108, 21, 86, 20);
+		txtIdLote.setEditable(false);
+		txtIdLote.setBounds(108, 21, 40, 20);
 		panLote.add(txtIdLote);
 		txtIdLote.setColumns(10);
 
@@ -297,7 +298,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtNome.setColumns(10);
 
 		txtIdProduto = new JTextField();
-		txtIdProduto.setBounds(104, 15, 61, 20);
+		txtIdProduto.setEditable(false);
+		txtIdProduto.setBounds(104, 15, 45, 20);
 		panProduto.add(txtIdProduto);
 		txtIdProduto.setColumns(10);
 
@@ -444,6 +446,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		ctrltela.inicio();
 
+		btnNext.addActionListener(e -> {
+			// tableProduto.
+		});
+
 		btnSalva.addActionListener(e -> {
 
 			ctrlprod.actionPerformed(e);
@@ -475,28 +481,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				System.out.println("ERRO - SQL - Produto");
 			}
 
-			// Procura Lote
-			if (idprod == 999) {
-				listaLote = new ArrayList<Lote>();
-				try {
-					listaLote = ctrlprod.BuscaLotePorProduto(1);// TODO Arrumar
-																// id mouse
-																// listener
-					if (!listaLote.isEmpty()) {
-						modeloLote = new ModeloTabela(listaLote);
-						tableLote.getTableHeader().setReorderingAllowed(false);
-						tableLote.setModel(modeloLote);
-					} else {
-						JOptionPane.showMessageDialog(null, "Nenhum Lote?",
-								"Aviso", JOptionPane.INFORMATION_MESSAGE);
-					}
-
-				} catch (NullPointerException e1) {
-					System.out.println("NullPointer, Lote");
-				} catch (SQLException e2) {
-					System.out.println("ERRO - SQL - Lote");
-				}
-			}
 		});
 
 		// btnLupaPesquisar.addActionListener(e -> {
@@ -542,23 +526,28 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtValorVenda.setText(String.valueOf(valores[5]));
 
 		idprod = Integer.parseInt(txtIdProduto.getText());// XXX
-		
+
 		if (idprod != 0) {
 			listaLote = new ArrayList<Lote>();
+			List<String> listanula = new ArrayList<String>();
+		
 			CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
-					txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
-					txtIdLote, txtDataValidadeLote);
+					txtDescricao, txtValorVenda, txtValorCompra,
+					txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 			try {
 				listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO Arrumar
-															// id mouse
-															// listener
+
 				if (!listaLote.isEmpty()) {
 					modeloLote = new ModeloTabela(listaLote);
 					tableLote.getTableHeader().setReorderingAllowed(false);
 					tableLote.setModel(modeloLote);
 				} else {
-					JOptionPane.showMessageDialog(null, "Nenhum Lote?",
-							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+					System.out.println("Nenhum Lote");
+					listanula.add("Sem");
+					modeloLote = new ModeloTabela(listanula);
+					tableLote.getTableHeader().setReorderingAllowed(false);
+					tableLote.setModel(modeloLote);
+					
 				}
 
 			} catch (NullPointerException e1) {

@@ -8,12 +8,14 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,10 +23,12 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import control.ConfigTelas;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
+import control.TratamentoTextFields;
 import entity.Animal;
 import entity.Cliente;
 
@@ -173,7 +177,7 @@ public class FrmAnimal extends MouseAdapter {
 		btnLupaPesquisar.setBounds(417, 290, 65, 31);
 		panPrincipalAnimal.add(btnLupaPesquisar);
 		
-		txtNome = new JTextField();
+		txtNome = new TratamentoTextFields();
 		txtNome.setVisible(false);
 		txtNome.setBounds(157, 369, 238, 20);
 		panPrincipalAnimal.add(txtNome);
@@ -184,7 +188,7 @@ public class FrmAnimal extends MouseAdapter {
 		lblNome.setBounds(83, 372, 46, 14);
 		panPrincipalAnimal.add(lblNome);
 		
-		txtRga = new JTextField();
+		txtRga = new TratamentoTextFields(6);
 		txtRga.setVisible(false);
 		txtRga.setBounds(157, 410, 128, 20);
 		panPrincipalAnimal.add(txtRga);
@@ -195,7 +199,7 @@ public class FrmAnimal extends MouseAdapter {
 		lblRga.setBounds(83, 410, 46, 14);
 		panPrincipalAnimal.add(lblRga);
 		
-		txtRaca = new JTextField();
+		txtRaca = new TratamentoTextFields();
 		txtRaca.setVisible(false);
 		txtRaca.setBounds(157, 448, 138, 20);
 		panPrincipalAnimal.add(txtRaca);
@@ -211,7 +215,7 @@ public class FrmAnimal extends MouseAdapter {
 		lblCor.setBounds(315, 451, 46, 14);
 		panPrincipalAnimal.add(lblCor);
 		
-		txtCor = new JTextField();
+		txtCor = new TratamentoTextFields();
 		txtCor.setVisible(false);
 		txtCor.setBounds(358, 448, 86, 20);
 		panPrincipalAnimal.add(txtCor);
@@ -381,36 +385,42 @@ public class FrmAnimal extends MouseAdapter {
 	private void acaoGravar(String cmd) throws SQLException {
 		Animal a = new Animal();
 		controlAnimal = new CtrlAnimal();
-		
-		if("Incluir".equalsIgnoreCase(cmd)){
-			a.setId(idCliente);
-			a.setNome(txtNome.getText());
-			a.setRaca(txtRaca.getText());
-			a.setCor(txtCor.getText());
-			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
-			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
-			a.setRga(txtRga.getText());
-			controlAnimal.inserir(a);
-		}else if ("Alterar".equalsIgnoreCase(cmd)) {
-			a.setId(idAnimal);
-			a.setNome(txtNome.getText());
-			a.setRaca(txtRaca.getText());
-			a.setCor(txtCor.getText());
-			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
-			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
-			a.setRga(txtRga.getText());
-			controlAnimal.atualiza(a);
-		}else if ("Excluir".equalsIgnoreCase(cmd)) {
-			a.setId(idAnimal);
-			a.setNome(txtNome.getText());
-			a.setRaca(txtRaca.getText());
-			a.setCor(txtCor.getText());
-			a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
-			a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
-			a.setRga(txtRga.getText());
-			controlAnimal.excluir(a);
+		if ( !valida() ) {
+			if ("Incluir".equalsIgnoreCase(cmd)) {
+				a.setId(idCliente);
+				a.setNome(txtNome.getText());
+				a.setRaca(txtRaca.getText());
+				a.setCor(txtCor.getText());
+				a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+				a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+				a.setRga(txtRga.getText());
+				controlAnimal.inserir(a);
+			} else if ("Alterar".equalsIgnoreCase(cmd)) {
+				a.setId(idAnimal);
+				a.setNome(txtNome.getText());
+				a.setRaca(txtRaca.getText());
+				a.setCor(txtCor.getText());
+				a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+				a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+				a.setRga(txtRga.getText());
+				controlAnimal.atualiza(a);
+			} else if ("Excluir".equalsIgnoreCase(cmd)) {
+				a.setId(idAnimal);
+				a.setNome(txtNome.getText());
+				a.setRaca(txtRaca.getText());
+				a.setCor(txtCor.getText());
+				a.setEspecie(String.valueOf(comboBoxEspecie.getSelectedItem()));
+				a.setSexo(String.valueOf(comboBoxSexo.getSelectedItem()));
+				a.setRga(txtRga.getText());
+				controlAnimal.excluir(a);
+			}
+		}else{
+			JOptionPane.showMessageDialog(null, "Selecione um Cliente");
 		}
-		
+	}
+
+	private boolean valida() {
+		return txtCliente.getText().isEmpty();
 	}
 
 	private void buscaCliente() {

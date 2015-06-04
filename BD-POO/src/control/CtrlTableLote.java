@@ -10,7 +10,7 @@ import entity.Lote;
 public interface CtrlTableLote {
 
 
-	List<Lote> BuscaLotePorProduto(Lote lote) throws SQLException;
+	List<Lote> BuscaLotePorProduto(int id) throws SQLException;
 	Lote concultaLoteId(String id )  throws SQLException;
 	
 	

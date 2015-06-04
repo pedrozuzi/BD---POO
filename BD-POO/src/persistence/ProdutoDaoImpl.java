@@ -101,7 +101,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		
 		List<Produto> lista = new ArrayList<Produto>();
 		String query = "SELECT * FROM produto WHERE nome like ?";
@@ -171,10 +171,38 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 
 	@Override
-	public List<Lote> listaLote() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Lote> listaLote(int id) throws SQLException {
+		List<Lote> lista = new ArrayList<Lote>();
+		
+		String query = "select lot.data_validade, lot.id as idlote"
+        +"from lote lot"
+        +"inner join lote_produto lp"
+        +"on lot.id = lp.idLote"
+        +"inner join produto prod"
+        +"on prod.id = lp.idProduto"
+        +"where prod.id = ?"
+        +"order by prod.id";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt( 1, id);
+		ResultSet rs = ps.executeQuery();
+		System.out.println("ok até aki");
+		
+		while ( rs.next() ){
+			Lote l = new Lote();
+			l.setData_validade(rs.getDate("data_validade"));
+			l.setId(rs.getInt("idlote"));
+			
+		    lista.add(l);
+		    
+		    System.out.println(l.getId());
+		}
+		
+		ps.close();
+		return lista;
 	}
+	
+	
 //Metodos implementados LoteProduto
 	@Override
 	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
@@ -220,6 +248,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 
 
 

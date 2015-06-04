@@ -21,5 +21,5 @@ public interface LoteDao {
 
 	Lote consultaLote(Lote lot) throws SQLException;
 
-	List<Lote> listaLote() throws SQLException;
+	List<Lote> listaLote(int id) throws SQLException;
 }

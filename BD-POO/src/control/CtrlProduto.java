@@ -25,7 +25,7 @@ import entity.LoteProduto;
 import entity.Pessoa;
 import entity.Produto;
 
-public class CtrlProduto implements ActionListener, CtrlTableProduto {
+public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableLote {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
 
@@ -192,6 +192,28 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto {
 					"ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+	@Override
+	public List<Lote> BuscaLotePorProduto(int id) throws SQLException {
+		List<Lote> lista = new ArrayList<Lote>();
+		lDao = new ProdutoDaoImpl();
+		try {
+			lista = lDao.listaLote(id);
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		return lista;
+	}
+
+	@Override
+	public Lote concultaLoteId(String id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 	
 //	@Override

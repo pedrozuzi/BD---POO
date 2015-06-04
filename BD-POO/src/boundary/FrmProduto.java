@@ -64,6 +64,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JTextField txtValorCompra;
 	private JTextField txtIdFornecedor;
 
+	private JTable tableLote;
 	private JTable tableProduto;
 	private ModeloTabela modeloProduto;
 	private ModeloTabela modeloLote;
@@ -77,7 +78,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private CtrlProduto ctrlincluiprod;
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
-	private JTable tableLote;
+
 
 	public FrmProduto() {
 
@@ -449,6 +450,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		});
 
 		btnPesquisaProduto.addActionListener(e -> {
+			
+			//Procura produto
 			listaProduto = new ArrayList<Produto>();
 			try {
 
@@ -465,11 +468,31 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				}
 
 			} catch (NullPointerException e1) {
-				System.out.println("NullPointer");
+				System.out.println("NullPointer, Produto");
 			} catch (SQLException e2) {
-				System.out.println("ERRO - SQL");
+				System.out.println("ERRO - SQL - Produto");
 			}
-
+            
+			//Procura Lote
+		    listaLote = new ArrayList<Lote>();
+		    try {
+				listaLote = ctrlprod.BuscaLotePorProduto(1);//TODO Arrumar id mouse listener
+				if (!listaLote.isEmpty()) {
+					modeloLote = new ModeloTabela(listaLote);
+					tableLote.getTableHeader().setReorderingAllowed(false);
+					tableLote.setModel(modeloLote);
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Nenhum Lote?", "Aviso",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+		    	
+			} catch (NullPointerException e1) {
+				System.out.println("NullPointer, Lote");
+			} catch (SQLException e2) {
+				System.out.println("ERRO - SQL - Lote");
+			}
+			
 		});
 
 		// btnLupaPesquisar.addActionListener(e -> {

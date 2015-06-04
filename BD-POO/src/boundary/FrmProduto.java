@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -26,6 +27,7 @@ import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
 import control.CtrlProduto;
+import control.CtrlTableLote;
 import control.CtrlTableProduto;
 import control.CtrlTelaProduto;
 import control.ModeloTabela;
@@ -59,15 +61,18 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JTable tableProduto;
 	private ModeloTabela modeloProduto;
+	private ModeloTabela modeloLote;
 	
 	private JScrollPane scrollProduto;
 	private JScrollPane scrollLote;
 	
 	
-	private CtrlTableProduto controlTable;
+	private CtrlTableProduto controlTableProduto;
+	private CtrlTableLote controlTableLote; 
+	
 	private CtrlProduto ctrlincluiprod;
-	private List<Produto> lista;
-	private List<Lote> listalote;
+	private List<Produto> listaProduto;
+	private List<Lote> listaLote;
 	private JTable tableLote;
 
 	public FrmProduto() {
@@ -206,14 +211,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		tableProduto = new JTable();
 		
 		scrollProduto.setViewportView(tableProduto);
-		//panPrincipal.add(scrollPane);
-		//modelo = montarTabelaProduto();
 		
-		listaProduto = controlTable.BuscaProdutoPorNome(txtNome.getText());
-		modeloProduto = new ModeloTabela(lista);
+
+
 		
-		ListaLote = ...
-				modeloLote = new ModeloTabela(ListaLote);
+		//listaLote = controlTableLote.BuscaLotePorProduto();
+		//		modeloLote = new ModeloTabela(ListaLote);
 
 		JPanel panInferior = new JPanel();
 		panInferior
@@ -423,14 +426,25 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		
 		ctrltela.inicio();
 		
-		btnSalva.addActionListener(e ->{	
+		btnSalva.addActionListener(e ->{
+			
 		ctrlprod.actionPerformed(e);
 		ctrltela.actionPerformed(e);
 		});
 		
-		btnPesquisaProduto.addActionListener(e -> {
-			modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			buscarDadosTabelaPorNome(modelo);
+	btnPesquisaProduto.addActionListener(e -> {
+	        
+		try {
+			listaProduto = controlTableProduto.BuscaProdutoPorNome(txtNome.getText());
+			modeloProduto = new ModeloTabela(listaProduto);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	
+		//	modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+		//	buscarDadosTabelaPorNome(modelo);
 
 		});
 		
@@ -482,7 +496,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 //	//	tableProduto.setVisible(false);
 //		scrollProduto.setViewportView(tableProduto);
 //		return modelo;
-}
+//}
 	
 	
 	
@@ -545,6 +559,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 //				System.out.println("campo vazio");
 //			}
 //		}
-	}
+//	}
 	
 }//end class

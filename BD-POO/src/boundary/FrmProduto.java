@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,11 +29,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+import control.CtrlFornecedor;
 import control.CtrlProduto;
 import control.CtrlTableLote;
 import control.CtrlTableProduto;
 import control.CtrlTelaProduto;
 import control.ModeloTabela;
+import entity.Fornecedor;
 import entity.Lote;
 import entity.Produto;
 
@@ -63,14 +67,13 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JTable tableProduto;
 	private ModeloTabela modeloProduto;
 	private ModeloTabela modeloLote;
-	
+
 	private JScrollPane scrollProduto;
 	private JScrollPane scrollLote;
-	
-	
+
 	private CtrlTableProduto controlTableProduto;
-	private CtrlTableLote controlTableLote; 
-	
+	private CtrlTableLote controlTableLote;
+
 	private CtrlProduto ctrlincluiprod;
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
@@ -89,19 +92,17 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		// TODO action temporario
 		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
-		
+
 		mntmMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				FrmPrincipal telaprincipal = new FrmPrincipal();
 				telaprincipal.main(null);
 				janela.dispose();
-				
+
 			}
 		});
-	
 
-		
 		mntmMenuPrincipal.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/HomeMenu.png")));
 		mnMenu.add(mntmMenuPrincipal);
@@ -204,35 +205,41 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panSuperior.add(btnFoward);
 		btnFoward.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniFoward.png")));
-		
-		
-		
 
-		
+		// TABLE PRODUTO
 		tableProduto = new JTable();
 		tableProduto.addMouseListener(this);
 		tableProduto.setBorder(new LineBorder(Color.BLACK));
-        tableProduto.setGridColor(Color.BLACK);
-        tableProduto.setShowGrid(true);
-        tableProduto.setVisible(true);
-		
+		tableProduto.setGridColor(Color.BLACK);
+		tableProduto.setShowGrid(true);
+		tableProduto.setVisible(true);
+
+		// SCROLL PRODUTO
 		scrollProduto = new JScrollPane();
 		scrollProduto.getViewport().setBorder(null);
 		scrollProduto.setViewportView(tableProduto);
 		scrollProduto.setBounds(10, 21, 681, 134);
-		//scrollProduto.setVisible(false);
-		
+		scrollProduto.setVisible(true);
+
 		panSuperior.add(scrollProduto);
 
-		
-		
-	//	scrollProduto.setViewportView(tableProduto);
-		
+		// TABLE LOTE
+		tableLote = new JTable();
+		// mouse listener
+		tableLote.setBorder(new LineBorder(Color.BLACK));
+		tableLote.setGridColor(Color.BLACK);
+		tableLote.setShowGrid(true);
+		tableLote.setVisible(true);
 
+		// SCROLL LOTE
 
-		
-		//listaLote = controlTableLote.BuscaLotePorProduto();
-		//		modeloLote = new ModeloTabela(ListaLote);
+		scrollLote = new JScrollPane();
+		scrollLote.getViewport().setBorder(null);
+		scrollLote.setViewportView(tableLote);
+		scrollLote.setBounds(701, 21, 185, 134);
+		scrollLote.setVisible(true);
+
+		panSuperior.add(scrollLote);
 
 		JPanel panInferior = new JPanel();
 		panInferior
@@ -402,11 +409,11 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		btnVolta.setActionCommand("VOLTA");
 		btnLimpa.setActionCommand("LIMPA");
-	//	btnSalva.setActionCommand("SALVA");
+		// btnSalva.setActionCommand("SALVA");
 
-		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto,
-				txtNome, txtDescricao, txtValorVenda, txtValorCompra,
-				txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
+				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
+				txtIdLote, txtDataValidadeLote);
 
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
@@ -415,166 +422,192 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
-		
-		scrollLote = new JScrollPane();
-		scrollLote.setBounds(701, 21, 185, 134);
-		panSuperior.add(scrollLote);
-		
-		tableLote = new JTable();
-		scrollLote.setViewportView(tableLote);
-		
+
 		JLabel lblProduto = new JLabel("Produto");
 		lblProduto.setBounds(10, 0, 69, 18);
 		panSuperior.add(lblProduto);
-		
+
 		JLabel lblLote = new JLabel("Lote");
 		lblLote.setBounds(701, 0, 69, 18);
 		panSuperior.add(lblLote);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
-		
+
 		btnIncluir.addActionListener(ctrltela);
 
 		btnAlterar.addActionListener(ctrltela);
 		btnExcluir.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
-		
+
 		ctrltela.inicio();
-		
-		btnSalva.addActionListener(e ->{
-			
-		ctrlprod.actionPerformed(e);
-		ctrltela.actionPerformed(e);
+
+		btnSalva.addActionListener(e -> {
+
+			ctrlprod.actionPerformed(e);
+			ctrltela.actionPerformed(e);
 		});
-		
-	btnPesquisaProduto.addActionListener(e -> {
-	        
-		try {
-			
-			
-			listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome.getText());
-			modeloProduto = new ModeloTabela(listaProduto);
-			
-			
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
+
+		btnPesquisaProduto.addActionListener(e -> {
+			listaProduto = new ArrayList<Produto>();
+			try {
+
+				listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome.getText());
+				// modeloProduto = new ModeloTabela(listaProduto);
+				if (!listaProduto.isEmpty()) {
+					modeloProduto = new ModeloTabela(listaProduto);
+					tableProduto.getTableHeader().setReorderingAllowed(false);
+					tableProduto.setModel(modeloProduto);
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Nenhum registro encontrado", "Aviso",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			} catch (NullPointerException e1) {
+				System.out.println("NullPointer");
+			} catch (SQLException e2) {
+				System.out.println("ERRO - SQL");
+			}
+
 		});
-		
-	}
-	
+
+		// btnLupaPesquisar.addActionListener(e -> {
+		// control = new CtrlFornecedor();
+		// lista = new ArrayList<Fornecedor>();
+		// //modelo.setNumRows(0); //apagar Jtable para uma nova consulta
+		// //buscarDadosTabelaPorNome(modelo);
+		// try {
+		// lista = control.buscaFornecedorPorNome(txtNome.getText());
+		// if (!lista.isEmpty()) {
+		// modelo = new ModeloTabela(lista);
+		// table.getTableHeader().setReorderingAllowed(false);
+		// table.setModel(modelo);
+		// }else{
+		// JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+		// "Aviso", JOptionPane.INFORMATION_MESSAGE);
+		// }
+		//
+		// } catch (NullPointerException e1) {
+		// System.out.println("NullPointer");
+		// } catch (SQLException e2) {
+		// System.out.println("ERRO - SQL");
+		// }
+		// limpaCampos();
+		// });
+
+	}// fim construtor
+
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[6];
 		int linha = tableProduto.getSelectedRow();
 		int coluna = tableProduto.getSelectedColumn();
-		
+
 		for (coluna = 0; coluna < tableProduto.getColumnCount(); coluna++) {
 			valores[coluna] = tableProduto.getValueAt(linha, coluna);
 		}
 
-			txtIdProduto.setText( String.valueOf(valores[0]));
-			txtNome.setText( String.valueOf(valores[1]));
-			txtDescricao.setText(String.valueOf(valores[2]));
-			txtIdFornecedor.setText(String.valueOf(valores[3]));
-			txtValorCompra.setText(String.valueOf(valores[4]));
-			txtValorVenda.setText(String.valueOf(valores[5]));
+		txtIdProduto.setText(String.valueOf(valores[0]));
+		txtNome.setText(String.valueOf(valores[1]));
+		txtDescricao.setText(String.valueOf(valores[2]));
+		txtIdFornecedor.setText(String.valueOf(valores[3]));
+		txtValorCompra.setText(String.valueOf(valores[4]));
+		txtValorVenda.setText(String.valueOf(valores[5]));
 
 	}
 
 	public static void main(String[] args) {
 		new FrmProduto();
-		
+
 	}
-	
-//	public DefaultTableModel montarTabelaProduto () {
-//		String[] colunas = new String[6];
-//		colunas[0] = "ID";
-//		colunas[1] = "Nome";
-//		colunas[2] = "Descricao";
-//		colunas[3] = "ID: Fornecedor";
-//		colunas[4] = "Compra R$:";
-//		colunas[5] = "Venda R$:";
-//		
-//
-//		modelo = new CtrlTabela(new Object[][] {}, colunas);
-//
-//		tableProduto.setModel(modelo);
-//		tableProduto.addMouseListener(this);
-//		tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-//		tableProduto.getColumnModel().getColumn(0).setResizable(false);
-//		tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
-//		tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
-//		tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
-//		tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
-//	//	tableProduto.setVisible(false);
-//		scrollProduto.setViewportView(tableProduto);
-//		return modelo;
-//}
-	
-	
-	
-//	public DefaultTableModel montarTabelaLote(){
-//		
-//		String[] colunas = new String[2];
-//		colunas[0] = "Lote";
-//		colunas[1] = "Qtde";
-//		
-//		modelo = new CtrlTabela(new Object[][] {}, colunas);
-//		
-//		modelo = new CtrlTabela(new Object[][] {}, colunas);
-//
-//		tableProduto.setModel(modelo);
-//		tableProduto.addMouseListener(this);
-//		//scrollPane.setViewportView(   );
-//		
-//		return modelo;
-//	}
-	
-//	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-//		controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao, txtValorVenda, txtValorCompra,
-//				txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa tribulto
-//		
-//		lista = new ArrayList<Produto>();
-//		
-//		if (true) {
-//			if (!txtNome.getText().equals("")) {  //FIXME if
-//				try {
-//					lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
-//					
-//					if (!lista.isEmpty()) {
-//						for (Produto p : lista) {
-//							Object[] linha = new Object[6];
-//							linha[0] = p.getId();
-//							linha[1] = p.getNome();
-//							linha[2] = p.getDescricao();
-//							linha[3] = p.getId_fornecedor();
-//							linha[4] = p.getValor_venda();
-//							linha[5] = p.getValor_compra();
-//							
-//							System.out.println(" for:"+p.getNome());
-//
-//							modelo.addRow(linha);
-//							
-//						} 
-//						
-//						lista.forEach(p -> {
-//							System.out.println(p.getNome());
-//						});
-//					}else{
-//						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-//								"Aviso", JOptionPane.INFORMATION_MESSAGE);
-//					}
-//					
-//				}catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}else{
-//				System.out.println("campo vazio");
-//			}
-//		}
-//	}
-	
-}//end class
+
+	// public DefaultTableModel montarTabelaProduto () {
+	// String[] colunas = new String[6];
+	// colunas[0] = "ID";
+	// colunas[1] = "Nome";
+	// colunas[2] = "Descricao";
+	// colunas[3] = "ID: Fornecedor";
+	// colunas[4] = "Compra R$:";
+	// colunas[5] = "Venda R$:";
+	//
+	//
+	// modelo = new CtrlTabela(new Object[][] {}, colunas);
+	//
+	// tableProduto.setModel(modelo);
+	// tableProduto.addMouseListener(this);
+	// tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as
+	// colunas para nao serem movidas de seu lugar original
+	// tableProduto.getColumnModel().getColumn(0).setResizable(false);
+	// tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
+	// tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
+	// tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
+	// tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
+	// // tableProduto.setVisible(false);
+	// scrollProduto.setViewportView(tableProduto);
+	// return modelo;
+	// }
+
+	// public DefaultTableModel montarTabelaLote(){
+	//
+	// String[] colunas = new String[2];
+	// colunas[0] = "Lote";
+	// colunas[1] = "Qtde";
+	//
+	// modelo = new CtrlTabela(new Object[][] {}, colunas);
+	//
+	// modelo = new CtrlTabela(new Object[][] {}, colunas);
+	//
+	// tableProduto.setModel(modelo);
+	// tableProduto.addMouseListener(this);
+	// //scrollPane.setViewportView( );
+	//
+	// return modelo;
+	// }
+
+	// public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+	// controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao,
+	// txtValorVenda, txtValorCompra,
+	// txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa
+	// tribulto
+	//
+	// lista = new ArrayList<Produto>();
+	//
+	// if (true) {
+	// if (!txtNome.getText().equals("")) { //FIXME if
+	// try {
+	// lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
+	//
+	// if (!lista.isEmpty()) {
+	// for (Produto p : lista) {
+	// Object[] linha = new Object[6];
+	// linha[0] = p.getId();
+	// linha[1] = p.getNome();
+	// linha[2] = p.getDescricao();
+	// linha[3] = p.getId_fornecedor();
+	// linha[4] = p.getValor_venda();
+	// linha[5] = p.getValor_compra();
+	//
+	// System.out.println(" for:"+p.getNome());
+	//
+	// modelo.addRow(linha);
+	//
+	// }
+	//
+	// lista.forEach(p -> {
+	// System.out.println(p.getNome());
+	// });
+	// }else{
+	// JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+	// "Aviso", JOptionPane.INFORMATION_MESSAGE);
+	// }
+	//
+	// }catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// }else{
+	// System.out.println("campo vazio");
+	// }
+	// }
+	// }
+
+}// end class

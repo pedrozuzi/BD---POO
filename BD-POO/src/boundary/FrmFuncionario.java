@@ -408,7 +408,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			}else{
 				f.setId(id);
 				f.setNome( txtNome.getText() );
-				f.setCpf( txtCpf.getText() );
+				f.setCpf( txtCpf.getText().replace("-", "").replace(".", "") );
 				f.setSalario( Double.parseDouble(txtSalario.getText()) );
 				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 				if(rdbtnAdministrador.isSelected()){
@@ -444,6 +444,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				modelo = new ModeloTabela(lista);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);
+				habilitarCampos();
 			}else{
 				JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);

@@ -46,14 +46,16 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		String query = "update funcionario set "
 				+ "cpf = ?,"
 				+ "nome = ?,"
-				+ "salario= ?"
+				+ "salario= ?,"
+				+ "telefone = ? "
 				+ "where id = ?";
 				
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setString(1, func.getCpf() );
 		ps.setString(2, func.getNome() );
 		ps.setDouble(3, func.getSalario() );
-		ps.setInt(4, func.getId() );
+		ps.setInt(4, func.getTelefone() );
+		ps.setInt(5, func.getId() );
 		ps.execute();
 		ps.close();
 		

@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
@@ -203,14 +204,29 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panSuperior.add(btnFoward);
 		btnFoward.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniFoward.png")));
+		
+		
+		
 
+		
+		tableProduto = new JTable();
+		tableProduto.addMouseListener(this);
+		tableProduto.setBorder(new LineBorder(Color.BLACK));
+        tableProduto.setGridColor(Color.BLACK);
+        tableProduto.setShowGrid(true);
+        tableProduto.setVisible(true);
+		
 		scrollProduto = new JScrollPane();
+		scrollProduto.getViewport().setBorder(null);
+		scrollProduto.setViewportView(tableProduto);
 		scrollProduto.setBounds(10, 21, 681, 134);
+		//scrollProduto.setVisible(false);
+		
 		panSuperior.add(scrollProduto);
 
-		tableProduto = new JTable();
 		
-		scrollProduto.setViewportView(tableProduto);
+		
+	//	scrollProduto.setViewportView(tableProduto);
 		
 
 
@@ -435,17 +451,17 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	btnPesquisaProduto.addActionListener(e -> {
 	        
 		try {
-			listaProduto = controlTableProduto.BuscaProdutoPorNome(txtNome.getText());
+			
+			
+			listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome.getText());
 			modeloProduto = new ModeloTabela(listaProduto);
+			
+			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-	
-		//	modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-		//	buscarDadosTabelaPorNome(modelo);
-
 		});
 		
 	}

@@ -237,8 +237,8 @@ public class FrmAnimal extends MouseAdapter {
 		comboBoxSexo = new JComboBox<String>();
 		comboBoxSexo.setVisible(false);
 		comboBoxSexo.setBounds(129, 482, 38, 20);
-		comboBoxSexo.addItem(SexoAnimal.MACHO.getSEXO());
-		comboBoxSexo.addItem(SexoAnimal.FEMEA.getSEXO());
+		comboBoxSexo.addItem("M");
+		comboBoxSexo.addItem("F");
 		panPrincipalAnimal.add(comboBoxSexo);
 		
 		tableAnimal = new JTable();

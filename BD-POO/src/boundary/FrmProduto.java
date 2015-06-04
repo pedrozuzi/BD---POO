@@ -79,6 +79,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
 
+	private int idprod = 0;
 
 	public FrmProduto() {
 
@@ -450,13 +451,14 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		});
 
 		btnPesquisaProduto.addActionListener(e -> {
-			
-			//Procura produto
-			listaProduto = new ArrayList<Produto>();
-			try {
 
-				listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome.getText());
-				// modeloProduto = new ModeloTabela(listaProduto);
+			// Procura produto
+				listaProduto = new ArrayList<Produto>();
+				try {
+
+					listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome
+							.getText());
+					// modeloProduto = new ModeloTabela(listaProduto);
 				if (!listaProduto.isEmpty()) {
 					modeloProduto = new ModeloTabela(listaProduto);
 					tableProduto.getTableHeader().setReorderingAllowed(false);
@@ -472,27 +474,29 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 			} catch (SQLException e2) {
 				System.out.println("ERRO - SQL - Produto");
 			}
-            
-			//Procura Lote
-		    listaLote = new ArrayList<Lote>();
-		    try {
-				listaLote = ctrlprod.BuscaLotePorProduto(1);//TODO Arrumar id mouse listener
-				if (!listaLote.isEmpty()) {
-					modeloLote = new ModeloTabela(listaLote);
-					tableLote.getTableHeader().setReorderingAllowed(false);
-					tableLote.setModel(modeloLote);
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Nenhum Lote?", "Aviso",
-							JOptionPane.INFORMATION_MESSAGE);
+
+			// Procura Lote
+			if (idprod == 999) {
+				listaLote = new ArrayList<Lote>();
+				try {
+					listaLote = ctrlprod.BuscaLotePorProduto(1);// TODO Arrumar
+																// id mouse
+																// listener
+					if (!listaLote.isEmpty()) {
+						modeloLote = new ModeloTabela(listaLote);
+						tableLote.getTableHeader().setReorderingAllowed(false);
+						tableLote.setModel(modeloLote);
+					} else {
+						JOptionPane.showMessageDialog(null, "Nenhum Lote?",
+								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+					}
+
+				} catch (NullPointerException e1) {
+					System.out.println("NullPointer, Lote");
+				} catch (SQLException e2) {
+					System.out.println("ERRO - SQL - Lote");
 				}
-		    	
-			} catch (NullPointerException e1) {
-				System.out.println("NullPointer, Lote");
-			} catch (SQLException e2) {
-				System.out.println("ERRO - SQL - Lote");
 			}
-			
 		});
 
 		// btnLupaPesquisar.addActionListener(e -> {
@@ -536,6 +540,33 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtIdFornecedor.setText(String.valueOf(valores[3]));
 		txtValorCompra.setText(String.valueOf(valores[4]));
 		txtValorVenda.setText(String.valueOf(valores[5]));
+
+		idprod = Integer.parseInt(txtIdProduto.getText());// XXX
+		
+		if (idprod != 0) {
+			listaLote = new ArrayList<Lote>();
+			CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
+					txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
+					txtIdLote, txtDataValidadeLote);
+			try {
+				listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO Arrumar
+															// id mouse
+															// listener
+				if (!listaLote.isEmpty()) {
+					modeloLote = new ModeloTabela(listaLote);
+					tableLote.getTableHeader().setReorderingAllowed(false);
+					tableLote.setModel(modeloLote);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nenhum Lote?",
+							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			} catch (NullPointerException e1) {
+				System.out.println("NullPointer, Lote");
+			} catch (SQLException e2) {
+				System.out.println("ERRO - SQL - Lote");
+			}
+		}
 
 	}
 

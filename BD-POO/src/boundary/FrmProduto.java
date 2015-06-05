@@ -44,7 +44,7 @@ import entity.Produto;
  *
  */
 
-public class FrmProduto extends MouseAdapter implements ConfigTelas {
+public class FrmProduto extends MouseAdapter {
 
 	private JFrame janela = new JFrame("Produto");
 

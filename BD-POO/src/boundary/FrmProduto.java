@@ -29,6 +29,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlProduto;
 import control.CtrlTableLote;
 import control.CtrlTableProduto;
@@ -77,6 +78,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private CtrlTableProduto controlTableProduto;
 	private CtrlTableLote controlTableLote;
 	private CtrlProduto ctrlincluiprod;
+
 	
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
@@ -86,15 +88,23 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
-		//JPanel panForm = new JPanel();
-		
+			
 		// configs básicas de janela
-		janela.setSize(942, 670);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		janela.setSize(942, 670);
+//		janela.setVisible(true);
+//		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//CONFIGURACOES DE TELA
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		janela = configTela.iconeBarra(janela) ;
+        configTela.centralizeFrame(janela);
+        configTela.estilo();
+		
+        
 		janela.setContentPane(panPrincipal);
 		panPrincipal.setLayout(null);
+		
+		
 	
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
@@ -120,7 +130,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
 		
-
 		panLote = new JPanel();
 		panLote.setBounds(35, 201, 472, 82);
 		panInferior.add(panLote);
@@ -144,8 +153,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panInferior.add(panAcoes2);
 		panAcoes2.setLayout(null);
 		
-		
-
 		JMenuBar menuBarProduto = new JMenuBar();
 		janela.setJMenuBar(menuBarProduto);
 
@@ -515,7 +522,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		});
 
-
+		janela.repaint(); // CORRIGE BUG DE CARREGAMENTO DOS COMPONENENTES
+		
 	}// fim construtor
 
 	public void mouseClicked(MouseEvent e) {

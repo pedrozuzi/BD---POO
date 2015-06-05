@@ -11,6 +11,9 @@ import javax.swing.JSlider;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class FrmRelatorio {
 	
@@ -18,6 +21,7 @@ public class FrmRelatorio {
 	private JPanel panPrincipal;
 	private JComboBox<String> comboBox;
 	private JLabel lblGerarRelatrio;
+	private JTable table;
 	
 	public FrmRelatorio() {
 		janela = new JFrame("Relatório");
@@ -43,6 +47,18 @@ public class FrmRelatorio {
 		JButton btnGerar = new JButton("Gerar");
 		btnGerar.setBounds(308, 36, 69, 31);
 		panPrincipal.add(btnGerar);
+		
+		JLabel lblRelatrioDealguma = new JLabel("Relat\u00F3rio de \"Alguma coisa\"");
+		lblRelatrioDealguma.setFont(new Font("Arial", Font.BOLD, 16));
+		lblRelatrioDealguma.setBounds(220, 91, 230, 20);
+		panPrincipal.add(lblRelatrioDealguma);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 130, 651, 158);
+		panPrincipal.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		ConfigTelas.centralizarFrame(janela);
 	}
 	

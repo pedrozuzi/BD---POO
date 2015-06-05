@@ -7,10 +7,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import control.ConfigTelas;
 import control.CtrlCliente;
 import control.ModeloTabela;
@@ -58,6 +63,10 @@ public class FrmCliente extends MouseAdapter {
 	private JTextField txtCpf;
 	private JLabel lblCpf;
 	private ModeloTabela modelo;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -65,6 +74,34 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janela.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			new FrmPrincipal(null);
+		}); 
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			new FrmLogin();
+		});
 		
 		lblLogradouro = new JLabel("Logradouro:");
 		lblLogradouro.setFont(new Font("Arial", Font.BOLD, 14));

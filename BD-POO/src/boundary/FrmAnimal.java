@@ -15,6 +15,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -77,6 +80,10 @@ public class FrmAnimal extends MouseAdapter {
 	private JDialog jd;
 	private JPanel panelCliente;
 	private JLabel lblLogo;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 	
 	public FrmAnimal() {
 		janelaAnimal = new JFrame();
@@ -85,6 +92,34 @@ public class FrmAnimal extends MouseAdapter {
 		panPrincipalAnimal.setBackground(SystemColor.text);
 		panPrincipalAnimal.setForeground(Color.WHITE);
 		panPrincipalAnimal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janelaAnimal.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janelaAnimal.dispose();
+			new FrmPrincipal(null);
+		}); 
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		
+		logOff.addActionListener(e -> {
+			janelaAnimal.dispose();
+			new FrmLogin();
+		});
 		
 		txtCliente = new JTextField();
 		txtCliente.setEnabled(false);

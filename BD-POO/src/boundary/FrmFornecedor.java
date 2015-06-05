@@ -2,23 +2,34 @@ package boundary;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import control.ConfigTelas;
 import control.CtrlFornecedor;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
+
 import javax.swing.JLabel;
+
 import java.awt.Color;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import entity.Fornecedor;
+
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -52,6 +63,10 @@ public class FrmFornecedor extends MouseAdapter{
 	private int id;
 	private List<Fornecedor> lista;
 	private ModeloTabela modelo;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 	
 	public FrmFornecedor() {
 		janela = new JFrame("Fornecedor");
@@ -59,6 +74,34 @@ public class FrmFornecedor extends MouseAdapter{
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janela.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			new FrmPrincipal(null);
+		}); 
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			new FrmLogin();
+		});
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));

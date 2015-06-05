@@ -89,19 +89,21 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		JPanel panPrincipal = new JPanel();
 			
-		// configs básicas de janela
+		
 		//XXX DELETAR APÒS EDIÇÂO!!
 		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//XXX
 		
-		//CONFIGURACOES DE TELA
+		//CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
 		configTela.iconeBarra(janela) ;
 		configTela.tamanho(janela, 942, 670);
         configTela.centralizeFrame(janela);
         configTela.selecionaEstilo(1); //1=nimbus
         configTela.estilo();
+       //COMENTAR ATÈ AQUI!!
 	
         
 		janela.setContentPane(panPrincipal);

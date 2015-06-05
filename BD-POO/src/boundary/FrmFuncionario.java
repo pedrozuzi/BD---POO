@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -14,19 +15,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.ButtonGroup;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
 import control.ConfigTelas;
 import control.CtrlFuncionario;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Funcionario;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
@@ -67,6 +75,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private JPanel panelInformacao;
 	private int id;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 	
 	public FrmFuncionario() {
 	
@@ -75,6 +87,34 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janela.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			new FrmPrincipal(null);
+		}); 
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			new FrmLogin();
+		});
 		
 		panel = new JPanel();
 		panel.setBackground(SystemColor.text);

@@ -26,10 +26,9 @@ public class FrmSplash extends JFrame {
 	 */
 
 	public FrmSplash() {
-		// TODO Auto-generated constructor stub
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 369, 231); //450,300
+		setBounds(100, 100, 500, 290); //450,300
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		setUndecorated(true);
@@ -39,8 +38,8 @@ public class FrmSplash extends JFrame {
 		centralizeFrame();
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmSplash.class.getResource("/img/splash.jpg")));
-		lblNewLabel.setBounds(-3, 0, 369, 231);
+		lblNewLabel.setIcon(new ImageIcon(FrmSplash.class.getResource("/img/splash.png")));
+		lblNewLabel.setBounds(-3, 0, 503, 290);
 		contentPane.add(lblNewLabel);
 	}
 

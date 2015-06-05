@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import connection.ConnectionImpl;
 import connection.GenericConnection;
+import entity.Funcionario;
 import entity.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -20,8 +23,18 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Override
 	public void inserirUsuario(Usuario u) throws SQLException {
-		// TODO Auto-generated method stub
-
+		String query = "INSERT INTO usuario (id,username,passwor) "
+				+ "VALUES (?, ?, ?) ";
+		Funcionario f = new Funcionario();
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, f.getId() );			//NAO SEI SE FUNCIONA
+		u.setF(f);							//NAO SEI SE FUNCIONA
+		ps.setString(2, u.getNome() );
+		ps.setString(3, u.getSenha() );
+		ps.execute();
+		ps.close();
+		JOptionPane.showMessageDialog(null, "usuário criado com sucesso!",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

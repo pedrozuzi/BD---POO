@@ -91,8 +91,9 @@ public class FrmProduto extends MouseAdapter {
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
+		panPrincipal.setBackground(Color.WHITE);
 
-		// XXX DELETAR APÒS EDIÇÂO!!
+		 //XXX DELETAR APÒS EDIÇÂO!!
 		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

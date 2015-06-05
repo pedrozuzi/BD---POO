@@ -89,4 +89,6 @@ public class ModeloTabela extends AbstractTableModel {
 		return columnIndex == 2;
 	}
 	
+	
+	
 }

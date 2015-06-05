@@ -39,7 +39,7 @@ import entity.Lote;
 import entity.Produto;
 
 /**
- * 
+ * Classe que possui os elementos de tela do Produto e Lote
  * @author Hury
  *
  */

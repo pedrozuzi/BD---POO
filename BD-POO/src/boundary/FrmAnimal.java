@@ -463,7 +463,6 @@ public class FrmAnimal extends MouseAdapter {
 		}
 		
 		if (tableAnimal.equals(acao)) {
-			System.out.println("Tabela animal");
 			int linha = tableAnimal.getSelectedRow();
 			int coluna = tableAnimal.getSelectedColumn();
 			Object[] valoresAnimal = new Object[6];
@@ -473,7 +472,6 @@ public class FrmAnimal extends MouseAdapter {
 			}
 			
 			idAnimal = listaAnimal.get(linha).getId();
-			System.out.println(idAnimal);
 			txtNome.setText( String.valueOf(valoresAnimal[0]));
 			txtRga.setText( String.valueOf(valoresAnimal[1]));
 			txtRaca.setText( String.valueOf(valoresAnimal[2]));

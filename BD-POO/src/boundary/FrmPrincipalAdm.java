@@ -121,6 +121,7 @@ public class FrmPrincipalAdm {
 		
 		btnCadastros.addActionListener(e -> new FrmCadastros());
 		
+		btnRelatorio.addActionListener(e -> new FrmRelatorio());
 		
 		janela.setSize(576,465);
 		janela.setLocationRelativeTo(null);

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class FrmRelatorio {
 	
@@ -22,6 +23,8 @@ public class FrmRelatorio {
 	private JComboBox<String> comboBox;
 	private JLabel lblGerarRelatrio;
 	private JTable table;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	public FrmRelatorio() {
 		janela = new JFrame("Relatório");
@@ -30,7 +33,7 @@ public class FrmRelatorio {
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		janela.setSize(687,348);
+		janela.setSize(687,435);
 		janela.setContentPane( panPrincipal);
 		
 		lblGerarRelatrio = new JLabel("Gerar Relat\u00F3rio de: ");
@@ -54,11 +57,31 @@ public class FrmRelatorio {
 		panPrincipal.add(lblRelatrioDealguma);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 130, 651, 158);
+		scrollPane.setBounds(10, 228, 651, 158);
 		panPrincipal.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JLabel lblUsurio = new JLabel("Usu\u00E1rio: ");
+		lblUsurio.setBounds(35, 148, 60, 14);
+		panPrincipal.add(lblUsurio);
+		
+		JLabel lblGeradoEm = new JLabel("Gerado em: ");
+		lblGeradoEm.setBounds(459, 148, 81, 14);
+		panPrincipal.add(lblGeradoEm);
+		
+		textField = new JTextField();
+		textField.setEnabled(false);
+		textField.setBounds(95, 142, 226, 20);
+		panPrincipal.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
+		textField_1.setBounds(537, 145, 95, 20);
+		panPrincipal.add(textField_1);
+		textField_1.setColumns(10);
 		ConfigTelas.centralizarFrame(janela);
 	}
 	

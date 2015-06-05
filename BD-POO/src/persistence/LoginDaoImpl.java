@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import boundary.FrmLogin;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Funcionario;
@@ -22,10 +20,6 @@ public class LoginDaoImpl implements LoginDao{
 
 	@Override
 	public boolean realizarLogin( Usuario u ) throws SQLException {
-//		String query = "select username, passwor "
-//						+"from usuario "
-//						+ "where username = ? and passwor = ?";
-		
 		String query = "select f.nome, u.username, u.passwor, t.id, "
 				+ "t.descricao "
 				+ "from usuario u "
@@ -49,7 +43,7 @@ public class LoginDaoImpl implements LoginDao{
 			u.setNome( rs.getString("username"));
 			u.setSenha( rs.getString("passwor"));
 			f.setIdTipo( rs.getInt("id"));
-			FrmLogin.ID_TIPO = f.getIdTipo();
+			u.setF(f);
 			ps.close();
 			return true;
 		}

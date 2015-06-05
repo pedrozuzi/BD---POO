@@ -98,7 +98,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		mntmMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				FrmPrincipal telaprincipal = new FrmPrincipal();
+				FrmPrincipal telaprincipal = new FrmPrincipal(null);
 				telaprincipal.main(null);
 				janela.dispose();
 

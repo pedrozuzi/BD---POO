@@ -25,10 +25,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public void inserirUsuario(Usuario u) throws SQLException {
 		String query = "INSERT INTO usuario (id,username,passwor) "
 				+ "VALUES (?, ?, ?) ";
-		Funcionario f = new Funcionario();
+		//Funcionario f = new Funcionario();
 		PreparedStatement ps = c.prepareStatement( query );
-		ps.setInt(1, f.getId() );			//NAO SEI SE FUNCIONA
-		u.setF(f);							//NAO SEI SE FUNCIONA
+		ps.setInt(1, u.getF().getId() );			//NAO SEI SE FUNCIONA
+		//u.setF(f);							//NAO SEI SE FUNCIONA
 		ps.setString(2, u.getNome() );
 		ps.setString(3, u.getSenha() );
 		ps.execute();

@@ -29,13 +29,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
-import control.CtrlFornecedor;
 import control.CtrlProduto;
 import control.CtrlTableLote;
 import control.CtrlTableProduto;
 import control.CtrlTelaProduto;
 import control.ModeloTabela;
-import entity.Fornecedor;
 import entity.Lote;
 import entity.Produto;
 
@@ -48,24 +46,28 @@ import entity.Produto;
 public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JFrame janela = new JFrame("Produto");
+	
 	private JTextField txtIdProduto;
 	private JTextField txtIdLote;
 	private JTextField txtDataValidadeLote;
 	private JTextField txtNome;
+	private JTextField txtDescricao;
+	private JTextField txtValorVenda;
+	private JTextField txtValorCompra;
+	private JTextField txtIdFornecedor;
+	
 	private JPanel panLote;
 	private JPanel panProduto;
+	
 	private JLabel lblNome;
 	private JLabel lblNewLabel_1;
 	private JLabel lblId_1;
 	private JLabel lblDataDeValidade;
 	private JLabel lblAcao;
-	private JTextField txtDescricao;
-	private JTextField txtValorVenda;
-	private JTextField txtValorCompra;
-	private JTextField txtIdFornecedor;
 
 	private JTable tableLote;
 	private JTable tableProduto;
+	
 	private ModeloTabela modeloProduto;
 	private ModeloTabela modeloLote;
 
@@ -74,8 +76,8 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private CtrlTableProduto controlTableProduto;
 	private CtrlTableLote controlTableLote;
-
 	private CtrlProduto ctrlincluiprod;
+	
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
 
@@ -84,7 +86,65 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
-		JPanel panForm = new JPanel();
+		//JPanel panForm = new JPanel();
+		
+		// configs básicas de janela
+		janela.setSize(942, 670);
+		janela.setVisible(true);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		janela.setContentPane(panPrincipal);
+		panPrincipal.setLayout(null);
+	
+		JPanel panAcoes = new JPanel();
+		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panAcoes.setBounds(178, 0, 599, 96);
+		panPrincipal.add(panAcoes);
+		panAcoes.setLayout(null);
+		panAcoes.setOpaque(false);
+		
+		JPanel panInferior = new JPanel();
+		panInferior
+				.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panInferior.setBounds(20, 296, 741, 290);
+		panPrincipal.add(panInferior);
+		panInferior.setOpaque(false);
+		panInferior.setLayout(null);
+		
+		JPanel panSuperior = new JPanel();
+		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
+				null, null));
+		panSuperior.setBounds(20, 100, 896, 191);
+		panPrincipal.add(panSuperior);
+		panSuperior.setLayout(null);
+		panSuperior.setOpaque(false);
+		
+
+		panLote = new JPanel();
+		panLote.setBounds(35, 201, 472, 82);
+		panInferior.add(panLote);
+		panLote.setBorder(new TitledBorder(null, "Lote", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
+		panLote.setLayout(null);
+		panLote.setOpaque(false);
+		
+		JPanel panProduto = new JPanel();
+		panProduto.setBounds(35, 11, 677, 193);
+		panInferior.add(panProduto);
+		panProduto.setBorder(new TitledBorder(UIManager
+				.getBorder("TitledBorder.border"), "Produto",
+				TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(0, 0, 0)));
+		panProduto.setLayout(null);
+		panProduto.setOpaque(false);
+		
+		JPanel panAcoes2 = new JPanel();
+		panAcoes2.setBounds(517, 215, 195, 64);
+		panInferior.add(panAcoes2);
+		panAcoes2.setLayout(null);
+		
+		
 
 		JMenuBar menuBarProduto = new JMenuBar();
 		janela.setJMenuBar(menuBarProduto);
@@ -125,64 +185,71 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
 		mnNewMenu_1.add(mntmNewMenuItem);
 
-		janela.setContentPane(panPrincipal);
-		panPrincipal.setLayout(null);
-
-		JPanel panAcoes = new JPanel();
-		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panAcoes.setBounds(178, 0, 599, 84);
-		panPrincipal.add(panAcoes);
-		panAcoes.setLayout(null);
-		panAcoes.setOpaque(false);
-
 		JButton btnIncluir = new JButton("");
 		btnIncluir.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Insert.png")));
-		btnIncluir.setBounds(17, 11, 69, 41);
+		btnIncluir.setBounds(30, 11, 69, 41);
 		panAcoes.add(btnIncluir);
+		
+		JButton btnIncluirProduto = new JButton("");
+		btnIncluirProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		btnIncluirProduto.setBounds(124, 11, 69, 41);
+		panAcoes.add(btnIncluirProduto);
+		
+		JButton btnIncluirNovoLote = new JButton("");
+		btnIncluirNovoLote.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		btnIncluirNovoLote.setBounds(213, 11, 69, 41);
+		panAcoes.add(btnIncluirNovoLote);
 
 		JLabel lblIncluirProduto = new JLabel("<html>Incluir  Produto<br><p align=\u201Dcenter\u201D>e Lote</center></html>\r\n");
-		lblIncluirProduto.setBounds(10, 47, 91, 37);
+		lblIncluirProduto.setBounds(30, 51, 84, 33);
 		panAcoes.add(lblIncluirProduto);
+		
+		JLabel label_5 = new JLabel("<html>Inclui<br>Produto</html>");
+		label_5.setBounds(134, 51, 46, 33);
+		panAcoes.add(label_5);
+		
+		JLabel label = new JLabel("<html>Inclui novo Lote<br> a um Produto</html>");
+		label.setBounds(190, 51, 92, 33);
+		panAcoes.add(label);
 
 		JButton btnAlterar = new JButton("");
 		btnAlterar.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Edit.png")));
-		btnAlterar.setBounds(300, 11, 69, 41);
+		btnAlterar.setBounds(313, 11, 69, 41);
 		panAcoes.add(btnAlterar);
 
 		JLabel label_1 = new JLabel("Alterar");
-		label_1.setBounds(320, 58, 40, 19);
+		label_1.setBounds(333, 58, 40, 19);
 		panAcoes.add(label_1);
 
 		JButton btnExcluir = new JButton("");
 		btnExcluir.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Delete.png")));
-		btnExcluir.setBounds(389, 11, 69, 41);
+		btnExcluir.setBounds(402, 11, 69, 41);
 		panAcoes.add(btnExcluir);
 
 		JLabel label_2 = new JLabel("Excluir");
-		label_2.setBounds(399, 58, 40, 19);
+		label_2.setBounds(412, 58, 40, 19);
 		panAcoes.add(label_2);
 
 		JButton btnPesquisar = new JButton("");
 		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/View.png")));
-		btnPesquisar.setBounds(483, 11, 69, 41);
+		btnPesquisar.setBounds(496, 11, 69, 41);
 		panAcoes.add(btnPesquisar);
 
 		JLabel label_3 = new JLabel("Pesquisar");
-		label_3.setBounds(493, 58, 59, 19);
+		label_3.setBounds(506, 58, 59, 19);
 		panAcoes.add(label_3);
 
-		JPanel panSuperior = new JPanel();
-		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
-				null, null));
-		panSuperior.setBounds(20, 86, 896, 191);
-		panPrincipal.add(panSuperior);
-		panSuperior.setLayout(null);
-		panSuperior.setOpaque(false);
+		JLabel lblProduto = new JLabel("Produto");
+		lblProduto.setBounds(10, 0, 69, 18);
+		panSuperior.add(lblProduto);
+
+		JLabel lblLote = new JLabel("Lote");
+		lblLote.setBounds(701, 0, 69, 18);
+		panSuperior.add(lblLote);
 
 		JButton btnRewind = new JButton("");
 		btnRewind.setBounds(241, 162, 69, 18);
@@ -242,22 +309,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		scrollLote.setVisible(true);
 
 		panSuperior.add(scrollLote);
-
-		JPanel panInferior = new JPanel();
-		panInferior
-				.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panInferior.setBounds(20, 288, 741, 290);
-		panPrincipal.add(panInferior);
-		panInferior.setOpaque(false);
-		panInferior.setLayout(null);
-
-		panLote = new JPanel();
-		panLote.setBounds(35, 201, 472, 82);
-		panInferior.add(panLote);
-		panLote.setBorder(new TitledBorder(null, "Lote", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
-		panLote.setLayout(null);
-		panLote.setOpaque(false);
+		
 
 		txtIdLote = new JTextField();
 		txtIdLote.setEditable(false);
@@ -277,16 +329,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtDataValidadeLote.setBounds(108, 52, 106, 20);
 		panLote.add(txtDataValidadeLote);
 		txtDataValidadeLote.setColumns(10);
-
-		JPanel panProduto = new JPanel();
-		panProduto.setBounds(35, 11, 677, 193);
-		panInferior.add(panProduto);
-		panProduto.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Produto",
-				TitledBorder.LEADING, TitledBorder.TOP, null,
-				new Color(0, 0, 0)));
-		panProduto.setLayout(null);
-		panProduto.setOpaque(false);
 
 		JLabel lblId = new JLabel("ID:");
 		lblId.setBounds(83, 16, 15, 14);
@@ -314,7 +356,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JButton btnPesquisaProduto = new JButton("");
 		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniLupa.png")));
-		btnPesquisaProduto.setBounds(189, 5, 30, 25);
+		btnPesquisaProduto.setBounds(169, 14, 30, 25);
 		panProduto.add(btnPesquisaProduto);
 
 		txtDescricao = new JTextField();
@@ -324,7 +366,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		JLabel lblPesquisar = new JLabel("Pesquisar");
 		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 10));
-		lblPesquisar.setBounds(177, 24, 61, 25);
+		lblPesquisar.setBounds(213, 11, 61, 25);
 		panProduto.add(lblPesquisar);
 
 		txtValorVenda = new JTextField();
@@ -351,29 +393,21 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		txtIdFornecedor = new JTextField();
 		txtIdFornecedor.setColumns(10);
-		txtIdFornecedor.setBounds(417, 46, 126, 20);
+		txtIdFornecedor.setBounds(417, 46, 61, 20);
 		panProduto.add(txtIdFornecedor);
+		
 
-		// configs básicas de janela
-		janela.setSize(942, 670);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton btnPesquisaFornecedor = new JButton("");
 		btnPesquisaFornecedor.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniLupa.png")));
-		btnPesquisaFornecedor.setBounds(594, 46, 30, 25);
+		btnPesquisaFornecedor.setBounds(488, 45, 30, 25);
 		panProduto.add(btnPesquisaFornecedor);
 
 		JLabel label_4 = new JLabel("Pesquisar");
 		label_4.setFont(new Font("Arial", Font.BOLD, 10));
-		label_4.setBounds(579, 69, 61, 25);
+		label_4.setBounds(528, 45, 61, 25);
 		panProduto.add(label_4);
-
-		JPanel panAcoes2 = new JPanel();
-		panAcoes2.setBounds(517, 215, 195, 64);
-		panInferior.add(panAcoes2);
-		panAcoes2.setLayout(null);
 
 		JLabel lblVoltar = new JLabel("Voltar");
 		lblVoltar.setBounds(20, 40, 40, 19);
@@ -405,15 +439,20 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAcao.setBounds(130, 39, 55, 19);
 		panAcoes2.add(lblAcao);
+		
+
 
 		btnIncluir.setActionCommand("INCLUIR");
+		btnIncluirProduto.setActionCommand("INCLUIRPRODUTO");
+		btnIncluirNovoLote.setActionCommand("INCLUIRLOTE");
+		
 		btnAlterar.setActionCommand("ALTERAR");
 		btnExcluir.setActionCommand("EXCLUIR");
 		btnPesquisar.setActionCommand("PESQUISAR");
 
 		btnVolta.setActionCommand("VOLTA");
 		btnLimpa.setActionCommand("LIMPA");
-		// btnSalva.setActionCommand("SALVA");
+
 
 		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
@@ -427,40 +466,19 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(108, 11, 47, 23);
-		panAcoes.add(btnNewButton_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("<html>Inclui<br>Produto</html>");
-		lblNewLabel_2.setBounds(108, 51, 46, 33);
-		panAcoes.add(lblNewLabel_2);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(193, 11, 47, 23);
-		panAcoes.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("<html>Inclui novo Lote<br> a um Produto</html>");
-		lblNewLabel.setBounds(179, 45, 91, 35);
-		panAcoes.add(lblNewLabel);
-
-		JLabel lblProduto = new JLabel("Produto");
-		lblProduto.setBounds(10, 0, 69, 18);
-		panSuperior.add(lblProduto);
-
-		JLabel lblLote = new JLabel("Lote");
-		lblLote.setBounds(701, 0, 69, 18);
-		panSuperior.add(lblLote);
-
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
 
 		btnIncluir.addActionListener(ctrltela);
+		btnIncluirProduto.addActionListener(ctrltela);
+		btnIncluirNovoLote.addActionListener(ctrltela);
 
 		btnAlterar.addActionListener(ctrltela);
 		btnExcluir.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
 
-		ctrltela.inicio();
+		ctrltela.inicio(); //configura a tela para abertura
 
 		btnNext.addActionListener(e -> {
 			// tableProduto.
@@ -499,29 +517,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		});
 
-		// btnLupaPesquisar.addActionListener(e -> {
-		// control = new CtrlFornecedor();
-		// lista = new ArrayList<Fornecedor>();
-		// //modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-		// //buscarDadosTabelaPorNome(modelo);
-		// try {
-		// lista = control.buscaFornecedorPorNome(txtNome.getText());
-		// if (!lista.isEmpty()) {
-		// modelo = new ModeloTabela(lista);
-		// table.getTableHeader().setReorderingAllowed(false);
-		// table.setModel(modelo);
-		// }else{
-		// JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-		// "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		// }
-		//
-		// } catch (NullPointerException e1) {
-		// System.out.println("NullPointer");
-		// } catch (SQLException e2) {
-		// System.out.println("ERRO - SQL");
-		// }
-		// limpaCampos();
-		// });
 
 	}// fim construtor
 
@@ -543,6 +538,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		idprod = Integer.parseInt(txtIdProduto.getText());// XXX
 
+		//PESQUISA LOTE A PARTIR DO CLICK NA TABLE PRODUTO
 		if (idprod != 0) {
 			listaLote = new ArrayList<Lote>();
 			List<String> listanula = new ArrayList<String>();

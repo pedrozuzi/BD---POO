@@ -112,36 +112,41 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
+	public void pesquisa(boolean status) {
+		btnPesquisaProduto.setEnabled(status);
+		btnPesquisaFornecedor.setEnabled(status);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
-		
+
+		// acoes basicas de tela
 		if (acao.equalsIgnoreCase("LIMPA")) {
 			limpaCampos();
 		} else if (acao.equalsIgnoreCase("VOLTA")) {
 			botoesCrud();
 			resetaTela();
 			limpaCampos();
+			pesquisa(false);
 		}
-		
-		//botao de acoes
+
+		// botao de acoes
 		else if (acao.equalsIgnoreCase("ACAOSALVA")) {
 			botoesCrud();
 			resetaTela();
-		}		else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
+		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
+			botoesCrud();
+			resetaTela();
+		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
+			botoesCrud();
+			resetaTela();
+		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
 			botoesCrud();
 			resetaTela();
 		}
-		else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
-			botoesCrud();
-			resetaTela();
-		}
-		else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
-			botoesCrud();
-			resetaTela();
-		}
-		
-		//panAcaoes
+
+		// panAcaoes
 		else if (acao.equalsIgnoreCase("INCLUIR")) {
 			inclui();
 			resetaTela();
@@ -149,7 +154,11 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOSALVA");
-			
+			pesquisa(false);
+		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) {
+
+		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) {
+
 		} else if (acao.equalsIgnoreCase("ALTERAR")) {
 			inclui();
 			resetaTela();
@@ -157,7 +166,7 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOGRAVA");
-			
+
 		} else if (acao.equalsIgnoreCase("EXCLUIR")) {
 			inclui();
 			resetaTela();
@@ -165,7 +174,7 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/trash.png")));
 			btnSalva.setActionCommand("ACAOEXCLUI");
-			
+
 		} else if (acao.equalsIgnoreCase("PESQUISAR")) {
 			inclui();
 			resetaTela();

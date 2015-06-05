@@ -157,6 +157,7 @@ public class FrmProduto extends MouseAdapter {
 		panAcoes2.setBounds(517, 215, 195, 64);
 		panInferior.add(panAcoes2);
 		panAcoes2.setLayout(null);
+		panAcoes2.setOpaque(false);
 
 		JMenuBar menuBarProduto = new JMenuBar();
 		janela.setJMenuBar(menuBarProduto);

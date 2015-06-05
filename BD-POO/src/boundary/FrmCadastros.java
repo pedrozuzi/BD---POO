@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
+import control.ConfiguracoesTela;
+
 public class FrmCadastros {
 	
 	private JFrame janela;
@@ -44,6 +46,9 @@ public class FrmCadastros {
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		janela.setSize(453,389);
 		janela.setContentPane( panPrincipal );

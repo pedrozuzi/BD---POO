@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import control.ConfiguracoesTela;
 import entity.Usuario;
 
 public class FrmPrincipal {
@@ -35,6 +36,10 @@ public class FrmPrincipal {
 		panPrincipal.setLayout(null);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		btnCadastros = new JButton();
 		

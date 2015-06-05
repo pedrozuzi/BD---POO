@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
 import control.CtrlUsuario;
 import control.ModeloTabela;
@@ -95,6 +96,10 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		panelPrincipal.setBackground(SystemColor.window);
 		janela.setContentPane(panelPrincipal);
 		panelPrincipal.setLayout(null);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);

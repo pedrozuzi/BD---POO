@@ -7,11 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
+
 import javax.swing.JSlider;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -32,6 +36,10 @@ public class FrmRelatorio {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		janela.setSize(687,435);
 		janela.setContentPane( panPrincipal);

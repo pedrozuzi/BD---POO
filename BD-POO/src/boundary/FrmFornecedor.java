@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlFornecedor;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
@@ -74,6 +75,10 @@ public class FrmFornecedor extends MouseAdapter{
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);

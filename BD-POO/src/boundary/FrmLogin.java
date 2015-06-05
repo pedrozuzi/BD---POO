@@ -7,11 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.JButton;
+
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlLogin;
 import entity.Usuario;
 
@@ -30,6 +34,11 @@ public class FrmLogin {
 	private JLabel label_1;
 
 	public FrmLogin(){
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
+
 		
 		controlLogin = new CtrlLogin();
 		panPrincipal = new JPanel();

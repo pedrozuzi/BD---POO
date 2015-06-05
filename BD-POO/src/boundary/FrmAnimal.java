@@ -28,6 +28,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
@@ -86,12 +87,18 @@ public class FrmAnimal extends MouseAdapter {
 	private JMenuItem logOff;
 	
 	public FrmAnimal() {
+		
+		
 		janelaAnimal = new JFrame();
 		janelaAnimal.setTitle("Animal");
 		panPrincipalAnimal = new JPanel();
 		panPrincipalAnimal.setBackground(SystemColor.text);
 		panPrincipalAnimal.setForeground(Color.WHITE);
 		panPrincipalAnimal.setLayout(null);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janelaAnimal);
+		configTela.iconeBarra(janelaAnimal);
 		
 		menuBarra = new JMenuBar();
 		janelaAnimal.setJMenuBar(menuBarra);

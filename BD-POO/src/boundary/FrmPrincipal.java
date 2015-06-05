@@ -28,6 +28,7 @@ public class FrmPrincipal {
 	private JButton btnDeslogar;
 
 	public FrmPrincipal(Usuario u) {
+		System.out.println(u.getNome());
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
 		janela.setContentPane( panPrincipal);

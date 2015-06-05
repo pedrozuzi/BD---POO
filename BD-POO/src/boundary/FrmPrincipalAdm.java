@@ -34,6 +34,7 @@ public class FrmPrincipalAdm {
 	private JLabel lblAgendarServio;
 
 	public FrmPrincipalAdm(Usuario u){
+		System.out.println(u.getNome());
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);

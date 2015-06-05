@@ -47,7 +47,7 @@ import entity.Produto;
 public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JFrame janela = new JFrame("Produto");
-	
+
 	private JTextField txtIdProduto;
 	private JTextField txtIdLote;
 	private JTextField txtDataValidadeLote;
@@ -56,10 +56,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private JTextField txtValorVenda;
 	private JTextField txtValorCompra;
 	private JTextField txtIdFornecedor;
-	
+
 	private JPanel panLote;
 	private JPanel panProduto;
-	
+
 	private JLabel lblNome;
 	private JLabel lblNewLabel_1;
 	private JLabel lblId_1;
@@ -68,7 +68,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	private JTable tableLote;
 	private JTable tableProduto;
-	
+
 	private ModeloTabela modeloProduto;
 	private ModeloTabela modeloLote;
 
@@ -79,38 +79,37 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 	private CtrlTableLote controlTableLote;
 	private CtrlProduto ctrlincluiprod;
 
-	
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
 
 	private int idprod = 0;
 
+	/**
+	 * Construtor
+	 */
+	
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
-			
-		
-		//XXX DELETAR APÒS EDIÇÂO!!
+
+		// XXX DELETAR APÒS EDIÇÂO!!
 		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//XXX
-		
-		//CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
+		// XXX
+
+		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela) ;
+		configTela.iconeBarra(janela);
 		configTela.tamanho(janela, 942, 670);
-        configTela.centralizeFrame(janela);
-        configTela.selecionaEstilo(1); //1=nimbus
-        configTela.estilo();
-       //COMENTAR ATÈ AQUI!!
-	
-        
+		configTela.centralizeFrame(janela);
+		configTela.selecionaEstilo(0); // 1=nimbus
+		configTela.estilo();
+		// COMENTAR ATÈ AQUI!!
+
 		janela.setContentPane(panPrincipal);
 		panPrincipal.setLayout(null);
-		
-		
-	
+
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -118,15 +117,15 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panPrincipal.add(panAcoes);
 		panAcoes.setLayout(null);
 		panAcoes.setOpaque(false);
-		
+
 		JPanel panInferior = new JPanel();
-		panInferior
-				.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panInferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
+				null, null));
 		panInferior.setBounds(20, 296, 741, 290);
 		panPrincipal.add(panInferior);
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
-		
+
 		JPanel panSuperior = new JPanel();
 		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
@@ -134,7 +133,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panPrincipal.add(panSuperior);
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
-		
+
 		panLote = new JPanel();
 		panLote.setBounds(35, 201, 472, 82);
 		panInferior.add(panLote);
@@ -142,7 +141,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				TitledBorder.TOP, null, null));
 		panLote.setLayout(null);
 		panLote.setOpaque(false);
-		
+
 		JPanel panProduto = new JPanel();
 		panProduto.setBounds(35, 11, 677, 193);
 		panInferior.add(panProduto);
@@ -152,12 +151,12 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				new Color(0, 0, 0)));
 		panProduto.setLayout(null);
 		panProduto.setOpaque(false);
-		
+
 		JPanel panAcoes2 = new JPanel();
 		panAcoes2.setBounds(517, 215, 195, 64);
 		panInferior.add(panAcoes2);
 		panAcoes2.setLayout(null);
-		
+
 		JMenuBar menuBarProduto = new JMenuBar();
 		janela.setJMenuBar(menuBarProduto);
 
@@ -202,26 +201,30 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				.getResource("/img/Insert.png")));
 		btnIncluir.setBounds(30, 21, 69, 41);
 		panAcoes.add(btnIncluir);
-		
+
 		JButton btnIncluirProduto = new JButton("");
-		btnIncluirProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		btnIncluirProduto.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/Insert.png")));
 		btnIncluirProduto.setBounds(124, 21, 69, 41);
 		panAcoes.add(btnIncluirProduto);
-		
+
 		JButton btnIncluirNovoLote = new JButton("");
-		btnIncluirNovoLote.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Insert.png")));
+		btnIncluirNovoLote.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/Insert.png")));
 		btnIncluirNovoLote.setBounds(213, 21, 69, 41);
 		panAcoes.add(btnIncluirNovoLote);
 
-		JLabel lblIncluirProduto = new JLabel("<html>Incluir  Produto<br><p align=\u201Dcenter\u201D>e Lote</center></html>\r\n");
+		JLabel lblIncluirProduto = new JLabel(
+				"<html>Incluir  Produto<br><p align=\u201Dcenter\u201D>e Lote</center></html>\r\n");
 		lblIncluirProduto.setBounds(30, 61, 84, 33);
 		panAcoes.add(lblIncluirProduto);
-		
+
 		JLabel label_5 = new JLabel("<html>Inclui<br>Produto</html>");
 		label_5.setBounds(134, 61, 46, 33);
 		panAcoes.add(label_5);
-		
-		JLabel label = new JLabel("<html>Inclui novo Lote<br> a um Produto</html>");
+
+		JLabel label = new JLabel(
+				"<html>Inclui novo Lote<br> a um Produto</html>");
 		label.setBounds(209, 61, 92, 33);
 		panAcoes.add(label);
 
@@ -321,24 +324,23 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		scrollLote.setVisible(true);
 
 		panSuperior.add(scrollLote);
-		
 
 		txtIdLote = new JTextField();
 		txtIdLote.setEditable(false);
-		txtIdLote.setBounds(104, 6, 40, 25);
+		txtIdLote.setBounds(123, 11, 40, 25);
 		panLote.add(txtIdLote);
 		txtIdLote.setColumns(10);
 
 		lblId_1 = new JLabel("ID:");
-		lblId_1.setBounds(83, 9, 15, 20);
+		lblId_1.setBounds(102, 14, 15, 20);
 		panLote.add(lblId_1);
 
 		lblDataDeValidade = new JLabel("Data de Validade:");
-		lblDataDeValidade.setBounds(6, 37, 101, 20);
+		lblDataDeValidade.setBounds(25, 42, 101, 20);
 		panLote.add(lblDataDeValidade);
 
 		txtDataValidadeLote = new JTextField();
-		txtDataValidadeLote.setBounds(104, 34, 106, 25);
+		txtDataValidadeLote.setBounds(123, 39, 106, 25);
 		panLote.add(txtDataValidadeLote);
 		txtDataValidadeLote.setColumns(10);
 
@@ -347,7 +349,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panProduto.add(lblId);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(122, 52, 168, 25);
+		txtNome.setBounds(122, 52, 199, 25);
 		panProduto.add(txtNome);
 		txtNome.setColumns(10);
 
@@ -372,7 +374,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		panProduto.add(btnPesquisaProduto);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(122, 88, 168, 25);
+		txtDescricao.setBounds(122, 88, 356, 25);
 		panProduto.add(txtDescricao);
 		txtDescricao.setColumns(10);
 
@@ -407,8 +409,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		txtIdFornecedor.setColumns(10);
 		txtIdFornecedor.setBounds(417, 46, 61, 25);
 		panProduto.add(txtIdFornecedor);
-		
-
 
 		JButton btnPesquisaFornecedor = new JButton("");
 		btnPesquisaFornecedor.setIcon(new ImageIcon(FrmProduto.class
@@ -451,18 +451,17 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAcao.setBounds(130, 39, 59, 19);
 		panAcoes2.add(lblAcao);
-		
+
 		btnIncluir.setActionCommand("INCLUIR");
 		btnIncluirProduto.setActionCommand("INCLUIRPRODUTO");
 		btnIncluirNovoLote.setActionCommand("INCLUIRLOTE");
-		
+
 		btnAlterar.setActionCommand("ALTERAR");
 		btnExcluir.setActionCommand("EXCLUIR");
 		btnPesquisar.setActionCommand("PESQUISAR");
 
 		btnVolta.setActionCommand("VOLTA");
 		btnLimpa.setActionCommand("LIMPA");
-
 
 		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
@@ -475,8 +474,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
-		
-		
+
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
 
@@ -488,7 +486,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		btnExcluir.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
 
-		ctrltela.inicio(); //configura a tela para abertura
+		ctrltela.inicio(); // configura a tela para abertura
 
 		btnNext.addActionListener(e -> {
 			// tableProduto.
@@ -528,9 +526,13 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		});
 
 		janela.repaint(); // CORRIGE BUG DE CARREGAMENTO DOS COMPONENENTES
-		
+
 	}// fim construtor
 
+	/**
+	 * Mouse Click das Tables
+	 */
+	
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[6];
 		int linha = tableProduto.getSelectedRow();
@@ -549,11 +551,11 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 		idprod = Integer.parseInt(txtIdProduto.getText());// XXX
 
-		//PESQUISA LOTE A PARTIR DO CLICK NA TABLE PRODUTO
+		// PESQUISA LOTE A PARTIR DO CLICK NA TABLE PRODUTO
 		if (idprod != 0) {
 			listaLote = new ArrayList<Lote>();
 			List<String> listanula = new ArrayList<String>();
-		
+
 			CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
 					txtDescricao, txtValorVenda, txtValorCompra,
 					txtIdFornecedor, txtIdLote, txtDataValidadeLote);
@@ -570,7 +572,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 					modeloLote = new ModeloTabela(listanula);
 					tableLote.getTableHeader().setReorderingAllowed(false);
 					tableLote.setModel(modeloLote);
-					
+
 				}
 
 			} catch (NullPointerException e1) {
@@ -582,6 +584,10 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 
 	}
 
+	/**
+	 * Metodo Main
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new FrmProduto();
 

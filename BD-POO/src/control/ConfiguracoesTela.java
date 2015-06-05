@@ -8,11 +8,22 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+/**
+ * Classe que possui os metodos de configurações de tela
+ * @author Hury
+ *
+ */
+
 public class ConfiguracoesTela extends JFrame {
 	
 	private JFrame tela;
 	protected static String look="javax.swing.plaf.nimbus.NimbusLookAndFeel";
 	protected static int tamanhofonte=16;
+	
+	/**
+	 * Construtor
+	 * @param tela
+	 */
 	
 	public ConfiguracoesTela(JFrame tela) {
 		this.tela = tela;
@@ -35,9 +46,16 @@ public class ConfiguracoesTela extends JFrame {
 	        return tela;
 	}
 	
+	/**
+	 * Metodo que altera o tamanho do JFrame
+	 * @param tela
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	
 	public JFrame tamanho(JFrame tela, int x, int y){
 		
-		//tela.setSize(942, 670);
 		tela.setSize(x, y);
 		tela.setVisible(true);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

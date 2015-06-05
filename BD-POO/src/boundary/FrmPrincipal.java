@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import entity.Usuario;
+
 public class FrmPrincipal {
 	
 	private JFrame janela;
@@ -25,7 +27,7 @@ public class FrmPrincipal {
 	private JLabel lblfRealizarServio;
 	private JButton btnDeslogar;
 
-	public FrmPrincipal() {
+	public FrmPrincipal(Usuario u) {
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
 		janela.setContentPane( panPrincipal);
@@ -113,7 +115,7 @@ public class FrmPrincipal {
 	}
 	
 	public static void main(String[] args) {
-		new FrmPrincipal();
+		new FrmPrincipal(new Usuario());
 	}
 
 }

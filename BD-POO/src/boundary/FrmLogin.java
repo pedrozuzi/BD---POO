@@ -80,10 +80,10 @@ public class FrmLogin {
 				u.setSenha(new String (pwdSenha.getPassword()));
 				if ( controlLogin.realizarLogin(u) ) {
 					if ( u.getF().getIdTipo() != 1 ) {
-						new FrmPrincipal();
+						new FrmPrincipal(u);
 						janela.dispose();
 					}else{
-						new FrmPrincipalAdm();
+						new FrmPrincipalAdm(u);
 						janela.dispose();
 					}
 					

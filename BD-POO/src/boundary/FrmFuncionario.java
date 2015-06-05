@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -15,31 +14,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import control.ConfigTelas;
-import control.CtrlFornecedor;
 import control.CtrlFuncionario;
-import control.CtrlTabela;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
-import entity.Fornecedor;
 import entity.Funcionario;
-
-import java.awt.Cursor;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.SwingConstants;
 
 public class FrmFuncionario implements ActionListener, MouseListener{
 

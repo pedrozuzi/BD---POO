@@ -33,7 +33,7 @@ public class FrmPrincipalAdm {
 	private JLabel lblfRealizarServio;
 	private JLabel lblAgendarServio;
 
-	public FrmPrincipalAdm(){
+	public FrmPrincipalAdm(Usuario u){
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
@@ -142,6 +142,6 @@ public class FrmPrincipalAdm {
 	
 	
 	public static void main(String[] args) {
-		new FrmPrincipalAdm();
+		new FrmPrincipalAdm(new Usuario());
 	}
 }

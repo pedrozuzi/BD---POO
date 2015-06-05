@@ -89,6 +89,7 @@ public class FrmLogin {
 					
 				}else{
 					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
+					pwdSenha.setText("");
 				}
 			}
 			

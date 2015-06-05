@@ -440,8 +440,6 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		lblAcao.setBounds(130, 39, 55, 19);
 		panAcoes2.add(lblAcao);
 		
-
-
 		btnIncluir.setActionCommand("INCLUIR");
 		btnIncluirProduto.setActionCommand("INCLUIRPRODUTO");
 		btnIncluirNovoLote.setActionCommand("INCLUIRLOTE");

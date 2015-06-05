@@ -52,7 +52,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 
-		if (acao.equalsIgnoreCase("ACAOSALVA")) { //insere um novo produto e lote
+		if (acao.equalsIgnoreCase("ACAOSALVA")) { //insere um novo produto e um novo lote
 			Produto prod = new Produto();
 			Lote lot = new Lote();
 			LoteProduto lotprod = new LoteProduto();
@@ -75,15 +75,58 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 			} 
 
 			try {
-				lotprod.setIdProduto(insereProduto(prod));
-				lotprod.setIdLote(insereLote(lot));
-				insereLoteProduto(lotprod);
+				lotprod.setIdProduto(insereProduto(prod)); //insere produto
+				lotprod.setIdLote(insereLote(lot));        //insere lote
+				insereLoteProduto(lotprod);                //insere lote_produto
+				
+				JOptionPane.showMessageDialog(null, " Os Novos produto e lote foram incluidos e vinculados com sucesso!");
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
 			System.out.println("prod: " + prod.getId() + " lot: " + lot.getId());
 			
-		}else if (acao.equalsIgnoreCase("ACAOGRAVA")){
+		}else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")){ //insere apenas um novo produto
+			
+			Produto prod = new Produto();
+			prod.setNome(txtNome.getText());
+			prod.setDescricao(txtDescricao.getText());
+			prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
+			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
+			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
+			
+			try {
+				insereProduto(prod);
+				JOptionPane.showMessageDialog(null, " O Novo produto foi incluido com sucesso!");
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			
+		}else if (acao.equalsIgnoreCase("ACAOSALVALOTE")){ //insere um novo lote a um produto existente
+					
+			Lote lot = new Lote();
+			LoteProduto lotprod = new LoteProduto();
+			
+			try {
+				String data = txtDataValidadeLote.getText();
+				java.sql.Date date = null;
+				DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				date = new java.sql.Date(
+						((java.util.Date) formatter.parse(data)).getTime());
+				lot.setData_validade(date);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			} 
+
+			try {
+				lotprod.setIdProduto(Integer.parseInt(txtIdProduto.getText())); //pega o id do produto pesquisado
+				lotprod.setIdLote(insereLote(lot));        //insere lote
+				insereLoteProduto(lotprod);                //insere lote_produto
+				JOptionPane.showMessageDialog(null, " O Novo lote foi vinculado ao produto com sucesso!");
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			
+		}else if (acao.equalsIgnoreCase("ACAOGRAVA")){       //Atualiza produto
 			Produto prod = new Produto();
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
 			prod.setNome(txtNome.getText());
@@ -93,7 +136,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 			
 			atualizaProduto(prod);
-		}else if (acao.equalsIgnoreCase("ACAOEXCLUI")){
+		}else if (acao.equalsIgnoreCase("ACAOEXCLUI")){  //Exclui Produto
 			Produto prod = new Produto();
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
 			
@@ -149,8 +192,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto, CtrlTableL
 		try {
 			lpDao.insereLoteProduto(lotprod);
 			System.out.println("LoteProduto Incluido!");
-			JOptionPane.showMessageDialog(null, "Produto incluido com Sucesso",
-					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);

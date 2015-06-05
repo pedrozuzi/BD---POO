@@ -83,6 +83,12 @@ public class CtrlTelaProduto implements ActionListener {
 			c[i].setEnabled(!c[i].isEnabled());
 		}
 	}
+	
+	public void tfalse(Component[] c){ //desabilita os components
+		for (int i = 0; i < c.length; i++) {
+			c[i].setEnabled(false);
+		}
+	}
 
 	public void botoesCrud() {
 		Component[] c;
@@ -90,17 +96,27 @@ public class CtrlTelaProduto implements ActionListener {
 	}
 
 	public void resetaTela() {
-		System.out.println("resetado");
+		//System.out.println("resetado");
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		comp(c = panLote.getComponents());
 		comp(c = panAcoes2.getComponents());
 	}
 
-	public void inclui() {
+	public void acao() {
 		System.out.println("acao");
 		Component[] c;
 		comp(c = panAcoes.getComponents());
+	}
+	
+	public void incluiLote(){
+		Component[] c;
+		comp(c = panProduto.getComponents());
+		txtNome.setEnabled(true);
+	}
+	public void incluiProduto(){
+		Component[] c;
+		comp(c = panLote.getComponents());
 	}
 
 	public void inicio() {
@@ -125,10 +141,14 @@ public class CtrlTelaProduto implements ActionListener {
 		if (acao.equalsIgnoreCase("LIMPA")) {
 			limpaCampos();
 		} else if (acao.equalsIgnoreCase("VOLTA")) {
+			Component[] c;
 			botoesCrud();
 			resetaTela();
 			limpaCampos();
 			pesquisa(false);
+            tfalse(c = panLote.getComponents());
+            tfalse(c = panProduto.getComponents());
+			
 		}
 
 		// botao de acoes
@@ -148,7 +168,7 @@ public class CtrlTelaProduto implements ActionListener {
 
 		// panAcaoes
 		else if (acao.equalsIgnoreCase("INCLUIR")) {
-			inclui();
+			acao();
 			resetaTela();
 			lblAcao.setText("Salvar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
@@ -156,11 +176,35 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setActionCommand("ACAOSALVA");
 			pesquisa(false);
 		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) {
+			
+			acao();
+			resetaTela();
+			
+			incluiProduto();
+			
+			lblAcao.setText("Salvar");
+			btnSalva.setIcon(new ImageIcon(FrmProduto.class
+					.getResource("/img/MiniSalvar.png")));
+			btnSalva.setActionCommand("ACAOSALVAPRODUTO");
+			
+			pesquisa(false);
 
 		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) {
+			
+			acao();
+			resetaTela();
+			
+			incluiLote();
+			
+			lblAcao.setText("Salvar novo lote a produto");
+			btnSalva.setIcon(new ImageIcon(FrmProduto.class
+					.getResource("/img/MiniSalvar.png")));
+			btnSalva.setActionCommand("ACAOSALVALOTE");
+			
+			pesquisa(true);
 
 		} else if (acao.equalsIgnoreCase("ALTERAR")) {
-			inclui();
+			acao();
 			resetaTela();
 			lblAcao.setText("Gravar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
@@ -168,7 +212,7 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setActionCommand("ACAOGRAVA");
 
 		} else if (acao.equalsIgnoreCase("EXCLUIR")) {
-			inclui();
+			acao();
 			resetaTela();
 			lblAcao.setText("Excluir");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
@@ -176,7 +220,7 @@ public class CtrlTelaProduto implements ActionListener {
 			btnSalva.setActionCommand("ACAOEXCLUI");
 
 		} else if (acao.equalsIgnoreCase("PESQUISAR")) {
-			inclui();
+			acao();
 			resetaTela();
 			lblAcao.setText("Pesquisar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class

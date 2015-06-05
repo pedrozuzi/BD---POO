@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -78,6 +81,10 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 	private List<Funcionario> lista = new ArrayList<Funcionario>();
 	private int id;
 	private CtrlFuncionario ctrlFunc;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 	
 	public FrmUsuario() {
 
@@ -87,6 +94,34 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		panelPrincipal.setBackground(SystemColor.window);
 		janela.setContentPane(panelPrincipal);
 		panelPrincipal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janela.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			new FrmPrincipal(null);
+		}); 
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			new FrmLogin();
+		});
 		
 		panelAcoes = new JPanel();
 		panelAcoes.setLayout(null);

@@ -1,12 +1,7 @@
 package control;
 
-import java.text.ParseException;
-
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 /**
  * 
  * @author Zuzi

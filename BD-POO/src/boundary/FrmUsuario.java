@@ -47,7 +47,7 @@ import sun.font.StrikeCache;
 import entity.Funcionario;
 import entity.Usuario;
 
-public class FrmUsuario implements ActionListener, MouseListener, KeyListener, FocusListener{
+public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 
 	private JFrame janela;
 	private JPanel panelPrincipal;
@@ -85,6 +85,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private Funcionario f;
 	
 	public FrmUsuario() {
 
@@ -284,6 +285,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		janela.setSize(633, 671);		
 		ConfigTelas.centralizarFrame(janela);
 		
+		f = new Funcionario();
 		ctrlFunc = new CtrlFuncionario();
 		controlUsuario = new CtrlUsuario();
 		
@@ -307,14 +309,17 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		montarTela();
 		
 		if(acao.equalsIgnoreCase("Incluir")){
+			limpaCampos();
 			btnGravar.setActionCommand("Gravar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
 		} else if(acao.equalsIgnoreCase("Alterar")){
+			limpaCampos();
 			btnGravar.setActionCommand("Mudar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Salvar");
 		}else if(acao.equalsIgnoreCase("Excluir")){
+			limpaCampos();
 			btnGravar.setActionCommand("Deletar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setText("Excluir");
@@ -327,13 +332,13 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		if(acao.equalsIgnoreCase("Gravar")){
 			if(new String(pwdSenha.getPassword()).equals(new String(pwdConfirmarSenha.getPassword()))){
 				Usuario u = new Usuario();
-				Funcionario f = new Funcionario();
-				u.setNome( txtNome.getText() );
+				u.setNome( txtUsuario.getText() );
 				u.setSenha(new String ( pwdSenha.getPassword() ));
-				f.setId(id);
+				System.out.println(f.getNome());
 				u.setF(f);
 				controlUsuario.adicionarUsuario(u);
-				System.out.println("Incluir usuario");
+				limpaCampos();
+				modelo.clear();
 			} else {
 				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -355,13 +360,14 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 	}
 	
 	private void pesquisar() {
-
+			
 		try {
 			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
 			if (!lista.isEmpty()) {
 				modelo = new ModeloTabela(lista);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);
+				
 			} else {
 				JOptionPane.showMessageDialog(null,
 						"Nenhum registro encontrado", "Aviso",
@@ -396,7 +402,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		txtNome.setText("");
 		pwdSenha.setText("");
 		pwdConfirmarSenha.setText("");
-		txtUsuario.setText("");		
+		txtUsuario.setText("");
 	}
 
 	public static void main(String[] args) {
@@ -414,7 +420,7 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 		}
 		
 		id = lista.get(linha).getId();
-		System.out.println(id);
+		f = lista.get(linha);
 		for (Funcionario f : lista) {
 			if(valores[0].equals(f.getNome())){
 				txtNome.setText(String.valueOf(valores[0]));
@@ -439,18 +445,6 @@ public class FrmUsuario implements ActionListener, MouseListener, KeyListener, F
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
 	}
 
 	@Override

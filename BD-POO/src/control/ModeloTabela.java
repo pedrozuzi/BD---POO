@@ -20,12 +20,16 @@ public class ModeloTabela extends AbstractTableModel {
 		this.classe = lista.get(0).getClass();
 	}
 
+	public void clear(){
+		lista.clear();
+		fireTableRowsDeleted(0, lista.size());
+	}
+	
 	@Override
 	public int getRowCount() {
 		return lista.size();
-		
 	}
-
+	
 	@Override
 	public int getColumnCount() {
 		int colunas = 0;

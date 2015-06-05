@@ -41,6 +41,8 @@ public class FrmSplash extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(FrmSplash.class.getResource("/img/splash.png")));
 		lblNewLabel.setBounds(-3, 0, 503, 290);
 		contentPane.add(lblNewLabel);
+		
+
 	}
 
 	/**
@@ -51,6 +53,17 @@ public class FrmSplash extends JFrame {
 	public static void main(String[] args) {
 		FrmSplash frame = new FrmSplash();
 		frame.setVisible(true);
+		
+		try {
+			
+			Thread.sleep(3000);
+			
+			FrmLogin frmlog = new FrmLogin();
+            frame.dispose();
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
 	}
 	
 	/**

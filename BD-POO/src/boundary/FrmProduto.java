@@ -370,8 +370,7 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.add(lblNewLabel_1);
 
 		JButton btnPesquisaProduto = new JButton("");
-		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniLupa.png")));
+		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnPesquisaProduto.setBounds(187, 19, 30, 25);
 		panProduto.add(btnPesquisaProduto);
 

@@ -131,7 +131,7 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panAcoes.setBounds(179, 0, 426, 84);
+		panAcoes.setBounds(178, 0, 599, 84);
 		panPrincipal.add(panAcoes);
 		panAcoes.setLayout(null);
 		panAcoes.setOpaque(false);
@@ -139,41 +139,41 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		JButton btnIncluir = new JButton("");
 		btnIncluir.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Insert.png")));
-		btnIncluir.setBounds(49, 11, 69, 41);
+		btnIncluir.setBounds(17, 11, 69, 41);
 		panAcoes.add(btnIncluir);
 
-		JLabel label = new JLabel("Incluir");
-		label.setBounds(59, 58, 40, 19);
-		panAcoes.add(label);
+		JLabel lblIncluirProduto = new JLabel("<html>Incluir  Produto<br><p align=\u201Dcenter\u201D>e Lote</center></html>\r\n");
+		lblIncluirProduto.setBounds(10, 47, 91, 37);
+		panAcoes.add(lblIncluirProduto);
 
 		JButton btnAlterar = new JButton("");
 		btnAlterar.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Edit.png")));
-		btnAlterar.setBounds(143, 11, 69, 41);
+		btnAlterar.setBounds(300, 11, 69, 41);
 		panAcoes.add(btnAlterar);
 
 		JLabel label_1 = new JLabel("Alterar");
-		label_1.setBounds(163, 58, 40, 19);
+		label_1.setBounds(320, 58, 40, 19);
 		panAcoes.add(label_1);
 
 		JButton btnExcluir = new JButton("");
 		btnExcluir.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Delete.png")));
-		btnExcluir.setBounds(232, 11, 69, 41);
+		btnExcluir.setBounds(389, 11, 69, 41);
 		panAcoes.add(btnExcluir);
 
 		JLabel label_2 = new JLabel("Excluir");
-		label_2.setBounds(242, 58, 40, 19);
+		label_2.setBounds(399, 58, 40, 19);
 		panAcoes.add(label_2);
 
 		JButton btnPesquisar = new JButton("");
 		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/View.png")));
-		btnPesquisar.setBounds(326, 11, 69, 41);
+		btnPesquisar.setBounds(483, 11, 69, 41);
 		panAcoes.add(btnPesquisar);
 
 		JLabel label_3 = new JLabel("Pesquisar");
-		label_3.setBounds(336, 58, 59, 19);
+		label_3.setBounds(493, 58, 59, 19);
 		panAcoes.add(label_3);
 
 		JPanel panSuperior = new JPanel();
@@ -426,6 +426,22 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(108, 11, 47, 23);
+		panAcoes.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("<html>Inclui<br>Produto</html>");
+		lblNewLabel_2.setBounds(108, 51, 46, 33);
+		panAcoes.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(193, 11, 47, 23);
+		panAcoes.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("<html>Inclui novo Lote<br> a um Produto</html>");
+		lblNewLabel.setBounds(179, 45, 91, 35);
+		panAcoes.add(lblNewLabel);
 
 		JLabel lblProduto = new JLabel("Produto");
 		lblProduto.setBounds(10, 0, 69, 18);
@@ -563,94 +579,4 @@ public class FrmProduto extends MouseAdapter implements ConfigTelas {
 		new FrmProduto();
 
 	}
-
-	// public DefaultTableModel montarTabelaProduto () {
-	// String[] colunas = new String[6];
-	// colunas[0] = "ID";
-	// colunas[1] = "Nome";
-	// colunas[2] = "Descricao";
-	// colunas[3] = "ID: Fornecedor";
-	// colunas[4] = "Compra R$:";
-	// colunas[5] = "Venda R$:";
-	//
-	//
-	// modelo = new CtrlTabela(new Object[][] {}, colunas);
-	//
-	// tableProduto.setModel(modelo);
-	// tableProduto.addMouseListener(this);
-	// tableProduto.getTableHeader().setReorderingAllowed(false); //deixar as
-	// colunas para nao serem movidas de seu lugar original
-	// tableProduto.getColumnModel().getColumn(0).setResizable(false);
-	// tableProduto.getColumnModel().getColumn(1).setPreferredWidth(268);
-	// tableProduto.getColumnModel().getColumn(2).setPreferredWidth(143);
-	// tableProduto.getColumnModel().getColumn(3).setPreferredWidth(100);
-	// tableProduto.getColumnModel().getColumn(4).setPreferredWidth(50);
-	// // tableProduto.setVisible(false);
-	// scrollProduto.setViewportView(tableProduto);
-	// return modelo;
-	// }
-
-	// public DefaultTableModel montarTabelaLote(){
-	//
-	// String[] colunas = new String[2];
-	// colunas[0] = "Lote";
-	// colunas[1] = "Qtde";
-	//
-	// modelo = new CtrlTabela(new Object[][] {}, colunas);
-	//
-	// modelo = new CtrlTabela(new Object[][] {}, colunas);
-	//
-	// tableProduto.setModel(modelo);
-	// tableProduto.addMouseListener(this);
-	// //scrollPane.setViewportView( );
-	//
-	// return modelo;
-	// }
-
-	// public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-	// controlTable = new CtrlProduto(txtIdProduto, txtNome, txtDescricao,
-	// txtValorVenda, txtValorCompra,
-	// txtIdFornecedor, txtIdLote, txtDataValidadeLote); //instanciado comoa
-	// tribulto
-	//
-	// lista = new ArrayList<Produto>();
-	//
-	// if (true) {
-	// if (!txtNome.getText().equals("")) { //FIXME if
-	// try {
-	// lista = controlTable.BuscaProdutoPorNome(txtNome.getText());
-	//
-	// if (!lista.isEmpty()) {
-	// for (Produto p : lista) {
-	// Object[] linha = new Object[6];
-	// linha[0] = p.getId();
-	// linha[1] = p.getNome();
-	// linha[2] = p.getDescricao();
-	// linha[3] = p.getId_fornecedor();
-	// linha[4] = p.getValor_venda();
-	// linha[5] = p.getValor_compra();
-	//
-	// System.out.println(" for:"+p.getNome());
-	//
-	// modelo.addRow(linha);
-	//
-	// }
-	//
-	// lista.forEach(p -> {
-	// System.out.println(p.getNome());
-	// });
-	// }else{
-	// JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-	// "Aviso", JOptionPane.INFORMATION_MESSAGE);
-	// }
-	//
-	// }catch (SQLException e) {
-	// e.printStackTrace();
-	// }
-	// }else{
-	// System.out.println("campo vazio");
-	// }
-	// }
-	// }
-
 }// end class

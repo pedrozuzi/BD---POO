@@ -8,11 +8,22 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+/**
+ * Classe que possui os metodos de configurações de tela
+ * @author Hury
+ *
+ */
+
 public class ConfiguracoesTela extends JFrame {
 	
 	private JFrame tela;
 	protected static String look="javax.swing.plaf.nimbus.NimbusLookAndFeel";
 	protected static int tamanhofonte=16;
+	
+	/**
+	 * Construtor
+	 * @param tela
+	 */
 	
 	public ConfiguracoesTela(JFrame tela) {
 		this.tela = tela;
@@ -31,13 +42,25 @@ public class ConfiguracoesTela extends JFrame {
 	            e.printStackTrace();  
 	        }  
 	        tela.setIconImage(image);
-	        
-			tela.setSize(942, 670);
-			tela.setVisible(true);
-			tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        
-	        
+	                
 	        return tela;
+	}
+	
+	/**
+	 * Metodo que altera o tamanho do JFrame
+	 * @param tela
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	
+	public JFrame tamanho(JFrame tela, int x, int y){
+		
+		tela.setSize(x, y);
+		tela.setVisible(true);
+		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		return tela;
 	}
 	
 	/**
@@ -66,5 +89,24 @@ public class ConfiguracoesTela extends JFrame {
 				System.out.println(e);
 			}		  
 	  }
+	  
+		public void selecionaEstilo(int opcEstilo){		//org.jvnet.substance.SubstanceLookAndFeel
+			switch (opcEstilo) {
+			case 0:
+				look = "javax.swing.plaf.metal.MetalLookAndFeel";
+				break;
+			case 1:
+				look = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+				break;
+			case 2:
+				look = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+				break;
+			case 3:
+				look = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+				break;
+			case 4:
+				look = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
+			}
+		}
 
 }

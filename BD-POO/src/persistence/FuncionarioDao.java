@@ -11,4 +11,5 @@ public interface FuncionarioDao {
 	public void atualizarFuncionario(Funcionario func) throws SQLException;
 	public void excluirFuncionario(Funcionario func) throws SQLException;
 	public List<Funcionario> pesquisarFuncionario(String nome) throws SQLException;
+	public List<Funcionario> pesquisarFuncionarioSemUsuario(String nome) throws SQLException;
 }

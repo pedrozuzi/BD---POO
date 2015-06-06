@@ -71,4 +71,18 @@ public class CtrlFuncionario {
 		return lista;
 		
 	}
+	
+	public List<Funcionario> pesquisarFuncionarioSemUsuario(String nome){
+		List<Funcionario> lista = new ArrayList<Funcionario>();
+		fDao = new FuncionarioDaoImpl();
+		
+		try {
+			lista = fDao.pesquisarFuncionarioSemUsuario(nome);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return lista;
+	}
 }

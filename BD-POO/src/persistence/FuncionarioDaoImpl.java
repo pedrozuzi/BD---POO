@@ -102,9 +102,36 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 			}
 			ps.close();
 			return lista;
-		
 	}
 
+	@Override
+	public List<Funcionario> pesquisarFuncionarioSemUsuario(String nome)
+			throws SQLException {
+		List<Funcionario> lista = new ArrayList<Funcionario>();
+		
+		String query = "select f.id, f.nome, f.cpf, f.salario, f.telefone "
+				+ "from funcionario f "
+				+ "left outer join usuario u "
+				+ "on f.id = u.id "
+				+ "where u.id is null";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ResultSet rs = ps.executeQuery();
+		
+		while ( rs.next() ){
+			Funcionario f = new Funcionario();
+			f.setId( rs.getInt("id") );
+			f.setCpf( rs.getString("cpf") );
+			f.setNome( rs.getString("nome") );
+			f.setSalario( rs.getDouble("salario"));
+			f.setTelefone( rs.getInt("telefone") );
+			lista.add(f);
+		}
+		ps.close();
+		return lista;
+	}
+
+	
 
 
 

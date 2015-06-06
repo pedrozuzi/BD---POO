@@ -366,7 +366,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private void pesquisarUsuario(){
 		
 		try{
-			
+			System.out.println("TESTE : "+txtNome.getText());
 			listaU = controlUsuario.pesquisarUsuario( txtNome.getText() );
 			if (!listaU.isEmpty()) {
 				modelo = new ModeloTabela(listaU);
@@ -387,8 +387,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private void pesquisarFuncionario() {
 			
 		try {
-			System.out.println("TESTE.. "+ txtNome.getText());
-			listaF = ctrlFunc.pesquisarFuncionario(txtNome.getText());
+			listaF = ctrlFunc.pesquisarFuncionarioSemUsuario(txtNome.getText());
 			if (!listaF.isEmpty()) {
 				modelo = new ModeloTabela(listaF);
 				table.getTableHeader().setReorderingAllowed(false);

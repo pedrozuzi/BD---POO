@@ -35,6 +35,8 @@ public class FrmPrincipalAdm {
 	private JLabel label;
 	private JLabel lblNewLabel;
 	private JLabel label_1;
+	private JLabel label_2;
+	private JLabel label_3;
 
 	public FrmPrincipalAdm(Usuario u){
 		System.out.println(u.getNome());
@@ -126,6 +128,16 @@ public class FrmPrincipalAdm {
 		label_1.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste.png")));
 		label_1.setBounds(0, 218, 615, 14);
 		panPrincipal.add(label_1);
+		
+		label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste2.png")));
+		label_2.setBounds(0, 193, 183, 14);
+		panPrincipal.add(label_2);
+		
+		label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste2.png")));
+		label_3.setBounds(411, 460, 204, 14);
+		panPrincipal.add(label_3);
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		

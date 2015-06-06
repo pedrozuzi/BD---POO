@@ -32,6 +32,7 @@ public class FrmLogin {
 	private JLabel lblLogoLudPet;
 	private JLabel label;
 	private JLabel label_1;
+	private JLabel label_2;
 
 	public FrmLogin(){
 		
@@ -83,9 +84,14 @@ public class FrmLogin {
 		
 		janela.setContentPane( panPrincipal );
 		
+		label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/teste2.png")));
+		label_2.setBounds(0, 317, 171, 14);
+		panPrincipal.add(label_2);
+		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/teste.png")));
-		label.setBounds(0, 325, 225, 30);
+		label.setBounds(0, 335, 225, 30);
 		panPrincipal.add(label);
 		
 		label_1 = new JLabel("");

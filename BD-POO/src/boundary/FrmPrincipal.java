@@ -28,6 +28,8 @@ public class FrmPrincipal {
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
+	private JLabel label_3;
+	private JLabel label_4;
 
 	public FrmPrincipal(Usuario u) {
 		System.out.println(u.getNome());
@@ -98,6 +100,16 @@ public class FrmPrincipal {
 		label_2.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
 		label_2.setBounds(0, 235, 606, 14);
 		panPrincipal.add(label_2);
+		
+		label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
+		label_3.setBounds(0, 210, 204, 14);
+		panPrincipal.add(label_3);
+		
+		label_4 = new JLabel("");
+		label_4.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
+		label_4.setBounds(399, 435, 204, 14);
+		panPrincipal.add(label_4);
 		
 		
 		janela.setSize(623,529);

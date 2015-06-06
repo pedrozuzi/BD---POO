@@ -192,7 +192,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		lblNome.setBounds(10, 31, 58, 14);
 		panelFuncionario.add(lblNome);
 		
-		txtNome = new JTextField();
+		txtNome = new TratamentoTextFields();
 		txtNome.setBackground(SystemColor.info);
 		txtNome.setBounds(78, 30, 261, 23);
 		panelFuncionario.add(txtNome);
@@ -423,7 +423,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnVoltar.setVisible(true);
 		btnVerificar.setVisible(true);
 		btnLimpar.setVisible(true);
-		limpaCampos();
+		//limpaCampos(); <---- ESTA LIMPANDO O CAMPO ANTES DE PESQUISAR
 	}
 
 	private void limpaCampos() {

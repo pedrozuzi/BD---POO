@@ -112,17 +112,57 @@ public class FrmCadastros {
 		lblCliente.setBounds(45, 325, 97, 14);
 		panPrincipal.add(lblCliente);
 		
-		ActionMap am = panPrincipal.getActionMap();
-		am.put("animal", new AbstractAction() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new FrmAnimal();
-			}
-		});
-		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
-		
+//		ActionMap am = panPrincipal.getActionMap();
+//		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+//		
+//		am.put("animal", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmAnimal();
+//			}
+//		});
+//		
+//		am.put("fornecedor", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmFornecedor();
+//			}
+//		});
+//		
+//		am.put("funcionario", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmFuncionario();
+//			}
+//		});
+//		am.put("produto", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmProduto();
+//			}
+//		});
+//		
+//		am.put("cliente", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmCliente();
+//			}
+//		});
+//		
+//		am.put("usuario", new AbstractAction() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new FrmUsuario();
+//			}
+//		});
+//		
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), "fornecedor");
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0), "funcionario");
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), "produto");
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0), "cliente");
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
+//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "usuario");
+//		
 		btnAnimal.addActionListener(e -> {
 			new FrmAnimal();
 			fechar();

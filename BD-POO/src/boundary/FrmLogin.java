@@ -85,12 +85,12 @@ public class FrmLogin {
 		
 		label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/teste.png")));
-		label.setBounds(0, 325, 225, 40);
+		label.setBounds(0, 325, 225, 30);
 		panPrincipal.add(label);
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/teste.png")));
-		label_1.setBounds(0, 0, 387, 28);
+		label_1.setBounds(0, 0, 398, 28);
 		panPrincipal.add(label_1);
 		janela.setSize(403,404);
 		ConfigTelas.centralizarFrame(janela);

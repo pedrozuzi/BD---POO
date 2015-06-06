@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlLogin;
+import control.CtrlStatus;
 import entity.Usuario;
 
 public class FrmLogin {
@@ -33,6 +34,7 @@ public class FrmLogin {
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
+	private JLabel lblStatus;
 
 	public FrmLogin(){
 		
@@ -76,6 +78,12 @@ public class FrmLogin {
 		btnLogar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLogar.setBounds(259, 327, 103, 28);
 		panPrincipal.add(btnLogar);
+		
+		lblStatus = new JLabel("");
+		lblStatus.setToolTipText("Verificando Conex\u00E3o");
+		lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasere.png"))); //
+		lblStatus.setBounds(10, 327, 32, 38);
+		panPrincipal.add(lblStatus);
 		
 		lblLogoLudPet = new JLabel("");
 		lblLogoLudPet.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/logo.png")));
@@ -122,6 +130,8 @@ public class FrmLogin {
 			}
 			
 		});
+		
+		status();
 	}
 	private boolean validaCampos() {
 		return txtUsuario.getText().isEmpty() || pwdSenha.getPassword().equals("");
@@ -129,4 +139,19 @@ public class FrmLogin {
 	public static void main(String[] args) {
 		new FrmLogin();
 	}
+	
+	public void status(){
+		
+		CtrlStatus ctrls = new CtrlStatus();
+		
+	    if(ctrls.verificaStatus().equals("ONLINE")){
+	    	lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbaseok.png")));
+	    	lblStatus.setToolTipText("Conexão Online!");
+	    }else if(ctrls.verificaStatus().equals("OFFLINE")){
+	    	lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasenull.png")));
+	    	lblStatus.setToolTipText("Conexão Online!");
+	    }
+		
+	}
+	
 }

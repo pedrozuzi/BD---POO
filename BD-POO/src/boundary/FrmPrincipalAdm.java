@@ -14,6 +14,10 @@ import control.ConfiguracoesTela;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import javax.swing.JMenuBar;
+import javax.swing.JToolBar;
+import javax.swing.JDesktopPane;
+import java.awt.Window.Type;
 
 public class FrmPrincipalAdm {
 
@@ -145,7 +149,7 @@ public class FrmPrincipalAdm {
 		
 		btnRelatorio.addActionListener(e -> new FrmRelatorio());
 		
-		janela.setSize(631,542);
+		janela.setSize(631,539);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

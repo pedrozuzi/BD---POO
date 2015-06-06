@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import java.awt.Window.Type;
 
 /**
  * 
@@ -25,6 +26,7 @@ public class FrmSobre {
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
 		JPanel panForm = new JPanel();
+		janela.setType(Type.UTILITY);
 		janela.setResizable(false);
 		
 		janela.setContentPane( panPrincipal);

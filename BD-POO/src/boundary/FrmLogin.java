@@ -80,8 +80,8 @@ public class FrmLogin {
 		panPrincipal.add(btnLogar);
 		
 		lblStatus = new JLabel("");
-		lblStatus.setToolTipText("Verificando Conex\u00E3o");
-		lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasere.png"))); //
+		lblStatus.setToolTipText("Conexão OFFLINE");
+		lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasenull.png"))); //
 		lblStatus.setBounds(10, 327, 32, 38);
 		panPrincipal.add(lblStatus);
 		
@@ -146,10 +146,10 @@ public class FrmLogin {
 		
 	    if(ctrls.verificaStatus().equals("ONLINE")){
 	    	lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbaseok.png")));
-	    	lblStatus.setToolTipText("Conexão Online!");
+	    	lblStatus.setToolTipText("Conexão ONLINE!");
 	    }else if(ctrls.verificaStatus().equals("OFFLINE")){
 	    	lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasenull.png")));
-	    	lblStatus.setToolTipText("Conexão Online!");
+	    	lblStatus.setToolTipText("Conexão OFFLINE!");
 	    }
 		
 	}

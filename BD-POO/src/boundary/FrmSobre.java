@@ -25,6 +25,7 @@ public class FrmSobre {
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
 		JPanel panForm = new JPanel();
+		janela.setResizable(false);
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -72,6 +73,7 @@ public class FrmSobre {
 		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
 		configTela.iconeBarra(janela);
+		configTela.centralizeFrame(janela);
 	}
 	
 	

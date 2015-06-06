@@ -187,10 +187,11 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public void atualizaLote(Lote lot) throws SQLException {
 		String sql = "UPDATE lote SET data_validade = ?"
-				+ "WHERE id = ? VALUES(?)";
+				+ "WHERE id = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 
 		ps.setDate(1, lot.getData_validade());
+		ps.setInt(2, lot.getId());
 
 		ps.execute();
 		ps.close();

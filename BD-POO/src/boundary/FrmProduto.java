@@ -40,6 +40,7 @@ import entity.Produto;
 
 /**
  * Classe que possui os elementos de tela do Produto e Lote
+ * 
  * @author Hury
  *
  */
@@ -87,13 +88,13 @@ public class FrmProduto extends MouseAdapter {
 	/**
 	 * Construtor
 	 */
-	
+
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
 
-		 //XXX DELETAR APÒS EDIÇÂO!!
+		// XXX DELETAR APÒS EDIÇÂO!!
 		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -311,7 +312,7 @@ public class FrmProduto extends MouseAdapter {
 
 		// TABLE LOTE
 		tableLote = new JTable();
-		// mouse listener
+		tableLote.addMouseListener(this);
 		tableLote.setBorder(new LineBorder(Color.BLACK));
 		tableLote.setGridColor(Color.BLACK);
 		tableLote.setShowGrid(true);
@@ -370,7 +371,8 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.add(lblNewLabel_1);
 
 		JButton btnPesquisaProduto = new JButton("");
-		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/MiniLupa.png")));
 		btnPesquisaProduto.setBounds(187, 19, 30, 25);
 		panProduto.add(btnPesquisaProduto);
 
@@ -533,60 +535,84 @@ public class FrmProduto extends MouseAdapter {
 	/**
 	 * Mouse Click das Tables
 	 */
-	
+
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[6];
-		int linha = tableProduto.getSelectedRow();
-		int coluna = tableProduto.getSelectedColumn();
+		
+		Object a = new Object();
+		a = e.getSource();
+		
+		if (a.equals(tableProduto)) { //Chamada da TableProduto
+			System.out.println("table produto");
+			
+			Object[] valores = new Object[6];
+			int linha = tableProduto.getSelectedRow();
+			int coluna = tableProduto.getSelectedColumn();
 
-		for (coluna = 0; coluna < tableProduto.getColumnCount(); coluna++) {
-			valores[coluna] = tableProduto.getValueAt(linha, coluna);
-		}
-
-		txtIdProduto.setText(String.valueOf(valores[0]));
-		txtNome.setText(String.valueOf(valores[1]));
-		txtDescricao.setText(String.valueOf(valores[2]));
-		txtIdFornecedor.setText(String.valueOf(valores[3]));
-		txtValorCompra.setText(String.valueOf(valores[4]));
-		txtValorVenda.setText(String.valueOf(valores[5]));
-
-		idprod = Integer.parseInt(txtIdProduto.getText());// XXX
-
-		// PESQUISA LOTE A PARTIR DO CLICK NA TABLE PRODUTO
-		if (idprod != 0) {
-			listaLote = new ArrayList<Lote>();
-			List<String> listanula = new ArrayList<String>();
-
-			CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
-					txtDescricao, txtValorVenda, txtValorCompra,
-					txtIdFornecedor, txtIdLote, txtDataValidadeLote);
-			try {
-				listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO Arrumar
-
-				if (!listaLote.isEmpty()) {
-					modeloLote = new ModeloTabela(listaLote);
-					tableLote.getTableHeader().setReorderingAllowed(false);
-					tableLote.setModel(modeloLote);
-				} else {
-					System.out.println("Nenhum Lote");
-					listanula.add("Sem");
-					modeloLote = new ModeloTabela(listanula);
-					tableLote.getTableHeader().setReorderingAllowed(false);
-					tableLote.setModel(modeloLote);
-
-				}
-
-			} catch (NullPointerException e1) {
-				System.out.println("NullPointer, Lote");
-			} catch (SQLException e2) {
-				System.out.println("ERRO - SQL - Lote");
+			for (coluna = 0; coluna < tableProduto.getColumnCount(); coluna++) {
+				valores[coluna] = tableProduto.getValueAt(linha, coluna);
 			}
+
+			txtIdProduto.setText(String.valueOf(valores[0]));
+			txtNome.setText(String.valueOf(valores[1]));
+			txtDescricao.setText(String.valueOf(valores[2]));
+			txtIdFornecedor.setText(String.valueOf(valores[3]));
+			txtValorCompra.setText(String.valueOf(valores[4]));
+			txtValorVenda.setText(String.valueOf(valores[5]));
+
+			idprod = Integer.parseInt(txtIdProduto.getText());// XXX
+
+			// PESQUISA LOTE A PARTIR DO CLICK NA TABLE PRODUTO
+			if (idprod != 0) {
+				listaLote = new ArrayList<Lote>();
+				List<String> listanula = new ArrayList<String>();
+
+				CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
+						txtDescricao, txtValorVenda, txtValorCompra,
+						txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+				try {
+					listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO Arrumar
+
+					if (!listaLote.isEmpty()) {
+						modeloLote = new ModeloTabela(listaLote);
+						tableLote.getTableHeader().setReorderingAllowed(false);
+						tableLote.setModel(modeloLote);
+					} else {
+						System.out.println("Nenhum Lote");
+						listanula.add("Sem");
+						modeloLote = new ModeloTabela(listanula);
+						tableLote.getTableHeader().setReorderingAllowed(false);
+						tableLote.setModel(modeloLote);
+
+					}
+
+				} catch (NullPointerException e1) {
+					System.out.println("NullPointer, Lote");
+				} catch (SQLException e2) {
+					System.out.println("ERRO - SQL - Lote");
+				}
+			}
+
+		} else if (a.equals(tableLote)) { // Chamada da TableLote
+			System.out.println("table lote");
+			
+			Object[] valores = new Object[2];
+			int linha = tableLote.getSelectedRow();
+			int coluna = tableLote.getSelectedColumn();
+
+			for (coluna = 0; coluna < tableLote.getColumnCount(); coluna++) {
+				valores[coluna] = tableLote.getValueAt(linha, coluna);
+				
+				txtIdLote.setText(String.valueOf(valores[0]));
+				txtDataValidadeLote.setText(String.valueOf(valores[1]));
+			}
+
 		}
 
 	}
 
 	/**
 	 * Metodo Main
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

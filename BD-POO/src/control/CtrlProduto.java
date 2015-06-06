@@ -155,15 +155,48 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			}
 
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) { // Atualiza produto
-			Produto prod = new Produto();
-			prod.setId(Integer.parseInt(txtIdProduto.getText()));
-			prod.setNome(txtNome.getText());
-			prod.setDescricao(txtDescricao.getText());
-			prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
-			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
-			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 
-			atualizaProduto(prod);
+			if (txtIdProduto.getText() != "" && txtIdLote.getText()=="") {  //Apenas produto
+				Produto prod = new Produto();
+				prod.setId(Integer.parseInt(txtIdProduto.getText()));
+				prod.setNome(txtNome.getText());
+				prod.setDescricao(txtDescricao.getText());
+				prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
+				prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
+				prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor
+						.getText()));
+
+				atualizaProduto(prod);
+			}else if(txtIdProduto.getText() != "" && txtIdLote.getText()!=""){ //Produto e Lote
+				
+				Produto prod = new Produto();
+				prod.setId(Integer.parseInt(txtIdProduto.getText()));
+				prod.setNome(txtNome.getText());
+				prod.setDescricao(txtDescricao.getText());
+				prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
+				prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
+				prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor
+						.getText()));
+
+				atualizaProduto(prod);
+				
+				Lote lot = new Lote();
+				lot.setId(Integer.parseInt(txtIdLote.getText()));
+				try {
+					String data = txtDataValidadeLote.getText();
+					java.sql.Date date = null;
+					DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+					date = new java.sql.Date(
+							((java.util.Date) formatter.parse(data)).getTime());
+					lot.setData_validade(date);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
+				atualizaLote(lot);
+			}
+			
+			
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) { // Exclui Produto
 			Produto prod = new Produto();
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
@@ -316,7 +349,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	 * 
 	 * @return Uma lista de todos os lotes relacionados ao produto.
 	 */
-	
+
 	@Override
 	public List<Lote> BuscaLotePorProduto(int id) throws SQLException {
 		List<Lote> lista = new ArrayList<Lote>();
@@ -329,6 +362,19 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 
 		return lista;
+	}
+
+	public void atualizaLote(Lote lot) {
+		LoteDao lDao = new ProdutoDaoImpl();
+
+		try {
+			lDao.atualizaLote(lot);
+			JOptionPane.showMessageDialog(null, "Lote Atualizado com sucesso!",
+					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@Deprecated

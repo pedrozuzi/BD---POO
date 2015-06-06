@@ -32,7 +32,6 @@ public class FrmPrincipal {
 	private JLabel label_4;
 
 	public FrmPrincipal(Usuario u) {
-		System.out.println(u.getNome());
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();
 		janela.setContentPane( panPrincipal);

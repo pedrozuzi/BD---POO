@@ -20,7 +20,7 @@ public class LoginDaoImpl implements LoginDao{
 
 	@Override
 	public boolean realizarLogin( Usuario u ) throws SQLException {
-		String query = "select f.nome, u.username, u.passwor, t.id, "
+		String query = "select f.nome, f.cpf, f.salario, u.username, u.passwor, t.id,  "
 				+ "t.descricao "
 				+ "from usuario u "
 				+ "inner join funcionario f "
@@ -43,6 +43,8 @@ public class LoginDaoImpl implements LoginDao{
 			u.setNome( rs.getString("username"));
 			u.setSenha( rs.getString("passwor"));
 			f.setIdTipo( rs.getInt("id"));
+			f.setCpf( rs.getString("cpf") );
+			f.setSalario( rs.getDouble("salario"));
 			u.setF(f);
 			ps.close();
 			return true;

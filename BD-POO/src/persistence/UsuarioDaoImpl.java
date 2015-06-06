@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -48,7 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public boolean buscarUsario(String nome) throws SQLException {
+	public boolean verificarUsuario(String nome) throws SQLException {
 		
 		String query = "select "
 				+ "case "
@@ -63,5 +65,36 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		return rs.getBoolean("verificacao");
+	}
+
+	@Override
+	public List<Usuario> pesquisarUsuario(String nome) throws SQLException {
+		
+		List<Usuario> lista = new ArrayList<Usuario>();
+		
+		String query = "select  f.id, u.username, u.passwor, f.nome, f.cpf, f.salario, f.telefone "
+				+ "from usuario u "
+				+ "inner join funcionario f "
+				+ "on u.id = f.id"
+				+ "where f.nome like ?";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setString(1, "%"+nome+"%");
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()){
+			Usuario u = new Usuario();
+			Funcionario f = new Funcionario();
+			f.setId( rs.getInt("id") );
+			f.setCpf( rs.getString("cpf"));
+			f.setSalario( rs.getInt("salario"));
+			f.setNome( rs.getString("nome") );
+			f.setTelefone( rs.getInt("telefone"));
+			u.setF(f);
+			u.setNome( rs.getString("username") );
+			u.setSenha( rs.getString("senha") );
+			lista.add(u);
+		}
+		
+		return lista;
 	}
 }

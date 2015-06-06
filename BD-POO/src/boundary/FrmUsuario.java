@@ -78,7 +78,8 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private JLabel lblLogoLudPet;
 	private CtrlUsuario controlUsuario;
 	private ModeloTabela modelo;
-	private List<Funcionario> lista = new ArrayList<Funcionario>();
+	private List<Funcionario> listaF = new ArrayList<Funcionario>();
+	private List<Usuario> listaU = new ArrayList<Usuario>();
 	private int id;
 	private CtrlFuncionario ctrlFunc;
 	private JMenuBar menuBarra;
@@ -86,6 +87,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
 	private Funcionario f;
+	private int aux;
 	
 	public FrmUsuario() {
 
@@ -135,7 +137,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnIncluir = new JButton("");
 		btnIncluir.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/Insert.png")));
 		btnIncluir.setBounds(49, 11, 69, 41);
-		btnIncluir.setActionCommand("Incluir");
 		panelAcoes.add(btnIncluir);
 		
 		lblIncluir = new JLabel("Incluir");
@@ -147,7 +148,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnAlterar = new JButton("");
 		btnAlterar.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/Edit.png")));
 		btnAlterar.setBounds(143, 11, 69, 41);
-		btnAlterar.setActionCommand("Alterar");
 		panelAcoes.add(btnAlterar);
 		
 		lblAlterar = new JLabel("Alterar");
@@ -158,7 +158,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnExcluir = new JButton("");
 		btnExcluir.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/Delete.png")));
 		btnExcluir.setBounds(232, 11, 69, 41);
-		btnExcluir.setActionCommand("Excluir");
 		panelAcoes.add(btnExcluir);
 		
 		lblExcluir = new JLabel("Excluir");
@@ -305,36 +304,32 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
+		Object obj = e.getSource();
 		lblLogoLudPet.setVisible(false);
 		montarTela();
 		
-		if(acao.equalsIgnoreCase("Incluir")){
-			limpaCampos();
-			btnGravar.setActionCommand("Gravar");
+		if(btnIncluir.equals(obj)){
+//			aux = 1;
+			btnGravar.setActionCommand("Incluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
-		} else if(acao.equalsIgnoreCase("Alterar")){
-			limpaCampos();
-			btnGravar.setActionCommand("Mudar");
+		} else if(btnAlterar.equals(obj)){
+//			aux = 2;
+			btnGravar.setActionCommand("Alterar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Salvar");
-		}else if(acao.equalsIgnoreCase("Excluir")){
-			limpaCampos();
-			btnGravar.setActionCommand("Deletar");
+		}else if(btnExcluir.equals(obj)){
+//			aux = 3;
+			btnGravar.setActionCommand("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setText("Excluir");
 		}
 		
-		if(acao.equalsIgnoreCase("PesquisarNome")){
-			pesquisar();
-		}
-		
-		if(acao.equalsIgnoreCase("Gravar")){
+		if(acao.equalsIgnoreCase("Incluir")){
 			if(new String(pwdSenha.getPassword()).equals(new String(pwdConfirmarSenha.getPassword()))){
 				Usuario u = new Usuario();
 				u.setNome( txtUsuario.getText() );
 				u.setSenha(new String ( pwdSenha.getPassword() ));
-				System.out.println(f.getNome());
 				u.setF(f);
 				controlUsuario.adicionarUsuario(u);
 				limpaCampos();
@@ -342,29 +337,61 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			} else {
 				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);
-				pwdSenha.setText("");
-				pwdConfirmarSenha.setText("");
+				limpaCampos();
 				pwdSenha.grabFocus();
 			}
-		}else if(acao.equalsIgnoreCase("Mudar")){
+		}else if(acao.equalsIgnoreCase("Alterar")){
 			
-		}else if(acao.equalsIgnoreCase("Deletar")){
+		}else if(acao.equalsIgnoreCase("Excluir")){
 			
 		}else if(acao.equalsIgnoreCase("Voltar")){
 			
 		}else if(acao.equalsIgnoreCase("Limpar")){
 			limpaCampos();
 		}
+	
+		if(acao.equalsIgnoreCase("PesquisarNome") && 
+				btnGravar.getText().equalsIgnoreCase("Gravar")){
+			pesquisarFuncionario();
+			txtUsuario.setEditable(true);
+			
+		} else if(acao.equalsIgnoreCase("PesquisarNome") && 
+				btnGravar.getText().equalsIgnoreCase("Salvar")){
+			pesquisarUsuario();
+		} else if(acao.equalsIgnoreCase("PesquisarNome") && 
+				btnGravar.getText().equalsIgnoreCase("Deletar")){
+			pesquisarFuncionario();
+		}
 		
 		
 	}
 	
-	private void pesquisar() {
+	private void pesquisarUsuario(){
+		
+		try{
+			listaU = controlUsuario.pesquisarUsuario( txtNome.getText() );
+			if (!listaU.isEmpty()) {
+				modelo = new ModeloTabela(listaU);
+				table.getTableHeader().setReorderingAllowed(false);
+				table.setModel(modelo);
+				
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Nenhum registro encontrado", "Aviso",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (NullPointerException e1) {
+			System.out.println("NullPointer");
+		}
+		
+	}
+	
+	private void pesquisarFuncionario() {
 			
 		try {
-			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
-			if (!lista.isEmpty()) {
-				modelo = new ModeloTabela(lista);
+			listaF = ctrlFunc.pesquisarFuncionario(txtNome.getText());
+			if (!listaF.isEmpty()) {
+				modelo = new ModeloTabela(listaF);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);
 				
@@ -389,13 +416,17 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		lblSenha.setVisible(true);
 		lblConfirmaSenha.setVisible(true);
 		txtUsuario.setVisible(true);
+		txtUsuario.setEditable(false);
 		pwdConfirmarSenha.setVisible(true);
+		pwdConfirmarSenha.setEditable(false);
 		pwdSenha.setVisible(true);
+		pwdSenha.setEditable(false);
 		btnPesquisarNome.setVisible(true);
 		btnGravar.setVisible(true);
 		btnVoltar.setVisible(true);
 		btnVerificar.setVisible(true);
 		btnLimpar.setVisible(true);
+		limpaCampos();
 	}
 
 	private void limpaCampos() {
@@ -419,16 +450,16 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
 		
-		id = lista.get(linha).getId();
-		f = lista.get(linha);
-		for (Funcionario f : lista) {
+		id = listaF.get(linha).getId();
+		f = listaF.get(linha);
+		for (Funcionario f : listaF) {
 			if(valores[0].equals(f.getNome())){
 				txtNome.setText(String.valueOf(valores[0]));
 			}
 		}
 		
-		txtUsuario.setEditable(true);
-		txtUsuario.grabFocus();
+		modelo.clear();
+
 	}
 
 	@Override

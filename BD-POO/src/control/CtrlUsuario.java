@@ -1,11 +1,14 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import persistence.UsuarioDao;
 import persistence.UsuarioDaoImpl;
+import entity.Funcionario;
 import entity.Usuario;
 
 public class CtrlUsuario {
@@ -49,7 +52,7 @@ public class CtrlUsuario {
 		uDao = new UsuarioDaoImpl();
 		
 		try {
-			if(uDao.buscarUsario(nome)){
+			if(uDao.verificarUsuario(nome)){
 				return true;
 			}else{
 				return false;
@@ -62,11 +65,26 @@ public class CtrlUsuario {
 		return false;
 	}
 	
+	public List<Usuario> pesquisarUsuario(String nome){
+		uDao = new UsuarioDaoImpl();
+		List<Usuario> lista = new ArrayList<Usuario>();
+		try {
+			uDao.pesquisarUsuario(nome);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+		return lista;
+		
+	}
+	
 	public void alterarUsuario(Usuario us){
+		uDao = new UsuarioDaoImpl();
 		
 	}
 	
 	public void deletarUsuario(Usuario us){
+		uDao = new UsuarioDaoImpl();
 		
 	}
 

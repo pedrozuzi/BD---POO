@@ -76,11 +76,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				+ "from usuario u "
 				+ "inner join funcionario f "
 				+ "on u.id = f.id"
-				+ "where f.nome like ?";
+				+ "where f.nome like ? ";
 		
 		PreparedStatement ps = c.prepareStatement( query );
-		ps.setString(1, "%"+nome+"%");
+		ps.setString(1, "%" + nome + "%");
 		ResultSet rs = ps.executeQuery();
+		
 		while(rs.next()){
 			Usuario u = new Usuario();
 			Funcionario f = new Funcionario();

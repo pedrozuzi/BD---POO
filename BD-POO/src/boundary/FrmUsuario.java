@@ -313,6 +313,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			btnGravar.setActionCommand("Incluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
+			
 			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
 			btnGravar.setActionCommand("Alterar");
@@ -423,7 +424,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnVoltar.setVisible(true);
 		btnVerificar.setVisible(true);
 		btnLimpar.setVisible(true);
-		//limpaCampos(); <---- ESTA LIMPANDO O CAMPO ANTES DE PESQUISAR
 	}
 
 	private void limpaCampos() {

@@ -27,8 +27,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -44,7 +42,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-import sun.font.StrikeCache;
 import entity.Funcionario;
 import entity.Usuario;
 
@@ -88,7 +85,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
 	private Funcionario f;
-	private int aux;
 	
 	public FrmUsuario() {
 
@@ -205,7 +201,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/MiniLupa.png")));
 		btnPesquisarNome.setBounds(349, 27, 40, 23);
-		btnPesquisarNome.setActionCommand("PesquisarNome");
 		panelFuncionario.add(btnPesquisarNome);
 		
 		lblUsuario = new JLabel("Usu\u00E1rio : *");
@@ -314,20 +309,20 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		montarTela();
 		
 		if(btnIncluir.equals(obj)){
-//			aux = 1;
 			btnGravar.setActionCommand("Incluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
+			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
-//			aux = 2;
 			btnGravar.setActionCommand("Alterar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Salvar");
+			btnPesquisarNome.setActionCommand("PesquisarNomeAlterar");
 		}else if(btnExcluir.equals(obj)){
-//			aux = 3;
 			btnGravar.setActionCommand("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setText("Excluir");
+			btnPesquisarNome.setActionCommand("PesquisarNomeExcluir");
 		}
 		
 		if(acao.equalsIgnoreCase("Incluir")){
@@ -338,7 +333,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 				u.setF(f);
 				controlUsuario.adicionarUsuario(u);
 				limpaCampos();
-				modelo.clear();
 			} else {
 				JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -355,16 +349,14 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			limpaCampos();
 		}
 	
-		if(acao.equalsIgnoreCase("PesquisarNome") && 
-				btnGravar.getText().equalsIgnoreCase("Gravar")){
+		if(acao.equalsIgnoreCase("PesquisarNomeIncluir") ){
+				 
+//			&&	btnGravar.getText().equalsIgnoreCase("Gravar")){
 			pesquisarFuncionario();
-			txtUsuario.setEditable(true);
-			
-		} else if(acao.equalsIgnoreCase("PesquisarNome") && 
-				btnGravar.getText().equalsIgnoreCase("Salvar")){
+//			txtUsuario.setEditable(true);
+		} else if(acao.equalsIgnoreCase("PesquisarNomeAlterar")){
 			pesquisarUsuario();
-		} else if(acao.equalsIgnoreCase("PesquisarNome") && 
-				btnGravar.getText().equalsIgnoreCase("Deletar")){
+		} else if(acao.equalsIgnoreCase("PesquisarNomeExcluir")){
 			pesquisarFuncionario();
 		}
 		
@@ -462,9 +454,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 				txtNome.setText(String.valueOf(valores[0]));
 			}
 		}
-		
-		modelo.clear();
-
 	}
 
 	@Override

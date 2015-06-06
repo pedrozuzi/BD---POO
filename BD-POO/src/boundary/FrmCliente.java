@@ -323,9 +323,9 @@ public class FrmCliente extends MouseAdapter {
 			acaoGravar(cmd);
 			if (lista.size() == 1) {
 				modelo.clear();
-			}else{
-				buscarCliente();
 			}
+			buscarCliente();
+			limpaCampos();
 		});
 		
 		btnLupaPesquisar.addActionListener(l -> {
@@ -349,11 +349,8 @@ public class FrmCliente extends MouseAdapter {
 		} catch (Exception e1) {
 		}
 		
-		//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-		//buscarDadosTabelaPorNome(modelo);
-		limpaCampos();
 	}
-	
+
 	private void acaoGravar(String cmd) {
 		Cliente c = new Cliente();
 		control = new CtrlCliente();
@@ -443,7 +440,60 @@ public class FrmCliente extends MouseAdapter {
 		txtBairro.setText("");
 		txtTelefone.setText("");
 	}
-
+	
+//	public DefaultTableModel montarTabela () {
+//		String[] colunas = new String[5];
+//		colunas[0] = "Nome";
+//		colunas[1] = "Logradouro";
+//		colunas[2] = "Número";
+//		colunas[3] = "Bairro";
+//		colunas[4] = "Telefone";
+//
+//		modelo = new CtrlTabela(new Object[][] {}, colunas);
+//
+//		table.setModel(modelo);
+//		table.addMouseListener(this);
+//		table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
+//		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(30);
+//		table.getColumnModel().getColumn(3).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(4).setPreferredWidth(40);
+//		table.setVisible(false);
+//		scrollPane.setViewportView(table);
+//		return modelo;
+//}
+//
+//public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
+//	controlTable = new CtrlCliente(); //instanciado comoa tribulto
+//	lista = new ArrayList<Cliente>();
+//	
+//		if (!txtNome.getText().equals("")) {
+//			try {
+//				lista = controlTable.buscaClientePorNome(txtNome.getText());
+//				if (!lista.isEmpty()) {
+//					for (Cliente c : lista) {
+//						Object[] linha = new Object[5];
+//						linha[0] = c.getNome();
+//						linha[1] = c.getLogradouro();
+//						linha[2] = c.getNumero();
+//						linha[3] = c.getBairro();
+//						linha[4] = c.getTelefone();
+//						modelo.addRow(linha);
+//					} 
+//				}else{
+//					JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
+//							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//				}
+//				
+//			}catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}else{
+//			JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
+//					"Aviso", JOptionPane.INFORMATION_MESSAGE);
+//		}
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

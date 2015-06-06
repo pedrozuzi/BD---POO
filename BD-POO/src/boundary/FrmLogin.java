@@ -82,7 +82,7 @@ public class FrmLogin {
 		lblStatus = new JLabel("");
 		lblStatus.setToolTipText("Conexão OFFLINE");
 		lblStatus.setIcon(new ImageIcon(FrmLogin.class.getResource("/img/dtbasenull.png"))); //
-		lblStatus.setBounds(10, 327, 32, 38);
+		lblStatus.setBounds(24, 327, 32, 38);
 		panPrincipal.add(lblStatus);
 		
 		lblLogoLudPet = new JLabel("");

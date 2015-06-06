@@ -27,6 +27,8 @@ public class FrmRelatorio {
 	private JComboBox<String> comboBox;
 	private JLabel lblGerarRelatrio;
 	
+	
+	
 	public FrmRelatorio() {
 		janela = new JFrame("Relatório");
 		panPrincipal = new JPanel();
@@ -56,6 +58,8 @@ public class FrmRelatorio {
 		btnGerar.setBounds(294, 36, 69, 31);
 		panPrincipal.add(btnGerar);
 		ConfigTelas.centralizarFrame(janela);
+		
+		
 	}
 	
 	public static void main(String[] args) {

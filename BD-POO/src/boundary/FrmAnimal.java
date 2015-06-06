@@ -345,7 +345,12 @@ public class FrmAnimal extends MouseAdapter {
 			String cmd = e.getActionCommand();
 			try {
 				acaoGravar(cmd);
-				buscaAnimaisDoCliente();
+				if (listaAnimal.size() == 1) {
+					modelo.clear();
+				}else{
+					buscaAnimaisDoCliente();
+				}
+				
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

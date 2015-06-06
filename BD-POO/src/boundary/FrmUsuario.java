@@ -353,6 +353,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	
 		if(acao.equalsIgnoreCase("PesquisarNomeIncluir") ){
 			pesquisarFuncionario();
+			txtUsuario.setEditable(true);
 		} else if(acao.equalsIgnoreCase("PesquisarNomeAlterar")){
 			pesquisarUsuario();
 		} else if(acao.equalsIgnoreCase("PesquisarNomeExcluir")){

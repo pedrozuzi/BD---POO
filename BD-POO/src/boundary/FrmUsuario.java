@@ -174,7 +174,8 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
-		scrollPane.setViewportView(table);
+		scrollPane.getViewport().setBorder(null);
+		scrollPane.getViewport().add(table);
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
 
@@ -195,8 +196,8 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		txtNome = new JTextField();
 		txtNome.setBackground(SystemColor.info);
 		txtNome.setBounds(78, 30, 261, 23);
-		panelFuncionario.add(txtNome);
 		txtNome.setColumns(10);
+		panelFuncionario.add(txtNome);
 		
 		btnPesquisarNome = new JButton("");
 		btnPesquisarNome.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/MiniLupa.png")));
@@ -350,10 +351,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		}
 	
 		if(acao.equalsIgnoreCase("PesquisarNomeIncluir") ){
-				 
-//			&&	btnGravar.getText().equalsIgnoreCase("Gravar")){
 			pesquisarFuncionario();
-//			txtUsuario.setEditable(true);
 		} else if(acao.equalsIgnoreCase("PesquisarNomeAlterar")){
 			pesquisarUsuario();
 		} else if(acao.equalsIgnoreCase("PesquisarNomeExcluir")){
@@ -366,6 +364,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private void pesquisarUsuario(){
 		
 		try{
+			
 			listaU = controlUsuario.pesquisarUsuario( txtNome.getText() );
 			if (!listaU.isEmpty()) {
 				modelo = new ModeloTabela(listaU);
@@ -386,6 +385,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private void pesquisarFuncionario() {
 			
 		try {
+			System.out.println("TESTE.. "+ txtNome.getText());
 			listaF = ctrlFunc.pesquisarFuncionario(txtNome.getText());
 			if (!listaF.isEmpty()) {
 				modelo = new ModeloTabela(listaF);

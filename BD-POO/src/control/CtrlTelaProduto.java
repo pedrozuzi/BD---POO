@@ -12,7 +12,13 @@ import javax.swing.JTextField;
 
 import boundary.FrmProduto;
 
-//TODO
+/**
+ * Classe que realiza as interações de tela da classe FrmProduto
+ * @author Hury
+ *
+ */
+
+//TODO Diminuir Parametros
 public class CtrlTelaProduto implements ActionListener {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
@@ -65,6 +71,10 @@ public class CtrlTelaProduto implements ActionListener {
 		this.lblAcao = lblAcao;
 	}
 
+	/**
+	 * Limpa todos os textFilds do FrmProduto.
+	 */
+	
 	public void limpaCampos() {
 		txtIdProduto.setText("");
 		;
@@ -76,25 +86,43 @@ public class CtrlTelaProduto implements ActionListener {
 		txtIdLote.setText("");
 		txtDataValidadeLote.setText("");
 	}
-
-	// recebe um component e desabibita/reabilita for each compound
+	
+	/**
+	 * Recebe um componente, desabilita/habilita todos os subcomponentes do mesmo.
+	 * @param c O componente para interação.
+	 */
+	
 	public void comp(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(!c[i].isEnabled());
 		}
 	}
 	
+	/**
+	 * Recebe um componente, desabilita todos os subcomponentes do mesmo.
+	 * @param c O componente para interação.
+	 */
+	
 	public void tfalse(Component[] c){ //desabilita os components
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(false);
 		}
 	}
-
+	
+	/**
+	 * Desabilita/Habilita os Botoes de CRUD.
+	 */
+	
+	@Deprecated
 	public void botoesCrud() {
 		Component[] c;
 		comp(c = panAcoes.getComponents());
 	}
 
+	/**
+	 * Desabilita/Habilita todos os componentes da tela.
+	 */
+	
 	public void resetaTela() {
 		//System.out.println("resetado");
 		Component[] c;
@@ -103,22 +131,39 @@ public class CtrlTelaProduto implements ActionListener {
 		comp(c = panAcoes2.getComponents());
 	}
 
+	/**
+	 * Desabilita/Habilita os Botoes de CRUD.
+	 */
+	
 	public void acao() {
 		System.out.println("acao");
 		Component[] c;
 		comp(c = panAcoes.getComponents());
 	}
 	
+	/**
+	 * Configura os campos para a inclusão de um lote.
+	 */
+	
 	public void incluiLote(){
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		txtNome.setEnabled(true);
 	}
+	
+	/**
+	 * Configura os campos para a inclusão de um Produto.
+	 */
+	
 	public void incluiProduto(){
 		Component[] c;
 		comp(c = panLote.getComponents());
 	}
 
+	/**
+	 * Configura a inicialização da tela.
+	 */
+	
 	public void inicio() {
 		System.out.println("Inicio");
 		Component[] c;
@@ -128,11 +173,20 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
+	/**
+	 * Habilita/Desabilita os botoes de pesquisa
+	 * @param status True ou False
+	 */
+	
 	public void pesquisa(boolean status) {
 		btnPesquisaProduto.setEnabled(status);
 		btnPesquisaFornecedor.setEnabled(status);
 	}
 
+	/**
+	 * Verifica a ação do botão e atribui as atividades, de tela, a serem realizadas.
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
@@ -147,8 +201,7 @@ public class CtrlTelaProduto implements ActionListener {
 			limpaCampos();
 			pesquisa(false);
             tfalse(c = panLote.getComponents());
-            tfalse(c = panProduto.getComponents());
-			
+            tfalse(c = panProduto.getComponents());	
 		}
 
 		// botao de acoes

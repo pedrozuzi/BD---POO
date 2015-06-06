@@ -39,7 +39,7 @@ import entity.Lote;
 import entity.Produto;
 
 /**
- * 
+ * Classe que possui os elementos de tela do Produto e Lote
  * @author Hury
  *
  */
@@ -91,8 +91,9 @@ public class FrmProduto extends MouseAdapter {
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
+		panPrincipal.setBackground(Color.WHITE);
 
-		// XXX DELETAR APÒS EDIÇÂO!!
+		 //XXX DELETAR APÒS EDIÇÂO!!
 		janela.setSize(942, 670);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,6 +157,7 @@ public class FrmProduto extends MouseAdapter {
 		panAcoes2.setBounds(517, 215, 195, 64);
 		panInferior.add(panAcoes2);
 		panAcoes2.setLayout(null);
+		panAcoes2.setOpaque(false);
 
 		JMenuBar menuBarProduto = new JMenuBar();
 		janela.setJMenuBar(menuBarProduto);
@@ -368,8 +370,7 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.add(lblNewLabel_1);
 
 		JButton btnPesquisaProduto = new JButton("");
-		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniLupa.png")));
+		btnPesquisaProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnPesquisaProduto.setBounds(187, 19, 30, 25);
 		panProduto.add(btnPesquisaProduto);
 

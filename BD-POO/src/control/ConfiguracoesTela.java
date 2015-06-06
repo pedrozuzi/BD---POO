@@ -33,6 +33,7 @@ public class ConfiguracoesTela extends JFrame {
 	 * Método que altera o icone das telas
 	 * @return 
 	 */
+	
 	public JFrame iconeBarra(JFrame tela){
 	     BufferedImage image = null;  
 	        try {  
@@ -48,10 +49,10 @@ public class ConfiguracoesTela extends JFrame {
 	
 	/**
 	 * Metodo que altera o tamanho do JFrame
-	 * @param tela
-	 * @param x
-	 * @param y
-	 * @return
+	 * @param tela Recebe o JFrame
+	 * @param x Largura
+	 * @param y Altura
+	 * @return O JFrame apropriadamente configurado
 	 */
 	
 	public JFrame tamanho(JFrame tela, int x, int y){
@@ -67,6 +68,7 @@ public class ConfiguracoesTela extends JFrame {
 	 * Método para centralizar as telas no centro
 	 * @return 
 	 */
+	
 	  public JFrame centralizeFrame( JFrame tela ){
 	        int x,y;
 	        Rectangle scr=tela.getGraphicsConfiguration().getBounds();
@@ -81,6 +83,7 @@ public class ConfiguracoesTela extends JFrame {
 	 /**
 	  * Método que seta o estilo de todas as telas
 	  */
+	  
 	  public void estilo(){		  
 		  try {
 			 UIManager.setLookAndFeel(look);
@@ -89,6 +92,11 @@ public class ConfiguracoesTela extends JFrame {
 				System.out.println(e);
 			}		  
 	  }
+	  
+	  /**
+	   * A Partir deste metodo é possivel selecionar o estilo da tela
+	   * @param opcEstilo um número de 0 a 4 que irá selecionar o estilo da tela
+	   */
 	  
 		public void selecionaEstilo(int opcEstilo){		//org.jvnet.substance.SubstanceLookAndFeel
 			switch (opcEstilo) {

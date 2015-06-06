@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Lote;
 
 /**
- * 
+ * Interface com os metodos de Lote a serem implementados
  * @author Hury
  *
  */

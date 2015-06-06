@@ -10,6 +10,8 @@ import entity.Usuario;
 
 import javax.swing.JLabel;
 
+import control.ConfiguracoesTela;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -39,6 +41,10 @@ public class FrmPrincipalAdm {
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -121,6 +127,7 @@ public class FrmPrincipalAdm {
 		
 		btnCadastros.addActionListener(e -> new FrmCadastros());
 		
+		btnRelatorio.addActionListener(e -> new FrmRelatorio());
 		
 		janela.setSize(576,465);
 		janela.setLocationRelativeTo(null);

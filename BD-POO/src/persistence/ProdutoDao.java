@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Produto;
 
 /**
- * 
+ * Interface com os metodos a serem implementados de Produto
  * @author Hury
  *
  */

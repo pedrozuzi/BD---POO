@@ -3,6 +3,8 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import control.ConfiguracoesTela;
+
 /**
  * 
  * @author Hury
@@ -22,6 +24,10 @@ public class FrmSobre {
 		janela.setSize(400,281);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 	}
 	
 	

@@ -17,16 +17,32 @@ import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
 
+/**
+ * Classe que possui implementações de produto, lote e lote_Produto,
+ * responsavel pelos codigos SQL.
+ * @author Hury
+ *
+ */
+
 public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	private Connection c;
 
+	/**
+	 * Construtor da classe.
+	 */
+	
 	public ProdutoDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();
 	}
 
 	// Metodos implementados Produto
+	
+	/**
+	 * Insere um produto na tabela produto a partir da query SQL
+	 */
+	
 	@Override
 	public int insereProduto(Produto prod) throws SQLException {
 
@@ -51,6 +67,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Atualiza um produto na tabela produto a partir da query SQL
+	 */
+	
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
 
@@ -70,6 +90,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.close();
 
 	}
+	
+	/**
+	 * Exclui um produto na tabela produto a partir da query SQL
+	 */
 
 	@Override
 	public void excluiProduto(Produto prod) throws SQLException {
@@ -84,6 +108,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.close();
 			
 	}
+	
+	/**
+	 * Consulta um produto na tabela produto a partir da query SQL
+	 */
 
 	@Override
 	public Produto consultaProduto(String id) throws SQLException {
@@ -106,6 +134,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return p;
 
 	}
+	
+	/**
+	 * Consulta produtos na tabela produto a partir da query SQL e cria uma lista de produtos
+	 */
 
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
@@ -131,7 +163,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 		ps.close();
 		return lista;
-
 	}
 
 	// Metodos implementados Lote

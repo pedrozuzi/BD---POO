@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
@@ -87,6 +88,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setLayout(null);
+		
+		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
+		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);

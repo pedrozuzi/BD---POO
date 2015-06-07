@@ -42,7 +42,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-import persistence.FuncionarioDao;
 import entity.Funcionario;
 import entity.Usuario;
 
@@ -176,7 +175,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
 		scrollPane.getViewport().setBorder(null);
-		scrollPane.getViewport().add(table);
+		scrollPane.setViewportView(table);
 		scrollPane.setBounds(9, 117, 608, 163);
 		panelPrincipal.add(scrollPane);
 
@@ -214,7 +213,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		lblSenha = new JLabel("Senha : *");
 		lblSenha.setVisible(false);
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblSenha.setBounds(38, 443, 80, 14);
+		lblSenha.setBounds(38, 443, 117, 14);
 		panelPrincipal.add(lblSenha);
 		
 		txtUsuario = new TratamentoTextFields();
@@ -314,17 +313,22 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			btnGravar.setActionCommand("Incluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
-			
+			lblSenha.setText("Senha : *");
+			pwdSenha.setBounds(128, 441, 141, 23);
 			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
 			btnGravar.setActionCommand("Alterar");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setText("Salvar");
+			pwdSenha.setBounds(189, 441, 141, 23);
+			lblSenha.setText("Nova senha : *");
 			btnPesquisarNome.setActionCommand("PesquisarNomeAlterar");
 		}else if(btnExcluir.equals(obj)){
 			btnGravar.setActionCommand("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
 			btnGravar.setText("Excluir");
+			lblSenha.setText("Senha : *");
+			pwdSenha.setBounds(128, 441, 141, 23);
 			btnPesquisarNome.setActionCommand("PesquisarNomeExcluir");
 		}
 		
@@ -367,7 +371,6 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private void pesquisarUsuario(){
 		
 		try{
-			System.out.println("TESTE : "+txtNome.getText());
 			listaU = controlUsuario.pesquisarUsuario( txtNome.getText() );
 			if (!listaU.isEmpty()) {
 				modelo = new ModeloTabela(listaU);

@@ -86,6 +86,7 @@ public class FrmProduto extends MouseAdapter {
 	private List<Lote> listaLote;
 
 	private int idprod = 0;
+	private JTextField txtQtde;
 
 	/**
 	 * Construtor
@@ -95,11 +96,12 @@ public class FrmProduto extends MouseAdapter {
 
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
+		janela.setResizable(false);
 
 		// XXX DELETAR APÒS EDIÇÂO!!
-		//janela.setSize(942, 702);
-		//janela.setVisible(true);
-		//janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(942, 702);
+		janela.setVisible(true);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// XXX
 
 		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
@@ -355,7 +357,7 @@ public class FrmProduto extends MouseAdapter {
 
 		JLabel lblPesquisar = new JLabel("Pesquisar");
 		lblPesquisar.setFont(new Font("Arial", Font.BOLD, 10));
-		lblPesquisar.setBounds(231, 16, 61, 25);
+		lblPesquisar.setBounds(231, 22, 61, 19);
 		panProduto.add(lblPesquisar);
 
 		txtValorVenda = new JTextField();
@@ -393,7 +395,7 @@ public class FrmProduto extends MouseAdapter {
 
 		JLabel label_4 = new JLabel("Pesquisar");
 		label_4.setFont(new Font("Arial", Font.BOLD, 10));
-		label_4.setBounds(528, 45, 61, 25);
+		label_4.setBounds(528, 52, 61, 18);
 		panProduto.add(label_4);
 
 		JLabel lblVoltar = new JLabel("Voltar");
@@ -492,6 +494,15 @@ public class FrmProduto extends MouseAdapter {
 				btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes,
 				panInferior, panSuperior, panAcoes2, panProduto, panLote,
 				lblAcao);
+		
+		JLabel lblQuantidade = new JLabel("Quantidade:");
+		lblQuantidade.setBounds(231, 165, 69, 14);
+		panProduto.add(lblQuantidade);
+		
+		txtQtde = new JTextField();
+		txtQtde.setBounds(310, 160, 86, 25);
+		panProduto.add(txtQtde);
+		txtQtde.setColumns(10);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);

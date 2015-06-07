@@ -2,13 +2,19 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import control.ConfiguracoesTela;
 import entity.Usuario;
@@ -116,12 +122,54 @@ public class FrmPrincipal {
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		atalhos();
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
 		btnCadastros.addActionListener(e -> new FrmCadastros());
 	}
 	
+	private void atalhos() {
+		ActionMap am = panPrincipal.getActionMap();
+		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "deslogar");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), "venda");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0), "agenda");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), "servico");
+		
+		am.put("deslogar", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				deslogar();
+			}
+		});
+		
+		am.put("venda", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmVenda();
+			}
+		});
+		
+		am.put("servico", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
+		
+		am.put("agenda", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmAgenda();
+			}
+		});
+	}
+
 	public void deslogar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar ?", 

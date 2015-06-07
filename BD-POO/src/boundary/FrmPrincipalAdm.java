@@ -1,10 +1,14 @@
 package boundary;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import entity.Usuario;
 
@@ -14,10 +18,14 @@ import control.ConfiguracoesTela;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 import javax.swing.JDesktopPane;
+
 import java.awt.Window.Type;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 public class FrmPrincipalAdm {
 
@@ -153,9 +161,70 @@ public class FrmPrincipalAdm {
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		atalhos();
 	}
 	
-	public void deslogar(){
+	private void atalhos() {
+		ActionMap am = panPrincipal.getActionMap();
+		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "deslogar");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), "venda");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0), "servico");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), "relatorio");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0), "cadastros");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "agenda");
+		
+		am.put("deslogar", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				deslogar();
+			}
+		});
+		
+		am.put("venda", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmVenda();
+			}
+		});
+		
+		am.put("servico", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
+		
+		am.put("relatorio", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmRelatorio();
+			}
+		});
+		
+		am.put("cadastros", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmCadastros();
+			}
+		});
+		
+		am.put("agenda", new AbstractAction() {
+			private static final long serialVersionUID = 4184595576327756095L;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FrmAgenda();
+			}
+		});
+	}
+
+	private void deslogar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar ?", 
 				"Aviso", JOptionPane.DEFAULT_OPTION, 

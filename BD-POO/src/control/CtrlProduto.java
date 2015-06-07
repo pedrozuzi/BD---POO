@@ -202,6 +202,13 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
 
 			excluiProduto(prod);
+			
+		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) { // Exclui Produto
+			Lote lot = new Lote();
+			lot.setId(Integer.parseInt(txtIdLote.getText()));
+			
+			excluiLote(lot);
+			
 		}
 
 	}
@@ -370,6 +377,19 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		try {
 			lDao.atualizaLote(lot);
 			JOptionPane.showMessageDialog(null, "Lote Atualizado com sucesso!",
+					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void excluiLote(Lote lot){
+		LoteDao lDao = new ProdutoDaoImpl();
+		
+		try {
+			lDao.excluiLote(lot);
+			JOptionPane.showMessageDialog(null, "Lote Excluido com sucesso!",
 					"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",

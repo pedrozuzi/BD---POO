@@ -214,6 +214,9 @@ public class CtrlTelaProduto implements ActionListener {
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
 			botoesCrud();
 			resetaTela();
+		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) {
+			botoesCrud();
+			resetaTela();
 		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
 			botoesCrud();
 			resetaTela();
@@ -272,6 +275,16 @@ public class CtrlTelaProduto implements ActionListener {
 					.getResource("/img/trash.png")));
 			btnSalva.setActionCommand("ACAOEXCLUI");
 
+		} else if (acao.equalsIgnoreCase("EXCLUIRLOTE")) {
+			
+			acao();
+			resetaTela();
+			pesquisa(true);
+			lblAcao.setText("Excluir Lote");
+			btnSalva.setIcon(new ImageIcon(FrmProduto.class
+					.getResource("/img/trash.png")));
+			btnSalva.setActionCommand("ACAOEXCLUILOTE");
+			
 		} else if (acao.equalsIgnoreCase("PESQUISAR")) {
 			acao();
 			resetaTela();

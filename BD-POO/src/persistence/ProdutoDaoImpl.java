@@ -12,14 +12,15 @@ import javax.swing.JOptionPane;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
-import entity.Fornecedor;
+
 import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
 
 /**
- * Classe que possui implementações de produto, lote e lote_Produto,
- * responsavel pelos codigos SQL.
+ * Classe que possui implementações de produto, lote e lote_Produto, responsavel
+ * pelos codigos SQL.
+ * 
  * @author Hury
  *
  */
@@ -31,18 +32,18 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	/**
 	 * Construtor da classe.
 	 */
-	
+
 	public ProdutoDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();
 	}
 
 	// Metodos implementados Produto
-	
+
 	/**
 	 * Insere um produto na tabela produto a partir da query SQL
 	 */
-	
+
 	@Override
 	public int insereProduto(Produto prod) throws SQLException {
 
@@ -70,7 +71,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	/**
 	 * Atualiza um produto na tabela produto a partir da query SQL
 	 */
-	
+
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
 
@@ -90,32 +91,37 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.close();
 
 	}
-	
+
 	/**
 	 * Exclui um produto na tabela produto a partir da query SQL
 	 */
 
 	@Override
 	public void excluiProduto(Produto prod) throws SQLException {
-		// TODO Auto-generated method stub
 
-		String query = "delete produto "
-				+ " where id = ?";
-		PreparedStatement ps = c.prepareStatement( query );
+		String query = "delete produto " + " where id = ?";
+		query = "delete lot from lote lot"
+				+ " inner join lote_produto lp on lot.id = lp.idLote"
+				+ " inner join produto prod"
+				+ " on prod.id = lp.idProduto where prod.id = ?"
+				+ " delete produto where id = ?";
+		PreparedStatement ps = c.prepareStatement(query);
 		ps.setInt(1, prod.getId());
+		ps.setInt(2, prod.getId());
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
 		ps.close();
-			
+		
+		
+
 	}
-	
+
 	/**
 	 * Consulta um produto na tabela produto a partir da query SQL
 	 */
 
 	@Override
 	public Produto consultaProduto(String id) throws SQLException {
-		// TODO Auto-generated method stub
 
 		Produto p = new Produto();
 		String query = "SELECT id, nome, descricao, id_fornecedor, valor_venda, valor_compra "
@@ -134,9 +140,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return p;
 
 	}
-	
+
 	/**
-	 * Consulta produtos na tabela produto a partir da query SQL e cria uma lista de produtos
+	 * Consulta produtos na tabela produto a partir da query SQL e cria uma
+	 * lista de produtos
 	 */
 
 	@Override
@@ -186,8 +193,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public void atualizaLote(Lote lot) throws SQLException {
-		String sql = "UPDATE lote SET data_validade = ?"
-				+ "WHERE id = ?";
+		String sql = "UPDATE lote SET data_validade = ?" + "WHERE id = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 
 		ps.setDate(1, lot.getData_validade());
@@ -200,15 +206,26 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	@Override
 	public void excluiLote(Lote lot) throws SQLException {
-		// TODO Auto-generated method stub
+
+		String query = "delete lote " + " where id = ?";
+		PreparedStatement ps = c.prepareStatement(query);
+		ps.setInt(1, lot.getId());
+		ps.execute();
+		JOptionPane.showMessageDialog(null, "Lote excluido com sucesso!");
+		ps.close();
 
 	}
 
+	@Deprecated
 	@Override
 	public Lote consultaLote(Lote lot) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 * Lista todos os lotes de um determinado produto
+	 */
 
 	@Override
 	public List<Lote> listaLote(int id) throws SQLException {
@@ -265,13 +282,22 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.close();
 
 	}
-
+    
+	@Deprecated
 	@Override
 	public void excluiLoteProduto(LoteProduto lotProd) throws SQLException {
-		// TODO Auto-generated method stub
+
+		String query = "delete lote_produto " + " where idLote = ?";
+		PreparedStatement ps = c.prepareStatement(query);
+		ps.setInt(1, lotProd.getIdProduto());
+		ps.execute();
+		JOptionPane.showMessageDialog(null, "Lote excluido com sucesso!");
+		ps.close();
+
 
 	}
-
+ 
+	@Deprecated
 	@Override
 	public LoteProduto consultaLoteProduto(LoteProduto lotProd)
 			throws SQLException {
@@ -279,6 +305,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return null;
 	}
 
+	@Deprecated
 	@Override
 	public List<LoteProduto> listaLoteProduto() throws SQLException {
 		// TODO Auto-generated method stub

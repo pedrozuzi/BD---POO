@@ -95,7 +95,7 @@ public class FrmProduto extends MouseAdapter {
 		panPrincipal.setBackground(Color.WHITE);
 
 		// XXX DELETAR APÒS EDIÇÂO!!
-		janela.setSize(942, 670);
+		janela.setSize(942, 702);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// XXX
@@ -115,7 +115,7 @@ public class FrmProduto extends MouseAdapter {
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panAcoes.setBounds(178, 0, 599, 100);
+		panAcoes.setBounds(120, 18, 687, 100);
 		panPrincipal.add(panAcoes);
 		panAcoes.setLayout(null);
 		panAcoes.setOpaque(false);
@@ -123,7 +123,7 @@ public class FrmProduto extends MouseAdapter {
 		JPanel panInferior = new JPanel();
 		panInferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panInferior.setBounds(20, 296, 741, 290);
+		panInferior.setBounds(24, 317, 705, 290);
 		panPrincipal.add(panInferior);
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
@@ -131,13 +131,13 @@ public class FrmProduto extends MouseAdapter {
 		JPanel panSuperior = new JPanel();
 		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panSuperior.setBounds(20, 100, 896, 191);
+		panSuperior.setBounds(24, 121, 896, 191);
 		panPrincipal.add(panSuperior);
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
 
 		panLote = new JPanel();
-		panLote.setBounds(35, 201, 472, 82);
+		panLote.setBounds(12, 202, 472, 82);
 		panInferior.add(panLote);
 		panLote.setBorder(new TitledBorder(null, "Lote", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
@@ -145,7 +145,7 @@ public class FrmProduto extends MouseAdapter {
 		panLote.setOpaque(false);
 
 		JPanel panProduto = new JPanel();
-		panProduto.setBounds(35, 11, 677, 193);
+		panProduto.setBounds(12, 12, 677, 193);
 		panInferior.add(panProduto);
 		panProduto.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Produto",
@@ -155,7 +155,7 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.setOpaque(false);
 
 		JPanel panAcoes2 = new JPanel();
-		panAcoes2.setBounds(517, 215, 195, 64);
+		panAcoes2.setBounds(494, 216, 195, 64);
 		panInferior.add(panAcoes2);
 		panAcoes2.setLayout(null);
 		panAcoes2.setOpaque(false);
@@ -237,9 +237,9 @@ public class FrmProduto extends MouseAdapter {
 		btnAlterar.setBounds(313, 21, 69, 41);
 		panAcoes.add(btnAlterar);
 
-		JLabel label_1 = new JLabel("Alterar");
-		label_1.setBounds(333, 68, 40, 19);
-		panAcoes.add(label_1);
+		JLabel lblalterar = new JLabel("<html>Alterar</html>");
+		lblalterar.setBounds(333, 68, 40, 19);
+		panAcoes.add(lblalterar);
 
 		JButton btnExcluir = new JButton("");
 		btnExcluir.setIcon(new ImageIcon(FrmProduto.class
@@ -247,19 +247,19 @@ public class FrmProduto extends MouseAdapter {
 		btnExcluir.setBounds(402, 21, 69, 41);
 		panAcoes.add(btnExcluir);
 
-		JLabel label_2 = new JLabel("Excluir");
-		label_2.setBounds(412, 68, 40, 19);
-		panAcoes.add(label_2);
+		JLabel lblexcluirproduto = new JLabel("<html>Excluir<br>Produto</html>");
+		lblexcluirproduto.setBounds(412, 61, 53, 33);
+		panAcoes.add(lblexcluirproduto);
 
 		JButton btnPesquisar = new JButton("");
 		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/View.png")));
-		btnPesquisar.setBounds(496, 21, 69, 41);
+		btnPesquisar.setBounds(588, 21, 69, 41);
 		panAcoes.add(btnPesquisar);
 
-		JLabel label_3 = new JLabel("Pesquisar");
-		label_3.setBounds(506, 68, 59, 19);
-		panAcoes.add(label_3);
+		JLabel lblpesquisar = new JLabel("<html>Pesquisar</html>");
+		lblpesquisar.setBounds(598, 68, 59, 19);
+		panAcoes.add(lblpesquisar);
 
 		JLabel lblProduto = new JLabel("Produto");
 		lblProduto.setBounds(10, 0, 69, 18);
@@ -454,6 +454,41 @@ public class FrmProduto extends MouseAdapter {
 		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAcao.setBounds(130, 39, 59, 19);
 		panAcoes2.add(lblAcao);
+		
+		JButton btnExcluirLote = new JButton("");
+		btnExcluirLote.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Delete.png")));
+		btnExcluirLote.setActionCommand("EXCLUIR");
+		btnExcluirLote.setBounds(495, 21, 69, 41);
+		panAcoes.add(btnExcluirLote);
+		
+		JLabel lblexcluirlote = new JLabel("<html>Excluir<br>Lote</html>");
+		lblexcluirlote.setBounds(505, 61, 46, 33);
+		panAcoes.add(lblexcluirlote);
+		
+		JLabel label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste.png")));
+		label_6.setBounds(0, 0, 926, 16);
+		panPrincipal.add(label_6);
+		
+		JLabel label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_7.setBounds(0, 18, 113, 16);
+		panPrincipal.add(label_7);
+		
+		JLabel label_8 = new JLabel("");
+		label_8.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste.png")));
+		label_8.setBounds(0, 624, 926, 16);
+		panPrincipal.add(label_8);
+		
+		JLabel label_9 = new JLabel("");
+		label_9.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_9.setBounds(755, 607, 171, 16);
+		panPrincipal.add(label_9);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_1.setBounds(813, 18, 113, 16);
+		panPrincipal.add(label_1);
 
 		btnIncluir.setActionCommand("INCLUIR");
 		btnIncluirProduto.setActionCommand("INCLUIRPRODUTO");
@@ -461,6 +496,8 @@ public class FrmProduto extends MouseAdapter {
 
 		btnAlterar.setActionCommand("ALTERAR");
 		btnExcluir.setActionCommand("EXCLUIR");
+		btnExcluirLote.setActionCommand("EXCLUIRLOTE");
+		
 		btnPesquisar.setActionCommand("PESQUISAR");
 
 		btnVolta.setActionCommand("VOLTA");
@@ -477,6 +514,7 @@ public class FrmProduto extends MouseAdapter {
 				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
 				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
 				panAcoes2, panProduto, panLote, lblAcao);
+		
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -487,13 +525,10 @@ public class FrmProduto extends MouseAdapter {
 
 		btnAlterar.addActionListener(ctrltela);
 		btnExcluir.addActionListener(ctrltela);
+		btnExcluirLote.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
 
 		ctrltela.inicio(); // configura a tela para abertura
-
-		btnNext.addActionListener(e -> {
-			// tableProduto.
-		});
 
 		btnSalva.addActionListener(e -> {
 

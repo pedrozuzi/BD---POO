@@ -86,7 +86,7 @@ public class ModeloTabela extends AbstractTableModel {
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex == 2;
+		return false;
 	}
 	
 	

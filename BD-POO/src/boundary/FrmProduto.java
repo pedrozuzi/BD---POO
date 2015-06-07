@@ -106,7 +106,7 @@ public class FrmProduto extends MouseAdapter {
 		configTela.tamanho(janela, 942, 670);
 		configTela.centralizeFrame(janela);
 		configTela.selecionaEstilo(0); // 1=nimbus
-		configTela.estilo();
+		configTela.estilo(janela);
 		// COMENTAR ATÈ AQUI!!
 
 		janela.setContentPane(panPrincipal);

@@ -84,10 +84,10 @@ public class ConfiguracoesTela extends JFrame {
 	  * Método que seta o estilo de todas as telas
 	  */
 	  
-	  public void estilo(){		  
+	  public void estilo(JFrame janela){		  
 		  try {
 			 UIManager.setLookAndFeel(look);
-			 javax.swing.SwingUtilities.updateComponentTreeUI( this );
+			 javax.swing.SwingUtilities.updateComponentTreeUI( janela );
 			} catch (Exception e) {
 				System.out.println(e);
 			}		  
@@ -98,7 +98,7 @@ public class ConfiguracoesTela extends JFrame {
 	   * @param opcEstilo um número de 0 a 4 que irá selecionar o estilo da tela
 	   */
 	  
-		public void selecionaEstilo(int opcEstilo){		//org.jvnet.substance.SubstanceLookAndFeel
+		public String selecionaEstilo(int opcEstilo){		//org.jvnet.substance.SubstanceLookAndFeel
 			switch (opcEstilo) {
 			case 0:
 				look = "javax.swing.plaf.metal.MetalLookAndFeel";
@@ -115,6 +115,8 @@ public class ConfiguracoesTela extends JFrame {
 			case 4:
 				look = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
 			}
+			
+			return look;
 		}
 
 }

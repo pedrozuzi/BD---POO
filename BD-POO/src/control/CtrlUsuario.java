@@ -81,10 +81,24 @@ public class CtrlUsuario {
 	public void alterarUsuario(Usuario us){
 		uDao = new UsuarioDaoImpl();
 		
+		try {
+			uDao.alterarUsuario(us);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 	
 	public void deletarUsuario(Usuario us){
 		uDao = new UsuarioDaoImpl();
+		
+		try {
+			uDao.excluirUsuario(us);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), 
+					"Erro", JOptionPane.ERROR_MESSAGE);
+		}
 		
 	}
 

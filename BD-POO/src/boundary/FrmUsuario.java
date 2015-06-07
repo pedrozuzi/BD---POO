@@ -85,6 +85,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
 	private Funcionario f;
+	Usuario u;
 	private int controle = 0;
 	
 	public FrmUsuario() {
@@ -332,6 +333,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			pwdSenha.setBounds(128, 441, 141, 23);
 			controle = 1;
 			limpaCampos();
+			btnVerificar.setVisible(true);
 			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
 			btnGravar.setActionCommand("Alterar");
@@ -339,6 +341,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			btnGravar.setText("Salvar");
 			pwdSenha.setBounds(189, 441, 141, 23);
 			lblSenha.setText("Nova senha : *");
+			btnVerificar.setVisible(true);
 			btnPesquisarNome.setActionCommand("PesquisarNomeAlterar");
 			limpaCampos();
 			controle = 2;
@@ -348,6 +351,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			btnGravar.setText("Excluir");
 			lblSenha.setText("Senha : *");
 			pwdSenha.setBounds(128, 441, 141, 23);
+			btnVerificar.setVisible(false);
 			btnPesquisarNome.setActionCommand("PesquisarNomeExcluir");
 			limpaCampos();
 			controle = 3;
@@ -355,7 +359,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 		if(acao.equalsIgnoreCase("Incluir")){
 			if(new String(pwdSenha.getPassword()).equals(new String(pwdConfirmarSenha.getPassword()))){
-				Usuario u = new Usuario();
+				u = new Usuario();
 				u.setNome( txtUsuario.getText() );
 				u.setSenha(new String ( pwdSenha.getPassword() ));
 				u.setF(f);
@@ -368,11 +372,37 @@ public class FrmUsuario implements ActionListener, MouseListener{
 				pwdSenha.grabFocus();
 			}
 		}else if(acao.equalsIgnoreCase("Alterar")){
-			
+			if(!(new String(pwdSenha.getPassword()).isEmpty() && 
+					new String(pwdConfirmarSenha.getPassword()).isEmpty())){
+				if(new String(pwdSenha.getPassword()).equals(new String(pwdConfirmarSenha.getPassword())) ){
+					u = new Usuario();
+					u.setNome(txtUsuario.getText());
+					u.setSenha(new String(pwdSenha.getPassword()));
+					u.setF(f);
+					System.out.println(u.getF().getCpf());
+					controlUsuario.alterarUsuario(u);
+					limpaCampos();
+				} else {
+					JOptionPane.showMessageDialog(null, "Senhas não coincidem", 
+							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Preecha todos campos obrigatorios", 
+						"Aviso", JOptionPane.INFORMATION_MESSAGE);
+				pwdSenha.grabFocus();
+			}
 		}else if(acao.equalsIgnoreCase("Excluir")){
-			
+			if(!new String(pwdSenha.getPassword()).isEmpty()){
+				u = new Usuario();
+				u.setNome(txtUsuario.getText());
+				u.setSenha(new String(pwdSenha.getPassword()));
+				u.setF(f);
+				controlUsuario.deletarUsuario(u);
+				limpaCampos();
+			}
 		}else if(acao.equalsIgnoreCase("Voltar")){
-			
+			janela.dispose();
+			new FrmCadastros();
 		}else if(acao.equalsIgnoreCase("Limpar")){
 			limpaCampos();
 		}
@@ -486,9 +516,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		} else if(controle == 2){
 			
 			valores1 = table.getValueAt(linha, coluna);
+			f = listaU.get(linha).getF();;
 			
 			listaU.forEach(u -> {
-				System.out.println(valores1.equals(u.getF().getNome()));
 				if(valores1.equals(u.getNome())){
 					txtNome.setText(u.getF().getNome());
 					txtUsuario.setText(u.getNome());
@@ -496,11 +526,13 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			});
 			
 			habilitaCampos();
+			txtUsuario.setEditable(false);
 			pwdSenha.grabFocus();
 		} else if(controle == 3){
 			
 			valores1 = table.getValueAt(linha, coluna);
-
+			f = listaU.get(linha).getF();
+			
 			listaU.forEach(u -> {
 				System.out.println(valores1.equals(u.getF().getNome()));
 				if(valores1.equals(u.getNome())){

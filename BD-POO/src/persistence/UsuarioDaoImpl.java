@@ -33,20 +33,42 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		ps.setString(3, u.getSenha() );
 		ps.execute();
 		ps.close();
-		JOptionPane.showMessageDialog(null, "usuário criado com sucesso!",
+		JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!",
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
 	public void alterarUsuario(Usuario u) throws SQLException {
-		// TODO Auto-generated method stub
-
+		String query = "update usuario set "
+				+ "username = ?,"
+				+ "passwor = ?"
+				+ "where username = ?";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setString(1, u.getNome());
+		ps.setString(2, u.getSenha());
+		ps.setString(3, u.getNome());
+		System.out.println(u.getNome());
+		ps.execute();
+		ps.close();
+		
+		JOptionPane.showMessageDialog(null, "Usuário alterado com sucesso!",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
+	
 	}
 
 	@Override
 	public void excluirUsuario(Usuario u) throws SQLException {
-		// TODO Auto-generated method stub
-
+		String query = "delete usuario "
+				+"where username = ?";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setString(1, u.getNome());
+		ps.execute();
+		ps.close();
+		
+		JOptionPane.showMessageDialog(null, "Usuário excluido com sucesso!",
+				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

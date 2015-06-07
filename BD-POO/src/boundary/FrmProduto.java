@@ -523,7 +523,7 @@ public class FrmProduto extends MouseAdapter {
 				listaProduto = new ArrayList<Produto>();
 				try {
 
-					listaProduto = ctrlprod.BuscaProdutoPorNome(txtNome
+					listaProduto = ctrlprod.buscaProdutoPorNome(txtNome
 							.getText());
 					// modeloProduto = new ModeloTabela(listaProduto);
 				if (!listaProduto.isEmpty()) {
@@ -586,7 +586,7 @@ public class FrmProduto extends MouseAdapter {
 						txtDescricao, txtValorVenda, txtValorCompra,
 						txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 				try {
-					listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO
+					listaLote = ctrlprod.buscaLotePorProduto(idprod);// TODO
 																		// Arrumar
 
 					if (!listaLote.isEmpty()) {

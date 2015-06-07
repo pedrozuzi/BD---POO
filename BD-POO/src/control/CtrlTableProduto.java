@@ -12,6 +12,6 @@ import entity.Produto;
 
 public interface CtrlTableProduto {
 
-	List<Produto> BuscaProdutoPorNome(String nome) throws SQLException;
+	List<Produto> buscaProdutoPorNome(String nome) throws SQLException;
 	Produto concultaProdutoId(String id )  throws SQLException;
 }

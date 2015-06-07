@@ -308,7 +308,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	}
 
 	@Override
-	public List<Produto> BuscaProdutoPorNome(String nome) throws SQLException {
+	public List<Produto> buscaProdutoPorNome(String nome) throws SQLException {
 		List<Produto> lista = new ArrayList<Produto>();
 		pDao = new ProdutoDaoImpl();
 		try {
@@ -358,7 +358,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	 */
 
 	@Override
-	public List<Lote> BuscaLotePorProduto(int id) throws SQLException {
+	public List<Lote> buscaLotePorProduto(int id) throws SQLException {
 		List<Lote> lista = new ArrayList<Lote>();
 		lDao = new ProdutoDaoImpl();
 		try {

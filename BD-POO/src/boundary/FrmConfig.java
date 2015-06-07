@@ -51,9 +51,9 @@ public class FrmConfig {
 		panPrincipal.setLayout(null);
 
 		// XXX DEL-ME
-		// janela.setSize(576,451);
-		// janela.setVisible(true);
-		// janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 janela.setSize(576,451);
+		 janela.setVisible(true);
+		 janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);

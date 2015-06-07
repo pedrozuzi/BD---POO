@@ -1,18 +1,23 @@
 package boundary;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 import control.ConfigTelas;
 import control.ConfiguracoesTela;
@@ -111,27 +116,52 @@ public class FrmLogin {
 		
 		btnLogar.addActionListener(e -> {
 			if ( !validaCampos() ) {
-				Usuario u = new Usuario();
-				u.setNome(txtUsuario.getText());
-				u.setSenha(new String (pwdSenha.getPassword()));
-				if ( controlLogin.realizarLogin(u) ) {
-					if ( u.getF().getIdTipo() != 1 ) {
-						new FrmPrincipal(u);
-						janela.dispose();
-					}else{
-						new FrmPrincipalAdm(u);
-						janela.dispose();
-					}
-					
-				}else{
-					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
-					pwdSenha.setText("");
-				}
+				logar();
 			}
 			
 		});
 		
+		atalho();
+		
 		status();
+	}
+	
+	private void atalho() {
+		ActionMap am = panPrincipal.getActionMap();
+		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "logar");
+		
+		am.put("logar", new AbstractAction() {
+			private static final long serialVersionUID = -4298843843983246541L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ( !validaCampos() ) {
+					logar();
+				}
+			}
+		});
+		
+	}
+
+	private void logar() {
+		Usuario u = new Usuario();
+		u.setNome(txtUsuario.getText());
+		u.setSenha(new String (pwdSenha.getPassword()));
+		if ( controlLogin.realizarLogin(u) ) {
+			if ( u.getF().getIdTipo() != 1 ) {
+				new FrmPrincipal(u);
+				janela.dispose();
+			}else{
+				new FrmPrincipalAdm(u);
+				janela.dispose();
+			}
+			
+		}else{
+			JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
+			pwdSenha.setText("");
+		}
+		
 	}
 	private boolean validaCampos() {
 		return txtUsuario.getText().isEmpty() || pwdSenha.getPassword().equals("");

@@ -18,6 +18,8 @@ public class Usuario {
 	public void setF(Funcionario f) {
 		this.f = f;
 	}
+	
+	@Coluna(nome="Usuário (Login)", posicao=0)
 	public String getNome() {
 		return nome;
 	}

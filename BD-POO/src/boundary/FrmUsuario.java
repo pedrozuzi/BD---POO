@@ -331,6 +331,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			lblSenha.setText("Senha : *");
 			pwdSenha.setBounds(128, 441, 141, 23);
 			controle = 1;
+			limpaCampos();
 			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
 			btnGravar.setActionCommand("Alterar");
@@ -339,6 +340,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			pwdSenha.setBounds(189, 441, 141, 23);
 			lblSenha.setText("Nova senha : *");
 			btnPesquisarNome.setActionCommand("PesquisarNomeAlterar");
+			limpaCampos();
 			controle = 2;
 		}else if(btnExcluir.equals(obj)){
 			btnGravar.setActionCommand("Excluir");
@@ -347,6 +349,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			lblSenha.setText("Senha : *");
 			pwdSenha.setBounds(128, 441, 141, 23);
 			btnPesquisarNome.setActionCommand("PesquisarNomeExcluir");
+			limpaCampos();
 			controle = 3;
 		}
 		
@@ -459,7 +462,8 @@ public class FrmUsuario implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores; 
+		Object[] valores;
+		Object valores1;
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
 		System.out.println("CONTROLE : "+controle);
@@ -480,47 +484,32 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			txtUsuario.setEditable(true);
 			txtUsuario.grabFocus();
 		} else if(controle == 2){
-			valores = new Object[1];
-//			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
-//				valores[coluna] = table.getValueAt(linha, coluna);
-//			}
 			
-			valores[coluna] = table.getValueAt(linha, coluna);
-			
-//			id = listaU.get(linha).getId();
-//			f = listaU.get(linha);
-//			for (Usuario u : listaU) {
-//				if(valores[0].equals(u.getF().getNome())){
-//					txtNome.setText(u.getF().getNome());
-//					txtUsuario.setText(u.getNome());
-//				}
-//			}
+			valores1 = table.getValueAt(linha, coluna);
 			
 			listaU.forEach(u -> {
-				txtNome.setText(u.getF().getNome());
-				txtUsuario.setText(u.getNome());
+				System.out.println(valores1.equals(u.getF().getNome()));
+				if(valores1.equals(u.getNome())){
+					txtNome.setText(u.getF().getNome());
+					txtUsuario.setText(u.getNome());
+				}
 			});
 			
 			habilitaCampos();
 			pwdSenha.grabFocus();
 		} else if(controle == 3){
-			valores = new Object[1];
-			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
-				valores[coluna] = table.getValueAt(linha, coluna);
-			}
 			
-//			id = listaU.get(linha).getId();
-//			f = listaU.get(linha);
-			System.out.println(listaU.get(linha).getF().getNome());
-			for (Usuario u : listaU) {
-				System.out.println(u.getF().getNome());
-				if(valores[0].equals(u.getF().getNome())){
+			valores1 = table.getValueAt(linha, coluna);
+
+			listaU.forEach(u -> {
+				System.out.println(valores1.equals(u.getF().getNome()));
+				if(valores1.equals(u.getNome())){
 					txtNome.setText(u.getF().getNome());
 					txtUsuario.setText(u.getNome());
 					pwdSenha.setText(u.getSenha());
 					pwdConfirmarSenha.setText(u.getSenha());
 				}
-			}
+			});
 		}
 	}
 

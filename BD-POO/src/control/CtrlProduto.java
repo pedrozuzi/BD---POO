@@ -339,7 +339,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	 * @param prod
 	 */
 
-	private void atualizaProduto(Produto prod) {
+	public void atualizaProduto(Produto prod) {
 		ProdutoDao pDao = new ProdutoDaoImpl();
 		try {
 			pDao.atualizaProduto(prod);

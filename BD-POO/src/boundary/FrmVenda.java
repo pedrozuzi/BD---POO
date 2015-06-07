@@ -40,6 +40,20 @@ public class FrmVenda {
 	private JTextField txtNomeProdServ;
 	private JTextField txtQtdeProdServ;
 	private JTextField txtDinheiroRecebido;
+	private JLabel lblCodCli;
+	private JLabel lblNewLabel_4;
+	private JButton btnPesquisaCli;
+	private JRadioButton rdbProduto;
+	private JRadioButton rdbServico;
+	private JButton btnPesquisaProdServ;
+	private JLabel lblPrecoUPS;
+	private JLabel lblPrecoTPS;
+	private JButton btnAdicionarPS;
+	private JButton btnRemovePS;
+	private JPanel panConsulta;
+	private JButton btnConsultaEstoque;
+	private JButton btnCancelar;
+	private JButton btnAcao;
 
 	public FrmVenda() {
 		janela = new JFrame("Venda");
@@ -99,7 +113,7 @@ public class FrmVenda {
 		panProdServ.setLayout(null);
 		panProdServ.setOpaque(false);
 
-		JPanel panConsulta = new JPanel();// TODO
+		panConsulta = new JPanel();// TODO
 		panConsulta.setBorder(new TitledBorder(null, "Consulta",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panConsulta.setBounds(540, 469, 240, 53);
@@ -185,7 +199,7 @@ public class FrmVenda {
 		lblVendedor.setBounds(248, 23, 46, 14);
 		panVenda.add(lblVendedor);
 
-		JLabel lblNewLabel_4 = new JLabel("lblVendedor");
+		lblNewLabel_4 = new JLabel("lblVendedor");
 		lblNewLabel_4.setBounds(304, 23, 46, 14);
 		panVenda.add(lblNewLabel_4);
 
@@ -193,7 +207,7 @@ public class FrmVenda {
 		lblNewLabel_5.setBounds(10, 23, 27, 14);
 		panCliente.add(lblNewLabel_5);
 
-		JLabel lblCodCli = new JLabel("lblCodCli");
+		lblCodCli = new JLabel("lblCodCli");
 		lblCodCli.setBounds(36, 23, 46, 14);
 		panCliente.add(lblCodCli);
 
@@ -206,7 +220,7 @@ public class FrmVenda {
 		panCliente.add(txtNomeCli);
 		txtNomeCli.setColumns(10);
 
-		JButton btnPesquisaCli = new JButton("New button");
+		btnPesquisaCli = new JButton("New button");
 		btnPesquisaCli.setBounds(278, 19, 33, 23);
 		panCliente.add(btnPesquisaCli);
 
@@ -239,12 +253,12 @@ public class FrmVenda {
 		lblProduto.setBounds(39, 81, 33, 14);
 		panProdServ.add(lblProduto);
 
-		JRadioButton rdbServico = new JRadioButton("Servi\u00E7o");
+		rdbServico = new JRadioButton("Servi\u00E7o");
 		rdbServico.setOpaque(false);
 		rdbServico.setBounds(118, 24, 72, 23);
 		panProdServ.add(rdbServico);
 
-		JRadioButton rdbProduto = new JRadioButton("Produto");
+		rdbProduto = new JRadioButton("Produto");
 		rdbProduto.setOpaque(false);
 		rdbProduto.setBounds(44, 24, 72, 23);
 		panProdServ.add(rdbProduto);
@@ -276,7 +290,7 @@ public class FrmVenda {
 		panProdServ.add(txtQtdeProdServ);
 		txtQtdeProdServ.setColumns(10);
 
-		JButton btnPesquisaProdServ = new JButton("New button");
+		btnPesquisaProdServ = new JButton("New button");
 		btnPesquisaProdServ.setBounds(149, 77, 33, 23);
 		panProdServ.add(btnPesquisaProdServ);
 
@@ -288,19 +302,19 @@ public class FrmVenda {
 		lblNewLabel_10.setBounds(14, 208, 114, 14);
 		panProdServ.add(lblNewLabel_10);
 
-		JLabel lblPrecoUPS = new JLabel("New label");
+		lblPrecoUPS = new JLabel("New label");
 		lblPrecoUPS.setBounds(157, 187, 46, 14);
 		panProdServ.add(lblPrecoUPS);
 
-		JLabel lblPrecoTPS = new JLabel("New label");
+		lblPrecoTPS = new JLabel("New label");
 		lblPrecoTPS.setBounds(157, 208, 46, 14);
 		panProdServ.add(lblPrecoTPS);
 
-		JButton btnAdicionarPS = new JButton("Adicionar");
+		btnAdicionarPS = new JButton("Adicionar");
 		btnAdicionarPS.setBounds(14, 233, 89, 23);
 		panProdServ.add(btnAdicionarPS);
 
-		JButton btnRemovePS = new JButton("Remover");
+		btnRemovePS = new JButton("Remover");
 		btnRemovePS.setBounds(124, 233, 89, 23);
 		panProdServ.add(btnRemovePS);
 
@@ -308,16 +322,16 @@ public class FrmVenda {
 		btnConsultaPreco.setBounds(10, 22, 89, 23);
 		panConsulta.add(btnConsultaPreco);
 
-		JButton btnConsultaEstoque = new JButton("Estoque");
+		btnConsultaEstoque = new JButton("Estoque");
 		btnConsultaEstoque.setBounds(122, 22, 89, 23);
 		panConsulta.add(btnConsultaEstoque);
 
-		JButton btnFinaliza = new JButton("Finalizar");
-		btnFinaliza.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniSalvar.png")));
-		btnFinaliza.setBounds(631, 11, 109, 38);
-		panInferior.add(btnFinaliza);
+		btnAcao = new JButton("Finalizar");
+		btnAcao.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniSalvar.png")));
+		btnAcao.setBounds(631, 11, 109, 38);
+		panInferior.add(btnAcao);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniX.png")));
 		btnCancelar.setBounds(520, 11, 101, 38);
 		panInferior.add(btnCancelar);
@@ -358,9 +372,9 @@ public class FrmVenda {
 		label_3.setBounds(78, 60, 46, 14);
 		panDinheiro.add(label_3);
 
-		JButton btnNewButton_11 = new JButton(">");
-		btnNewButton_11.setBounds(161, 21, 41, 23);
-		panDinheiro.add(btnNewButton_11);
+		JButton btnCalculaTroco = new JButton(">");
+		btnCalculaTroco.setBounds(161, 21, 41, 23);
+		panDinheiro.add(btnCalculaTroco);
 		ConfigTelas.centralizarFrame(janela);
 	}
 

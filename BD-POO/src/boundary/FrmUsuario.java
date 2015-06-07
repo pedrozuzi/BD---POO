@@ -369,6 +369,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			System.out.println("TESTE : "+txtNome.getText());
 			listaU = controlUsuario.pesquisarUsuario( txtNome.getText() );
 			if (!listaU.isEmpty()) {
+				listaU.forEach(f -> System.out.println(f.getF().getNome()));
 				modelo = new ModeloTabela(listaU);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);

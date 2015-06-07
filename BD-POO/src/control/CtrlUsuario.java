@@ -69,7 +69,7 @@ public class CtrlUsuario {
 		uDao = new UsuarioDaoImpl();
 		List<Usuario> lista = new ArrayList<Usuario>();
 		try {
-			uDao.pesquisarUsuario(nome);
+			lista = uDao.pesquisarUsuario(nome);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 
 					"Erro", JOptionPane.ERROR_MESSAGE);

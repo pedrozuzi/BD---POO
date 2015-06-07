@@ -75,7 +75,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		String query = "select  f.id, u.username, u.passwor, f.nome, f.cpf, f.salario, f.telefone "
 				+ "from usuario u "
 				+ "inner join funcionario f "
-				+ "on u.id = f.id"
+				+ "on u.id = f.id "
 				+ "where f.nome like ? ";
 		
 		PreparedStatement ps = c.prepareStatement( query );
@@ -88,14 +88,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			f.setId( rs.getInt("id") );
 			f.setCpf( rs.getString("cpf"));
 			f.setSalario( rs.getInt("salario"));
-			f.setNome( rs.getString("nome") );
 			f.setTelefone( rs.getInt("telefone"));
-			u.setF(f);
 			u.setNome( rs.getString("username") );
-			u.setSenha( rs.getString("senha") );
+			u.setSenha( rs.getString("passwor") );
+			f.setNome( rs.getString("nome") );
+			u.setF(f);
 			lista.add(u);
 		}
-		
 		return lista;
 	}
 }

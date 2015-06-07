@@ -156,7 +156,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) { // Atualiza produto
 
-			if (txtIdProduto.getText() != "" && txtIdLote.getText()=="") {  //Apenas produto
+			if (!txtIdProduto.getText().equals("") && txtIdLote.getText().equals("")) {  //Apenas produto
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));
 				prod.setNome(txtNome.getText());
@@ -167,7 +167,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 						.getText()));
 
 				atualizaProduto(prod);
-			}else if(txtIdProduto.getText() != "" && txtIdLote.getText()!=""){ //Produto e Lote
+			}else if(!txtIdProduto.getText().equals("") && !txtIdLote.getText().equals("")){ //Produto e Lote
 				
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));

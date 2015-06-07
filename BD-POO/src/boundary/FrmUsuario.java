@@ -45,7 +45,7 @@ import javax.swing.JPasswordField;
 import entity.Funcionario;
 import entity.Usuario;
 
-public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
+public class FrmUsuario implements ActionListener, MouseListener{
 
 	private JFrame janela;
 	private JPanel panelPrincipal;
@@ -85,6 +85,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
 	private Funcionario f;
+	private int controle = 0;
 	
 	public FrmUsuario() {
 
@@ -296,10 +297,24 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 		btnVoltar.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);	
-		
-		txtUsuario.addFocusListener(this);
-		pwdSenha.addFocusListener(this);
-		pwdConfirmarSenha.addFocusListener(this);
+		btnVerificar.addActionListener(e ->{
+				if(!txtUsuario.getText().isEmpty()){
+					if(controlUsuario.verificarNomeUsuario( txtUsuario.getText() )){
+						JOptionPane.showMessageDialog(null,"Usuário já existente", 
+								"Aviso", JOptionPane.INFORMATION_MESSAGE);
+						txtNome.grabFocus();
+						limpaCampos();
+					} else {
+						System.out.println("ENTROU");
+						pwdSenha.setEditable(true);
+						pwdConfirmarSenha.setEditable(true);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,"Digite um nome no campo usuário", 
+							"Aviso", JOptionPane.INFORMATION_MESSAGE);
+					limpaCampos();
+				}
+		});
 	}
 
 	@Override
@@ -315,6 +330,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			btnGravar.setText("Gravar");
 			lblSenha.setText("Senha : *");
 			pwdSenha.setBounds(128, 441, 141, 23);
+			controle = 1;
 			btnPesquisarNome.setActionCommand("PesquisarNomeIncluir");
 		} else if(btnAlterar.equals(obj)){
 			btnGravar.setActionCommand("Alterar");
@@ -323,6 +339,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			pwdSenha.setBounds(189, 441, 141, 23);
 			lblSenha.setText("Nova senha : *");
 			btnPesquisarNome.setActionCommand("PesquisarNomeAlterar");
+			controle = 2;
 		}else if(btnExcluir.equals(obj)){
 			btnGravar.setActionCommand("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
@@ -330,6 +347,7 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 			lblSenha.setText("Senha : *");
 			pwdSenha.setBounds(128, 441, 141, 23);
 			btnPesquisarNome.setActionCommand("PesquisarNomeExcluir");
+			controle = 3;
 		}
 		
 		if(acao.equalsIgnoreCase("Incluir")){
@@ -358,13 +376,11 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	
 		if(acao.equalsIgnoreCase("PesquisarNomeIncluir") ){
 			pesquisarFuncionario();
-			txtUsuario.setEditable(true);
 		} else if(acao.equalsIgnoreCase("PesquisarNomeAlterar")){
 			pesquisarUsuario();
 		} else if(acao.equalsIgnoreCase("PesquisarNomeExcluir")){
-			pesquisarFuncionario();
+			pesquisarUsuario();
 		}
-		
 		
 	}
 	
@@ -443,21 +459,67 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Object[] valores = new Object[2];
+		Object[] valores; 
 		int linha = table.getSelectedRow();
 		int coluna = table.getSelectedColumn();
+		System.out.println("CONTROLE : "+controle);
 		
-		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
-			valores[coluna] = table.getValueAt(linha, coluna);
-		}
-		
-		id = listaF.get(linha).getId();
-		f = listaF.get(linha);
-		for (Funcionario f : listaF) {
-			if(valores[0].equals(f.getNome())){
-				txtNome.setText(String.valueOf(valores[0]));
+		if(controle == 1){
+			valores = new Object[2];
+			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+				valores[coluna] = table.getValueAt(linha, coluna);
+			}
+
+			id = listaF.get(linha).getId();
+			f = listaF.get(linha);
+			for (Funcionario f : listaF) {
+				if(valores[0].equals(f.getNome())){
+					txtNome.setText(String.valueOf(valores[0]));
+				}
+			}
+			txtUsuario.setEditable(true);
+			txtUsuario.grabFocus();
+		} else if(controle == 2){
+			valores = new Object[1];
+			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+				valores[coluna] = table.getValueAt(linha, coluna);
+			}
+			
+//			id = listaU.get(linha).getId();
+//			f = listaU.get(linha);
+			for (Usuario u : listaU) {
+				if(valores[0].equals(u.getF().getNome())){
+					txtNome.setText(u.getF().getNome());
+					txtUsuario.setText(u.getNome());
+				}
+			}
+			habilitaCampos();
+			pwdSenha.grabFocus();
+		} else if(controle == 3){
+			valores = new Object[1];
+			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+				valores[coluna] = table.getValueAt(linha, coluna);
+			}
+			
+//			id = listaU.get(linha).getId();
+//			f = listaU.get(linha);
+			System.out.println(listaU.get(linha).getF().getNome());
+			for (Usuario u : listaU) {
+				System.out.println(u.getF().getNome());
+				if(valores[0].equals(u.getF().getNome())){
+					txtNome.setText(u.getF().getNome());
+					txtUsuario.setText(u.getNome());
+					pwdSenha.setText(u.getSenha());
+					pwdConfirmarSenha.setText(u.getSenha());
+				}
 			}
 		}
+	}
+
+	private void habilitaCampos() {
+		txtUsuario.setEditable(true);
+		pwdSenha.setEditable(true);
+		pwdConfirmarSenha.setEditable(true);
 	}
 
 	@Override
@@ -476,27 +538,4 @@ public class FrmUsuario implements ActionListener, MouseListener, FocusListener{
 	public void mouseExited(MouseEvent e) {
 	}
 
-	@Override
-	public void focusGained(FocusEvent e) {
-
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		Object obj = e.getSource();
-		
-		if(txtUsuario.equals(obj)){
-			if(controlUsuario.verificarNomeUsuario( txtUsuario.getText() )){
-				JOptionPane.showMessageDialog(null,"Usuário já existente", 
-						"Aviso", JOptionPane.INFORMATION_MESSAGE);
-				txtNome.grabFocus();
-				limpaCampos();
-			} else {
-				System.out.println("ENTROU");
-				pwdSenha.setEditable(true);
-				pwdConfirmarSenha.setEditable(true);
-				pwdSenha.grabFocus();
-			}
-		} 
-	}
 }

@@ -481,18 +481,26 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			txtUsuario.grabFocus();
 		} else if(controle == 2){
 			valores = new Object[1];
-			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
-				valores[coluna] = table.getValueAt(linha, coluna);
-			}
+//			for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
+//				valores[coluna] = table.getValueAt(linha, coluna);
+//			}
+			
+			valores[coluna] = table.getValueAt(linha, coluna);
 			
 //			id = listaU.get(linha).getId();
 //			f = listaU.get(linha);
-			for (Usuario u : listaU) {
-				if(valores[0].equals(u.getF().getNome())){
-					txtNome.setText(u.getF().getNome());
-					txtUsuario.setText(u.getNome());
-				}
-			}
+//			for (Usuario u : listaU) {
+//				if(valores[0].equals(u.getF().getNome())){
+//					txtNome.setText(u.getF().getNome());
+//					txtUsuario.setText(u.getNome());
+//				}
+//			}
+			
+			listaU.forEach(u -> {
+				txtNome.setText(u.getF().getNome());
+				txtUsuario.setText(u.getNome());
+			});
+			
 			habilitaCampos();
 			pwdSenha.grabFocus();
 		} else if(controle == 3){

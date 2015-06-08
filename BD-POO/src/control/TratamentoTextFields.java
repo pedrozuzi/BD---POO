@@ -53,7 +53,6 @@ public final class TratamentoTextFields extends JTextField{
 	    });
 	}
 	
-	
 	private void apenasLetras(KeyEvent e) {
 		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|\"";
 		
@@ -74,15 +73,25 @@ public final class TratamentoTextFields extends JTextField{
 		}
 	}
 	
-	public static JTextField mascaraCpf(JTextField txtField) {
-		try {
-			MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
-			txtField = new JFormattedTextField(maskCpf);
-			return txtField;
-		} catch (ParseException e) {
-			e.printStackTrace();
+	public static JTextField mascara(JTextField txtField, String mascara) {
+		if (mascara.equalsIgnoreCase("cpf")) {
+			try {
+				MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+				txtField = new JFormattedTextField(maskCpf);
+				return txtField;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}else if (mascara.equalsIgnoreCase("data")) {
+			try {
+				MaskFormatter maskCpf = new MaskFormatter("##/##/####");
+				txtField = new JFormattedTextField(maskCpf);
+				return txtField;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return txtField;
 	}
 	
 	private void salario( KeyEvent e ) {

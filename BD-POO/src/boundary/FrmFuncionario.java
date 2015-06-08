@@ -227,7 +227,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		panPrincipal.add(txtNome);
 		
 		txtCpf = new JTextField();
-		txtCpf = TratamentoTextFields.mascaraCpf(txtCpf);
+		txtCpf = TratamentoTextFields.mascara(txtCpf, "cpf");
 		txtCpf.setColumns(10);
 		txtCpf.setBackground(SystemColor.info);
 		txtCpf.setBounds(123, 338, 182, 22);

@@ -42,6 +42,17 @@ public final class TratamentoTextFields extends JTextField{
 		});
 	}
 	
+	public TratamentoTextFields(JTextField txtUsuario, int maximo) {
+		setTamanhoCaracteres(maximo);
+		
+	    addKeyListener(new KeyAdapter() {
+	    	 @Override
+	    	    public void keyTyped(KeyEvent evt) {
+	    	        salario(evt);
+	    	     }
+	    });
+	}
+	
 	
 	private void apenasLetras(KeyEvent e) {
 		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|\"";
@@ -65,13 +76,28 @@ public final class TratamentoTextFields extends JTextField{
 	
 	public static JTextField mascaraCpf(JTextField txtField) {
 		try {
-			MaskFormatter maskCpk = new MaskFormatter("###.###.###-##");
-			txtField = new JFormattedTextField(maskCpk);
+			MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+			txtField = new JFormattedTextField(maskCpf);
 			return txtField;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private void salario( KeyEvent e ) {
+		String caracteres = "0987654321.,";
+		if (getText().contains(".") || getText().contains(",")) {
+			caracteres = "0987654321";
+		}
+		if (!caracteres.contains(e.getKeyChar() + "")) {
+			e.consume();
+		}
+		if ((getText().length() >= getTamanhoMaximo())
+				&& (getTamanhoMaximo() != -1)) {
+			e.consume();
+			setText(getText().substring(0, getTamanhoMaximo()));
+		}
 	}
 
 	public int getTamanhoMaximo() {
@@ -82,7 +108,7 @@ public final class TratamentoTextFields extends JTextField{
 		this.tamanhoMaximo = tamanhoCaracteres;
 	}
 
-	public void usuario(KeyEvent e) {
+	private void usuario(KeyEvent e) {
 		String caracteres = " '!@#$%¨&*()+/\\;.[{}]°ºª§*´`^~+,=<>?|\"";
 		
 		if (caracteres.contains(e.getKeyChar() + "")) {

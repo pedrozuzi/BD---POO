@@ -63,42 +63,42 @@ public class FrmPrincipal {
 		panPrincipal.setLayout(null);
 		
 		btnRealizarVenda = new JButton("");
-		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnRealizarVenda.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/venda.png")));
 		btnRealizarVenda.setToolTipText("Realizar uma venda");
 		btnRealizarVenda.setBounds(85, 249, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
 		btnRealizarServico = new JButton("");
-		btnRealizarServico.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnRealizarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/servico.png")));
 		btnRealizarServico.setToolTipText("Realizar um Serviço");
 		btnRealizarServico.setBounds(232, 249, 132, 88);
 		panPrincipal.add(btnRealizarServico);
 		
 		btnRelatorio = new JButton("");
-		btnRelatorio.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnRelatorio.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/relatorio.png")));
 		btnRelatorio.setToolTipText("Abrir Relatórios");
 		btnRelatorio.setBounds(85, 362, 137, 88);
 		panPrincipal.add(btnRelatorio);
 		
 		btnCadastros = new JButton("");
-		btnCadastros.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnCadastros.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/cadastros.png")));
 		btnCadastros.setToolTipText("Cadastrar/Consultar/Aterar/Remover");
 		btnCadastros.setBounds(232, 362, 132, 88);
 		panPrincipal.add(btnCadastros);
 		
 		btnAgendarServico = new JButton("");
-		btnAgendarServico.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnAgendarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/calendar.png")));
 		btnAgendarServico.setToolTipText("Agendar um serviço");
 		btnAgendarServico.setBounds(374, 362, 132, 88);
 		panPrincipal.add(btnAgendarServico);
 		
 		btnDeslogar = new JButton("");
-		btnDeslogar.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnDeslogar.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/icon_login_out.png")));
 		btnDeslogar.setToolTipText("Deslogar");
 		btnDeslogar.setBounds(542, 454, 51, 49);
@@ -125,27 +125,27 @@ public class FrmPrincipal {
 		panPrincipal.add(lblfRealizarServio);
 		
 		label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/logo.png")));
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
 		label.setBounds(175, 0, 255, 207);
 		panPrincipal.add(label);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste.png")));
+		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/img/teste.png")));
 		lblNewLabel.setBounds(0, 475, 615, 28);
 		panPrincipal.add(lblNewLabel);
 		
 		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste.png")));
+		label_1.setIcon(new ImageIcon(this.getClass().getResource("/img/teste.png")));
 		label_1.setBounds(0, 218, 615, 14);
 		panPrincipal.add(label_1);
 		
 		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste2.png")));
+		label_2.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
 		label_2.setBounds(0, 193, 183, 14);
 		panPrincipal.add(label_2);
 		
 		label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource("/img/teste2.png")));
+		label_3.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
 		label_3.setBounds(411, 460, 204, 14);
 		panPrincipal.add(label_3);
 		
@@ -180,21 +180,21 @@ public class FrmPrincipal {
 		btnCadastros = new JButton();
 		
 		btnRealizarVenda = new JButton("");
-		btnRealizarVenda.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnRealizarVenda.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/venda.png")));
 		btnRealizarVenda.setToolTipText("Realizar uma venda");
 		btnRealizarVenda.setBounds(80, 285, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
 		btnRealizarServico = new JButton("");
-		btnRealizarServico.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnRealizarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/servico.png")));
 		btnRealizarServico.setToolTipText("Realizar um Serviço");
 		btnRealizarServico.setBounds(399, 286, 137, 88);
 		panPrincipal.add(btnRealizarServico);
 		
 		btnAgendarServico = new JButton("");
-		btnAgendarServico.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnAgendarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/calendar.png")));
 		btnAgendarServico.setToolTipText("Agendar um serviço");
 		btnAgendarServico.setBounds(241, 285, 137, 88);
@@ -213,7 +213,7 @@ public class FrmPrincipal {
 		panPrincipal.add(lblfRealizarServio);
 		
 		btnDeslogar = new JButton("");
-		btnDeslogar.setIcon(new ImageIcon(FrmPrincipalAdm.class.getResource
+		btnDeslogar.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/icon_login_out.png")));
 		btnDeslogar.setToolTipText("Deslogar-se");
 		btnDeslogar.setBounds(545, 442, 51, 49);

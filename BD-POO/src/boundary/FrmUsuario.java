@@ -218,7 +218,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		lblSenha.setBounds(38, 443, 117, 14);
 		panelPrincipal.add(lblSenha);
 		
-		txtUsuario = new TratamentoTextFields();
+		txtUsuario = new TratamentoTextFields(txtUsuario);
 		txtUsuario.setVisible(false);
 		txtUsuario.setBackground(SystemColor.info);
 		txtUsuario.setBounds(128, 406, 141, 23);

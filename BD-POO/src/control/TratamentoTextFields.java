@@ -33,9 +33,18 @@ public final class TratamentoTextFields extends JTextField{
 	    });
 	}
 	
+	public TratamentoTextFields(JTextField txtUsuario) {
+		addKeyListener(new KeyAdapter() {
+			@Override
+		    public void keyTyped(KeyEvent evt) {
+		        usuario(evt);
+		    }
+		});
+	}
+	
 	
 	private void apenasLetras(KeyEvent e) {
-		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|";
+		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|\"";
 		
 		if (caracteres.contains(e.getKeyChar() + "")) {
 			e.consume();
@@ -72,7 +81,14 @@ public final class TratamentoTextFields extends JTextField{
 	public void setTamanhoCaracteres(int tamanhoCaracteres) {
 		this.tamanhoMaximo = tamanhoCaracteres;
 	}
-	
+
+	public void usuario(KeyEvent e) {
+		String caracteres = " '!@#$%¨&*()+/\\;.[{}]°ºª§*´`^~+,=<>?|\"";
+		
+		if (caracteres.contains(e.getKeyChar() + "")) {
+			e.consume();
+		}
+	}
 	
 }
 

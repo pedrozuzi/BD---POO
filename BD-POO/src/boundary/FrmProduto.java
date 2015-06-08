@@ -324,7 +324,7 @@ public class FrmProduto extends MouseAdapter {
 		txtDataValidadeLote.setColumns(10);
 
 		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(104, 22, 15, 14);
+		lblId.setBounds(103, 22, 16, 14);
 		panProduto.add(lblId);
 
 		txtNome = new JTextField();
@@ -343,7 +343,7 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.add(lblNome);
 
 		lblNewLabel_1 = new JLabel("Descri\u00E7\u00E3o:");
-		lblNewLabel_1.setBounds(60, 91, 59, 20);
+		lblNewLabel_1.setBounds(55, 91, 64, 20);
 		panProduto.add(lblNewLabel_1);
 
 		JButton btnPesquisaProduto = new JButton("");
@@ -373,7 +373,7 @@ public class FrmProduto extends MouseAdapter {
 		panProduto.add(txtValorCompra);
 
 		JLabel lblValorDeVenda = new JLabel("Valor de Venda:");
-		lblValorDeVenda.setBounds(31, 127, 88, 20);
+		lblValorDeVenda.setBounds(31, 127, 100, 20);
 		panProduto.add(lblValorDeVenda);
 
 		JLabel lblValorDeCompra = new JLabel("Valor de Compra:");
@@ -495,7 +495,7 @@ public class FrmProduto extends MouseAdapter {
 				btnExcluirLote, btnPesquisar, btnPesquisaProduto,
 				btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes,
 				panInferior, panSuperior, panAcoes2, panProduto, panLote,
-				lblId);
+				lblAcao);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -509,7 +509,7 @@ public class FrmProduto extends MouseAdapter {
 		btnExcluirLote.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
 
-		ctrltela.inicio(); // configura a tela para abertura
+		ctrltela.resetaTela(); // configura a tela para abertura
 
 		btnSalva.addActionListener(e -> {
 

@@ -209,6 +209,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			
 			excluiLote(lot);
 			
+		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
+			
+			
 		}
 
 	}

@@ -14,17 +14,18 @@ import boundary.FrmProduto;
 
 /**
  * Classe que realiza as interações de tela da classe FrmProduto
+ * 
  * @author Hury
  *
  */
 
-//TODO Diminuir Parametros
+// TODO Diminuir Parametros
 public class CtrlTelaProduto implements ActionListener {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
 	private JButton btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
-			 btnPesquisaProduto,
-			btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva;
+			btnPesquisaProduto, btnPesquisaFornecedor, btnVolta, btnLimpa,
+			btnSalva;
 	private JPanel panAcoes, panInferior, panSuperior, panAcoes2, panProduto,
 			panLote;
 	private JLabel lblAcao;
@@ -67,10 +68,40 @@ public class CtrlTelaProduto implements ActionListener {
 		this.lblAcao = lblAcao;
 	}
 
+	public boolean camposProduto() {
+
+		if (txtNome.getText().equals("") || txtDescricao.getText().equals("")
+				|| txtValorVenda.getText().equals("")
+				|| txtValorCompra.getText().equals("")
+				|| txtIdFornecedor.getText().equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	public boolean camposLote() {
+		if (txtDataValidadeLote.getText().equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public boolean camposPesquisa() {
+		if (txtNome.getText().equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
 	/**
 	 * Limpa todos os textFilds do FrmProduto.
 	 */
-	
+
 	public void limpaCampos() {
 		txtIdProduto.setText("");
 		txtNome.setText("");
@@ -81,34 +112,38 @@ public class CtrlTelaProduto implements ActionListener {
 		txtIdLote.setText("");
 		txtDataValidadeLote.setText("");
 	}
-	
+
 	/**
-	 * Recebe um componente, desabilita/habilita todos os subcomponentes do mesmo.
-	 * @param c O componente para interação.
+	 * Recebe um componente, desabilita/habilita todos os subcomponentes do
+	 * mesmo.
+	 * 
+	 * @param c
+	 *            O componente para interação.
 	 */
-	
+
 	public void comp(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(!c[i].isEnabled());
 		}
 	}
-	
+
 	/**
 	 * Recebe um componente, desabilita todos os subcomponentes do mesmo.
-	 * @param c O componente para interação.
+	 * 
+	 * @param c
+	 *            O componente para interação.
 	 */
-	
-	public void tfalse(Component[] c){ //desabilita os components
+
+	public void tfalse(Component[] c) { // desabilita os components
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(false);
 		}
 	}
-	
+
 	/**
 	 * Desabilita/Habilita os Botoes de CRUD.
 	 */
-	
-	
+
 	public void botoesCrud() {
 		Component[] c;
 		comp(c = panAcoes.getComponents());
@@ -117,10 +152,9 @@ public class CtrlTelaProduto implements ActionListener {
 	/**
 	 * Desabilita/Habilita todos os componentes da tela.
 	 */
-	
-	
+
 	public void resetaTela() {
-		//System.out.println("resetado");
+		// System.out.println("resetado");
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		comp(c = panLote.getComponents());
@@ -129,84 +163,87 @@ public class CtrlTelaProduto implements ActionListener {
 		pesquisa(false);
 	}
 
-	
 	/**
 	 * Configura os campos para a inclusão de um lote.
 	 */
-	
-	public void incluiLote(){
+
+	public void incluiLote() {
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		txtNome.setEnabled(true);
 	}
-	
+
 	/**
 	 * 
 	 */
-	
-	public void excluiProduto(){
+
+	public void excluiProduto() {
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		comp(c = panLote.getComponents());
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}
-	
+
 	/**
 	 * Configura os campos para a inclusão de um Produto.
 	 */
-	
 
-	public void incluiProduto(){
+	public void incluiProduto() {
 		Component[] c;
 		comp(c = panLote.getComponents());
 	}
-	
+
 	/**
 	 * 
 	 */
-	
-	public void vouta(){
+
+	public void vouta() {
 		Component[] c;
 		botoesCrud();
 		resetaTela();
-		
+
 		limpaCampos();
 		pesquisa(false);
-        tfalse(c = panLote.getComponents());
-        tfalse(c = panProduto.getComponents());	
+		tfalse(c = panLote.getComponents());
+		tfalse(c = panProduto.getComponents());
+		btnSalva.setEnabled(false);
+
 	}
 
 	/**
 	 * Habilita/Desabilita os botoes de pesquisa
-	 * @param status True ou False
+	 * 
+	 * @param status
+	 *            True ou False
 	 */
-	
+
 	public void pesquisa(boolean status) {
 		btnPesquisaProduto.setEnabled(status);
-		//btnPesquisaFornecedor.setEnabled(status);
+		// btnPesquisaFornecedor.setEnabled(status);
 	}
-	
+
 	/**
 	 * 
 	 */
-	public void pesq(){
+	public void pesq() {
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		comp(c = panLote.getComponents());
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}
-	
-	//TODO
-	public void resetaTable(){
-		
+
+	// TODO
+	public void resetaTable() {
+
 	}
 
 	/**
-	 * Verifica a ação do botão e atribui as atividades, de tela, a serem realizadas.
+	 * Verifica a ação do botão e atribui as atividades, de tela, a serem
+	 * realizadas.
 	 */
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
@@ -215,35 +252,28 @@ public class CtrlTelaProduto implements ActionListener {
 		if (acao.equalsIgnoreCase("LIMPA")) {
 			limpaCampos();
 		} else if (acao.equalsIgnoreCase("VOLTA")) {
-			
 			vouta();
 		}
 
 		// botao de acoes
 		else if (acao.equalsIgnoreCase("ACAOSALVA")) {
-			botoesCrud();
-			//resetaTela();
+			vouta();
+		} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) {
+			vouta();
+		} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) {
 			vouta();
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
-			botoesCrud();
-			//resetaTela();
 			vouta();
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
-			botoesCrud();
-			//resetaTela();
 			vouta();
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) {
-			botoesCrud();
-			//resetaTela();
 			vouta();
 		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
-			botoesCrud();
-			//resetaTela();
 			vouta();
 		}
 
 		// panAcaoes
-		else if (acao.equalsIgnoreCase("INCLUIR")) { //lote e produto
+		else if (acao.equalsIgnoreCase("INCLUIR")) { // lote e produto
 			botoesCrud();
 			resetaTela();
 			lblAcao.setText("Salvar");
@@ -251,81 +281,84 @@ public class CtrlTelaProduto implements ActionListener {
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOSALVA");
 			pesquisa(false);
-		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) { //inclui apenas produto
-			
+		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) { // inclui apenas
+																// produto
+
 			botoesCrud();
 			resetaTela();
-			
+
 			incluiProduto();
-			
+
 			lblAcao.setText("Salvar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOSALVAPRODUTO");
-			
+
 			pesquisa(false);
 
-		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) { //inclui lote
-			
+		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) { // inclui lote
+
 			botoesCrud();
 			resetaTela();
-			
+
 			incluiLote();
-			
+
 			lblAcao.setText("Salvar novo lote a produto");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOSALVALOTE");
-			
+
 			pesquisa(true);
 
 		} else if (acao.equalsIgnoreCase("ALTERAR")) {
-			
+
 			botoesCrud();
 			resetaTela();
-			
+
 			lblAcao.setText("Gravar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOGRAVA");
-			
+
 			pesquisa(true);
 
 		} else if (acao.equalsIgnoreCase("EXCLUIR")) {
-			
+
 			botoesCrud();
 			resetaTela();
-			
+
 			lblAcao.setText("Excluir");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/trash.png")));
 			btnSalva.setActionCommand("ACAOEXCLUI");
-			
+
 			excluiProduto();
 
 		} else if (acao.equalsIgnoreCase("EXCLUIRLOTE")) {
-			
+
 			botoesCrud();
 			resetaTela();
-			
+
 			lblAcao.setText("Excluir Lote");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/trash.png")));
 			btnSalva.setActionCommand("ACAOEXCLUILOTE");
-			
+
 			excluiProduto();
-			
+
 		} else if (acao.equalsIgnoreCase("PESQUISAR")) {
 			botoesCrud();
 			resetaTela();
-			
+
 			lblAcao.setText("Pesquisar");
 			btnSalva.setIcon(new ImageIcon(FrmProduto.class
 					.getResource("/img/MiniLupa.png")));
 			btnSalva.setActionCommand("ACAOPESQUISA");
-			
+
 			pesq();
 			pesquisa(true);
+
+			btnSalva.setEnabled(false);
 		}
 	}
 

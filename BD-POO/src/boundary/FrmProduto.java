@@ -123,7 +123,7 @@ public class FrmProduto extends MouseAdapter {
 		JPanel panInferior = new JPanel();
 		panInferior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panInferior.setBounds(24, 317, 705, 290);
+		panInferior.setBounds(105, 322, 705, 290);
 		panPrincipal.add(panInferior);
 		panInferior.setOpaque(false);
 		panInferior.setLayout(null);
@@ -513,8 +513,59 @@ public class FrmProduto extends MouseAdapter {
 
 		btnSalva.addActionListener(e -> {
 
-			ctrlprod.actionPerformed(e);
-			ctrltela.actionPerformed(e);
+			String acao = e.getActionCommand();
+
+			if (acao.equalsIgnoreCase("ACAOSALVA")) {
+
+				if (ctrltela.camposProduto() == false
+						|| ctrltela.camposLote() == false) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				} else {
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+
+			} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) {
+				if (ctrltela.camposProduto() == false){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				}else{
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+			} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) {
+
+				if (ctrltela.camposProduto() == false
+						|| ctrltela.camposLote() == false) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				} else {
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+			} else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
+				if (ctrltela.camposProduto() == false){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				}else{
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+			} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
+				if (ctrltela.camposPesquisa() == false){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				}else{
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+			} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) {
+				if (ctrltela.camposPesquisa() == false){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatorios!");
+				}else{
+					ctrlprod.actionPerformed(e);
+					ctrltela.actionPerformed(e);
+				}
+			} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
+
+			}
+
 		});
 
 		btnPesquisaProduto.addActionListener(e -> {

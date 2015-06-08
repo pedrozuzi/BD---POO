@@ -264,7 +264,7 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.add(lblCpf);
 		
 		txtCpf = new JTextField();
-		//txtCpf = TratamentoTextFields.mascaraCpf(txtCpf);
+		txtCpf = TratamentoTextFields.mascara(txtCpf, "cpf");
 		txtCpf.setBounds(205, 360, 121, 20);
 		txtCpf.setVisible(false);
 		panPrincipal.add(txtCpf);

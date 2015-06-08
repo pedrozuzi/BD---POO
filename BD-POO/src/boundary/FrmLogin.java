@@ -154,15 +154,9 @@ public class FrmLogin {
 		Usuario u = new Usuario();
 		u.setNome(txtUsuario.getText());
 		u.setSenha(new String(pwdSenha.getPassword()));
+		
 		if (controlLogin.realizarLogin(u)) {
-			if (u.getF().getIdTipo() != 1) {
-				new FrmPrincipal(u);
-				janela.dispose();
-			} else {
-				new FrmPrincipalAdm(u);
-				janela.dispose();
-			}
-
+			new FrmPrincipal(u);
 		} else {
 			JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
 			pwdSenha.setText("");

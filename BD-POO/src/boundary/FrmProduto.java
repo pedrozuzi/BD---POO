@@ -193,12 +193,6 @@ public class FrmProduto extends MouseAdapter {
 				.getResource("/img/CloseMenu.png")));
 		mnMenu.add(mntmFechar);
 
-		JMenu mnNewMenu_1 = new JMenu("New menu");
-		menuBarProduto.add(mnNewMenu_1);
-
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem);
-
 		JButton btnIncluir = new JButton("");
 		btnIncluir.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/Insert.png")));

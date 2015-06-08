@@ -42,8 +42,8 @@ public class FrmVenda {
 	private JLabel lblTroco;
 	private JTextField textField_8;
 	private JTextField textField_9;
-	private JTable table;
-	private JScrollPane scrollPane;
+	private JTable tableVenda;
+	private JScrollPane scrollVenda;
 	private JLabel lblFormaDePagamento;
 	private JButton btnConfirmarVenda;
 	private JButton btnCancelarVenda;
@@ -187,12 +187,12 @@ public class FrmVenda {
 		panPrincipal.add(textField_9);
 		textField_9.setColumns(10);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 184, 828, 181);
-		panPrincipal.add(scrollPane);
+		scrollVenda = new JScrollPane();
+		scrollVenda.setBounds(30, 184, 828, 181);
+		panPrincipal.add(scrollVenda);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		tableVenda = new JTable();
+		scrollVenda.setViewportView(tableVenda);
 		
 		lblFormaDePagamento = new JLabel("Forma de Pagamento");
 		lblFormaDePagamento.setBounds(34, 415, 133, 14);

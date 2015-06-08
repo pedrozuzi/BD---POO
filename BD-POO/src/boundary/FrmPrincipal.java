@@ -186,5 +186,4 @@ public class FrmPrincipal {
 	public static void main(String[] args) {
 		new FrmPrincipal(new Usuario());
 	}
-
 }

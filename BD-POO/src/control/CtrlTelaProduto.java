@@ -23,7 +23,7 @@ public class CtrlTelaProduto implements ActionListener {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
 	private JButton btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
-			btnRewind, btnBack, btnNext, btnFoward, btnPesquisaProduto,
+			 btnPesquisaProduto,
 			btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva;
 	private JPanel panAcoes, panInferior, panSuperior, panAcoes2, panProduto,
 			panLote;
@@ -34,8 +34,7 @@ public class CtrlTelaProduto implements ActionListener {
 			JTextField txtValorCompra, JTextField txtIdFornecedor,
 			JTextField txtIdLote, JTextField txtDataValidadeLote,
 			JButton btnIncluir, JButton btnAlterar, JButton btnExcluir,
-			JButton btnPesquisar, JButton btnRewind, JButton btnBack,
-			JButton btnNext, JButton btnFoward, JButton btnPesquisaProduto,
+			JButton btnPesquisar, JButton btnPesquisaProduto,
 			JButton btnPesquisaFornecedor, JButton btnVolta, JButton btnLimpa,
 			JButton btnSalva, JPanel panAcoes, JPanel panInferior,
 			JPanel panSuperior, JPanel panAcoes2, JPanel panProduto,
@@ -53,10 +52,7 @@ public class CtrlTelaProduto implements ActionListener {
 		this.btnAlterar = btnAlterar;
 		this.btnExcluir = btnExcluir;
 		this.btnPesquisar = btnPesquisar;
-		this.btnRewind = btnRewind;
-		this.btnBack = btnBack;
-		this.btnNext = btnNext;
-		this.btnFoward = btnFoward;
+
 		this.btnPesquisaProduto = btnPesquisaProduto;
 		this.btnPesquisaFornecedor = btnPesquisaFornecedor;
 		this.btnVolta = btnVolta;

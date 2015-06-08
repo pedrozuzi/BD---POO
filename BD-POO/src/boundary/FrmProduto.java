@@ -103,7 +103,7 @@ public class FrmProduto extends MouseAdapter {
 		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
 		configTela.iconeBarra(janela);
-		configTela.tamanho(janela, 942, 670);
+		configTela.tamanho(janela, 942, 702);
 		configTela.centralizeFrame(janela);
 		configTela.selecionaEstilo(0); // 1=nimbus
 		configTela.estilo(janela);
@@ -131,7 +131,7 @@ public class FrmProduto extends MouseAdapter {
 		JPanel panSuperior = new JPanel();
 		panSuperior.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
-		panSuperior.setBounds(24, 121, 896, 191);
+		panSuperior.setBounds(24, 121, 896, 181);
 		panPrincipal.add(panSuperior);
 		panSuperior.setLayout(null);
 		panSuperior.setOpaque(false);
@@ -268,30 +268,6 @@ public class FrmProduto extends MouseAdapter {
 		JLabel lblLote = new JLabel("Lote");
 		lblLote.setBounds(701, 0, 69, 18);
 		panSuperior.add(lblLote);
-
-		JButton btnRewind = new JButton("");
-		btnRewind.setBounds(241, 162, 69, 18);
-		panSuperior.add(btnRewind);
-		btnRewind.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniRewind.png")));
-
-		JButton btnBack = new JButton("");
-		btnBack.setBounds(309, 162, 69, 18);
-		panSuperior.add(btnBack);
-		btnBack.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniBack.png")));
-
-		JButton btnNext = new JButton("");
-		btnNext.setBounds(379, 162, 69, 18);
-		panSuperior.add(btnNext);
-		btnNext.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniNext.png")));
-
-		JButton btnFoward = new JButton("");
-		btnFoward.setBounds(447, 162, 69, 18);
-		panSuperior.add(btnFoward);
-		btnFoward.setIcon(new ImageIcon(FrmProduto.class
-				.getResource("/img/MiniFoward.png")));
 
 		// TABLE PRODUTO
 		tableProduto = new JTable();
@@ -454,39 +430,45 @@ public class FrmProduto extends MouseAdapter {
 		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAcao.setBounds(130, 39, 59, 19);
 		panAcoes2.add(lblAcao);
-		
+
 		JButton btnExcluirLote = new JButton("");
-		btnExcluirLote.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/Delete.png")));
+		btnExcluirLote.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/Delete.png")));
 		btnExcluirLote.setActionCommand("EXCLUIR");
 		btnExcluirLote.setBounds(495, 21, 69, 41);
 		panAcoes.add(btnExcluirLote);
-		
+
 		JLabel lblexcluirlote = new JLabel("<html>Excluir<br>Lote</html>");
 		lblexcluirlote.setBounds(505, 61, 46, 33);
 		panAcoes.add(lblexcluirlote);
-		
+
 		JLabel label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste.png")));
+		label_6.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/teste.png")));
 		label_6.setBounds(0, 0, 926, 16);
 		panPrincipal.add(label_6);
-		
+
 		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_7.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/teste2.png")));
 		label_7.setBounds(0, 18, 113, 16);
 		panPrincipal.add(label_7);
-		
+
 		JLabel label_8 = new JLabel("");
-		label_8.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste.png")));
+		label_8.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/teste.png")));
 		label_8.setBounds(0, 624, 926, 16);
 		panPrincipal.add(label_8);
-		
+
 		JLabel label_9 = new JLabel("");
-		label_9.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_9.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/teste2.png")));
 		label_9.setBounds(755, 607, 171, 16);
 		panPrincipal.add(label_9);
-		
+
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/teste2.png")));
+		label_1.setIcon(new ImageIcon(FrmProduto.class
+				.getResource("/img/teste2.png")));
 		label_1.setBounds(813, 18, 113, 16);
 		panPrincipal.add(label_1);
 
@@ -497,7 +479,7 @@ public class FrmProduto extends MouseAdapter {
 		btnAlterar.setActionCommand("ALTERAR");
 		btnExcluir.setActionCommand("EXCLUIR");
 		btnExcluirLote.setActionCommand("EXCLUIRLOTE");
-		
+
 		btnPesquisar.setActionCommand("PESQUISAR");
 
 		btnVolta.setActionCommand("VOLTA");
@@ -509,12 +491,11 @@ public class FrmProduto extends MouseAdapter {
 
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
-				txtIdLote, txtDataValidadeLote, btnIncluir, btnAlterar,
-				btnExcluir, btnPesquisar, btnRewind, btnBack, btnNext,
-				btnFoward, btnPesquisaProduto, btnPesquisaFornecedor, btnVolta,
-				btnLimpa, btnSalva, panAcoes, panInferior, panSuperior,
-				panAcoes2, panProduto, panLote, lblAcao);
-		
+				txtIdLote, txtDataValidadeLote, btnIncluirNovoLote, btnAlterar,
+				btnExcluirLote, btnPesquisar, btnPesquisaProduto,
+				btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes,
+				panInferior, panSuperior, panAcoes2, panProduto, panLote,
+				lblId);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -572,13 +553,13 @@ public class FrmProduto extends MouseAdapter {
 	 */
 
 	public void mouseClicked(MouseEvent e) {
-		
+
 		Object a = new Object();
 		a = e.getSource();
-		
-		if (a.equals(tableProduto)) { //Chamada da TableProduto
+
+		if (a.equals(tableProduto)) { // Chamada da TableProduto
 			System.out.println("table produto");
-			
+
 			Object[] valores = new Object[6];
 			int linha = tableProduto.getSelectedRow();
 			int coluna = tableProduto.getSelectedColumn();
@@ -605,7 +586,8 @@ public class FrmProduto extends MouseAdapter {
 						txtDescricao, txtValorVenda, txtValorCompra,
 						txtIdFornecedor, txtIdLote, txtDataValidadeLote);
 				try {
-					listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO Arrumar
+					listaLote = ctrlprod.BuscaLotePorProduto(idprod);// TODO
+																		// Arrumar
 
 					if (!listaLote.isEmpty()) {
 						modeloLote = new ModeloTabela(listaLote);
@@ -629,14 +611,14 @@ public class FrmProduto extends MouseAdapter {
 
 		} else if (a.equals(tableLote)) { // Chamada da TableLote
 			System.out.println("table lote");
-			
+
 			Object[] valores = new Object[2];
 			int linha = tableLote.getSelectedRow();
 			int coluna = tableLote.getSelectedColumn();
 
 			for (coluna = 0; coluna < tableLote.getColumnCount(); coluna++) {
 				valores[coluna] = tableLote.getValueAt(linha, coluna);
-				
+
 				txtIdLote.setText(String.valueOf(valores[0]));
 				txtDataValidadeLote.setText(String.valueOf(valores[1]));
 			}

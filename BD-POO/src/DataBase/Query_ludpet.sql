@@ -20,14 +20,6 @@ idTipo int not null
 primary key(idPessoa),
 foreign key(idTipo) references tipo(id))
 
-create table telefone(
-numero varchar(9) not null,
-idPessoa int not null,
-idTipo int not null 
-primary key(numero, idPessoa, idTipo)
-foreign key(idPessoa) references pessoa(idPessoa),
-foreign key(idTipo) references tipo(id))
-
 create table cliente(
 id int not null,
 nome varchar(60) not null,
@@ -61,7 +53,6 @@ nome varchar(60) not null,
 telefone int not null,
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
-
 
 create table animal(
 id int identity not null,
@@ -105,7 +96,7 @@ id_cliente int null,
 id_funcionario int not null
 primary key(id),
 foreign key(id_cliente) references cliente(id),
-foreign key(id_funcionario) references funcionario(id),)
+foreign key(id_funcionario) references funcionario(id))
 
 create table venda_produto(
 data_venda datetime not null,
@@ -137,6 +128,25 @@ check(data_compra <= getdate()),
 primary key(data_compra, id_compra, id_funcionario, id_produto),
 foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
+
+create table servico(
+id int identity(100,1) not null,
+valor int null,
+id_cliente int not null
+primary key(id, id_cliente)
+foreign key(id_cliente) references cliente(id))
+
+create table agenda(
+id_hora datetime not null,
+disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
+id_servico int not null,
+id_cliente int not null
+primary key(id_hora, id_cliente, id_servico)
+foreign key(id_servico, id_cliente) references servico(id, id_cliente))
+
+insert into agenda(id_hora, disponibilidade, id_servico, id_cliente) values
+('10:00')
+
 
 INSERT INTO pessoa (idTipo) VALUES
 (1), --1 adm

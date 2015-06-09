@@ -70,31 +70,19 @@ public class CtrlTelaProduto implements ActionListener {
 
 	public boolean camposProduto() {
 
-		if (txtNome.getText().equals("") || txtDescricao.getText().equals("")
+		return !(txtNome.getText().equals("") || txtDescricao.getText().equals("")
 				|| txtValorVenda.getText().equals("")
 				|| txtValorCompra.getText().equals("")
-				|| txtIdFornecedor.getText().equals("")) {
-			return false;
-		} else {
-			return true;
-		}
+				|| txtIdFornecedor.getText().equals(""));
 
 	}
 
 	public boolean camposLote() {
-		if (txtDataValidadeLote.getText().equals("")) {
-			return false;
-		} else {
-			return true;
-		}
+		return !(txtDataValidadeLote.getText().equals(""));
 	}
 
 	public boolean camposPesquisa() {
-		if (txtNome.getText().equals("")) {
-			return false;
-		} else {
-			return true;
-		}
+		return !(txtNome.getText().equals(""));
 
 	}
 

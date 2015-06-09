@@ -4,6 +4,7 @@ public class Agenda {
 	
 	private String horario;
 	private Boolean escolhaHorario;
+	private int auxiliar;
 	private String descricao;
 	private Servico servico;
 	private Cliente cliente;
@@ -26,12 +27,13 @@ public class Agenda {
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
+	}	
 
 	@Coluna(nome="Tipo de Serviço", posicao=2)
 	public String getDescricao() {
-		return descricao;
+		return this.servico == null ? "" : this.servico.getNome();
 	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
@@ -43,6 +45,15 @@ public class Agenda {
 
 	public void setHorario(String horario) {
 		this.horario = horario;
+	}
+	public int getAuxiliar() {
+		return auxiliar;
+	}
+	
+	public void setAuxiliar(int auxiliar) {
+//		this.auxiliar = auxiliar;
+		if(this.auxiliar == 0) this.setEscolhaHorario(Boolean.FALSE);
+		else this.setEscolhaHorario(Boolean.TRUE);	
 	}
 	
 	

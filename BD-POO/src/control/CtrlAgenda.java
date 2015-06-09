@@ -21,7 +21,7 @@ public class CtrlAgenda {
 			e.printStackTrace();
 		}
 		lista.forEach(a -> {
-			System.out.println(a.getHorario());
+			System.out.println(a.getHorario() +"  "+ a.getAuxiliar() +"  "+ a.getEscolhaHorario());
 		});
 		return lista;
 	}

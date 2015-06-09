@@ -23,7 +23,7 @@ public class AgendaDaoImpl implements AgendaDao{
 	@Override
 	public List<Agenda> BuscarAgenda() throws SQLException {
 		List<Agenda> lista = new ArrayList<Agenda>();
-		String sql = "select CONVERT(CHAR(5), hora, 108) as hora"
+		String sql = "select CONVERT(CHAR(5), hora, 108) as hora, disponibilidade"
 					+ " from agenda";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
@@ -32,6 +32,8 @@ public class AgendaDaoImpl implements AgendaDao{
 		while ( rs.next() ){
 			Agenda a = new Agenda();
 			a.setHorario( rs.getString("hora"));
+			a.setAuxiliar( rs.getInt("disponibilidade") );
+			
 			lista.add(a);
 		}
 		ps.close();

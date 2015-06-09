@@ -107,6 +107,7 @@ public class FrmAgenda extends MouseAdapter{
 		panel.setLayout(null);
 		
 		txtCliente = new JTextField();
+		txtCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtCliente.setEnabled(false);
 		txtCliente.setBounds(35, 30, 252, 20);
 		panel.add(txtCliente);
@@ -172,7 +173,31 @@ public class FrmAgenda extends MouseAdapter{
 	
 	private void montarAgenda() {
 		listaAgenda = new ArrayList<Agenda>();
+//		Agenda a = new Agenda();
+//		a.setHorario("8:30");
+//		a.setEscolhaHorario(Boolean.TRUE);
+//		listaAgenda.add(a);
+//		Agenda a1 = new Agenda();
+//		a1.setHorario("8:30");
+//		a1.setEscolhaHorario(Boolean.TRUE);
+//		listaAgenda.add(a1);
+//		Agenda a2 = new Agenda();
+//		a2.setHorario("8:30");
+//		a2.setEscolhaHorario(Boolean.TRUE);
+//		listaAgenda.add(a2);
+//		Agenda a3 = new Agenda();
+//		a3.setHorario("8:30");
+//		a3.setEscolhaHorario(Boolean.TRUE);
+//		listaAgenda.add(a3);
+		
+//		if(){
+//			
+//		} else {
+//			
+//		}
+		
 		controlAgenda = new CtrlAgenda();
+		
 		listaAgenda = controlAgenda.buscarAgenda();
 		
 		modelo = new ModeloTabela(listaAgenda);

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
@@ -65,6 +66,8 @@ public class FrmAgenda extends MouseAdapter{
 	private CtrlAnimal controlAnimal;
 	private List<Animal> listaAnimal;
 	private JButton btnSalvar;
+	private CtrlAgenda controlAgenda;
+	private List<Agenda> listaAgenda;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -72,15 +75,6 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
-		
-		//montarAgenda();
-		
-//		scrollPaneAgenda = new JScrollPane();
-//		scrollPaneAgenda.setBounds(10, 80, 351, 450);
-//		panPrincipal.add(scrollPaneAgenda);
-//		
-//		tableAgenda = new JTable();
-//		scrollPaneAgenda.setViewportView(tableAgenda);
 		
 		scrollPaneCliente = new JScrollPane();
 		scrollPaneCliente.setBounds(384, 115, 397, 166);
@@ -159,8 +153,8 @@ public class FrmAgenda extends MouseAdapter{
 		
 		scrollPaneAgenda = new JScrollPane();
 		scrollPaneAgenda.getViewport().setBorder(null);
-		scrollPaneAgenda.getViewport().add(tableAgenda);
-		scrollPaneAgenda.setBounds(10, 80, 351, 450);
+		scrollPaneAgenda.setViewportView(tableAgenda);
+		scrollPaneAgenda.setBounds(10, 80, 351, 332);
 		scrollPaneAgenda.setVisible(true);
 		panPrincipal.add(scrollPaneAgenda);
 		
@@ -177,21 +171,16 @@ public class FrmAgenda extends MouseAdapter{
 	}
 	
 	private void montarAgenda() {
-		List<Agenda> listaAgenda = new ArrayList<Agenda>();
-		for (int i = 0; i < 2; i++) {
-			Agenda a = new Agenda();
-			a.setHorario("8:30");
-			a.setDescricao("Banho");
-			a.setEscolhaHorario(new Boolean(true));
-			listaAgenda.add(a);
-		}
+		listaAgenda = new ArrayList<Agenda>();
+		controlAgenda = new CtrlAgenda();
+		listaAgenda = controlAgenda.buscarAgenda();
 		
 		modelo = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
 		tableAgenda.setModel(modelo);
+	}	
 		
-	}
-
+		
 	private void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
 		

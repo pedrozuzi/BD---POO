@@ -84,15 +84,7 @@ public class ModeloTabela extends AbstractTableModel {
 			}
 			
 		} 
-//			System.out.println(classe.getName());
-//			System.out.println("TESTE");
-//			if (classe.getName() == "entity.Funcionario") {
-//				Funcionario f = (Funcionario) lista.get(rowIndex);
-//				System.out.println("Entrou");
-//			}
-//		}
-//		Funcionario f = (Funcionario) lista.get(rowIndex);
-//		fireTableCellUpdated(rowIndex, columnIndex);
+
 	}
 	
 	@Override
@@ -107,9 +99,9 @@ public class ModeloTabela extends AbstractTableModel {
 	
 	@Override
 	public Class<?> getColumnClass(int coluna) {
-		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
-			return getValueAt(0, coluna).getClass();
-		}
+//		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+//			return getValueAt(0, coluna).getClass();
+//		}
 		 return classe;
 	}
 	

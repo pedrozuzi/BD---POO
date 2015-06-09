@@ -314,7 +314,7 @@ public class FrmAnimal extends MouseAdapter {
 		ConfigTelas.centralizarFrame( janelaAnimal );
 		
 		btnLupaPesquisar.addActionListener(l -> {
-			animal(jd);
+			cliente(jd);
 		});
 		
 		btnIncluir.addActionListener(l -> {
@@ -388,7 +388,7 @@ public class FrmAnimal extends MouseAdapter {
 		btnVoltar.setVisible(true);
 	}
 
-	public  void animal(JDialog jd) {
+	public void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
 		panPrincipalBusca = new JPanel();
 		panPrincipalBusca.setBackground(SystemColor.text);
@@ -470,7 +470,7 @@ public class FrmAnimal extends MouseAdapter {
 		return txtCliente.getText().isEmpty();
 	}
 
-	private void buscaCliente() {
+	public void buscaCliente() {
 		controlCliente = new CtrlCliente();
 		listaCliente = new ArrayList<Cliente>();
 

@@ -7,16 +7,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlCliente;
+import control.ModeloTabela;
+
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
-public class FrmAgenda {
+import entity.Cliente;
+
+public class FrmAgenda extends MouseAdapter{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
@@ -24,7 +38,20 @@ public class FrmAgenda {
 	private JTable tableCliente;
 	private JTextField txtData;
 	private JTextField txtCliente;
-	private JButton btnPesquisar_1;
+	private JButton btnLupaPesquisar;
+	private JComboBox<String> comboBoxAnimal;
+	private JComboBox<String> comboBoxServico;
+	private JPanel panel;
+	private JButton btnPesquisar;
+	private JDialog jd;
+	private JPanel panPrincipalBusca;
+	private JTable tableBusca;
+	private JScrollPane scrollPaneBusca;
+	private JButton btnLupaPesquisarBusca;
+	private JTextField txtBuscaCliente;
+	private CtrlCliente controlCliente;
+	private List<Cliente> listaCliente;
+	private ModeloTabela modelo;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -55,7 +82,8 @@ public class FrmAgenda {
 		panPrincipal.add(txtData);
 		txtData.setColumns(10);
 		
-		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar = new JButton("");
+		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnPesquisar.setBounds(106, 10, 89, 23);
 		panPrincipal.add(btnPesquisar);
 		
@@ -64,7 +92,7 @@ public class FrmAgenda {
 		lblAgenda.setBounds(150, 54, 78, 20);
 		panPrincipal.add(lblAgenda);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -77,15 +105,16 @@ public class FrmAgenda {
 		panel.add(txtCliente);
 		txtCliente.setColumns(10);
 		
-		btnPesquisar_1 = new JButton("Pesquisar");
-		btnPesquisar_1.setBounds(297, 29, 89, 23);
-		panel.add(btnPesquisar_1);
+		btnLupaPesquisar = new JButton("");
+		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
+		btnLupaPesquisar.setBounds(297, 29, 89, 23);
+		panel.add(btnLupaPesquisar);
 		
-		JComboBox comboBoxAnimal = new JComboBox();
+		comboBoxAnimal = new JComboBox<String>();
 		comboBoxAnimal.setBounds(581, 430, 179, 20);
 		panPrincipal.add(comboBoxAnimal);
 		
-		JComboBox comboBoxServico = new JComboBox();
+		comboBoxServico = new JComboBox<String>();
 		comboBoxServico.setBounds(384, 430, 125, 20);
 		panPrincipal.add(comboBoxServico);
 		
@@ -107,8 +136,79 @@ public class FrmAgenda {
 		panPrincipal.add(lblCliente);
 		ConfigTelas.centralizarFrame(janela);
 		
+		btnLupaPesquisar.addActionListener(e -> {
+			cliente(jd);
+		});
+		
 	}
 	
+	private void cliente(JDialog jd) {
+		jd = new JDialog(jd, "Buscar Cliente", true);
+		
+		panPrincipalBusca = new JPanel();
+		panPrincipalBusca.setBackground(SystemColor.text);
+		panPrincipalBusca.setForeground(Color.WHITE);
+		panPrincipalBusca.setLayout(null);
+		
+		tableBusca = new JTable();
+		tableBusca.addMouseListener(this);
+		tableBusca.setBorder(new LineBorder(Color.BLACK));
+		tableBusca.setGridColor(Color.BLACK);
+		tableBusca.setShowGrid(true);
+		
+		scrollPaneBusca = new JScrollPane();
+		scrollPaneBusca.getViewport().setBorder(null);
+		scrollPaneBusca.setViewportView(tableBusca);
+		scrollPaneBusca.setBounds(10, 64, 539, 159);
+		panPrincipalBusca.add(scrollPaneBusca);
+		
+		btnLupaPesquisarBusca = new JButton("");
+		btnLupaPesquisarBusca.setIcon(new ImageIcon(FrmAnimal.class.getResource("/img/MiniLupa.png")));
+		btnLupaPesquisarBusca.setBounds(368, 22, 65, 31);
+		btnLupaPesquisarBusca.setVisible(true);
+		panPrincipalBusca.add(btnLupaPesquisarBusca);
+		
+		txtBuscaCliente = new JTextField();
+		txtBuscaCliente.setBounds(92, 33, 264, 20);
+		panPrincipalBusca.add(txtBuscaCliente);
+		txtBuscaCliente.setColumns(10);
+		
+		btnLupaPesquisarBusca.addActionListener(l -> {
+			buscaCliente();
+		});
+		
+		jd.setContentPane( panPrincipalBusca );
+		jd.setSize(580,280);
+		jd.setLocationRelativeTo(null);
+		jd.setVisible(true);
+		
+		
+	}
+
+	private void buscaCliente() {
+		controlCliente = new CtrlCliente();
+		listaCliente = new ArrayList<Cliente>();
+
+			try {
+				listaCliente = controlCliente.buscaClientePorNome(txtBuscaCliente.getText());
+				if (!listaCliente.isEmpty()) {
+					modelo = new ModeloTabela(listaCliente);
+					tableBusca.getTableHeader().setReorderingAllowed(false);
+					tableBusca.setModel(modelo);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		limpaCampos();
+		
+	}
+
+	private void limpaCampos() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public static void main(String[] args) {
 		new FrmAgenda();
 	}

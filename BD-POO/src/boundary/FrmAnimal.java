@@ -88,6 +88,12 @@ public class FrmAnimal extends MouseAdapter {
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private JLabel lblTiraCinza;
+	private JLabel label;
+	private JLabel lblTiraCinza2;
+	private JLabel lblTiraCinza3;
+	private JLabel lblTiraVermelha2;
+	private JLabel lblTiraVermelha;
 	
 	public FrmAnimal() {
 		
@@ -135,11 +141,30 @@ public class FrmAnimal extends MouseAdapter {
 		txtCliente.setEnabled(false);
 		txtCliente.setVisible(false);
 		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		label.setBounds(368, 463, 270, 14);
+		panPrincipalAnimal.add(label);
+		
+		lblTiraCinza2 = new JLabel("");
+		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		lblTiraCinza2.setBounds(-10, 463, 236, 14);
+		panPrincipalAnimal.add(lblTiraCinza2);
+		
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha.setBounds(0, 0, 621, 14);
+		panPrincipalAnimal.add(lblTiraVermelha);
+			
+		lblTiraVermelha2 = new JLabel("");
+		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha2.setBounds(-10, 488, 648, 14);
+		panPrincipalAnimal.add(lblTiraVermelha2);
+		
 		lblLogo = new JLabel("");
-		lblLogo.setBounds(37, 277, 546, 199);
+		lblLogo.setBounds(177, 265, 263, 237);
 		panPrincipalAnimal.add(lblLogo);
-		lblLogo.setIcon(new ImageIcon(FrmAnimal.class.getResource
-				("/img/LogoLudpet.png")));
+		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
 		txtCliente.setBounds(145, 301, 238, 20);
 		panPrincipalAnimal.add(txtCliente);
 		txtCliente.setColumns(10);
@@ -150,7 +175,7 @@ public class FrmAnimal extends MouseAdapter {
 		panelAnimal.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panelAnimal.setBackground(Color.WHITE);
-		panelAnimal.setBounds(112, 11, 343, 79);
+		panelAnimal.setBounds(129, 17, 343, 79);
 		panPrincipalAnimal.add(panelAnimal);
 		
 		btnIncluir = new JButton("");
@@ -314,6 +339,18 @@ public class FrmAnimal extends MouseAdapter {
 		
 		janelaAnimal.setSize(627,656);
 		janelaAnimal.setContentPane( panPrincipalAnimal );
+		
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setBounds(454, 17, 184, 14);
+		panPrincipalAnimal.add(lblTiraCinza);
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		ConfigTelas.centralizarFrame( janelaAnimal );
+		
+		lblTiraCinza3 = new JLabel("");
+		lblTiraCinza3.setBounds(0, 17, 129, 14);
+		panPrincipalAnimal.add(lblTiraCinza3);
+		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		
 		ConfigTelas.centralizarFrame( janelaAnimal );
 		
 		btnLupaPesquisar.addActionListener(l -> {
@@ -369,6 +406,9 @@ public class FrmAnimal extends MouseAdapter {
 	
 	private void montarTela() {
 		lblLogo.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		label.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
 		tableAnimal.setVisible(true);
 		scrollPane.setVisible(true);
 		panelCliente.setVisible(true);

@@ -1,5 +1,5 @@
 create database ludpet
-
+go
 use ludpet
 
 create table tipo(
@@ -62,13 +62,6 @@ telefone int not null,
 primary key(id),
 foreign key(id) references pessoa(idPessoa))
 
-create table venda(
-id int identity not null,
-id_cliente int not null,
-id_funcionario int not null
-primary key(id, id_cliente),
-foreign key(id_cliente) references cliente(id),
-foreign key(id_funcionario) references funcionario(id),)
 
 create table animal(
 id int identity not null,
@@ -106,16 +99,23 @@ primary key(idProduto, idLote),
 foreign key(idProduto)references produto (id) ON DELETE CASCADE,
 foreign key(idLote)references lote (id) ON DELETE CASCADE)
 
+create table venda(
+id int identity not null,
+id_cliente int null,
+id_funcionario int not null
+primary key(id),
+foreign key(id_cliente) references cliente(id),
+foreign key(id_funcionario) references funcionario(id),)
+
 create table venda_produto(
 data_venda datetime not null,
 id_venda int not null,
-id_cliente int not null,
 id_produto int not null,
 quantidade int not null,
 total int not null,
 check(data_venda <= getdate()),
-primary key(data_venda, id_venda, id_cliente, id_produto),
-foreign key(id_venda, id_cliente) references venda(id, id_cliente),
+primary key(data_venda, id_venda, id_produto),
+foreign key(id_venda) references venda(id),
 foreign key(id_produto) references produto(id))
 
 create table compra(
@@ -164,9 +164,9 @@ INSERT INTO fornecedor (id,nome,telefone) VALUES
 (4,'burns',11111111),
 (9,'aang',22222222)
 
-INSERT INTO cliente (id,nome,logradouro,numero,bairro) VALUES
-(5,'Oscar Alho','av 23',157,'se'),
-(10,'Paula Tejando','rua cachueira',420,'cracolandia')
+INSERT INTO cliente (id,nome,logradouro,numero,bairro,telefone,cpf) VALUES
+(5,'Oscar Alho','av 23',157,'se',11111111,11111111111),
+(10,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111)
 
 INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra) VALUES
 ('Petimax','ração para cachorro',4,10.00,5.00),
@@ -184,11 +184,7 @@ INSERT INTO lote_produto(idProduto,idLote) VALUES
 (2,3),
 (2,4)
 
-INSERT INTO lote_produto(idProduto,idLote) VALUES
-(3,5),
-(3,6),
-(4,7),
-(4,8)
+------------------------
 
 use master
 drop database ludpet

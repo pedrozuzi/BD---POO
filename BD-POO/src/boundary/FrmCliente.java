@@ -68,6 +68,12 @@ public class FrmCliente extends MouseAdapter {
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private JLabel lblTiraVermelha2;
+	private JLabel lblTiraCinza2;
+	private JLabel label;
+	private JLabel lblTiraVermelha;
+	private JLabel lblTiraCinza3;
+	private JLabel lblTiraCinza;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -111,6 +117,41 @@ public class FrmCliente extends MouseAdapter {
 		lblLogradouro = new JLabel("Logradouro:");
 		lblLogradouro.setFont(new Font("Arial", Font.BOLD, 14));
 		lblLogradouro.setVisible(false);
+		
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setBounds(538, 17, 206, 14);
+		panPrincipal.add(lblTiraCinza);
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		
+		lblTiraCinza3 = new JLabel("");
+		lblTiraCinza3.setBounds(0, 17, 196, 14);
+		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		panPrincipal.add(lblTiraCinza3);
+		
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha.setBounds(0, 0, 744, 14);
+		panPrincipal.add(lblTiraVermelha);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		label.setBounds(426, 419, 318, 14);
+		panPrincipal.add(label);
+		
+		lblTiraCinza2 = new JLabel("");
+		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		lblTiraCinza2.setBounds(-11, 419, 298, 14);
+		panPrincipal.add(lblTiraCinza2);
+		
+		lblTiraVermelha2 = new JLabel("");
+		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha2.setBounds(-11, 439, 755, 14);
+		panPrincipal.add(lblTiraVermelha2);
+		
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
+		lblLogo.setBounds(230, 222, 279, 233);
+		panPrincipal.add(lblLogo);
 		lblLogradouro.setBounds(90, 398, 96, 14);
 		panPrincipal.add(lblLogradouro);
 		
@@ -140,7 +181,7 @@ public class FrmCliente extends MouseAdapter {
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(186, 11, 343, 79);
+		panel.setBounds(196, 17, 343, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -212,12 +253,6 @@ public class FrmCliente extends MouseAdapter {
 		btnLupaPesquisar.setVisible(false);
 		panPrincipal.add(btnLupaPesquisar);
 		
-		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource
-				("/img/LogoLudpet.png")));
-		lblLogo.setBounds(106, 154, 546, 199);
-		panPrincipal.add(lblLogo);
-		
 		txtNumero = new TratamentoTextFields(8);
 		txtNumero.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtNumero.setVisible(false);
@@ -278,7 +313,7 @@ public class FrmCliente extends MouseAdapter {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().setBorder(null);
-		scrollPane.getViewport().add(table);
+		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 112, 717, 167);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
@@ -406,12 +441,18 @@ public class FrmCliente extends MouseAdapter {
 		btnLimpar.setVisible(true);
 		btnVoltar.setVisible(true);
 		lblLogo.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
+		label.setVisible(false);
 		scrollPane.setVisible(false);
 		table.setVisible(false);
 	}
 	
 	private void telaAlterarExcluirFornecedor() {
 		lblLogo.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
+		label.setVisible(false);
 		btnLupaPesquisar.setVisible(true);
 		txtNome.setVisible(true);
 		txtCpf.setVisible(true);

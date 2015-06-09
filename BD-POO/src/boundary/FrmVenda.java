@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class FrmVenda {
 
@@ -114,6 +116,7 @@ public class FrmVenda {
 		panDinheiro.setOpaque(false);
 
 		JPanel panInferior = new JPanel();
+		panInferior.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panInferior.setBounds(30, 620, 750, 60);
 		panPrincipal.add(panInferior);
 		panInferior.setLayout(null);
@@ -166,7 +169,6 @@ public class FrmVenda {
 		txtNumVenda = new JTextField();
 		txtNumVenda.setBounds(166, 20, 64, 20);
 		panVenda.add(txtNumVenda);
-		txtNumVenda.setEnabled(false);
 		txtNumVenda.setColumns(10);
 
 		lblData = new JLabel("Data:");
@@ -311,11 +313,13 @@ public class FrmVenda {
 		panConsulta.add(btnConsultaEstoque);
 
 		JButton btnFinaliza = new JButton("Finalizar");
-		btnFinaliza.setBounds(631, 11, 89, 23);
+		btnFinaliza.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniSalvar.png")));
+		btnFinaliza.setBounds(631, 11, 109, 38);
 		panInferior.add(btnFinaliza);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(532, 11, 89, 23);
+		btnCancelar.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniX.png")));
+		btnCancelar.setBounds(520, 11, 101, 38);
 		panInferior.add(btnCancelar);
 
 		JLabel label = new JLabel("");

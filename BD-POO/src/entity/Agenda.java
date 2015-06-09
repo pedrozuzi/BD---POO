@@ -4,17 +4,9 @@ import java.util.Date;
 
 public class Agenda {
 	
-	private Date horario;
+	private String horario;
 	private Boolean servico;
 	private String descricao;
-	
-	@Coluna(nome="Horário", posicao=0)
-	public Date getHorario() {
-		return horario;
-	}
-	public void setHorario(Date horario) {
-		this.horario = horario;
-	}
 	
 	@Coluna(nome="Serviço", posicao=1)
 	public Boolean getServico() {
@@ -31,6 +23,15 @@ public class Agenda {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	@Coluna(nome="Horário", posicao=0)
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 	
 	

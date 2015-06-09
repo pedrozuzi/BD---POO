@@ -52,7 +52,7 @@ public class FrmAgenda extends MouseAdapter{
 	private JButton btnPesquisar;
 	private JDialog jd;
 	private JPanel panPrincipalBusca;
-	private JTable tableBusca;
+	private JTable tableBusca = new JTable();
 	private JScrollPane scrollPaneBusca;
 	private JButton btnLupaPesquisarBusca;
 	private JTextField txtBuscaCliente;
@@ -179,8 +179,9 @@ public class FrmAgenda extends MouseAdapter{
 	private void montarAgenda() {
 		List<Agenda> listaAgenda = new ArrayList<Agenda>();
 		Agenda a = new Agenda();
+		a.setHorario("8:30");
 		a.setDescricao("Banho");
-		a.setServico( new Boolean(false) );
+		a.setServico( new Boolean(true) );
 		listaAgenda.add(a);
 		modelo = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);

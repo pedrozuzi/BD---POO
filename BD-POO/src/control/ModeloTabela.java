@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import entity.Agenda;
 import entity.Coluna;
 import entity.Funcionario;
 
@@ -75,20 +76,39 @@ public class ModeloTabela extends AbstractTableModel {
 	
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-	    Funcionario f = (Funcionario) lista.get(rowIndex);
-	    System.out.println(classe.getName());
-	    System.out.println("TESTE");
-	    if(classe.getName() == "entity.Funcionario"){
-	    	System.out.println("Entrou");
-	    }
-	    fireTableCellUpdated(rowIndex, columnIndex);
+//
+//		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+//			Agenda a = (Agenda) lista.get(rowIndex);
+//		} else {
+//			System.out.println(classe.getName());
+//			System.out.println("TESTE");
+//			if (classe.getName() == "entity.Funcionario") {
+//				Funcionario f = (Funcionario) lista.get(rowIndex);
+//				System.out.println("Entrou");
+//			}
+//		}
+//		Funcionario f = (Funcionario) lista.get(rowIndex);
+//		fireTableCellUpdated(rowIndex, columnIndex);
 	}
 	
 	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
+	public boolean isCellEditable(int linha, int coluna) {
+		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+			System.out.println("AGENDA");
+			if (coluna == 1) {
+				System.out.println("editavel");
+				return coluna == 1;
+			}
+		}
 		return false;
 	}
 	
-	
+	@Override
+	public Class<?> getColumnClass(int coluna) {
+		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+			return getValueAt(0, coluna).getClass();
+		}
+		 return classe;
+	}
 	
 }

@@ -136,20 +136,22 @@ id int identity(1,1) not null,
 nome varchar(11) not null,
 valor int null,
 id_cliente int not null,
-hora_agenda time null
 primary key(id, id_cliente),
-foreign key(id_cliente) references cliente(id),
-foreign key(hora_agenda) references agenda(hora))
+foreign key(id_cliente) references cliente(id))
 
 create table agenda(
 hora time not null,
 disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
-primary key(hora))
+id_servico int null,
+id_cliente_agenda int null
+primary key(hora),
+foreign key (id_servico, id_cliente_agenda) references servico(id, id_cliente_agenda))
+
 
 select * from servico
-drop table servico
+drop table agenda
 
-insert into servico(nome, valor, id_cliente) values
+insert into servico (nome, valor, id_cliente) values
 ('banho', 55, 5)
 
 select * from servico
@@ -159,9 +161,15 @@ select id from servico where id = (select COUNT(id) from servico)
 select CONVERT(CHAR(5), hora, 108) as hora
 from agenda
 
+select CONVERT(CHAR(5), a.hora, 108) as hora, s.nome as nome_servico
+from servico s
+inner join agenda a
+on s.hora_agenda = a.hora
+where s.id = 3
+
 select * from cliente
 
-insert into agenda(hora) values
+insert into agenda(hora, disponibilidade) values
 ('10:00',0),
 ('10:30',0),
 ('11:00',0),

@@ -15,6 +15,7 @@ public class ModeloTabela extends AbstractTableModel {
 
 	private final List<?> lista;
 	private Class<?> classe;
+	private int aux = 0;
 
 	public ModeloTabela(List<?> lista) {
 		this.lista = lista;
@@ -99,10 +100,10 @@ public class ModeloTabela extends AbstractTableModel {
 	
 	@Override
 	public Class<?> getColumnClass(int coluna) {
-//		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
-//			return getValueAt(0, coluna).getClass();
-//		}
-		 return classe;
+		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+			return getValueAt(0, coluna).getClass();
+		}
+		return classe;
 	}
 	
 }

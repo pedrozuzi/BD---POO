@@ -40,10 +40,9 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 
-import com.sun.security.ntlm.Client;
-
 import entity.Animal;
 import entity.Cliente;
+import entity.Servico;
 
 public class FrmServico implements MouseListener, ActionListener{
 	
@@ -64,6 +63,12 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JButton btnPesquisarCliente;
 	private JLabel lblAnimal;
 	private JLabel lblRaca;
+	private JPanel panelOperacao;
+	private JLabel lblNovoServico;
+	private JButton btnServicoAgendado;
+	private JButton btnNovoServico;
+	private JLabel lblServicoAgendado;
+	private JLabel lblLogoLudPet;
 	private JPanel panelServico;
 	private JRadioButton rdbtnBanho;
 	private JRadioButton rdbtnTosa;
@@ -80,14 +85,11 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JTable tableBusca;
 	private CtrlCliente controlCliente;
 	private List<Cliente> listaCliente;
+	private Cliente cliente;
 	private List<Animal> listaAnimal;
+	private Animal animal;
 	private ModeloTabela modelo;
-	private JPanel panelOperacao;
-	private JLabel lblNovoServico;
-	private JButton btnServicoAgendado;
-	private JButton btnNovoServico;
-	private JLabel lblServicoAgendado;
-	private JLabel lblLogoLudPet;
+	private Servico servico;
 
 	public FrmServico() {
 		
@@ -97,7 +99,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);
 		
-		lblCodigoServico = new JLabel("C\u00F3digo Servico : ");
+		lblCodigoServico = new JLabel("C\u00F3digo Serviço : ");
 		lblCodigoServico.setVisible(false);
 		lblCodigoServico.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCodigoServico.setBounds(23, 175, 111, 14);

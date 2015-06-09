@@ -87,6 +87,12 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private Funcionario f;
 	Usuario u;
 	private int controle = 0;
+	private JLabel lblTiraVermelha2;
+	private JLabel label;
+	private JLabel lblTiraCinza2;
+	private JLabel lblTiraVermelha;
+	private JLabel lblTiraCinza3;
+	private JLabel lblTiraCinza;
 	
 	public FrmUsuario() {
 
@@ -128,6 +134,41 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			janela.dispose();
 			new FrmLogin();
 		});
+		
+		lblTiraVermelha2 = new JLabel("");
+		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha2.setBounds(-15, 422, 653, 14);
+		panelPrincipal.add(lblTiraVermelha2);
+		
+		lblTiraCinza2 = new JLabel("");
+		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		lblTiraCinza2.setBounds(-21, 408, 249, 14);
+		panelPrincipal.add(lblTiraCinza2);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		label.setBounds(368, 408, 260, 14);
+		panelPrincipal.add(label);
+		
+		lblLogoLudPet = new JLabel("");
+		lblLogoLudPet.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
+		lblLogoLudPet.setBounds(173, 179, 245, 286);
+		panelPrincipal.add(lblLogoLudPet);
+		
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setBounds(476, 17, 141, 14);
+		panelPrincipal.add(lblTiraCinza);
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha.setBounds(0, 0, 628, 14);
+		panelPrincipal.add(lblTiraVermelha);
+		
+		lblTiraCinza3 = new JLabel("");
+		lblTiraCinza3.setBounds(0, 17, 141, 14);
+		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		panelPrincipal.add(lblTiraCinza3);
 		
 		panelAcoes = new JPanel();
 		panelAcoes.setLayout(null);
@@ -279,11 +320,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		lblDadosObrigatorios.setBounds(464, 537, 117, 14);
 		panelPrincipal.add(lblDadosObrigatorios);
 		
-		lblLogoLudPet = new JLabel("");
-		lblLogoLudPet.setIcon(new ImageIcon(FrmUsuario.class.getResource("/img/LogoLudpet.png")));
-		lblLogoLudPet.setBounds(20, 174, 587, 286);
-		panelPrincipal.add(lblLogoLudPet);
-		
 		janela.setSize(633, 671);		
 		ConfigTelas.centralizarFrame(janela);
 		
@@ -323,6 +359,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		String acao = e.getActionCommand();
 		Object obj = e.getSource();
 		lblLogoLudPet.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		label.setVisible(false);
 		montarTela();
 		
 		if(btnIncluir.equals(obj)){

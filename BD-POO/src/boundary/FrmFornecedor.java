@@ -223,7 +223,7 @@ public class FrmFornecedor extends MouseAdapter{
 		panPrincipal.add(lblTiraVermelha);
 		
 		lblTiraCinza = new JLabel("");
-		lblTiraCinza.setBounds(450, 17, 128, 14);
+		lblTiraCinza.setBounds(447, 17, 131, 14);
 		panPrincipal.add(lblTiraCinza);
 		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
 		

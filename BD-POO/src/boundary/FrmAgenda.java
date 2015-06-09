@@ -178,11 +178,14 @@ public class FrmAgenda extends MouseAdapter{
 	
 	private void montarAgenda() {
 		List<Agenda> listaAgenda = new ArrayList<Agenda>();
-		Agenda a = new Agenda();
-		a.setHorario("8:30");
-		a.setDescricao("Banho");
-		a.setServico( new Boolean(true) );
-		listaAgenda.add(a);
+		//for (int i = 0; i < 2; i++) {
+			Agenda a = new Agenda();
+			a.setHorario("8:30");
+			a.setDescricao("Banho");
+			a.setServico( new Boolean(true) );
+			listaAgenda.add(a);
+		//}
+		
 		modelo = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
 		tableAgenda.setModel(modelo);

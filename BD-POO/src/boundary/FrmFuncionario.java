@@ -80,6 +80,12 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private JLabel lblTiraVermelha2;
+	private JLabel lblTiraCinza2;
+	private JLabel label;
+	private JLabel lblTiraVermelha;
+	private JLabel lblTiraCinza3;
+	private JLabel lblTiraCinza;
 	
 	public FrmFuncionario() {
 	
@@ -158,6 +164,45 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblRemover.setBounds(242, 54, 39, 19);
 		panel.add(lblRemover);
+		
+		btnIncluir.addActionListener(this);
+		btnAlterar.addActionListener(this);
+		btnRemover.addActionListener(this);
+		
+		lblTiraVermelha2 = new JLabel("");
+		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha2.setBounds(-11, 380, 599, 14);
+		panPrincipal.add(lblTiraVermelha2);
+		
+		lblTiraCinza3 = new JLabel("");
+		lblTiraCinza3.setBounds(0, 17, 119, 14);
+		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		panPrincipal.add(lblTiraCinza3);
+		
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha.setBounds(0, 0, 576, 14);
+		panPrincipal.add(lblTiraVermelha);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		label.setBounds(354, 365, 234, 14);
+		panPrincipal.add(label);
+		
+		lblTiraCinza2 = new JLabel("");
+		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		lblTiraCinza2.setBounds(0, 365, 209, 14);
+		panPrincipal.add(lblTiraCinza2);
+		
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setBounds(450, 17, 128, 14);
+		panPrincipal.add(lblTiraCinza);
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
+		lblLogo.setBounds(155, 155, 269, 255);
+		panPrincipal.add(lblLogo);
 		
 		ctrlFunc = new CtrlFuncionario();
 		
@@ -241,11 +286,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		txtSalario.setVisible(false);
 		panPrincipal.add(txtSalario);
 		
-		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/LogoLudpet.png")));
-		lblLogo.setBounds(10, 181, 546, 199);
-		panPrincipal.add(lblLogo);
-		
 		lblTelefone = new JLabel("Telefone : *\r\n");
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTelefone.setBounds(33, 422, 89, 14);
@@ -308,10 +348,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		janela.setSize(582,625);
 		ConfigTelas.centralizarFrame(janela);
-		
-		btnIncluir.addActionListener(this);
-		btnAlterar.addActionListener(this);
-		btnRemover.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
@@ -380,6 +416,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		Object acao = e.getSource();
 		String cmd = e.getActionCommand();
 		lblLogo.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		label.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
 		Funcionario f = new Funcionario();
 				
 		if(btnIncluir.equals(acao)){

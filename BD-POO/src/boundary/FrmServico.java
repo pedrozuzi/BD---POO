@@ -414,6 +414,11 @@ public class FrmServico implements MouseListener, ActionListener{
 		jd.setContentPane(panBuscaCliente);
 		jd.setVisible(true);
 		
+		cbAnimal.addActionListener(e -> {
+			Animal a = new Animal();
+			a = (Animal) cbAnimal.getSelectedItem();
+		});
+		
 	}
 
 	private void montarTabelaCliente() {
@@ -470,6 +475,19 @@ public class FrmServico implements MouseListener, ActionListener{
 			e.printStackTrace();
 		}
 
+		montarComboBox();
+		jd = null;
+	}
+
+	private void montarComboBox() {
+		if(cbAnimal.getItemCount() > 0){
+			cbAnimal.removeAllItems();
+		}
+		if(listaAnimal != null){
+			listaAnimal.forEach((m) ->{
+				cbAnimal.addItem(m);
+			});
+		}
 	}
 
 	@Override

@@ -15,6 +15,8 @@ import javax.swing.UIManager;
  */
 
 public class ConfiguracoesTela extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 	
 	private JFrame tela;
 	protected static String look="javax.swing.plaf.nimbus.NimbusLookAndFeel";
@@ -26,7 +28,7 @@ public class ConfiguracoesTela extends JFrame {
 	 */
 	
 	public ConfiguracoesTela(JFrame tela) {
-		this.tela = tela;
+		iconeBarra(tela);
 	}
 	
 	/**

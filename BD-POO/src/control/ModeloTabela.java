@@ -2,12 +2,9 @@ package control;
 
 import java.lang.reflect.Method;
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
 import entity.Agenda;
 import entity.Coluna;
-import entity.Funcionario;
 
 public class ModeloTabela extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +12,6 @@ public class ModeloTabela extends AbstractTableModel {
 
 	private final List<?> lista;
 	private Class<?> classe;
-	private int aux = 0;
 
 	public ModeloTabela(List<?> lista) {
 		this.lista = lista;

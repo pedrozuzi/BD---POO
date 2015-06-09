@@ -10,6 +10,7 @@ import java.util.List;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Agenda;
+import entity.Servico;
 
 public class AgendaDaoImpl implements AgendaDao{
 	
@@ -31,9 +32,11 @@ public class AgendaDaoImpl implements AgendaDao{
 		
 		while ( rs.next() ){
 			Agenda a = new Agenda();
+			Servico s = new Servico();
 			a.setHorario( rs.getString("hora"));
 			a.setAuxiliar( rs.getInt("disponibilidade") );
-			
+//			s.setNome( rs.getString("nome"));
+//			a.setServico(s);
 			lista.add(a);
 		}
 		ps.close();

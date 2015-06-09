@@ -20,9 +20,6 @@ public class CtrlAgenda {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		lista.forEach(a -> {
-			System.out.println(a.getHorario() +"  "+ a.getAuxiliar() +"  "+ a.getEscolhaHorario());
-		});
 		return lista;
 	}
 

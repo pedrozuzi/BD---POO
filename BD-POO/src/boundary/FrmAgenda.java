@@ -3,6 +3,7 @@ package boundary;
 import java.awt.Color;
 import java.awt.SystemColor;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,6 +21,8 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +118,9 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.add(comboBoxAnimal);
 		
 		comboBoxServico = new JComboBox<String>();
+		comboBoxServico.addItem("Banho");
+		comboBoxServico.addItem("Tosa");
+		comboBoxServico.addItem("Banho e Tosa");
 		comboBoxServico.setBounds(384, 430, 125, 20);
 		panPrincipal.add(comboBoxServico);
 		
@@ -144,6 +150,14 @@ public class FrmAgenda extends MouseAdapter{
 	
 	private void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
+		
+		try {
+			BufferedImage image = ImageIO.read(  
+			        this.getClass().getResource("/img/icon.png"));
+			jd.setIconImage(image);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		
 		panPrincipalBusca = new JPanel();
 		panPrincipalBusca.setBackground(SystemColor.text);
@@ -181,8 +195,6 @@ public class FrmAgenda extends MouseAdapter{
 		jd.setSize(580,280);
 		jd.setLocationRelativeTo(null);
 		jd.setVisible(true);
-		
-		
 	}
 
 	private void buscaCliente() {

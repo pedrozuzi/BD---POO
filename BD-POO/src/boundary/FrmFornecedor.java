@@ -227,8 +227,6 @@ public class FrmFornecedor extends MouseAdapter{
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
 		
-		//modelo = montarTabela();
-		
 		janela.setSize(581,511);
 		janela.setContentPane( panPrincipal);
 		ConfigTelas.centralizarFrame(janela);
@@ -236,8 +234,6 @@ public class FrmFornecedor extends MouseAdapter{
 		btnLupaPesquisar.addActionListener(e -> {
 			control = new CtrlFornecedor();
 			lista = new ArrayList<Fornecedor>();
-			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-			//buscarDadosTabelaPorNome(modelo);
 			try {
 				lista = control.buscaFornecedorPorNome(txtNome.getText());
 				if (!lista.isEmpty()) {
@@ -271,7 +267,6 @@ public class FrmFornecedor extends MouseAdapter{
 		
 		btnIncluir.addActionListener( e -> {
 			scrollPane.setVisible(false);
-			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/MiniSalvar.png")));
@@ -314,8 +309,6 @@ public class FrmFornecedor extends MouseAdapter{
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.atualiza(f);
-			//modelo.setNumRows(0); //apagar Jtable para uma nova consulta
-//			buscarDadosTabelaPorNome(modelo);
 		}else if("Incluir".equalsIgnoreCase(cmd)){
 			f.setIdTipo(4);
 			f.setNome(txtNome.getText());
@@ -326,8 +319,6 @@ public class FrmFornecedor extends MouseAdapter{
 			f.setNome(txtNome.getText());
 			f.setTelefone(Integer.parseInt(txtTelefone.getText()));
 			control.excluir(f);
-			//table.remove(lista.size()); //apagar Jtable para uma nova consulta
-//			buscarDadosTabelaPorNome(modelo);
 		}
 		limpaCampos();
 	}
@@ -384,49 +375,4 @@ public class FrmFornecedor extends MouseAdapter{
 		new FrmFornecedor();
 	}
 	
-//	public DefaultTableModel montarTabela () {
-//			String[] colunas = new String[2];
-//			colunas[0] = "Nome";
-//			colunas[1] = "Telefone";
-//
-//			modelo = new CtrlTabela(new Object[][] {}, colunas);
-//
-//			table.setModel(modelo);
-//			table.addMouseListener(this);
-//			table.getTableHeader().setReorderingAllowed(false); //deixar as colunas para nao serem movidas de seu lugar original
-//			table.getColumnModel().getColumn(0).setResizable(false);
-//			table.getColumnModel().getColumn(0).setPreferredWidth(250);
-//			table.getColumnModel().getColumn(1).setPreferredWidth(60);
-//			table.setVisible(false);
-//			scrollPane.setViewportView(table);
-//			return modelo;
-//	}
-//	
-//	public void buscarDadosTabelaPorNome(DefaultTableModel modelo) {
-//		controlTable = new CtrlFornecedor(); //instanciado comoa tribulto
-//		lista = new ArrayList<Fornecedor>();
-//		
-//			if (!txtNome.getText().equals("")) {
-//				try {
-//					lista = controlTable.buscaFornecedorPorNome(txtNome.getText());
-//					if (!lista.isEmpty()) {
-//						for (Fornecedor f : lista) {
-//							Object[] linha = new Object[2];
-//							linha[0] = f.getNome();
-//							linha[1] = f.getTelefone();
-//							modelo.addRow(linha);
-//						} 
-//					}else{
-//						JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
-//								"Aviso", JOptionPane.INFORMATION_MESSAGE);
-//					}
-//					
-//				}catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}else{
-//				JOptionPane.showMessageDialog(null, "Digite um nome para pesquisar",
-//						"Aviso", JOptionPane.INFORMATION_MESSAGE);
-//			}
-//		}
 }

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.ConfigTelas;
+import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
 
@@ -33,6 +34,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
 import entity.Agenda;
+import entity.Animal;
 import entity.Cliente;
 
 public class FrmAgenda extends MouseAdapter{
@@ -60,6 +62,9 @@ public class FrmAgenda extends MouseAdapter{
 	private int idCliente;
 	private JScrollPane scrollPaneAgenda;
 	private JScrollPane scrollPaneCliente;
+	private CtrlAnimal controlAnimal;
+	private List<Animal> listaAnimal;
+	private JButton btnSalvar;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -68,20 +73,7 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		tableAgenda = new JTable();
-		tableAgenda.addMouseListener(this);
-		tableAgenda.setBorder(new LineBorder(Color.BLACK));
-		tableAgenda.setGridColor(Color.BLACK);
-		tableAgenda.setShowGrid(true);
-		
-		scrollPaneAgenda = new JScrollPane();
-		scrollPaneAgenda.getViewport().setBorder(null);
-		scrollPaneAgenda.getViewport().add(tableAgenda);
-		scrollPaneAgenda.setBounds(10, 112, 717, 167);
-		scrollPaneAgenda.setVisible(false);
-		panPrincipal.add(scrollPaneAgenda);
-		
-		montarAgenda();
+		//montarAgenda();
 		
 //		scrollPaneAgenda = new JScrollPane();
 //		scrollPaneAgenda.setBounds(10, 80, 351, 450);
@@ -90,12 +82,12 @@ public class FrmAgenda extends MouseAdapter{
 //		tableAgenda = new JTable();
 //		scrollPaneAgenda.setViewportView(tableAgenda);
 		
-//		scrollPaneCliente = new JScrollPane();
-//		scrollPaneCliente.setBounds(384, 115, 397, 166);
-//		panPrincipal.add(scrollPaneCliente);
-//		
-//		tableCliente = new JTable();
-//		scrollPaneCliente.setViewportView(tableCliente);
+		scrollPaneCliente = new JScrollPane();
+		scrollPaneCliente.setBounds(384, 115, 397, 166);
+		panPrincipal.add(scrollPaneCliente);
+		
+		tableCliente = new JTable();
+		scrollPaneCliente.setViewportView(tableCliente);
 		
 		txtData = new JTextField();
 		txtData.setBounds(10, 11, 86, 20);
@@ -150,7 +142,7 @@ public class FrmAgenda extends MouseAdapter{
 		lblServico.setBounds(389, 405, 46, 14);
 		panPrincipal.add(lblServico);
 		
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(692, 501, 89, 23);
 		panPrincipal.add(btnSalvar);
 		
@@ -158,6 +150,21 @@ public class FrmAgenda extends MouseAdapter{
 		lblCliente.setFont(new Font("Arial", Font.BOLD, 16));
 		lblCliente.setBounds(556, 81, 136, 23);
 		panPrincipal.add(lblCliente);
+		
+		tableAgenda = new JTable();
+		tableAgenda.addMouseListener(this);
+		tableAgenda.setBorder(new LineBorder(Color.BLACK));
+		tableAgenda.setGridColor(Color.BLACK);
+		tableAgenda.setShowGrid(true);
+		
+		scrollPaneAgenda = new JScrollPane();
+		scrollPaneAgenda.getViewport().setBorder(null);
+		scrollPaneAgenda.getViewport().add(tableAgenda);
+		scrollPaneAgenda.setBounds(10, 80, 351, 450);
+		scrollPaneAgenda.setVisible(true);
+		panPrincipal.add(scrollPaneAgenda);
+		
+		montarAgenda();
 		
 		janela.setSize(807,573);
 		janela.setContentPane( panPrincipal);
@@ -173,7 +180,7 @@ public class FrmAgenda extends MouseAdapter{
 		List<Agenda> listaAgenda = new ArrayList<Agenda>();
 		Agenda a = new Agenda();
 		a.setDescricao("Banho");
-		a.setServico(String.valueOf(new Boolean(true)));
+		a.setServico( new Boolean(false) );
 		listaAgenda.add(a);
 		modelo = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
@@ -269,7 +276,22 @@ public class FrmAgenda extends MouseAdapter{
 	}
 
 	private void buscaAnimaisDoCliente() {
-		// TODO Auto-generated method stub
+		controlAnimal = new CtrlAnimal();
+		listaAnimal = new ArrayList<Animal>();
+		
+		try {
+			listaAnimal = controlAnimal.buscaCliente(idCliente);
+			
+			if (!listaAnimal.isEmpty()) {
+				listaAnimal.forEach(a -> {
+					comboBoxAnimal.addItem(a.getNome());
+				});
+			}else{
+				System.out.println("LISTA VAZIA");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

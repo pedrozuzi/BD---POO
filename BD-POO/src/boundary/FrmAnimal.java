@@ -81,7 +81,7 @@ public class FrmAnimal extends MouseAdapter {
 	private int idCliente;
 	private CtrlAnimal controlAnimal;
 	private int idAnimal;
-	private JDialog jd;
+	private JDialog jd = new JDialog();
 	private JPanel panelCliente;
 	private JLabel lblLogo;
 	private JMenuBar menuBarra;
@@ -384,13 +384,12 @@ public class FrmAnimal extends MouseAdapter {
 		btnGravar.addActionListener(e -> {
 			String cmd = e.getActionCommand();
 			try {
-				acaoGravar(cmd);
-				if (listaAnimal.size() == 1) {
-					modelo.clear();
-				}else{
+				if (!validaCampos()) {
+					acaoGravar(cmd);
 					buscaAnimaisDoCliente();
+				}else{
+					JOptionPane.showMessageDialog(null, "Sem dados para processar");
 				}
-				
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -404,6 +403,15 @@ public class FrmAnimal extends MouseAdapter {
 		});
 	}
 	
+	private boolean validaCampos() {
+		return txtCliente.getText().isEmpty() || 
+				txtCor.getText().isEmpty() || 
+				txtCor.getText().isEmpty() || 
+				txtNome.getText().isEmpty() || 
+				txtRaca.getText().isEmpty() || 
+				txtRga.getText().isEmpty();
+	}
+
 	private void montarTela() {
 		lblLogo.setVisible(false);
 		lblTiraCinza2.setVisible(false);
@@ -484,7 +492,6 @@ public class FrmAnimal extends MouseAdapter {
 	private void acaoGravar(String cmd) throws SQLException {
 		Animal a = new Animal();
 		controlAnimal = new CtrlAnimal();
-		if ( !valida() ) {
 			if ("Incluir".equalsIgnoreCase(cmd)) {
 				a.setId(idCliente);
 				a.setNome(txtNome.getText());
@@ -513,13 +520,7 @@ public class FrmAnimal extends MouseAdapter {
 				a.setRga(txtRga.getText());
 				controlAnimal.excluir(a);
 			}
-		}else{
-			JOptionPane.showMessageDialog(null, "Selecione um Cliente");
-		}
-	}
-
-	private boolean valida() {
-		return txtCliente.getText().isEmpty();
+			limpaCampos();
 	}
 
 	public void buscaCliente() {
@@ -592,6 +593,8 @@ public class FrmAnimal extends MouseAdapter {
 				tableAnimal.getTableHeader().setReorderingAllowed(false);
 				tableAnimal.setModel(modelo);
 			}else{
+				modelo.clear();
+				jd.dispose();
 				System.out.println("LISTA VAZIA");
 			}
 		} catch (SQLException e) {

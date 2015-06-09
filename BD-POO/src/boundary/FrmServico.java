@@ -3,12 +3,19 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import control.ConfigTelas;
 import control.ConfiguracoesTela;
+
 import java.awt.Color;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JTextField;
+
 import java.awt.SystemColor;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -48,19 +55,14 @@ public class FrmServico {
 	private JButton btnFinalizar;
 	private JButton btnCancelar;
 	private JButton btnLimpar;
+	private JComboBox<String> cbAnimal;
 
 	public FrmServico() {
 		
 		janela = new JFrame("Servico");
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		
-		configTela = new ConfiguracoesTela( janela );
-		
-		janela.setVisible(true);
-		janela.setSize(500, 500);
-		janela.setContentPane(panel);
 		panel.setLayout(null);
 		
 		lblCodigoServico = new JLabel("C\u00F3digo Servico : ");
@@ -122,7 +124,7 @@ public class FrmServico {
 		lblAnimal.setBounds(20, 59, 68, 14);
 		panelClienteAnimal.add(lblAnimal);
 		
-		JComboBox cbAnimal = new JComboBox();
+		cbAnimal = new JComboBox<String>();
 		cbAnimal.setMaximumRowCount(10);
 		cbAnimal.setBounds(116, 57, 111, 20);
 		panelClienteAnimal.add(cbAnimal);
@@ -191,6 +193,15 @@ public class FrmServico {
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLimpar.setBounds(190, 407, 111, 31);
 		panel.add(btnLimpar);
+		
+//		configTela = new ConfiguracoesTela( janela );
+		
+		
+		janela.setSize(500, 500);
+		janela.setContentPane(panel);
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ConfigTelas.centralizarFrame(janela);
+		janela.setVisible(true);
 	
 	}
 	

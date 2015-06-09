@@ -68,6 +68,7 @@ public class FrmAgenda extends MouseAdapter{
 	private JButton btnSalvar;
 	private CtrlAgenda controlAgenda;
 	private List<Agenda> listaAgenda;
+	private JTextField txtRaca;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -107,6 +108,7 @@ public class FrmAgenda extends MouseAdapter{
 		panel.setLayout(null);
 		
 		txtCliente = new JTextField();
+		txtCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtCliente.setEnabled(false);
 		txtCliente.setBounds(35, 30, 252, 20);
 		panel.add(txtCliente);
@@ -162,6 +164,17 @@ public class FrmAgenda extends MouseAdapter{
 		
 		janela.setSize(807,573);
 		janela.setContentPane( panPrincipal);
+		
+		JLabel lblRaca = new JLabel("Ra\u00E7a: ");
+		lblRaca.setBounds(528, 469, 46, 14);
+		panPrincipal.add(lblRaca);
+		
+		txtRaca = new JTextField();
+		txtRaca.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtRaca.setEnabled(false);
+		txtRaca.setBounds(581, 466, 179, 20);
+		panPrincipal.add(txtRaca);
+		txtRaca.setColumns(10);
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
@@ -302,6 +315,7 @@ public class FrmAgenda extends MouseAdapter{
 			if (!listaAnimal.isEmpty()) {
 				listaAnimal.forEach(a -> {
 					comboBoxAnimal.addItem(a.getNome());
+					txtRaca.setText(a.getRaca());
 				});
 			}else{
 				System.out.println("LISTA VAZIA");

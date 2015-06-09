@@ -31,7 +31,7 @@ public class Agenda {
 
 	@Coluna(nome="Tipo de Serviço", posicao=2)
 	public String getDescricao() {
-		return this.servico == null ? "Nao definido" : this.servico.getNome();
+		return this.servico == null ? "" : this.servico.getNome();
 	}
 	
 	public void setDescricao(String descricao) {

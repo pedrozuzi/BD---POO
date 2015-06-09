@@ -79,6 +79,7 @@ descricao varchar(60),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,
+qtde int not null,
 primary key(id) ,
 foreign key(id_fornecedor) references fornecedor(id)
 )
@@ -93,7 +94,8 @@ foreign key(idLote)references lote (id) ON DELETE CASCADE)
 create table venda(
 id int identity not null,
 id_cliente int null,
-id_funcionario int not null
+id_funcionario int not null,
+total int not null
 primary key(id),
 foreign key(id_cliente) references cliente(id),
 foreign key(id_funcionario) references funcionario(id))
@@ -103,7 +105,7 @@ data_venda datetime not null,
 id_venda int not null,
 id_produto int not null,
 quantidade int not null,
-total int not null,
+
 check(data_venda <= getdate()),
 primary key(data_venda, id_venda, id_produto),
 foreign key(id_venda) references venda(id),

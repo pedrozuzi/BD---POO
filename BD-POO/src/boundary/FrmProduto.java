@@ -46,6 +46,7 @@ import entity.Produto;
  *
  */
 
+//TODO INCLUIR QUANTIDADE!!!!!
 public class FrmProduto extends MouseAdapter {
 
 	private JFrame janela = new JFrame("Produto");

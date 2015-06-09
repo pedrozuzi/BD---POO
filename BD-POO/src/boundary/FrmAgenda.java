@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
+import entity.Agenda;
 import entity.Cliente;
 
 public class FrmAgenda extends MouseAdapter{
@@ -55,6 +57,9 @@ public class FrmAgenda extends MouseAdapter{
 	private CtrlCliente controlCliente;
 	private List<Cliente> listaCliente;
 	private ModeloTabela modelo;
+	private int idCliente;
+	private JScrollPane scrollPaneAgenda;
+	private JScrollPane scrollPaneCliente;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -63,22 +68,34 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		janela.setSize(807,573);
-		janela.setContentPane( panPrincipal);
+		tableAgenda = new JTable();
+		tableAgenda.addMouseListener(this);
+		tableAgenda.setBorder(new LineBorder(Color.BLACK));
+		tableAgenda.setGridColor(Color.BLACK);
+		tableAgenda.setShowGrid(true);
 		
-		JScrollPane scrollPaneAgenda = new JScrollPane();
-		scrollPaneAgenda.setBounds(10, 80, 351, 450);
+		scrollPaneAgenda = new JScrollPane();
+		scrollPaneAgenda.getViewport().setBorder(null);
+		scrollPaneAgenda.getViewport().add(tableAgenda);
+		scrollPaneAgenda.setBounds(10, 112, 717, 167);
+		scrollPaneAgenda.setVisible(false);
 		panPrincipal.add(scrollPaneAgenda);
 		
-		tableAgenda = new JTable();
-		scrollPaneAgenda.setViewportView(tableAgenda);
+		montarAgenda();
 		
-		JScrollPane scrollPaneCliente = new JScrollPane();
-		scrollPaneCliente.setBounds(384, 115, 397, 166);
-		panPrincipal.add(scrollPaneCliente);
+//		scrollPaneAgenda = new JScrollPane();
+//		scrollPaneAgenda.setBounds(10, 80, 351, 450);
+//		panPrincipal.add(scrollPaneAgenda);
+//		
+//		tableAgenda = new JTable();
+//		scrollPaneAgenda.setViewportView(tableAgenda);
 		
-		tableCliente = new JTable();
-		scrollPaneCliente.setViewportView(tableCliente);
+//		scrollPaneCliente = new JScrollPane();
+//		scrollPaneCliente.setBounds(384, 115, 397, 166);
+//		panPrincipal.add(scrollPaneCliente);
+//		
+//		tableCliente = new JTable();
+//		scrollPaneCliente.setViewportView(tableCliente);
 		
 		txtData = new JTextField();
 		txtData.setBounds(10, 11, 86, 20);
@@ -104,6 +121,7 @@ public class FrmAgenda extends MouseAdapter{
 		panel.setLayout(null);
 		
 		txtCliente = new JTextField();
+		txtCliente.setEnabled(false);
 		txtCliente.setBounds(35, 30, 252, 20);
 		panel.add(txtCliente);
 		txtCliente.setColumns(10);
@@ -140,6 +158,9 @@ public class FrmAgenda extends MouseAdapter{
 		lblCliente.setFont(new Font("Arial", Font.BOLD, 16));
 		lblCliente.setBounds(556, 81, 136, 23);
 		panPrincipal.add(lblCliente);
+		
+		janela.setSize(807,573);
+		janela.setContentPane( panPrincipal);
 		ConfigTelas.centralizarFrame(janela);
 		
 		btnLupaPesquisar.addActionListener(e -> {
@@ -148,6 +169,18 @@ public class FrmAgenda extends MouseAdapter{
 		
 	}
 	
+	private void montarAgenda() {
+		List<Agenda> listaAgenda = new ArrayList<Agenda>();
+		Agenda a = new Agenda();
+		a.setDescricao("Banho");
+		a.setServico(String.valueOf(new Boolean(true)));
+		listaAgenda.add(a);
+		modelo = new ModeloTabela(listaAgenda);
+		tableAgenda.getTableHeader().setReorderingAllowed(false);
+		tableAgenda.setModel(modelo);
+		
+	}
+
 	private void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
 		
@@ -215,8 +248,27 @@ public class FrmAgenda extends MouseAdapter{
 		limpaCampos();
 		
 	}
-
+	
 	private void limpaCampos() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Object acao = e.getSource();
+		Object valorCliente;
+		if (tableBusca.equals(acao)) {
+			int linha = tableBusca.getSelectedRow();
+			idCliente = listaCliente.get(linha).getId();
+			valorCliente = tableBusca.getValueAt(linha, 0);
+			txtCliente.setText(String.valueOf(valorCliente));
+			
+			buscaAnimaisDoCliente();
+		}
+	}
+
+	private void buscaAnimaisDoCliente() {
 		// TODO Auto-generated method stub
 		
 	}

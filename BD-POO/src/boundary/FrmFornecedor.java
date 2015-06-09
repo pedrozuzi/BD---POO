@@ -68,6 +68,12 @@ public class FrmFornecedor extends MouseAdapter{
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private JLabel lblTiraVermelha2;
+	private JLabel label;
+	private JLabel lblTiraCinza2;
+	private JLabel lblTiraVermelha;
+	private JLabel lblTiraCinza3;
+	private JLabel lblTiraCinza;
 	
 	public FrmFornecedor() {
 		janela = new JFrame("Fornecedor");
@@ -112,7 +118,6 @@ public class FrmFornecedor extends MouseAdapter{
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
 		btnLupaPesquisar.setBounds(447, 291, 65, 31);
 		btnLupaPesquisar.setVisible(false);
-		panPrincipal.add(btnLupaPesquisar);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -120,7 +125,7 @@ public class FrmFornecedor extends MouseAdapter{
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), 
 				"A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(107, 11, 344, 79);
+		panel.setBounds(104, 17, 344, 79);
 		panPrincipal.add(panel);
 		
 		btnIncluir = new JButton("");
@@ -161,6 +166,71 @@ public class FrmFornecedor extends MouseAdapter{
 		lblExcluir.setVisible(true);
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panel.add(lblExcluir);
+		
+		btnAlterar.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Alterar");
+			btnGravar.setActionCommand("Alterar");
+			telaAlterarExcluirPesquisarFornecedor();
+			
+		});
+		
+		btnIncluir.addActionListener( e -> {
+			scrollPane.setVisible(false);
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Gravar");
+			btnGravar.setActionCommand("Incluir");
+			telaInserirFornecedor();
+		});
+		
+		btnExcluir.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setText("Excluir");
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/trash.png")));
+			btnGravar.setActionCommand("Excluir");
+			telaAlterarExcluirPesquisarFornecedor();
+		});
+		
+		lblTiraCinza2 = new JLabel("");
+		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		lblTiraCinza2.setBounds(-15, 348, 234, 14);
+		panPrincipal.add(lblTiraCinza2);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		label.setBounds(354, 348, 234, 14);
+		panPrincipal.add(label);
+		
+		lblTiraVermelha2 = new JLabel("");
+		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha2.setBounds(-15, 365, 599, 14);
+		panPrincipal.add(lblTiraVermelha2);
+		
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
+		lblLogo.setBounds(165, 148, 283, 233);
+		panPrincipal.add(lblLogo);
+		panPrincipal.add(btnLupaPesquisar);
+		
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelha.setBounds(0, 0, 576, 14);
+		panPrincipal.add(lblTiraVermelha);
+		
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setBounds(450, 17, 128, 14);
+		panPrincipal.add(lblTiraCinza);
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		
+		lblTiraCinza3 = new JLabel("");
+		lblTiraCinza3.setBounds(0, 17, 119, 14);
+		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
+		panPrincipal.add(lblTiraCinza3);
 		
 		txtNome = new TratamentoTextFields();
 		txtNome.setBounds(126, 302, 296, 20);
@@ -206,13 +276,6 @@ public class FrmFornecedor extends MouseAdapter{
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(46, 416, 96, 31);
 		btnVoltar.setVisible(false);
-		panPrincipal.add(btnVoltar);
-		
-		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(FrmFuncionario.class.getResource
-				("/img/LogoLudpet.png")));
-		lblLogo.setBounds(13, 135, 546, 199);
-		panPrincipal.add(lblLogo);
 		
 		table = new JTable();
 		table.addMouseListener(this);
@@ -226,6 +289,7 @@ public class FrmFornecedor extends MouseAdapter{
 		scrollPane.setBounds(10, 107, 549, 159);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);
+		panPrincipal.add(btnVoltar);
 		
 		janela.setSize(581,511);
 		janela.setContentPane( panPrincipal);
@@ -254,35 +318,6 @@ public class FrmFornecedor extends MouseAdapter{
 		});
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
-		
-		btnAlterar.addActionListener(e -> {
-			btnGravar.setEnabled(true);
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/MiniSalvar.png")));
-			btnGravar.setText("Alterar");
-			btnGravar.setActionCommand("Alterar");
-			telaAlterarExcluirPesquisarFornecedor();
-			
-		});
-		
-		btnIncluir.addActionListener( e -> {
-			scrollPane.setVisible(false);
-			btnGravar.setEnabled(true);
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/MiniSalvar.png")));
-			btnGravar.setText("Gravar");
-			btnGravar.setActionCommand("Incluir");
-			telaInserirFornecedor();
-		});
-		
-		btnExcluir.addActionListener(e -> {
-			btnGravar.setEnabled(true);
-			btnGravar.setText("Excluir");
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/trash.png")));
-			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirPesquisarFornecedor();
-		});
 		
 		btnGravar.addActionListener(e -> {
 			if (!validaCampos()) {
@@ -333,6 +368,9 @@ public class FrmFornecedor extends MouseAdapter{
 		btnLimpar.setVisible(true);
 		btnVoltar.setVisible(true);
 		lblLogo.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		label.setVisible(false);
 		scrollPane.setVisible(true);
 		table.setVisible(true);
 		
@@ -353,6 +391,9 @@ public class FrmFornecedor extends MouseAdapter{
 		btnLimpar.setVisible(true);
 		btnVoltar.setVisible(true);
 		lblLogo.setVisible(false);
+		lblTiraVermelha2.setVisible(false);
+		lblTiraCinza2.setVisible(false);
+		label.setVisible(false);
 	}
 	
 	@Override

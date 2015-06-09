@@ -49,6 +49,9 @@ public class FrmPrincipal {
 		}
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void principalAdm(Usuario u) {
 		janela = new JFrame("Menu Principal");
 		panPrincipal = new JPanel();

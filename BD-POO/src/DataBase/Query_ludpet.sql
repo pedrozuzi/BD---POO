@@ -130,7 +130,8 @@ foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
 
 create table servico(
-id int identity(100,1) not null,
+id int identity(1,1) not null,
+nome varchar(11) not null,
 valor int null,
 id_cliente int not null,
 hora_agenda time null
@@ -143,10 +144,20 @@ hora time not null,
 disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
 primary key(hora))
 
+select * from servico
+drop table servico
+
+insert into servico(nome, valor, id_cliente) values
+('banho', 55, 5)
+
+select * from servico
+
+select id from servico where id = (select COUNT(id) from servico)
+
 select CONVERT(CHAR(5), hora, 108) as hora
 from agenda
 
-drop table servico
+select * from cliente
 
 insert into agenda(hora) values
 ('10:00',0),

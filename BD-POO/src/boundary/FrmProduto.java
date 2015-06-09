@@ -1,6 +1,7 @@
 package boundary;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,9 +96,9 @@ public class FrmProduto extends MouseAdapter {
 		panPrincipal.setBackground(Color.WHITE);
 
 		// XXX DELETAR APÒS EDIÇÂO!!
-		janela.setSize(942, 702);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//janela.setSize(942, 702);
+		//janela.setVisible(true);
+		//janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// XXX
 
 		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
@@ -589,7 +590,7 @@ public class FrmProduto extends MouseAdapter {
 
 		});
 
-		janela.repaint(); // CORRIGE BUG DE CARREGAMENTO DOS COMPONENENTES
+	//	janela.repaint(); // CORRIGE BUG DE CARREGAMENTO DOS COMPONENENTES
 
 	}// fim construtor
 
@@ -678,7 +679,17 @@ public class FrmProduto extends MouseAdapter {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new FrmProduto();
+		
+		//Runnable anonimo
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new FrmProduto();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 }// end class

@@ -194,8 +194,7 @@ public class FrmServico {
 		btnLimpar.setBounds(190, 407, 111, 31);
 		panel.add(btnLimpar);
 		
-//		configTela = new ConfiguracoesTela( janela );
-		
+		configTela = new ConfiguracoesTela( janela );
 		
 		janela.setSize(500, 500);
 		janela.setContentPane(panel);

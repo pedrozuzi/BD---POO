@@ -595,7 +595,6 @@ public class FrmAnimal extends MouseAdapter {
 			}else{
 				modelo.clear();
 				jd.dispose();
-				System.out.println("LISTA VAZIA");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -5,10 +5,13 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -390,6 +393,15 @@ public class FrmAnimal extends MouseAdapter {
 
 	public void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
+		
+		try {
+			BufferedImage image = ImageIO.read(  
+			        this.getClass().getResource("/img/icon.png"));
+			jd.setIconImage(image);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
 		panPrincipalBusca = new JPanel();
 		panPrincipalBusca.setBackground(SystemColor.text);
 		panPrincipalBusca.setForeground(Color.WHITE);

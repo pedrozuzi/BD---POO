@@ -42,8 +42,10 @@ public class Animal {
 		this.raca = raca;
 	}
 	
-	
-
+	@Override
+	public String toString() {
+		return this.nome;
+	}
 	
 	@Coluna(nome="Cor", posicao=5)
 	public String getCor() {

@@ -169,7 +169,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().setBorder(null);
-		scrollPane.getViewport().add(table);
+		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 118, 556, 153);
 		scrollPane.setVisible(false);
 		panPrincipal.add(scrollPane);

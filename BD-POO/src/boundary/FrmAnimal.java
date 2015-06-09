@@ -506,7 +506,7 @@ public class FrmAnimal extends MouseAdapter {
 		txtCor.setText("");
 		txtRaca.setText("");
 		txtRga.setText("");
-}
+	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {

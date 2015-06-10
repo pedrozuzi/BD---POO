@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
-import entity.Lote;
+
 import entity.Venda;
 
 /**

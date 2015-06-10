@@ -5,6 +5,7 @@ public class ClienteAgenda {
 	private Cliente cliente;
 	private Animal animal;
 	private String hora;
+	private Servico servico;
 	
 	@Coluna(nome="Cliente", posicao=0)
 	public Cliente getCliente() {
@@ -27,6 +28,13 @@ public class ClienteAgenda {
 	}
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+	@Coluna(nome="Tipo do Serviço", posicao=2)
+	public Servico getServico() {
+		return servico;
+	}
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 }

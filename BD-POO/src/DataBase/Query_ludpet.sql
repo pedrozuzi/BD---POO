@@ -8,11 +8,11 @@ descricao varchar(50) not null
 primary key(id)) 
 
 INSERT INTO tipo (descricao) VALUES 
-('Administrador'), --1
-('Atendente'),     --2
-('Funcionario'),   --3
-('Fornecedor'),    --4
-('Cliente')        --5
+('Administrador'),      --1
+('Atendente'),          --2
+('Tosador/Banhista'),   --3
+('Fornecedor'),         --4
+('Cliente')             --5
 
 create table pessoa(
 idPessoa int identity not null,
@@ -132,20 +132,43 @@ foreign key(id_produto) references produto(id))
 create table servico(
 id int identity(100,1) not null,
 valor int null,
-id_cliente int not null
-primary key(id, id_cliente)
-foreign key(id_cliente) references cliente(id))
+id_cliente int not null,
+hora_agenda time null
+primary key(id, id_cliente),
+foreign key(id_cliente) references cliente(id),
+foreign key(hora_agenda) references agenda(hora))
 
 create table agenda(
-id_hora datetime not null,
+hora time not null,
 disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
-id_servico int not null,
-id_cliente int not null
-primary key(id_hora, id_cliente, id_servico)
-foreign key(id_servico, id_cliente) references servico(id, id_cliente))
+primary key(hora))
 
-insert into agenda(id_hora, disponibilidade, id_servico, id_cliente) values
-('10:00')
+select CONVERT(CHAR(5), hora, 108) as hora
+from agenda
+
+drop table servico
+
+insert into agenda(hora) values
+('10:00'),
+('10:30'),
+('11:00'),
+('11:30'),
+('12:00'),
+('12:30'),
+('13:00'),
+('13:30'),
+('14:00'),
+('14:30'),
+('15:00'),
+('15:30'),
+('16:00'),
+('16:30'),
+('17:00'),
+('17:30'),
+('18:00'),
+('18:30'),
+('19:00')
+
 
 
 INSERT INTO pessoa (idTipo) VALUES

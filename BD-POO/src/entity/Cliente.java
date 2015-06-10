@@ -20,7 +20,6 @@ public class Cliente extends Pessoa{
 	private int numero;
 	private String bairro;
 	private String cpf;
-	private int telefone;
 	private List<Animal> listaAnimal;
 	
 	public void setNome(String nome) {
@@ -67,13 +66,12 @@ public class Cliente extends Pessoa{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
-	
+
 	@Coluna(nome="Telefone", posicao=5)
+	@Override
 	public int getTelefone() {
-		return telefone;
+		// TODO Auto-generated method stub
+		return super.getTelefone();
 	}
 
 	public List<Animal> getListaAnimal() {

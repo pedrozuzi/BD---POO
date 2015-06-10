@@ -79,7 +79,7 @@ descricao varchar(60),
 id_fornecedor int not null,
 valor_venda int not null,
 valor_compra int not null,
-qtde int not null,
+quantidade int not null,
 primary key(id) ,
 foreign key(id_fornecedor) references fornecedor(id)
 )
@@ -234,9 +234,9 @@ select * from cliente
 
 delete pessoa
 
-INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra) VALUES
-('Petimax','ração para cachorro',4,10.00,5.00),
-('bonix','ossinhos para cachorro',9,2.00,1.00)
+INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra,quantidade) VALUES
+('Petimax','ração para cachorro',4,10.00,5.00,5),
+('bonix','ossinhos para cachorro',9,2.00,1.00,50)
 
 INSERT INTO lote (data_validade) VALUES
 ('20-06-15'),

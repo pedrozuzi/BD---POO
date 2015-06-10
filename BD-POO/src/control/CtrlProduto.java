@@ -35,7 +35,7 @@ import entity.Produto;
 public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		CtrlTableLote {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
-			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
+			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote, txtQtde;
 
 	private ProdutoDao pDao;
 	private LoteDao lDao;
@@ -44,8 +44,8 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	public CtrlProduto(JTextField txtIdProduto, JTextField txtNome,
 			JTextField txtDescricao, JTextField txtValorVenda,
 			JTextField txtValorCompra, JTextField txtIdFornecedor,
-			JTextField txtIdLote, JTextField txtDataValidadeLote) {
-		super();
+			JTextField txtIdLote, JTextField txtDataValidadeLote, JTextField txtQtde) {
+		
 		this.txtIdProduto = txtIdProduto;
 		this.txtNome = txtNome;
 		this.txtDescricao = txtDescricao;
@@ -54,6 +54,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		this.txtIdFornecedor = txtIdFornecedor;
 		this.txtIdLote = txtIdLote;
 		this.txtDataValidadeLote = txtDataValidadeLote;
+		this.txtQtde = txtQtde;
 	}
 
 	/**
@@ -75,6 +76,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
 			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
+			prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 			// data
 			try {
 				String data = txtDataValidadeLote.getText();
@@ -111,6 +113,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			prod.setValor_venda(Integer.parseInt(txtValorVenda.getText()));
 			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
+			prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
 			try {
 				insereProduto(prod);
@@ -165,6 +168,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 				prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor
 						.getText()));
+				prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
 				atualizaProduto(prod);
 			}else if(!txtIdProduto.getText().equals("") && !txtIdLote.getText().equals("")){ //Produto e Lote
@@ -177,6 +181,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 				prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor
 						.getText()));
+				prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
 				atualizaProduto(prod);
 				

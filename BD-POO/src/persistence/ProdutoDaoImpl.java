@@ -47,8 +47,8 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public int insereProduto(Produto prod) throws SQLException {
 
-		String sql = "INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra)"
-				+ "VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra,quantidade)"
+				+ "VALUES(?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,
 				Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, prod.getNome());
@@ -56,6 +56,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.setInt(3, prod.getId_fornecedor());
 		ps.setInt(4, prod.getValor_venda());
 		ps.setInt(5, prod.getValor_compra());
+		ps.setInt(6, prod.getQuantidade());
 		ps.execute();
 
 		ResultSet rs = ps.getGeneratedKeys();
@@ -77,7 +78,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 		String sql = "UPDATE produto SET nome = ?, " + "descricao = ?, "
 				+ "id_fornecedor = ?, " + "valor_venda = ?, "
-				+ "valor_compra = ? " + "WHERE id = ?";
+				+ "valor_compra = ?, quantidade = ? " + "WHERE id = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 
 		ps.setString(1, prod.getNome());
@@ -85,7 +86,8 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.setInt(3, prod.getId_fornecedor());
 		ps.setInt(4, prod.getValor_venda());
 		ps.setInt(5, prod.getValor_compra());
-		ps.setInt(6, prod.getId());
+		ps.setInt(6, prod.getQuantidade());
+		ps.setInt(7, prod.getId());
 
 		ps.execute();
 		ps.close();
@@ -100,6 +102,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	public void excluiProduto(Produto prod) throws SQLException {
 
 		String query = "delete produto " + " where id = ?";
+		//XXX ON CASCADE
 		query = "delete lot from lote lot"
 				+ " inner join lote_produto lp on lot.id = lp.idLote"
 				+ " inner join produto prod"
@@ -122,7 +125,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	public Produto consultaProduto(String id) throws SQLException {
 
 		Produto p = new Produto();
-		String query = "SELECT id, nome, descricao, id_fornecedor, valor_venda, valor_compra "
+		String query = "SELECT id, nome, descricao, id_fornecedor, valor_venda, valor_compra, quantidade "
 				+ "FROM produto WHERE id = ?";
 		PreparedStatement ps = c.prepareStatement(query);
 		ps.setInt(1, Integer.parseInt(id));
@@ -133,6 +136,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 			p.setId_fornecedor(rs.getInt("id_fornecedor"));
 			p.setValor_venda(rs.getInt("valor_venda"));
 			p.setValor_compra(rs.getInt("valor_compra"));
+			p.setQuantidade(rs.getInt("quantidade"));
 		}
 		ps.close();
 		return p;
@@ -161,6 +165,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 			p.setId_fornecedor(rs.getInt("id_fornecedor"));
 			p.setValor_venda(rs.getInt("valor_venda"));
 			p.setValor_compra(rs.getInt("valor_compra"));
+			p.setQuantidade(rs.getInt("quantidade"));
 			lista.add(p);
 
 			System.out.println(p.getNome());

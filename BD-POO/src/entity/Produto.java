@@ -23,6 +23,7 @@ public class Produto {
 	private int id_fornecedor;
 	private int valor_venda;
 	private int valor_compra;
+	private int quantidade;
 
 	// colunas[0] = "ID";
 	// colunas[1] = "Nome";
@@ -30,6 +31,7 @@ public class Produto {
 	// colunas[3] = "ID: Fornecedor";
 	// colunas[4] = "Compra R$:";
 	// colunas[5] = "Venda R$:";
+	// colunas[6] = "Quantidade";
 
 	@Coluna(nome = "id", posicao = 0)
 	public int getId() {
@@ -84,5 +86,17 @@ public class Produto {
 	public void setValor_compra(int valor_compra) {
 		this.valor_compra = valor_compra;
 	}
+
+	@Coluna(nome = "quantidade", posicao = 6)
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	
 
 }

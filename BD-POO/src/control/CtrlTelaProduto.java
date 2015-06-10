@@ -21,8 +21,10 @@ import boundary.FrmProduto;
 
 // TODO Diminuir Parametros
 public class CtrlTelaProduto implements ActionListener {
+
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
-			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote;
+			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote,
+			txtQtde;
 	private JButton btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
 			btnPesquisaProduto, btnPesquisaFornecedor, btnVolta, btnLimpa,
 			btnSalva;
@@ -34,13 +36,18 @@ public class CtrlTelaProduto implements ActionListener {
 			JTextField txtDescricao, JTextField txtValorVenda,
 			JTextField txtValorCompra, JTextField txtIdFornecedor,
 			JTextField txtIdLote, JTextField txtDataValidadeLote,
+			JTextField txtQtde,
+
 			JButton btnIncluir, JButton btnAlterar, JButton btnExcluir,
 			JButton btnPesquisar, JButton btnPesquisaProduto,
 			JButton btnPesquisaFornecedor, JButton btnVolta, JButton btnLimpa,
-			JButton btnSalva, JPanel panAcoes, JPanel panInferior,
-			JPanel panSuperior, JPanel panAcoes2, JPanel panProduto,
-			JPanel panLote, JLabel lblAcao) {
-		super();
+			JButton btnSalva,
+
+			JPanel panAcoes, JPanel panInferior, JPanel panSuperior,
+			JPanel panAcoes2, JPanel panProduto, JPanel panLote,
+
+			JLabel lblAcao) {
+
 		this.txtIdProduto = txtIdProduto;
 		this.txtNome = txtNome;
 		this.txtDescricao = txtDescricao;
@@ -49,6 +56,8 @@ public class CtrlTelaProduto implements ActionListener {
 		this.txtIdFornecedor = txtIdFornecedor;
 		this.txtIdLote = txtIdLote;
 		this.txtDataValidadeLote = txtDataValidadeLote;
+		this.txtQtde = txtQtde;
+
 		this.btnIncluir = btnIncluir;
 		this.btnAlterar = btnAlterar;
 		this.btnExcluir = btnExcluir;
@@ -70,10 +79,12 @@ public class CtrlTelaProduto implements ActionListener {
 
 	public boolean camposProduto() {
 
-		return !(txtNome.getText().equals("") || txtDescricao.getText().equals("")
+		return !(txtNome.getText().equals("")
+				|| txtDescricao.getText().equals("")
 				|| txtValorVenda.getText().equals("")
 				|| txtValorCompra.getText().equals("")
-				|| txtIdFornecedor.getText().equals(""));
+				|| txtIdFornecedor.getText().equals("") || txtQtde.getText()
+				.equals(""));
 
 	}
 
@@ -91,6 +102,7 @@ public class CtrlTelaProduto implements ActionListener {
 	 */
 
 	public void limpaCampos() {
+
 		txtIdProduto.setText("");
 		txtNome.setText("");
 		txtDescricao.setText("");
@@ -99,6 +111,7 @@ public class CtrlTelaProduto implements ActionListener {
 		txtIdFornecedor.setText("");
 		txtIdLote.setText("");
 		txtDataValidadeLote.setText("");
+	 txtQtde.setText("");
 	}
 
 	/**

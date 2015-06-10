@@ -59,6 +59,7 @@ public class FrmProduto extends MouseAdapter {
 	private JTextField txtValorVenda;
 	private JTextField txtValorCompra;
 	private JTextField txtIdFornecedor;
+	private JTextField txtQtde;
 
 	private JPanel panLote;
 	private JPanel panProduto;
@@ -86,7 +87,7 @@ public class FrmProduto extends MouseAdapter {
 	private List<Lote> listaLote;
 
 	private int idprod = 0;
-	private JTextField txtQtde;
+
 
 	/**
 	 * Construtor
@@ -386,6 +387,12 @@ public class FrmProduto extends MouseAdapter {
 		txtIdFornecedor.setColumns(10);
 		txtIdFornecedor.setBounds(417, 46, 61, 25);
 		panProduto.add(txtIdFornecedor);
+		
+		txtQtde = new JTextField();
+		txtQtde.setColumns(10);
+		txtQtde.setBounds(310, 160, 86, 25);
+		panProduto.add(txtQtde);
+		
 
 		JButton btnPesquisaFornecedor = new JButton("");
 		btnPesquisaFornecedor.setIcon(new ImageIcon(FrmProduto.class
@@ -485,24 +492,24 @@ public class FrmProduto extends MouseAdapter {
 
 		CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
 				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
-				txtIdLote, txtDataValidadeLote);
+				txtIdLote, txtDataValidadeLote, txtQtde);
 
-		CtrlTelaProduto ctrltela = new CtrlTelaProduto(txtIdProduto, txtNome,
-				txtDescricao, txtValorVenda, txtValorCompra, txtIdFornecedor,
-				txtIdLote, txtDataValidadeLote, btnIncluirNovoLote, btnAlterar,
-				btnExcluirLote, btnPesquisar, btnPesquisaProduto,
-				btnPesquisaFornecedor, btnVolta, btnLimpa, btnSalva, panAcoes,
-				panInferior, panSuperior, panAcoes2, panProduto, panLote,
-				lblAcao);
+		CtrlTelaProduto ctrltela = new CtrlTelaProduto( txtIdProduto, txtNome,
+				 txtDescricao,  txtValorVenda,
+				 txtValorCompra, txtIdFornecedor,
+				 txtIdLote,  txtDataValidadeLote, txtQtde,
+				 btnIncluir, btnAlterar, btnExcluir,
+				btnPesquisar,  btnPesquisaProduto,
+				btnPesquisaFornecedor, btnVolta, btnLimpa,
+				btnSalva, panAcoes, panInferior,
+				panSuperior, panAcoes2, panProduto,
+				 panLote, lblAcao);
 		
 		JLabel lblQuantidade = new JLabel("Quantidade:");
 		lblQuantidade.setBounds(231, 165, 69, 14);
 		panProduto.add(lblQuantidade);
 		
-		txtQtde = new JTextField();
-		txtQtde.setBounds(310, 160, 86, 25);
-		panProduto.add(txtQtde);
-		txtQtde.setColumns(10);
+
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);
@@ -618,7 +625,7 @@ public class FrmProduto extends MouseAdapter {
 		if (a.equals(tableProduto)) { // Chamada da TableProduto
 			System.out.println("table produto");
 
-			Object[] valores = new Object[6];
+			Object[] valores = new Object[7];
 			int linha = tableProduto.getSelectedRow();
 			int coluna = tableProduto.getSelectedColumn();
 
@@ -632,6 +639,7 @@ public class FrmProduto extends MouseAdapter {
 			txtIdFornecedor.setText(String.valueOf(valores[3]));
 			txtValorCompra.setText(String.valueOf(valores[4]));
 			txtValorVenda.setText(String.valueOf(valores[5]));
+			txtQtde.setText(String.valueOf(valores[6]));
 
 			idprod = Integer.parseInt(txtIdProduto.getText());// XXX
 
@@ -642,7 +650,7 @@ public class FrmProduto extends MouseAdapter {
 
 				CtrlProduto ctrlprod = new CtrlProduto(txtIdProduto, txtNome,
 						txtDescricao, txtValorVenda, txtValorCompra,
-						txtIdFornecedor, txtIdLote, txtDataValidadeLote);
+						txtIdFornecedor, txtIdLote, txtDataValidadeLote, txtQtde);
 				try {
 					listaLote = ctrlprod.buscaLotePorProduto(idprod);// TODO
 																		// Arrumar

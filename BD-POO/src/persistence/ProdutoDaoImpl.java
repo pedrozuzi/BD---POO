@@ -111,8 +111,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.execute();
 		JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
 		ps.close();
-		
-		
 
 	}
 

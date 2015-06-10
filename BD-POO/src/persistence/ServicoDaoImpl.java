@@ -36,7 +36,7 @@ public class ServicoDaoImpl implements ServicoDao {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 
-		return rs.getInt(1)+100;
+		return rs.getInt(1) == 100 ? rs.getInt(1) : rs.getInt(1)+100 ;
 	}
 
 }

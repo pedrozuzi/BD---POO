@@ -2,6 +2,7 @@ package entity;
 
 public class Servico {
 
+	private int codigo;
 	private int valor;
 	private Cliente cliente;
 	
@@ -19,6 +20,14 @@ public class Servico {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 }

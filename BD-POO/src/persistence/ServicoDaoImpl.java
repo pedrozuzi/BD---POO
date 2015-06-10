@@ -28,15 +28,15 @@ public class ServicoDaoImpl implements ServicoDao {
 	@Override
 	public int buscarNovaEntrada() throws SQLException {
 		
-		String query = "select IDENT_CURRENT('servico') as codigo";
+		String query = "select COUNT(id) as codigo "
+				+ "from servico";
 		
-		PreparedStatement ps = c.prepareStatement( query, Statement.RETURN_GENERATED_KEYS );
-		ps.execute();
-		
-//		ResultSet rs = ps.getGeneratedKeys();
+		PreparedStatement ps = c.prepareStatement( query );
+
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		return 0;
+
+		return rs.getInt(1)+100;
 	}
 
 }

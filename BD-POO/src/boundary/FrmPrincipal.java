@@ -69,14 +69,14 @@ public class FrmPrincipal {
 		btnRealizarVenda.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/venda.png")));
 		btnRealizarVenda.setToolTipText("Realizar uma venda");
-		btnRealizarVenda.setBounds(85, 249, 137, 88);
+		btnRealizarVenda.setBounds(151, 249, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
 		btnRealizarServico = new JButton("");
 		btnRealizarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/servico.png")));
 		btnRealizarServico.setToolTipText("Realizar um Serviço");
-		btnRealizarServico.setBounds(232, 249, 132, 88);
+		btnRealizarServico.setBounds(298, 249, 132, 88);
 		panPrincipal.add(btnRealizarServico);
 		
 		btnRelatorio = new JButton("");
@@ -116,7 +116,7 @@ public class FrmPrincipal {
 		panPrincipal.add(lblRelatrios);
 		
 		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
-		lblfRealizarVenda.setBounds(95, 337, 110, 14);
+		lblfRealizarVenda.setBounds(161, 337, 110, 14);
 		panPrincipal.add(lblfRealizarVenda);
 		
 		lblfCadastros = new JLabel("(F4) Cadastros");
@@ -124,7 +124,7 @@ public class FrmPrincipal {
 		panPrincipal.add(lblfCadastros);
 		
 		lblfRealizarServio = new JLabel("(F2) Realizar Serviço");
-		lblfRealizarServio.setBounds(242, 337, 122, 14);
+		lblfRealizarServio.setBounds(308, 337, 122, 14);
 		panPrincipal.add(lblfRealizarServio);
 		
 		label = new JLabel("");

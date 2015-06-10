@@ -28,8 +28,10 @@ public class ServicoDaoImpl implements ServicoDao {
 	@Override
 	public int buscarNovaEntrada() throws SQLException {
 		
-		String query = "select COUNT(id) as codigo "
-				+ "from servico";
+		String query = "select id "
+				+ "from servico"
+				+ "where id equals (select COUNT(id) "
+				+ "from servico)";
 		
 		PreparedStatement ps = c.prepareStatement( query );
 

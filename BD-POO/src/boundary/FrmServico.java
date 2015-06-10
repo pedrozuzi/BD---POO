@@ -34,6 +34,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -45,6 +46,7 @@ import javax.swing.UIManager;
 import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
+import entity.Usuario;
 
 public class FrmServico implements MouseListener, ActionListener{
 	
@@ -150,9 +152,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeCliente = new JTextField();
 		txtNomeCliente.setVisible(false);
 		txtNomeCliente.setBounds(116, 22, 191, 20);
-		panelClienteAnimal.add(txtNomeCliente);
 		txtNomeCliente.setBackground(SystemColor.info);
 		txtNomeCliente.setColumns(10);
+		panelClienteAnimal.add(txtNomeCliente);
 		
 		btnPesquisarCliente = new JButton("");
 		btnPesquisarCliente.setVisible(false);
@@ -305,14 +307,36 @@ public class FrmServico implements MouseListener, ActionListener{
 			limpaCampos();
 		});
 		
-		btnCancelar.addActionListener(e -> { //TODO
-			//Fazer o cancelar, acho que pode voltar para a tela anterior
+		btnFinalizar.addActionListener(e -> {
+			acaoFinalizar();
 		});
+		
+//		btnCancelar.addActionListener(e -> { //TODO
+//			janela.dispose();
+//			janela = null;
+//			new FrmPrincipal(usuario);
+//		});
 		
 		btnServicoAgendado.addActionListener(this);
 		btnNovoServico.addActionListener(this);
 		
 	}	
+
+	private void acaoFinalizar() {
+		if(!validaCampos()){
+			servico.setCodigo( Integer.parseInt(txtCodigoServico.getText()) );
+			servico.setCliente( cliente );
+			servico.setValor( Integer.parseInt( txtValor.getText() ));
+		} else {
+			JOptionPane.showMessageDialog(null, "Sem dados para processar",
+					"Erro", JOptionPane.QUESTION_MESSAGE);
+		}
+		
+	}
+
+	private boolean validaCampos() {
+		return txtValor.getText().isEmpty() || txtNomeCliente.getText().isEmpty();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -329,8 +353,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			buscarServicosAgendados();
 		} else {
 			txtCodigoServico.setText( Integer.toString(controlServico.buscarNovaEntrada()) );
-			montarTelaNovoServico();
-			
+			montarTelaNovoServico();			
 		}
 		
 	}
@@ -425,6 +448,17 @@ public class FrmServico implements MouseListener, ActionListener{
 			acaoComboBox();
 		});
 		
+		mntmLogOff.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+			new FrmLogin();
+		});
+		
+		mntmMenuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+		});
+		
 	}
 
 	private void montarTabelaCliente() {
@@ -479,7 +513,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		}
 		
 		cliente = listaCliente.get(linha);
-		txtNomeCliente.setText( String.valueOf(valores[0]) ); 
 		
 		try {
 			listaAnimal = controlAnimal.buscaCliente( cliente.getId() );
@@ -488,7 +521,8 @@ public class FrmServico implements MouseListener, ActionListener{
 		}
 
 		montarComboBox();
-		
+	
+		jd.dispose();
 		jd = null;
 	}
 
@@ -497,9 +531,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			cbAnimal.removeAllItems();
 		}
 		if(listaAnimal != null){
-			listaAnimal.forEach((m) ->{
-				cbAnimal.addItem(m);
-			});
+			listaAnimal.forEach((m) -> cbAnimal.addItem(m) );
 			cbAnimal.setSelectedIndex(-1);
 		}
 	}

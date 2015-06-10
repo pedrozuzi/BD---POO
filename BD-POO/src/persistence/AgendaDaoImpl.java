@@ -10,6 +10,7 @@ import java.util.List;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Agenda;
+import entity.ClienteAgenda;
 import entity.Servico;
 
 public class AgendaDaoImpl implements AgendaDao{
@@ -41,6 +42,22 @@ public class AgendaDaoImpl implements AgendaDao{
 		}
 		ps.close();
 		return lista;
+	}
+	
+	@Override
+	public List<ClienteAgenda> buscaServicoMarcado() throws SQLException {
+		List<ClienteAgenda> lista = new ArrayList<ClienteAgenda>();
+		String sql = "";
+		
+		PreparedStatement ps = c.prepareStatement( sql );
+		ResultSet rs = ps.executeQuery();
+		
+		while ( rs.next() ){
+			//TODO
+		}
+		ps.close();
+		return lista;
+		
 	}
 
 }

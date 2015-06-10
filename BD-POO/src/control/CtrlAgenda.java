@@ -3,10 +3,10 @@ package control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import persistence.AgendaDao;
 import persistence.AgendaDaoImpl;
 import entity.Agenda;
+import entity.ClienteAgenda;
 
 public class CtrlAgenda {
 	
@@ -21,6 +21,17 @@ public class CtrlAgenda {
 			e.printStackTrace();
 		}
 		return lista;
+	}
+	
+	public List<ClienteAgenda> buscarServicoMarcado() {
+		List<ClienteAgenda> lista = new ArrayList<ClienteAgenda>();
+		try {
+			lista = aDao.buscaServicoMarcado();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
+		
 	}
 
 }

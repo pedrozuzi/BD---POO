@@ -37,13 +37,14 @@ import javax.swing.JComboBox;
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
+import entity.ClienteAgenda;
 
 public class FrmAgenda extends MouseAdapter{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
 	private JTable tableAgenda;
-	private JTable tableCliente;
+	private JTable tableServicoMarcado;
 	private JTextField txtData;
 	private JTextField txtCliente;
 	private JButton btnLupaPesquisar;
@@ -59,7 +60,8 @@ public class FrmAgenda extends MouseAdapter{
 	private JTextField txtBuscaCliente;
 	private CtrlCliente controlCliente;
 	private List<Cliente> listaCliente;
-	private ModeloTabela modelo;
+	private ModeloTabela modeloAgenda;
+	private ModeloTabela modeloServicoMarcado;
 	private int idCliente;
 	private JScrollPane scrollPaneAgenda;
 	private JScrollPane scrollPaneCliente;
@@ -68,6 +70,7 @@ public class FrmAgenda extends MouseAdapter{
 	private JButton btnSalvar;
 	private CtrlAgenda controlAgenda;
 	private List<Agenda> listaAgenda;
+	private List<ClienteAgenda> listaServicoMarcado;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -80,8 +83,8 @@ public class FrmAgenda extends MouseAdapter{
 		scrollPaneCliente.setBounds(384, 115, 397, 166);
 		panPrincipal.add(scrollPaneCliente);
 		
-		tableCliente = new JTable();
-		scrollPaneCliente.setViewportView(tableCliente);
+		tableServicoMarcado = new JTable();
+		scrollPaneCliente.setViewportView(tableServicoMarcado);
 		
 		txtData = new JTextField();
 		txtData.setBounds(10, 11, 86, 20);
@@ -133,8 +136,8 @@ public class FrmAgenda extends MouseAdapter{
 		lblAnimal.setBounds(641, 405, 46, 14);
 		panPrincipal.add(lblAnimal);
 		
-		JLabel lblServico = new JLabel("Servi\u00E7o");
-		lblServico.setBounds(389, 405, 46, 14);
+		JLabel lblServico = new JLabel("Tipo de Servi\u00E7o");
+		lblServico.setBounds(389, 405, 98, 14);
 		panPrincipal.add(lblServico);
 		
 		btnSalvar = new JButton("Salvar");
@@ -169,15 +172,28 @@ public class FrmAgenda extends MouseAdapter{
 			cliente(jd);
 		});
 		
+		btnSalvar.addActionListener(e -> {
+			tabelaServicoMarcado();
+		});
+		
 	}
 	
+	private void tabelaServicoMarcado() {
+		listaServicoMarcado = new ArrayList<ClienteAgenda>();
+		controlAgenda = new CtrlAgenda();
+		listaServicoMarcado = controlAgenda.buscarServicoMarcado();
+		modeloServicoMarcado = new ModeloTabela(listaServicoMarcado);
+		tableServicoMarcado.getTableHeader().setReorderingAllowed(false);
+		tableServicoMarcado.setModel(modeloServicoMarcado);
+	}
+
 	private void montarAgenda() {
 		listaAgenda = new ArrayList<Agenda>();
 		controlAgenda = new CtrlAgenda();
 		listaAgenda = controlAgenda.buscarAgenda();
-		modelo = new ModeloTabela(listaAgenda);
+		modeloAgenda = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
-		tableAgenda.setModel(modelo);
+		tableAgenda.setModel(modeloAgenda);
 	}	
 		
 		
@@ -237,9 +253,9 @@ public class FrmAgenda extends MouseAdapter{
 			try {
 				listaCliente = controlCliente.buscaClientePorNome(txtBuscaCliente.getText());
 				if (!listaCliente.isEmpty()) {
-					modelo = new ModeloTabela(listaCliente);
+					modeloAgenda = new ModeloTabela(listaCliente);
 					tableBusca.getTableHeader().setReorderingAllowed(false);
-					tableBusca.setModel(modelo);
+					tableBusca.setModel(modeloAgenda);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -250,8 +266,7 @@ public class FrmAgenda extends MouseAdapter{
 	}
 	
 	private void limpaCampos() {
-		// TODO Auto-generated method stub
-		
+		// TODO 
 	}
 	
 	@Override

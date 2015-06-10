@@ -94,6 +94,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private Animal animal;
 	private ModeloTabela modelo;
 	private Servico servico;
+	private List<Servico> listaServico;
 	private CtrlAnimal controlAnimal;
 	private CtrlServico controlServico;
 
@@ -306,8 +307,15 @@ public class FrmServico implements MouseListener, ActionListener{
 		servico = new Servico();
 		
 		btnPesquisarCliente.addActionListener(e -> {
-//			limpaCampos();
-			acaoPesquisarCliente();
+			listaCliente = new ArrayList<Cliente>();
+			controlCliente = new CtrlCliente();
+			try {
+				listaCliente = controlCliente.buscaClientePorNome(txtNomeCliente
+						.getText());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			acaoPesquisarCliente(listaCliente);
 		});
 		
 		btnLimpar.addActionListener(e -> {
@@ -388,7 +396,9 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 	
 	private void buscarServicosAgendados() {
-		// TODO Auto-generated method stub
+		listaServico = new ArrayList<Servico>();
+		controlServico = new CtrlServico();
+//		listaServico = controlServico.
 	}
 
 	private void montarTelaNovoServico() {
@@ -443,7 +453,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		rdbtnTosa.setEnabled(false);
 	}
 
-	private void acaoPesquisarCliente() {
+	private void acaoPesquisarCliente(List<?> lista) {
 			
 		jd = new JDialog(janela, "Pesquisar Cliente", true);
 		jd.setSize(600, 300);
@@ -465,7 +475,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		scrollPaneBusca.setBounds(jd.getX(), jd.getY(), jd.getWidth(), jd.getHeight());
 		panBuscaCliente.add(scrollPaneBusca);
 		
-		montarTabelaCliente();
+		montarTabelaCliente(lista);
 		
 		jd.setResizable(false);
 		jd.setLocationRelativeTo(null);
@@ -474,22 +484,14 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 
-	private void montarTabelaCliente() {
-		controlCliente = new CtrlCliente();
-		listaCliente = new ArrayList<Cliente>();
-
-		try {
-			listaCliente = controlCliente.buscaClientePorNome(txtNomeCliente
-					.getText());
-			if (!listaCliente.isEmpty()) {
-				modelo = new ModeloTabela(listaCliente);
-				tableBuscaCliente.getTableHeader().setReorderingAllowed(false);
-				tableBuscaCliente.setModel(modelo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+	private void montarTabelaCliente(List<?> lista) {
+		
+		if(!lista.isEmpty()){
+			modelo = new ModeloTabela(lista);
+			tableBuscaCliente.getTableHeader().setReorderingAllowed(false);
+			tableBuscaCliente.setModel(modelo);
 		}
-
+		
 	}
 
 	private void acaoComboBox() {

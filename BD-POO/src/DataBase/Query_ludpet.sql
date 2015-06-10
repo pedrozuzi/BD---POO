@@ -132,7 +132,7 @@ foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
 foreign key(id_produto) references produto(id))
 
 create table servico(
-id int identity(1,1) not null,
+id int not null,
 nome varchar(11) not null,
 valor int null,
 id_cliente int not null,
@@ -145,21 +145,20 @@ disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
 id_servico int null,
 id_cliente_agenda int null
 primary key(hora),
-foreign key (id_servico, id_cliente_agenda) references servico(id, id_cliente_agenda))
-
+foreign key (id_servico, id_cliente_agenda) references servico(id, id_cliente))
 
 select * from servico
 drop table agenda
+drop table servico
 
-insert into servico (nome, valor, id_cliente) values
-('banho', 55, 5)
-
-select * from servico
-
-select id from servico where id = (select COUNT(id) from servico)
-
-select CONVERT(CHAR(5), hora, 108) as hora
-from agenda
+insert into servico (id, nome, valor, id_cliente) values
+(1,'banho', 55, 1),
+('banho', 60, 15),
+('tosa', 30, 24),
+('banho', 45, 25),
+('banho/tosa', 95, 26),
+('banho/tosa', 80, 27),
+('tosa', 50, 28)
 
 select CONVERT(CHAR(5), a.hora, 108) as hora, s.nome as nome_servico
 from servico s
@@ -190,8 +189,6 @@ insert into agenda(hora, disponibilidade) values
 ('18:30',0),
 ('19:00',0)
 
-
-
 INSERT INTO pessoa (idTipo) VALUES
 (1), --1 adm
 (2), --2 atend
@@ -202,7 +199,12 @@ INSERT INTO pessoa (idTipo) VALUES
 (2), --7 atend
 (3), --8 func
 (4), --9 forn 
-(5) --10 cli
+(5), --10 cli
+(5), --11 cli
+(5), --12 cli
+(5), --13 cli
+(5), --14 cli
+(5)  --15 cli
 
 INSERT INTO funcionario (id,cpf,nome,salario,telefone) VALUES
 (8,11111111111,'Hury Gabriel',99999.99,11111111), --adm
@@ -219,8 +221,18 @@ INSERT INTO fornecedor (id,nome,telefone) VALUES
 (9,'aang',22222222)
 
 INSERT INTO cliente (id,nome,logradouro,numero,bairro,telefone,cpf) VALUES
-(5,'Oscar Alho','av 23',157,'se',11111111,11111111111),
-(10,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111)
+(24,'Oscar Alho','av 23',157,'se',11111111,11111111111),
+(25,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111),
+(26,'Pedro','rua chua',4,'cracolandia',222222,222222),
+(27,'Oscar','rua eira',500,'cracolandia',333333,333333),
+(28,'Alho','rua cac',600,'cracolandia',4444444,4444444),
+(29,'Cebola','rua c',800,'cracolandia',5555555,5555555),
+(30,'Suzi','rua',150,'cracolandia',666666,6666666)
+
+select * from pessoa
+select * from cliente
+
+delete pessoa
 
 INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra) VALUES
 ('Petimax','ração para cachorro',4,10.00,5.00),

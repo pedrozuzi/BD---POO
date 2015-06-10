@@ -1,6 +1,9 @@
 package control;
 
+import java.sql.SQLException;
+
 import persistence.ServicoDao;
+import persistence.ServicoDaoImpl;
 
 public class CtrlServico {
 
@@ -11,8 +14,15 @@ public class CtrlServico {
 	}
 	
 	public int buscarNovaEntrada(){
+		sDao = new ServicoDaoImpl();
+		int auxiliar = 0;
+		try {
+			auxiliar = sDao.buscarNovaEntrada();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		return 0;
+		return auxiliar;
 	}
 	
 }

@@ -7,6 +7,7 @@ import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlAnimal;
 import control.CtrlCliente;
+import control.CtrlServico;
 import control.ModeloTabela;
 
 import java.awt.Color;
@@ -92,6 +93,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private ModeloTabela modelo;
 	private Servico servico;
 	private CtrlAnimal controlAnimal;
+	private CtrlServico controlServico;
 
 	public FrmServico() {
 		
@@ -294,9 +296,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		ConfigTelas.centralizarFrame(janela);
 		
 		janela.setVisible(true);
-				
-		btnServicoAgendado.addActionListener(this);
-		btnNovoServico.addActionListener(this);
 		
 		btnPesquisarCliente.addActionListener(e -> {
 			acaoPesquisarCliente();
@@ -310,11 +309,16 @@ public class FrmServico implements MouseListener, ActionListener{
 			//Fazer o cancelar, acho que pode voltar para a tela anterior
 		});
 		
+		btnServicoAgendado.addActionListener(this);
+		btnNovoServico.addActionListener(this);
+		
 	}	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String am = e.getActionCommand();
+		limpaCampos();
+		controlServico = new CtrlServico();
 		lblLogoLudPet.setVisible(false);
 		btnCancelar.setVisible(true);
 		btnFinalizar.setVisible(true);
@@ -324,7 +328,9 @@ public class FrmServico implements MouseListener, ActionListener{
 			montarTelaServicoAgendado();
 			buscarServicosAgendados();
 		} else {
+			txtCodigoServico.setText( Integer.toString(controlServico.buscarNovaEntrada()) );
 			montarTelaNovoServico();
+			
 		}
 		
 	}
@@ -414,9 +420,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		jd.setContentPane(panBuscaCliente);
 		jd.setVisible(true);
 		
+		
 		cbAnimal.addActionListener(e -> {
-			Animal a = new Animal();
-			a = (Animal) cbAnimal.getSelectedItem();
+			acaoComboBox();
 		});
 		
 	}
@@ -439,6 +445,12 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	}
 
+	private void acaoComboBox() {
+		Animal a = new Animal();
+		a = (Animal) cbAnimal.getSelectedItem();
+		txtRaca.setText( a.getRaca() );		
+	}
+	
 	private void limpaCampos() {
 		txtNomeCliente.setText("");
 		txtRaca.setText("");
@@ -476,6 +488,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		}
 
 		montarComboBox();
+		
 		jd = null;
 	}
 
@@ -487,6 +500,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			listaAnimal.forEach((m) ->{
 				cbAnimal.addItem(m);
 			});
+			cbAnimal.setSelectedIndex(-1);
 		}
 	}
 
@@ -499,7 +513,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {//		
+	public void mousePressed(MouseEvent arg0) {		
 	}
 
 	@Override

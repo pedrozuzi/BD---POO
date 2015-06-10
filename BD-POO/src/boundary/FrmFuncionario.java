@@ -351,7 +351,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
-		btnPesquisarNome.addActionListener(this);
+		btnPesquisarNome.addActionListener(e -> {
+			pesquisar();
+		});
 			
 	}
 	
@@ -434,7 +436,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			btnGravar.setActionCommand("Remover");
 			btnGravar.setText("Excluir");
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/trash.png")));
-			btnGravar.setEnabled(true);			
+			btnGravar.setEnabled(true);
 		}else if(btnAlterar.equals(acao)){
 			limpaCampos();
 			montarTela(2);
@@ -442,6 +444,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			btnGravar.setIcon(new ImageIcon(FrmFuncionario.class.getResource("/img/MiniSalvar.png")));
 			btnGravar.setEnabled(true);
 			btnGravar.setActionCommand("Alterar");
+			habilitarCampos();
 		}
 		
 		if("Incluir".equalsIgnoreCase(cmd)){
@@ -505,9 +508,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		if(btnLimpar.equals(acao)){
 			limpaCampos();
 		}
-		if(btnPesquisarNome.equals(acao)){
-			pesquisar();
-		}
 
 	}
 	
@@ -518,7 +518,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				modelo = new ModeloTabela(lista);
 				table.getTableHeader().setReorderingAllowed(false);
 				table.setModel(modelo);
-				habilitarCampos();
 			}else{
 				JOptionPane.showMessageDialog(null, "Nenhum registro encontrado",
 						"Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -526,6 +525,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		} catch (NullPointerException e1) {
 			System.out.println("NullPointer");
 		}
+		
 	}
 
 	private boolean validaCampos() {

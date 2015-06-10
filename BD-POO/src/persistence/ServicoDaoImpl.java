@@ -36,7 +36,6 @@ public class ServicoDaoImpl implements ServicoDao {
 //		ResultSet rs = ps.getGeneratedKeys();
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		RowId ri = rs.getRowId(1);
 		return 0;
 	}
 

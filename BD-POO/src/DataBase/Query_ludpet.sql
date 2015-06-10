@@ -95,7 +95,7 @@ create table venda(
 id int identity not null,
 id_cliente int null,
 id_funcionario int not null,
-total int not null
+total money not null
 primary key(id),
 foreign key(id_cliente) references cliente(id),
 foreign key(id_funcionario) references funcionario(id))

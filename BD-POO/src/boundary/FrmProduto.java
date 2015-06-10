@@ -686,7 +686,7 @@ public class FrmProduto extends MouseAdapter {
 				valores[coluna] = tableLote.getValueAt(linha, coluna);
 
 				txtIdLote.setText(String.valueOf(valores[0]));
-				txtDataValidadeLote.setText(String.valueOf(valores[1]));
+		    	txtDataValidadeLote.setText(String.valueOf(valores[1]));
 			}
 
 		}

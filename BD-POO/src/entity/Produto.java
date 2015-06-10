@@ -15,7 +15,7 @@ package entity;
  * lote(id))
  */
 
-public class Produto {
+public final class Produto {
 
 	private int id;
 	private String nome;
@@ -96,7 +96,5 @@ public class Produto {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
-	
 
 }

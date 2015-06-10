@@ -199,18 +199,21 @@ public class FrmServico implements MouseListener, ActionListener{
 		rdbtnBanho = new JRadioButton("Banho");
 		rdbtnBanho.setFont(new Font("Tahoma", Font.BOLD, 12));
 		rdbtnBanho.setBackground(Color.WHITE);
+		rdbtnBanho.setActionCommand("Banho");
 		rdbtnBanho.setBounds(49, 21, 109, 23);
 		panelServico.add(rdbtnBanho);
 		
 		rdbtnTosa = new JRadioButton("Tosa");
 		rdbtnTosa.setBackground(Color.WHITE);
 		rdbtnTosa.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnTosa.setActionCommand("Tosa");
 		rdbtnTosa.setBounds(160, 21, 109, 23);
 		panelServico.add(rdbtnTosa);
 		
 		rdbtnBanhoTosa = new JRadioButton("Banho/Tosa");
 		rdbtnBanhoTosa.setBackground(Color.WHITE);
 		rdbtnBanhoTosa.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnBanhoTosa.setActionCommand("Banho/Tosa");
 		rdbtnBanhoTosa.setBounds(271, 21, 109, 23);
 		panelServico.add(rdbtnBanhoTosa);
 		
@@ -299,7 +302,11 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 		janela.setVisible(true);
 		
+		cliente = new Cliente();
+		servico = new Servico();
+		
 		btnPesquisarCliente.addActionListener(e -> {
+//			limpaCampos();
 			acaoPesquisarCliente();
 		});
 		
@@ -317,16 +324,38 @@ public class FrmServico implements MouseListener, ActionListener{
 //			new FrmPrincipal(usuario);
 //		});
 		
+		cbAnimal.addActionListener(e -> {
+			acaoComboBox();
+		});
+		
+		mntmLogOff.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+			new FrmLogin();
+		});
+		
+		mntmMenuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+		});
+		
 		btnServicoAgendado.addActionListener(this);
 		btnNovoServico.addActionListener(this);
 		
-	}	
+	}//FIM CONSTRUTOR
 
 	private void acaoFinalizar() {
 		if(!validaCampos()){
+			System.out.println("ENTROU...");
 			servico.setCodigo( Integer.parseInt(txtCodigoServico.getText()) );
 			servico.setCliente( cliente );
+			servico.setNome( bg.getSelection().getActionCommand() );
 			servico.setValor( Integer.parseInt( txtValor.getText() ));
+			controlServico.incluirServico(servico);
+			
+			JOptionPane.showConfirmDialog(null, "Serviço espera para ser pago", "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "Sem dados para processar",
 					"Erro", JOptionPane.QUESTION_MESSAGE);
@@ -443,22 +472,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		jd.setContentPane(panBuscaCliente);
 		jd.setVisible(true);
 		
-		
-		cbAnimal.addActionListener(e -> {
-			acaoComboBox();
-		});
-		
-		mntmLogOff.addActionListener(e -> {
-			janela.dispose();
-			janela = null;
-			new FrmLogin();
-		});
-		
-		mntmMenuPrincipal.addActionListener(e -> {
-			janela.dispose();
-			janela = null;
-		});
-		
 	}
 
 	private void montarTabelaCliente() {
@@ -480,9 +493,11 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 
 	private void acaoComboBox() {
-		Animal a = new Animal();
-		a = (Animal) cbAnimal.getSelectedItem();
-		txtRaca.setText( a.getRaca() );		
+		if(cbAnimal.getItemCount() > 0){
+			Animal a = new Animal();
+			a = (Animal) cbAnimal.getSelectedItem();
+			txtRaca.setText( a.getRaca() );		
+		} 
 	}
 	
 	private void limpaCampos() {
@@ -491,7 +506,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		cbAnimal.removeAllItems();
 		bg.clearSelection();
 		txtValor.setText("");
-		txtCodigoServico.setText("");
 	}
 
 	public static void main(String[] args) {
@@ -529,10 +543,11 @@ public class FrmServico implements MouseListener, ActionListener{
 	private void montarComboBox() {
 		if(cbAnimal.getItemCount() > 0){
 			cbAnimal.removeAllItems();
+			txtRaca.setText("");
 		}
 		if(listaAnimal != null){
 			listaAnimal.forEach((m) -> cbAnimal.addItem(m) );
-			cbAnimal.setSelectedIndex(-1);
+			txtNomeCliente.setText( cliente.getNome() );
 		}
 	}
 

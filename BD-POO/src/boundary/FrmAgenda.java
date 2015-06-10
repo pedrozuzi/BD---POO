@@ -164,7 +164,7 @@ public class FrmAgenda extends MouseAdapter{
 		scrollPaneAgenda.setVisible(true);
 		panPrincipal.add(scrollPaneAgenda);
 		
-		//montarAgenda();
+		montarAgenda();
 		
 		janela.setSize(807,573);
 		janela.setContentPane( panPrincipal);
@@ -176,21 +176,21 @@ public class FrmAgenda extends MouseAdapter{
 		
 	}
 	
-//	private void montarAgenda() {
-//		List<Agenda> listaAgenda = new ArrayList<Agenda>();
-//		//for (int i = 0; i < 2; i++) {
-//			Agenda a = new Agenda();
-//			a.setHorario("8:30");
-//			a.setDescricao("Banho");
-//			//a.setServico( new Boolean(true) );
-//			listaAgenda.add(a);
-//		//}
-//		
-//		modelo = new ModeloTabela(listaAgenda);
-//		tableAgenda.getTableHeader().setReorderingAllowed(false);
-//		tableAgenda.setModel(modelo);
-//		
-//	}
+	private void montarAgenda() {
+		List<Agenda> listaAgenda = new ArrayList<Agenda>();
+		for (int i = 0; i < 2; i++) {
+			Agenda a = new Agenda();
+			a.setHorario("8:30");
+			a.setDescricao("Banho");
+			a.setEscolhaHorario(new Boolean(true));
+			listaAgenda.add(a);
+		}
+		
+		modelo = new ModeloTabela(listaAgenda);
+		tableAgenda.getTableHeader().setReorderingAllowed(false);
+		tableAgenda.setModel(modelo);
+		
+	}
 
 	private void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);

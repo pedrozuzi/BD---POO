@@ -75,11 +75,15 @@ public class ModeloTabela extends AbstractTableModel {
 	}
 	
 	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-//
-//		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
-//			Agenda a = (Agenda) lista.get(rowIndex);
-//		} else {
+	public void setValueAt(Object valor, int linha, int coluna) {
+		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
+			if (coluna == 1) {
+				Agenda a = (Agenda) lista.get(linha);
+				a.setEscolhaHorario((Boolean) valor);
+				fireTableCellUpdated(linha, coluna);
+			}
+			
+		} 
 //			System.out.println(classe.getName());
 //			System.out.println("TESTE");
 //			if (classe.getName() == "entity.Funcionario") {
@@ -94,9 +98,7 @@ public class ModeloTabela extends AbstractTableModel {
 	@Override
 	public boolean isCellEditable(int linha, int coluna) {
 		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
-			System.out.println("AGENDA");
 			if (coluna == 1) {
-				System.out.println("editavel");
 				return coluna == 1;
 			}
 		}

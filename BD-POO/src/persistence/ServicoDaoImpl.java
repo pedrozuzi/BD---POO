@@ -28,17 +28,14 @@ public class ServicoDaoImpl implements ServicoDao {
 	@Override
 	public int buscarNovaEntrada() throws SQLException {
 		
-		String query = "select id "
-				+ "from servico"
-				+ "where id equals (select COUNT(id) "
-				+ "from servico)";
+		String query = "select max(id) from servico";
 		
 		PreparedStatement ps = c.prepareStatement( query );
 
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 
-		return rs.getInt(1) == 100 ? rs.getInt(1) : rs.getInt(1)+100 ;
+		return rs.getInt(1) == 0 ? 1 : rs.getInt(1)+1;
 	}
 
 }

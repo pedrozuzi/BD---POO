@@ -87,10 +87,10 @@ public class CtrlVenda implements ActionListener {
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
-			
-			vprod.setIdproduto();
+			//FIXME
+			//vprod.setIdproduto();
 			vprod.setIdvenda(Integer.parseInt(txtIdVenda.getText()));
-			vprod.setQuantidade();
+			//vprod.setQuantidade();
 			
 			
 

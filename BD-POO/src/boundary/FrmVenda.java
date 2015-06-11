@@ -79,7 +79,7 @@ public class FrmVenda {
 
 		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO
 		// WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		ConfiguracoesTela configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		configTela.selecionaEstilo(3);
 		configTela.estilo(janela);

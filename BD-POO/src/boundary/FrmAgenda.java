@@ -2,18 +2,15 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import control.ConfigTelas;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
 import control.ModeloTabela;
-
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTable;
@@ -21,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,15 +26,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
-
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
-import entity.ClienteAgenda;
 import entity.Servico;
 
 public class FrmAgenda extends MouseAdapter{
@@ -46,14 +39,11 @@ public class FrmAgenda extends MouseAdapter{
 	private JFrame janela; 
 	private JPanel panPrincipal;
 	private JTable tableAgenda = new JTable();
-	private JTable tableServicoMarcado;
-	private JTextField txtData;
 	private JTextField txtCliente;
 	private JButton btnLupaPesquisar;
 	private JComboBox<String> comboBoxAnimal;
 	private JComboBox<String> comboBoxServico;
 	private JPanel panel;
-	private JButton btnPesquisar;
 	private JDialog jd;
 	private JPanel panPrincipalBusca;
 	private JTable tableBusca = new JTable();
@@ -63,16 +53,13 @@ public class FrmAgenda extends MouseAdapter{
 	private CtrlCliente controlCliente;
 	private List<Cliente> listaCliente;
 	private ModeloTabela modeloAgenda;
-	private ModeloTabela modeloServicoMarcado;
 	private int idCliente;
 	private JScrollPane scrollPaneAgenda;
-	private JScrollPane scrollPaneCliente;
 	private CtrlAnimal controlAnimal;
 	private List<Animal> listaAnimal;
 	private JButton btnSalvar;
 	private CtrlAgenda controlAgenda;
 	private List<Agenda> listaAgenda;
-	private List<ClienteAgenda> listaServicoMarcado;
 	private int idAnimal;
 	private CtrlServico controlServico;
 	
@@ -83,33 +70,16 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		scrollPaneCliente = new JScrollPane();
-		scrollPaneCliente.setBounds(384, 115, 397, 166);
-		panPrincipal.add(scrollPaneCliente);
-		
-		tableServicoMarcado = new JTable();
-		scrollPaneCliente.setViewportView(tableServicoMarcado);
-		
-		txtData = new JTextField();
-		txtData.setBounds(10, 11, 86, 20);
-		panPrincipal.add(txtData);
-		txtData.setColumns(10);
-		
-		btnPesquisar = new JButton("");
-		btnPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnPesquisar.setBounds(106, 10, 89, 23);
-		panPrincipal.add(btnPesquisar);
-		
 		JLabel lblAgenda = new JLabel("Agenda");
 		lblAgenda.setFont(new Font("Arial", Font.BOLD, 16));
-		lblAgenda.setBounds(150, 54, 78, 20);
+		lblAgenda.setBounds(150, 11, 78, 20);
 		panPrincipal.add(lblAgenda);
 		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(389, 308, 392, 61);
+		panel.setBounds(384, 116, 374, 61);
 		panPrincipal.add(panel);
 		panel.setLayout(null);
 		
@@ -122,36 +92,31 @@ public class FrmAgenda extends MouseAdapter{
 		
 		btnLupaPesquisar = new JButton("");
 		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/MiniLupa.png")));
-		btnLupaPesquisar.setBounds(297, 29, 89, 23);
+		btnLupaPesquisar.setBounds(297, 27, 63, 25);
 		panel.add(btnLupaPesquisar);
 		
 		comboBoxAnimal = new JComboBox<String>();
-		comboBoxAnimal.setBounds(581, 430, 179, 20);
+		comboBoxAnimal.setBounds(549, 236, 179, 20);
 		panPrincipal.add(comboBoxAnimal);
 		
 		comboBoxServico = new JComboBox<String>();
 		comboBoxServico.addItem("Banho");
 		comboBoxServico.addItem("Tosa");
 		comboBoxServico.addItem("Banho e Tosa");
-		comboBoxServico.setBounds(384, 430, 125, 20);
+		comboBoxServico.setBounds(384, 236, 125, 20);
 		panPrincipal.add(comboBoxServico);
 		
 		JLabel lblAnimal = new JLabel("Animal");
-		lblAnimal.setBounds(641, 405, 46, 14);
+		lblAnimal.setBounds(609, 211, 46, 14);
 		panPrincipal.add(lblAnimal);
 		
 		JLabel lblServico = new JLabel("Tipo de Servi\u00E7o");
-		lblServico.setBounds(389, 405, 98, 14);
+		lblServico.setBounds(389, 211, 98, 14);
 		panPrincipal.add(lblServico);
 		
 		btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(692, 501, 89, 23);
+		btnSalvar.setBounds(687, 346, 89, 23);
 		panPrincipal.add(btnSalvar);
-		
-		JLabel lblCliente = new JLabel("Servi\u00E7o Marcado");
-		lblCliente.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCliente.setBounds(519, 81, 136, 23);
-		panPrincipal.add(lblCliente);
 		
 		tableAgenda = new JTable();
 		tableAgenda.addMouseListener(this);
@@ -162,17 +127,13 @@ public class FrmAgenda extends MouseAdapter{
 		scrollPaneAgenda = new JScrollPane();
 		scrollPaneAgenda.getViewport().setBorder(null);
 		scrollPaneAgenda.setViewportView(tableAgenda);
-		scrollPaneAgenda.setBounds(10, 80, 351, 332);
+		scrollPaneAgenda.setBounds(10, 37, 351, 332);
 		scrollPaneAgenda.setVisible(true);
 		panPrincipal.add(scrollPaneAgenda);
-		
-//		List<Boolean> disp = new ArrayList<Boolean>();
-//		disp = controlAgenda.
-		
+
 		montarAgenda();
-		tabelaServicoMarcado();
 		
-		janela.setSize(807,573);
+		janela.setSize(807,430);
 		janela.setContentPane( panPrincipal);
 		ConfigTelas.centralizarFrame(janela);
 		
@@ -182,8 +143,6 @@ public class FrmAgenda extends MouseAdapter{
 		
 		btnSalvar.addActionListener(e -> {
 			adicionaServicoAgenda();
-			
-			tabelaServicoMarcado();
 		});
 		
 	}
@@ -201,19 +160,6 @@ public class FrmAgenda extends MouseAdapter{
 		s.setCliente(c);
 		s.setNome(String.valueOf(comboBoxServico.getSelectedItem()));
 		controlServico.incluiServicoAgenda(s);
-	}
-
-	private void tabelaServicoMarcado() {
-		listaServicoMarcado = new ArrayList<ClienteAgenda>();
-		controlAgenda = new CtrlAgenda();
-		listaServicoMarcado = controlAgenda.buscarServicoMarcado();
-		
-		if (!listaServicoMarcado.isEmpty()) {
-			modeloServicoMarcado = new ModeloTabela(listaServicoMarcado);
-			tableServicoMarcado.getTableHeader().setReorderingAllowed(false);
-			tableServicoMarcado.setModel(modeloServicoMarcado);
-		}
-		
 	}
 
 	private void montarAgenda() {

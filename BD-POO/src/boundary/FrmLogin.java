@@ -27,7 +27,7 @@ import entity.Usuario;
 
 public class FrmLogin {
 
-	private JFrame janela = new JFrame("Realizar Login");
+	private JFrame janela ;//= new JFrame("Realizar Login");
 	private JTextField txtUsuario;
 	private JPasswordField pwdSenha;
 	private JLabel lblUsuario;
@@ -40,12 +40,12 @@ public class FrmLogin {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel lblStatus;
+	private ConfiguracoesTela configTela;
 
 	public FrmLogin() {
 
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
-
+		janela = new JFrame("Realizar Login");
+		
 		controlLogin = new CtrlLogin();
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
@@ -96,8 +96,6 @@ public class FrmLogin {
 		lblLogoLudPet.setBounds(73, 31, 241, 205);
 		panPrincipal.add(lblLogoLudPet);
 
-		janela.setContentPane(panPrincipal);
-
 		label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(FrmLogin.class
 				.getResource("/img/teste2.png")));
@@ -115,9 +113,14 @@ public class FrmLogin {
 				.getResource("/img/teste.png")));
 		label_1.setBounds(0, 0, 398, 28);
 		panPrincipal.add(label_1);
-		janela.setSize(403, 404);
-		ConfigTelas.centralizarFrame(janela);
+		
 
+		janela.setContentPane(panPrincipal);
+		janela.setSize(403, 404);
+		configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
+		
 		btnLogar.addActionListener(e -> {
 			if (!validaCampos()) {
 				logar();

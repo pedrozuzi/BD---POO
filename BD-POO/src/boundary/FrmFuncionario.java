@@ -86,18 +86,16 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblTiraVermelha;
 	private JLabel lblTiraCinza3;
 	private JLabel lblTiraCinza;
+	private ConfiguracoesTela configTela;
 	
 	public FrmFuncionario() {
 	
 		janela = new JFrame("Funcionário");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setLayout(null);
-		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);
@@ -110,7 +108,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
 		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
 			new FrmPrincipal(null);
@@ -120,12 +117,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		logOff.setIcon(new ImageIcon(getClass()
 				.getResource("/img/LogOffMenu.png")));
 		menu.add(logOff);
-		
-		
-		logOff.addActionListener(e -> {
-			janela.dispose();
-			new FrmLogin();
-		});
 		
 		panel = new JPanel();
 		panel.setBackground(SystemColor.text);
@@ -164,10 +155,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblRemover.setBounds(242, 54, 39, 19);
 		panel.add(lblRemover);
-		
-		btnIncluir.addActionListener(this);
-		btnAlterar.addActionListener(this);
-		btnRemover.addActionListener(this);
 		
 		lblTiraVermelha2 = new JLabel("");
 		lblTiraVermelha2.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
@@ -340,19 +327,31 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		lblDadoObrigatorio.setBounds(404, 498, 128, 14);
 		panPrincipal.add(lblDadoObrigatorio);
 		
-		janela.setContentPane( panPrincipal);
-		
 		panelInformacao = new JPanel();
 		panelInformacao.setBounds(0, 565, 576, 21);
 		panPrincipal.add(panelInformacao);
 		
+		janela.setContentPane( panPrincipal);
+		
+		configTela = new ConfiguracoesTela();
 		janela.setSize(582,625);
-		ConfigTelas.centralizarFrame(janela);
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
+
 		btnLimpar.addActionListener(this);
 		btnVoltar.addActionListener(this);
 		btnGravar.addActionListener(this);
+		btnIncluir.addActionListener(this);
+		btnAlterar.addActionListener(this);
+		btnRemover.addActionListener(this);
+		
 		btnPesquisarNome.addActionListener(e -> {
 			pesquisar();
+		});
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			new FrmLogin();
 		});
 			
 	}

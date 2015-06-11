@@ -38,28 +38,24 @@ public class FrmCadastros {
 	private JLabel lblFuncionario;
 	private JLabel lblFornecedor;
 	private JLabel lblTiraCinza;
+	private ConfiguracoesTela configTela;
+	private JLabel lblTiraVermelha;
 	
 	public FrmCadastros() {
-		janela = new JFrame();
-		janela.setTitle("Menu Cadastros");
+		
+		janela = new JFrame("Menu Cadastros");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
-		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
-		
-		janela.setSize(455,512);
-		janela.setContentPane( panPrincipal );
 		
 		lblTiraCinza = new JLabel("");
 		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
 		lblTiraCinza.setBounds(0, 176, 157, 14);
 		panPrincipal.add(lblTiraCinza);
 		
-		JLabel lblTiraVermelha = new JLabel("");
+		lblTiraVermelha = new JLabel("");
 		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
 		lblTiraVermelha.setBounds(0, 201, 449, 14);
 		panPrincipal.add(lblTiraVermelha);
@@ -122,6 +118,12 @@ public class FrmCadastros {
 		lblCliente = new JLabel("(F4) Cliente");
 		lblCliente.setBounds(25, 458, 97, 14);
 		panPrincipal.add(lblCliente);
+		
+		janela.setContentPane( panPrincipal );
+		configTela = new ConfiguracoesTela();
+		janela.setSize(455,512);
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 		
 //		ActionMap am = panPrincipal.getActionMap();
 //		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);

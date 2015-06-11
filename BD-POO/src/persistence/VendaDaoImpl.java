@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
-
 import entity.Venda;
+import entity.VendaProduto;
 
 /**
  * 
@@ -97,6 +97,31 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		ps.close();
 		return lista;
 
+	}
+
+	@Override
+	public void insereVenda(VendaProduto vendprod) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizaVenda(VendaProduto vendprod) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void excluiVenda(VendaProduto vendprod) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<VendaProduto> pesquisaVenda(VendaProduto vendprod)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

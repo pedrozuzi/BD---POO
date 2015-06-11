@@ -52,4 +52,14 @@ public class CtrlServico {
 		return lista;
 	}
 	
+	public void incluiServicoAgenda(Servico s) {
+		sDao = new ServicoDaoImpl();
+		
+		try {
+			sDao.adicinaServicoAgenda(s);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

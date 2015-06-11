@@ -11,6 +11,7 @@ import control.ConfigTelas;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
+import control.CtrlServico;
 import control.ModeloTabela;
 
 import javax.swing.ImageIcon;
@@ -38,6 +39,7 @@ import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
 import entity.ClienteAgenda;
+import entity.Servico;
 
 public class FrmAgenda extends MouseAdapter{
 	
@@ -72,6 +74,7 @@ public class FrmAgenda extends MouseAdapter{
 	private List<Agenda> listaAgenda;
 	private List<ClienteAgenda> listaServicoMarcado;
 	private int idAnimal;
+	private CtrlServico controlServico;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -178,11 +181,26 @@ public class FrmAgenda extends MouseAdapter{
 		});
 		
 		btnSalvar.addActionListener(e -> {
+			adicionaServicoAgenda();
 			tabelaServicoMarcado();
 		});
 		
 	}
 	
+	private void adicionaServicoAgenda() {
+		Servico s = new Servico();
+		Animal animal = new Animal();
+		Cliente c = new Cliente();
+		controlServico = new CtrlServico();
+		s.setCodigo(controlServico.buscarNovaEntrada());
+		animal.setId(idAnimal);
+		s.setAnimal(animal);
+		c.setId(idCliente);
+		s.setCliente(c);
+		s.setNome(String.valueOf(comboBoxServico.getSelectedItem()));
+		controlServico.incluiServicoAgenda(s);
+	}
+
 	private void tabelaServicoMarcado() {
 		listaServicoMarcado = new ArrayList<ClienteAgenda>();
 		controlAgenda = new CtrlAgenda();

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
+import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
 
@@ -60,16 +61,17 @@ public class ServicoDaoImpl implements ServicoDao {
 	public List<Servico> buscarServicosAgendados() throws SQLException {
 		List<Servico> lista = new ArrayList<Servico>();
 		
-		String query = "select s.id as codigo_servico, CONVERT(CHAR(5), a.hora, 108) as hora, "
-				+ "s.nome as nome_servico, "
-				+ "s.id_cliente as codigo_cliente, "
-				+ "c.nome as nome_cliente "
+		String query = "select s.id as codigo_servico, s.nome as servico, "
+				+ "c.nome as nome_cliente, c.id as codigo_cliente, "
+				+ "a.id as codigo_animal, a.nome as nome_animal, a.raca as raca_animal "
 				+ "from cliente c "
+				+ "inner join animal a "
+				+ "on c.id = a.id_cliente "
 				+ "inner join servico s "
-				+ "on c.id = s.id_cliente "
-				+ "inner join agenda a "
-				+ "on s.id = a.id_servico "
-				+ "where hora > CONVERT(CHAR(5), GETDATE()-'00:30', 108)";		
+				+ "on a.id = s.id_animal "
+				+ "right outer join agenda ag "
+				+ "on s.id = ag.id_servico where hora > CONVERT(CHAR(5), GETDATE()-'00:30', 108) "
+				+ "and ag.id_servico is not null";		
 		PreparedStatement ps = c.prepareStatement( query );
 		ResultSet rs = ps.executeQuery();
 		
@@ -77,12 +79,16 @@ public class ServicoDaoImpl implements ServicoDao {
 			System.out.println("ENTROU");
 			Servico s = new Servico();
 			Cliente c = new Cliente();
+			Animal a = new Animal();
+			a.setId( rs.getInt("codigo_animal") );
+			a.setNome( rs.getString("nome_animal") );
+			a.setRaca( rs.getString("raca_animal") );
+			s.setAnimal(a);
 			c.setId( rs.getInt("codigo_cliente") );
 			c.setNome( rs.getString("nome_cliente") );
-			s.setCodigo( rs.getInt("codigo_servico") );
-			s.setNome( rs.getString("nome_servico") );
 			s.setCliente(c);
-			System.out.println(s.getNomeCliente());
+			s.setCodigo( rs.getInt("codigo_servico") );
+			s.setNome( rs.getString("servico") );			
 			lista.add(s);
 		}
 		return lista;

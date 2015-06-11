@@ -23,7 +23,7 @@ public class Servico {
 	
 	@Coluna(nome="Nome Animal", posicao=2)
 	public String getNomeAnimal(){
-		return cliente.getListaAnimal().get(0).getNome();
+		return animal.getNome();
 	}
 	
 	public Cliente getCliente() {

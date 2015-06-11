@@ -54,6 +54,8 @@ public class FrmVenda {
 	private JButton btnConsultaEstoque;
 	private JButton btnCancelar;
 	private JButton btnAcao;
+	
+	Object[] objetosTela = new Object[25];
 
 	public FrmVenda() {
 		janela = new JFrame("Venda");
@@ -61,6 +63,9 @@ public class FrmVenda {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		janela.setSize(849, 768);
+		janela.setContentPane(panPrincipal);
 
 		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO
 		// WINDONBUILDER
@@ -68,9 +73,9 @@ public class FrmVenda {
 		configTela.iconeBarra(janela);
 		configTela.selecionaEstilo(3);
 		configTela.estilo(janela);
+		ConfigTelas.centralizarFrame(janela);
+		
 
-		janela.setSize(849, 768);
-		janela.setContentPane(panPrincipal);
 
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -375,9 +380,14 @@ public class FrmVenda {
 		JButton btnCalculaTroco = new JButton(">");
 		btnCalculaTroco.setBounds(161, 21, 41, 23);
 		panDinheiro.add(btnCalculaTroco);
-		ConfigTelas.centralizarFrame(janela);
+		
+		janela.repaint();
 	}
 
+	private void compactaObjeto(){
+		
+	}
+	
 	public static void main(String[] args) {
 		new FrmVenda();
 	}

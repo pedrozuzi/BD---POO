@@ -61,7 +61,25 @@ public class FrmProduto extends MouseAdapter {
 	private JTextField txtIdFornecedor;
 	private JTextField txtQtde;
 
+	private JButton btnIncluir;
+	private JButton btnIncluirProduto;
+	private JButton btnIncluirNovoLote;
+	private JButton btnAlterar;
+	private JButton btnExcluir;
+	private JButton btnExcluirLote;
+	private JButton btnPesquisar;
+	private JButton btnPesquisaProduto;
+	private JButton btnPesquisaFornecedor;
+	private JButton btnSalva;
+	private JButton btnLimpa;
+	private JButton btnVolta;
+
 	private JPanel panLote;
+	private JPanel panInferior;
+	private JPanel panSuperior;
+	private JPanel panAcoes;
+	private JPanel panProduto;
+	private JPanel panAcoes2;
 
 	private JLabel lblNome;
 	private JLabel lblNewLabel_1;
@@ -78,31 +96,14 @@ public class FrmProduto extends MouseAdapter {
 	private JScrollPane scrollProduto;
 	private JScrollPane scrollLote;
 
-	private CtrlTableProduto controlTableProduto;
-	private CtrlTableLote controlTableLote;
-	private CtrlProduto ctrlincluiprod;
+	// private CtrlTableProduto controlTableProduto;
+	// private CtrlTableLote controlTableLote;
+	// private CtrlProduto ctrlincluiprod;
 
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
 
 	private int idprod = 0;
-	private JButton btnIncluir;
-	private JButton btnIncluirProduto;
-	private JButton btnIncluirNovoLote;
-	private JButton btnAlterar;
-	private JButton btnExcluir;
-	private JButton btnExcluirLote;
-	private JButton btnPesquisar;
-	private JButton btnPesquisaProduto;
-	private JButton btnPesquisaFornecedor;
-	private JButton btnSalva;
-	private JButton btnLimpa;
-	private JButton btnVolta;
-	private JPanel panInferior;
-	private JPanel panSuperior;
-	private JPanel panAcoes;
-	private JPanel panProduto;
-	private JPanel panAcoes2;
 
 	Object[] objetosTela = new Object[25];
 

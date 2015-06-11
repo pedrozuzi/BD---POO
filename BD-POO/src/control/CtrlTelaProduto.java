@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,54 +32,47 @@ public class CtrlTelaProduto implements ActionListener {
 	private JPanel panAcoes, panInferior, panSuperior, panAcoes2, panProduto,
 			panLote;
 	private JLabel lblAcao;
+	
+	private Object[] objetosTela =  new Object[25];
 
-	public CtrlTelaProduto(JTextField txtIdProduto, JTextField txtNome,
-			JTextField txtDescricao, JTextField txtValorVenda,
-			JTextField txtValorCompra, JTextField txtIdFornecedor,
-			JTextField txtIdLote, JTextField txtDataValidadeLote,
-			JTextField txtQtde,
+	public CtrlTelaProduto(Object[] objetosTela) {
 
-			JButton btnIncluir, JButton btnAlterar, JButton btnExcluir,
-			JButton btnPesquisar, JButton btnPesquisaProduto,
-			JButton btnPesquisaFornecedor, JButton btnVolta, JButton btnLimpa,
-			JButton btnSalva,
+		this.txtIdProduto = (JTextField) objetosTela[0];
+		this.txtNome = (JTextField) objetosTela[1];
+		this.txtDescricao = (JTextField) objetosTela[2];
+		this.txtValorVenda = (JTextField) objetosTela[3];
+		this.txtValorCompra = (JTextField) objetosTela[4];
+		this.txtIdFornecedor = (JTextField) objetosTela[5];
+		this.txtIdLote = (JTextField) objetosTela[6];
+		this.txtDataValidadeLote = (JTextField) objetosTela[7];
+		this.txtQtde = (JTextField) objetosTela[8];
 
-			JPanel panAcoes, JPanel panInferior, JPanel panSuperior,
-			JPanel panAcoes2, JPanel panProduto, JPanel panLote,
+		this.btnIncluir = (JButton) objetosTela[9];
+		this.btnAlterar = (JButton) objetosTela[10];
+		this.btnExcluir =(JButton) objetosTela[11];
+		this.btnPesquisar = (JButton) objetosTela[12];
 
-			JLabel lblAcao) {
+		this.btnPesquisaProduto = (JButton) objetosTela[13];
+		this.btnPesquisaFornecedor = (JButton) objetosTela[14];
+		this.btnVolta = (JButton) objetosTela[15];
+		this.btnLimpa = (JButton) objetosTela[16];
+		this.btnSalva = (JButton) objetosTela[17];
+		this.panAcoes = (JPanel) objetosTela[18];
+		
+		this.panInferior = (JPanel) objetosTela[19];
+		this.panSuperior =(JPanel) objetosTela[20];
+		this.panAcoes2 = (JPanel) objetosTela[21];
+		this.panProduto = (JPanel) objetosTela[22];
+		this.panLote = (JPanel) objetosTela[23];
+		
+		this.lblAcao = (JLabel) objetosTela[24];
 
-		this.txtIdProduto = txtIdProduto;
-		this.txtNome = txtNome;
-		this.txtDescricao = txtDescricao;
-		this.txtValorVenda = txtValorVenda;
-		this.txtValorCompra = txtValorCompra;
-		this.txtIdFornecedor = txtIdFornecedor;
-		this.txtIdLote = txtIdLote;
-		this.txtDataValidadeLote = txtDataValidadeLote;
-		this.txtQtde = txtQtde;
-
-		this.btnIncluir = btnIncluir;
-		this.btnAlterar = btnAlterar;
-		this.btnExcluir = btnExcluir;
-		this.btnPesquisar = btnPesquisar;
-
-		this.btnPesquisaProduto = btnPesquisaProduto;
-		this.btnPesquisaFornecedor = btnPesquisaFornecedor;
-		this.btnVolta = btnVolta;
-		this.btnLimpa = btnLimpa;
-		this.btnSalva = btnSalva;
-		this.panAcoes = panAcoes;
-		this.panInferior = panInferior;
-		this.panSuperior = panSuperior;
-		this.panAcoes2 = panAcoes2;
-		this.panProduto = panProduto;
-		this.panLote = panLote;
-		this.lblAcao = lblAcao;
 	}
 
 	public boolean camposProduto() {
 
+		
+		
 		return !(txtNome.getText().equals("")
 				|| txtDescricao.getText().equals("")
 				|| txtValorVenda.getText().equals("")

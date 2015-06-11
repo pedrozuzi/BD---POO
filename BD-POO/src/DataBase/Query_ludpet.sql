@@ -144,8 +144,7 @@ foreign key(id_animal, id_cliente_servico) references animal(id, id_cliente))
 create table agenda(
 hora time not null,
 disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
-id_servico int null,
-id_cliente_agenda int null
+id_servico int null
 primary key(hora),
 foreign key (id_servico) references servico(id))
 

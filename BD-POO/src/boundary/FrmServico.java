@@ -97,7 +97,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private Animal animal;
 	private ModeloTabela modelo;
 	private Servico servico;
-	private List<Servico> listaServico= new ArrayList<Servico>();
+	private List<Servico> listaServico;//= new ArrayList<Servico>();
 	private CtrlAnimal controlAnimal;
 	private CtrlServico controlServico= new CtrlServico();
 	private JTextField txtNomeAnimal;
@@ -200,7 +200,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeAnimal.setEditable(false);
 		txtNomeAnimal.setVisible(false);
 		panelClienteAnimal.add(txtNomeAnimal);
-		
 		
 		panelServico = new JPanel();
 		panelServico.setVisible(false);
@@ -310,15 +309,14 @@ public class FrmServico implements MouseListener, ActionListener{
 		lblLogoLudPet.setBounds(17, 200, 470, 193);
 		panel.add(lblLogoLudPet);
 		
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		ConfigTelas.centralizarFrame(janela);
 		
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 		
 		cliente = new Cliente();
 		servico = new Servico();
-		animal = new Animal();
+//		animal = new Animal();
 		
 		btnPesquisarCliente.addActionListener(e -> {
 			listaCliente = new ArrayList<Cliente>();
@@ -400,8 +398,8 @@ public class FrmServico implements MouseListener, ActionListener{
 		btnLimpar.setVisible(true);
 		
 		if(am.equalsIgnoreCase("ServicoAgendado")){
-//			listaServico = new ArrayList<Servico>();
-//			controlServico = new CtrlServico();
+			listaServico = new ArrayList<Servico>();
+			controlServico = new CtrlServico();
 			montarTelaServicoAgendado();
 			buscarServicosAgendados();
 			controle = 2;
@@ -478,13 +476,17 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void acaoPesquisarCliente(List<?> lista) {
 			
-		Class<?> classe = lista.isEmpty() ? null :lista.get(0).getClass();
+		Class<?> classe = lista.isEmpty() ? null : lista.get(0).getClass();
 		
-		if(classe.getName().equalsIgnoreCase("entity.Cliente") && classe != null){
-			jd = new JDialog(janela, "Pesquisar Cliente", true);
+		if(classe != null ){
+			if(classe.getName().equalsIgnoreCase("entity.Cliente")){
+				jd = new JDialog(janela, "Pesquisar Cliente", true);
+			} else {
+				jd = new JDialog(janela, "Buscar serviço", true);
+			}	
 		} else {
-			jd = new JDialog(janela, "Buscar serviço", true);
-		}		
+			jd = new JDialog(janela, "ERRO", true);
+		}
 
 		jd.setSize(600, 300);
 		
@@ -525,6 +527,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 
 	private void acaoComboBox() {
+		animal = new Animal();
 		if(cbAnimal.getItemCount() > 0){
 			animal = (Animal) cbAnimal.getSelectedItem();
 			txtRaca.setText( animal.getRaca() );
@@ -572,6 +575,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		} else {
 			
 			controlServico = new CtrlServico();
+			servico = new Servico();
 			
 			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
 				valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
@@ -588,15 +592,13 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 
 	private void montarTelaAgenda() {
-		String nome;
 		txtCodigoServico.setText( String.valueOf(servico.getCodigo()) );
 		txtNomeCliente.setText( servico.getCliente().getNome());
 		txtRaca.setText( servico.getAnimal().getRaca() );
-		nome = servico.getNome();
 		txtNomeAnimal.setText( servico.getAnimal().getNome() );
-		if(rdbtnBanho.getActionCommand().equalsIgnoreCase(nome))	rdbtnBanho.setSelected(true);
-	    else if(rdbtnBanhoTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnBanhoTosa.setSelected(true);
-		else if(rdbtnTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnTosa.setSelected(true);
+		if( rdbtnBanho.getActionCommand().equalsIgnoreCase(servico.getNome()) )	rdbtnBanho.setSelected(true);
+	    else if( rdbtnBanhoTosa.getActionCommand().equalsIgnoreCase(servico.getNome())) rdbtnBanhoTosa.setSelected(true);
+		else if( rdbtnTosa.getActionCommand().equalsIgnoreCase(servico.getNome()) ) rdbtnTosa.setSelected(true);
 	}
 
 	private void montarComboBox() {

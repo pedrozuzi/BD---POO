@@ -26,6 +26,11 @@ public class Servico {
 		return animal.getNome();
 	}
 	
+	@Coluna(nome="Raca Animal", posicao=3)
+	public String getRacaAnimal(){
+		return animal.getRaca();
+	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}

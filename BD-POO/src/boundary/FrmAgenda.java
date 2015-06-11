@@ -144,9 +144,9 @@ public class FrmAgenda extends MouseAdapter{
 		btnSalvar.setBounds(692, 501, 89, 23);
 		panPrincipal.add(btnSalvar);
 		
-		JLabel lblCliente = new JLabel("Cliente/Animal");
+		JLabel lblCliente = new JLabel("Servi\u00E7o Marcado");
 		lblCliente.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCliente.setBounds(556, 81, 136, 23);
+		lblCliente.setBounds(519, 81, 136, 23);
 		panPrincipal.add(lblCliente);
 		
 		tableAgenda = new JTable();
@@ -163,6 +163,7 @@ public class FrmAgenda extends MouseAdapter{
 		panPrincipal.add(scrollPaneAgenda);
 		
 		montarAgenda();
+		tabelaServicoMarcado();
 		
 		janela.setSize(807,573);
 		janela.setContentPane( panPrincipal);

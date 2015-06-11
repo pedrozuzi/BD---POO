@@ -10,6 +10,8 @@ import java.util.List;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Agenda;
+import entity.Animal;
+import entity.Cliente;
 import entity.ClienteAgenda;
 import entity.Servico;
 
@@ -25,8 +27,13 @@ public class AgendaDaoImpl implements AgendaDao{
 	@Override
 	public List<Agenda> BuscarAgenda() throws SQLException {
 		List<Agenda> lista = new ArrayList<Agenda>();
-		String sql = "select CONVERT(CHAR(5), hora, 108) as hora, disponibilidade"
-					+ " from agenda";
+//		String sql = "select CONVERT(CHAR(5), hora, 108) as hora, disponibilidade"
+//					+ " from agenda";
+		
+		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"
+						+ " from servico s"
+						+ " full outer join agenda a"
+						+ " on s.id = a.id_servico";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
 		ResultSet rs = ps.executeQuery();
@@ -36,8 +43,8 @@ public class AgendaDaoImpl implements AgendaDao{
 			Servico s = new Servico();
 			a.setHorario( rs.getString("hora"));
 			a.setAuxiliar( rs.getInt("disponibilidade") );
-//			s.setNome( rs.getString("nome"));
-//			a.setServico(s);
+			s.setNome( rs.getString("nome"));
+			a.setServico(s);
 			lista.add(a);
 		}
 		ps.close();
@@ -47,13 +54,36 @@ public class AgendaDaoImpl implements AgendaDao{
 	@Override
 	public List<ClienteAgenda> buscaServicoMarcado() throws SQLException {
 		List<ClienteAgenda> lista = new ArrayList<ClienteAgenda>();
-		String sql = "";
+		String sql = "select an.nome, "
+				+ "s.nome as nome_servico, c.nome as nome_cliente "
+				+ ",CONVERT(CHAR(5), a.hora, 108) as hora "
+				+ "from animal an "
+				+ "inner join cliente c "
+				+ "on an.id = c.id "
+				+" inner join servico s "
+				+ "on c.id = s.id "
+				+ "inner join agenda a "
+				+ "on s.id = a.id_servico";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
 		ResultSet rs = ps.executeQuery();
 		
 		while ( rs.next() ){
-			//TODO
+			Animal an = new Animal();
+			Servico s = new Servico();
+			Cliente c = new Cliente();
+			Agenda ag = new Agenda();
+			ClienteAgenda ca = new ClienteAgenda();
+			
+			an.setNome( rs.getString("nome") );
+			s.setNome( rs.getString("nome") );
+			c.setNome( rs.getString("nome") );
+			ag.setHorario( rs.getString("hora") );
+			ca.setAgenda(ag);
+			ca.setAnimal(an);
+			ca.setCliente(c);
+			ca.setServico(s);
+			lista.add(ca);
 		}
 		ps.close();
 		return lista;

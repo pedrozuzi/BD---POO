@@ -24,6 +24,7 @@ public class CtrlAgenda {
 	}
 	
 	public List<ClienteAgenda> buscarServicoMarcado() {
+		aDao = new AgendaDaoImpl();
 		List<ClienteAgenda> lista = new ArrayList<ClienteAgenda>();
 		try {
 			lista = aDao.buscaServicoMarcado();

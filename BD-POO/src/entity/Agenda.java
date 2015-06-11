@@ -52,8 +52,8 @@ public class Agenda {
 	
 	public void setAuxiliar(int auxiliar) {
 //		this.auxiliar = auxiliar;
-		if(this.auxiliar == 0) this.setEscolhaHorario(Boolean.FALSE);
-		else this.setEscolhaHorario(Boolean.TRUE);	
+		if(this.auxiliar == 0) this.setEscolhaHorario(new Boolean(false));
+		else this.setEscolhaHorario(new Boolean(true));	
 	}
 	
 	

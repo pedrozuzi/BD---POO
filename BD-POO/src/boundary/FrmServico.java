@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import control.ConfigTelas;
 import control.ConfiguracoesTela;
+import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.ModeloTabela;
 
@@ -82,7 +83,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JDialog jd;
 	private JPanel panBuscaCliente;
 	private JScrollPane scrollPaneBusca;
-	private JTable tableBusca;
+	private JTable tableBuscaCliente;
 	private CtrlCliente controlCliente;
 	private List<Cliente> listaCliente;
 	private Cliente cliente;
@@ -90,6 +91,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private Animal animal;
 	private ModeloTabela modelo;
 	private Servico servico;
+	private CtrlAnimal controlAnimal;
 
 	public FrmServico() {
 		
@@ -114,7 +116,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		panel.add(txtCodigoServico);
 		
 		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 487, 21);
+		menuBar.setBounds(0, 0, 499, 21);
 		panel.add(menuBar);
 		
 		mnPrincipal = new JMenu("Menu");
@@ -297,7 +299,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		btnNovoServico.addActionListener(this);
 		
 		btnPesquisarCliente.addActionListener(e -> {
-//			String acao = e.getActionCommand();
 			acaoPesquisarCliente();
 		});
 		
@@ -321,16 +322,22 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 		if(am.equalsIgnoreCase("ServicoAgendado")){
 			montarTelaServicoAgendado();
+			buscarServicosAgendados();
 		} else {
 			montarTelaNovoServico();
 		}
 		
 	}
 	
+	private void buscarServicosAgendados() {
+		// TODO Auto-generated method stub
+	}
+
 	private void montarTelaNovoServico() {
 		panelServico.setVisible(true);
-		panelServico.setEnabled(false);
+		panelServico.setEnabled(true);
 		panelClienteAnimal.setVisible(true);
+		panelClienteAnimal.setEnabled(true);
 		txtNomeCliente.setVisible(true);
 		txtNomeCliente.setEnabled(true);
 		txtValor.setVisible(true);
@@ -381,22 +388,22 @@ public class FrmServico implements MouseListener, ActionListener{
 	private void acaoPesquisarCliente() {
 			
 		jd = new JDialog(janela, "Pesquisar Cliente", true);
-		jd.setSize(300, 300);
+		jd.setSize(600, 300);
 		
 		panBuscaCliente = new JPanel();
 		panBuscaCliente.setBackground(SystemColor.text);
 		panBuscaCliente.setForeground(Color.WHITE);
 		panBuscaCliente.setLayout(null);
 		
-		tableBusca = new JTable();
-		tableBusca.addMouseListener(this);
-		tableBusca.setBorder(new LineBorder(Color.BLACK));
-		tableBusca.setGridColor(Color.BLACK);
-		tableBusca.setShowGrid(true);
+		tableBuscaCliente = new JTable();
+		tableBuscaCliente.addMouseListener(this);
+		tableBuscaCliente.setBorder(new LineBorder(Color.BLACK));
+		tableBuscaCliente.setGridColor(Color.BLACK);
+		tableBuscaCliente.setShowGrid(true);
 		
 		scrollPaneBusca = new JScrollPane();
 		scrollPaneBusca.getViewport().setBorder(null);
-		scrollPaneBusca.setViewportView(tableBusca);
+		scrollPaneBusca.setViewportView(tableBuscaCliente);
 		scrollPaneBusca.setBounds(jd.getX(), jd.getY(), jd.getWidth(), jd.getHeight());
 		panBuscaCliente.add(scrollPaneBusca);
 		
@@ -413,18 +420,18 @@ public class FrmServico implements MouseListener, ActionListener{
 		controlCliente = new CtrlCliente();
 		listaCliente = new ArrayList<Cliente>();
 
-			try {
-				listaCliente = controlCliente.buscaClientePorNome(txtNomeCliente.getText());
-				if (!listaCliente.isEmpty()) {
-					modelo = new ModeloTabela(listaCliente);
-					tableBusca.getTableHeader().setReorderingAllowed(false);
-					tableBusca.setModel(modelo);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			listaCliente = controlCliente.buscaClientePorNome(txtNomeCliente
+					.getText());
+			if (!listaCliente.isEmpty()) {
+				modelo = new ModeloTabela(listaCliente);
+				tableBuscaCliente.getTableHeader().setReorderingAllowed(false);
+				tableBuscaCliente.setModel(modelo);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-		limpaCampos();
 	}
 
 	private void limpaCampos() {
@@ -442,31 +449,42 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+
+		Object[] valores = new Object[6];
+		listaAnimal = new ArrayList<Animal>();
+		controlAnimal = new CtrlAnimal();
 		
+		int linha = tableBuscaCliente.getSelectedRow();
+		int coluna = tableBuscaCliente.getSelectedColumn();
+		
+		for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
+			valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
+		}
+		
+		cliente = listaCliente.get(linha);
+		txtNomeCliente.setText( String.valueOf(valores[0]) ); 
+		
+		try {
+			listaAnimal = controlAnimal.buscaCliente( cliente.getId() );
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseExited(MouseEvent arg0) {		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent arg0) {//		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent arg0) {		
 	}
 }

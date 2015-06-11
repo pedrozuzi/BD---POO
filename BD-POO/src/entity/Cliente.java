@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 /**
  * 
  * @author Hury
@@ -19,6 +21,7 @@ public class Cliente extends Pessoa{
 	private String bairro;
 	private String cpf;
 	private int telefone;
+	private List<Animal> listaAnimal;
 	
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -71,6 +74,14 @@ public class Cliente extends Pessoa{
 	@Coluna(nome="Telefone", posicao=5)
 	public int getTelefone() {
 		return telefone;
+	}
+
+	public List<Animal> getListaAnimal() {
+		return listaAnimal;
+	}
+
+	public void setListaAnimal(List<Animal> listaAnimal) {
+		this.listaAnimal = listaAnimal;
 	}
 
 }

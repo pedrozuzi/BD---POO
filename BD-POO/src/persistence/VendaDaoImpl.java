@@ -21,7 +21,7 @@ import entity.Venda;
  *
  */
 
-public class VendaDaoImpl implements VendaDao {
+public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	private Connection c;
 

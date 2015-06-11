@@ -101,15 +101,16 @@ foreign key(id_cliente) references cliente(id),
 foreign key(id_funcionario) references funcionario(id))
 
 create table venda_produto(
-data_venda datetime not null,
+
 id_venda int not null,
 id_produto int not null,
+data_venda datetime not null,
 quantidade int not null,
 
 check(data_venda <= getdate()),
 primary key(data_venda, id_venda, id_produto),
-foreign key(id_venda) references venda(id),
-foreign key(id_produto) references produto(id))
+foreign key(id_venda) references venda(id) ON DELETE CASCADE,
+foreign key(id_produto) references produto(id) ON DELETE CASCADE)
 
 create table compra(
 id int identity not null,
@@ -221,18 +222,13 @@ INSERT INTO fornecedor (id,nome,telefone) VALUES
 (9,'aang',22222222)
 
 INSERT INTO cliente (id,nome,logradouro,numero,bairro,telefone,cpf) VALUES
-(24,'Oscar Alho','av 23',157,'se',11111111,11111111111),
+(5,'Oscar Alho','av 23',157,'se',11111111,11111111111),
 (25,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111),
 (26,'Pedro','rua chua',4,'cracolandia',222222,222222),
 (27,'Oscar','rua eira',500,'cracolandia',333333,333333),
 (28,'Alho','rua cac',600,'cracolandia',4444444,4444444),
 (29,'Cebola','rua c',800,'cracolandia',5555555,5555555),
 (30,'Suzi','rua',150,'cracolandia',666666,6666666)
-
-select * from pessoa
-select * from cliente
-
-delete pessoa
 
 INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra,quantidade) VALUES
 ('Petimax','ração para cachorro',4,10.00,5.00,5),
@@ -250,6 +246,12 @@ INSERT INTO lote_produto(idProduto,idLote) VALUES
 (2,3),
 (2,4)
 
+insert into venda (id_cliente,id_funcionario,total)
+ values (5,1,50.00)
+
+ insert into venda_produto(id_venda,id_produto,data_venda,quantidade)
+ values(1,1,'10-06-15',10)
+
 ------------------------
 
 use master
@@ -258,6 +260,9 @@ drop database ludpet
 select * from produto
 select * from lote
 select * from lote_produto
+
+select * from venda
+select * from venda_produto
 
 delete lote_produto where idProduto = 3
 delete produto

@@ -598,7 +598,7 @@ public class FrmAnimal extends MouseAdapter {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		new FrmAnimal();
-//	}
+	public static void main(String[] args) {
+		new FrmAnimal(null);
+	}
 }

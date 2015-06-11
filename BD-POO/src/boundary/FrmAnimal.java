@@ -94,18 +94,16 @@ public class FrmAnimal extends MouseAdapter {
 	private JLabel lblTiraCinza3;
 	private JLabel lblTiraVermelha2;
 	private JLabel lblTiraVermelha;
+	private ConfiguracoesTela configTela;
 	
 	public FrmAnimal() {
 		
-		janelaAnimal = new JFrame();
-		janelaAnimal.setTitle("Animal");
+		janelaAnimal = new JFrame("Animal");
+		
 		panPrincipalAnimal = new JPanel();
 		panPrincipalAnimal.setBackground(SystemColor.text);
 		panPrincipalAnimal.setForeground(Color.WHITE);
 		panPrincipalAnimal.setLayout(null);
-		
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janelaAnimal);
-		configTela.iconeBarra(janelaAnimal);
 		
 		menuBarra = new JMenuBar();
 		janelaAnimal.setJMenuBar(menuBarra);
@@ -117,23 +115,12 @@ public class FrmAnimal extends MouseAdapter {
 		menuPrincipal.setIcon(new ImageIcon(getClass()
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
-		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
-		menuPrincipal.addActionListener(e -> {
-			janelaAnimal.dispose();
-			new FrmPrincipal(null);
-		}); 
+
 		
 		logOff = new JMenuItem("Log Off");
 		logOff.setIcon(new ImageIcon(getClass()
 				.getResource("/img/LogOffMenu.png")));
 		menu.add(logOff);
-		
-		
-		logOff.addActionListener(e -> {
-			janelaAnimal.dispose();
-			new FrmLogin();
-		});
 		
 		txtCliente = new JTextField();
 		txtCliente.setEnabled(false);
@@ -335,21 +322,34 @@ public class FrmAnimal extends MouseAdapter {
 		panelCliente.setBounds(129, 278, 363, 65);
 		panPrincipalAnimal.add(panelCliente);
 		
-		janelaAnimal.setSize(627,656);
-		janelaAnimal.setContentPane( panPrincipalAnimal );
-		
 		lblTiraCinza = new JLabel("");
 		lblTiraCinza.setBounds(454, 17, 184, 14);
 		panPrincipalAnimal.add(lblTiraCinza);
 		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
-		ConfigTelas.centralizarFrame( janelaAnimal );
 		
 		lblTiraCinza3 = new JLabel("");
 		lblTiraCinza3.setBounds(0, 17, 129, 14);
 		panPrincipalAnimal.add(lblTiraCinza3);
 		lblTiraCinza3.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
 		
-		ConfigTelas.centralizarFrame( janelaAnimal );
+		janelaAnimal.setContentPane( panPrincipalAnimal );
+		
+		configTela = new ConfiguracoesTela();
+		janelaAnimal.setSize(627,656);
+		configTela.iconeBarra(janelaAnimal);
+		configTela.tamanho(janelaAnimal);
+		
+		logOff.addActionListener(e -> {
+			janelaAnimal.dispose();
+			new FrmLogin();
+		});
+		
+		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
+		menuPrincipal.addActionListener(e -> {
+			janelaAnimal.dispose();
+			janelaAnimal = null;
+			new FrmPrincipal(null);
+		}); 
 		
 		btnLupaPesquisar.addActionListener(l -> {
 			cliente(jd);

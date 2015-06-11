@@ -270,8 +270,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		btnLimpar.setBounds(187, 476, 111, 31);
 		panel.add(btnLimpar);
 		
-		configTela = new ConfiguracoesTela( janela );
-		
 		janela.setSize(503, 570);
 		janela.setContentPane(panel);
 		
@@ -309,10 +307,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		lblLogoLudPet.setBounds(17, 200, 470, 193);
 		panel.add(lblLogoLudPet);
 		
-		ConfigTelas.centralizarFrame(janela);
-		
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setVisible(true);
+		configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 		
 		cliente = new Cliente();
 //		servico = new Servico();

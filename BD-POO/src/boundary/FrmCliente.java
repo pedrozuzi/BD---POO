@@ -74,6 +74,7 @@ public class FrmCliente extends MouseAdapter {
 	private JLabel lblTiraVermelha;
 	private JLabel lblTiraCinza3;
 	private JLabel lblTiraCinza;
+	private ConfiguracoesTela configTela;
 	
 	public FrmCliente() {
 		janela = new JFrame("Cliente");
@@ -82,8 +83,7 @@ public class FrmCliente extends MouseAdapter {
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
@@ -320,7 +320,7 @@ public class FrmCliente extends MouseAdapter {
 		
 		janela.setSize(749,677);
 		janela.setContentPane( panPrincipal);
-		ConfigTelas.centralizarFrame(janela);
+		configTela.tamanho(janela);
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
 		

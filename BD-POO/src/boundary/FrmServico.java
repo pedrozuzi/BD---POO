@@ -465,9 +465,9 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void acaoPesquisarCliente(List<?> lista) {
 			
-		Class<?> classe = lista.get(0).getClass();
+		Class<?> classe = lista.isEmpty() ? null :lista.get(0).getClass();
 		
-		if(classe.getName().equalsIgnoreCase("entity.Cliente")){
+		if(classe.getName().equalsIgnoreCase("entity.Cliente") && classe != null){
 			jd = new JDialog(janela, "Pesquisar Cliente", true);
 		} else {
 			jd = new JDialog(janela, "Buscar serviço", true);
@@ -568,24 +568,22 @@ public class FrmServico implements MouseListener, ActionListener{
 			servico = listaServico.get(linha);
 			
 			montarTelaAgenda();
-//			controlServico.b
+
 		}
 	
-//		jd.dispose();
-//		jd = null;
+		jd.dispose();
+		jd = null;
 	}
 
 	private void montarTelaAgenda() {
 		String nome;
 		txtCodigoServico.setText( String.valueOf(servico.getCodigo()) );
 		txtNomeCliente.setText( servico.getCliente().getNome());
-		cbAnimal.setToolTipText( servico.getAnimal().getNome() );
 		txtRaca.setText( servico.getAnimal().getRaca() );
-		txtValor.setText( String.valueOf(servico.getValor()) );
 		nome = servico.getNome();
-		if(rdbtnBanho.equals(nome))	rdbtnBanho.setSelected(true);
-	    else if(rdbtnBanhoTosa.equals(nome)) rdbtnBanhoTosa.setSelected(true);
-		else if(rdbtnTosa.equals(nome)) rdbtnTosa.setSelected(true);
+		if(rdbtnBanho.getActionCommand().equalsIgnoreCase(nome))	rdbtnBanho.setSelected(true);
+	    else if(rdbtnBanhoTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnBanhoTosa.setSelected(true);
+		else if(rdbtnTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnTosa.setSelected(true);
 	}
 
 	private void montarComboBox() {

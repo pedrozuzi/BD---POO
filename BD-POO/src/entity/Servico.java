@@ -20,10 +20,10 @@ public class Servico {
 		return this.cliente.getNome();
 	}
 	
-//	@Coluna(nome="Nome Animal", posicao=2)
-//	public String getNomeAnimal(){
-//		return cliente.getListaAnimal().get(0);
-//	}
+	@Coluna(nome="Nome Animal", posicao=2)
+	public String getNomeAnimal(){
+		return cliente.getListaAnimal().get(0).getNome();
+	}
 	
 	public Cliente getCliente() {
 		return cliente;

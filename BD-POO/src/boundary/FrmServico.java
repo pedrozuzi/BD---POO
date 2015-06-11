@@ -100,6 +100,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private List<Servico> listaServico= new ArrayList<Servico>();
 	private CtrlAnimal controlAnimal;
 	private CtrlServico controlServico= new CtrlServico();
+	private JTextField txtNomeAnimal;
 
 	public FrmServico() {
 		
@@ -191,6 +192,15 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtRaca.setColumns(10);
 		txtRaca.setEditable(false);
 		panelClienteAnimal.add(txtRaca);
+		
+		txtNomeAnimal = new JTextField();
+		txtNomeAnimal.setBackground(SystemColor.info);
+		txtNomeAnimal.setBounds(116, 57, 111, 20);
+		txtNomeAnimal.setColumns(10);
+		txtNomeAnimal.setEditable(false);
+		txtNomeAnimal.setVisible(false);
+		panelClienteAnimal.add(txtNomeAnimal);
+		
 		
 		panelServico = new JPanel();
 		panelServico.setVisible(false);
@@ -421,6 +431,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtValor.setVisible(true);
 		txtCodigoServico.setVisible(true);
 		txtRaca.setVisible(true);
+		txtNomeAnimal.setVisible(false);
 		lblNomeCliente.setVisible(true);
 		lblNomeCliente.setEnabled(true);
 		lblCodigoServico.setVisible(true);
@@ -446,7 +457,10 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeCliente.setEnabled(false);
 		txtValor.setVisible(true);
 		txtCodigoServico.setVisible(true);
+		txtNomeAnimal.setEnabled(false);
 		txtRaca.setVisible(true);
+		txtRaca.setEnabled(false);
+		txtNomeAnimal.setVisible(true);
 		lblNomeCliente.setVisible(true);
 		lblNomeCliente.setEnabled(false);
 		lblCodigoServico.setVisible(true);
@@ -456,8 +470,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		lblRaca.setEnabled(false);
 		lblValor.setVisible(true);
 		btnPesquisarCliente.setVisible(false);
-		cbAnimal.setVisible(true);
-		cbAnimal.setEnabled(false);
+		cbAnimal.setVisible(false);
 		rdbtnBanho.setEnabled(false);
 		rdbtnBanhoTosa.setEnabled(false);
 		rdbtnTosa.setEnabled(false);
@@ -558,7 +571,6 @@ public class FrmServico implements MouseListener, ActionListener{
 			montarComboBox();
 		} else {
 			
-			listaServico = new ArrayList<Servico>();
 			controlServico = new CtrlServico();
 			
 			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
@@ -581,6 +593,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeCliente.setText( servico.getCliente().getNome());
 		txtRaca.setText( servico.getAnimal().getRaca() );
 		nome = servico.getNome();
+		txtNomeAnimal.setText( servico.getAnimal().getNome() );
 		if(rdbtnBanho.getActionCommand().equalsIgnoreCase(nome))	rdbtnBanho.setSelected(true);
 	    else if(rdbtnBanhoTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnBanhoTosa.setSelected(true);
 		else if(rdbtnTosa.getActionCommand().equalsIgnoreCase(nome)) rdbtnTosa.setSelected(true);

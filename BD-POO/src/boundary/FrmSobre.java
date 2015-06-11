@@ -12,14 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.Window.Type;
 
-/**
- * 
- * @author Hury
- *
- */
+
 public class FrmSobre {
 
 	private JFrame janela = new JFrame("Sobre");
+	private ConfiguracoesTela configTela;
 
 	public FrmSobre(){
 		
@@ -68,14 +65,13 @@ public class FrmSobre {
 		scrollPane.setViewportView(txtpnHuryGabrielPedro);
 		txtpnHuryGabrielPedro.setEditable(false);
 		txtpnHuryGabrielPedro.setText("Projeto desenvolvido na institui\u00E7\u00E3o FATEC da zona leste, no 4\u00BA semestre do curso de an\u00E1lise e desenvolvimento de sistemas sob orienta\u00E7\u00E3o dos prof(a) ms. Antonio e Leandro.\r\n\r\n               \t  Alunos:\r\n\tHury Gabriel\r\n\tPedro Afonso\t\r\n\tPedro Zuzi\r\n\r\n ");
-		janela.setSize(400,371);
-		janela.setVisible(true);
+		
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
+		configTela = new ConfiguracoesTela();
+		janela.setSize(400,371);
 		configTela.iconeBarra(janela);
-		configTela.centralizeFrame(janela);
+		configTela.tamanho(janela);
 	}
 	
 	

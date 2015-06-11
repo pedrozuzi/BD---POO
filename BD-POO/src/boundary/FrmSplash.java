@@ -10,21 +10,10 @@ import control.ConfiguracoesTela;
 
 import javax.swing.ImageIcon;
 
-/**
- * 
- * Classe que ira apresentar a janela splash, primeira janela do sistema.
- * 
- * @author Hury
- * 
- */
 public class FrmSplash extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame janela;
-
-	/**
-	 * Construtor
-	 */
 
 	public FrmSplash() {
 
@@ -46,11 +35,6 @@ public class FrmSplash extends JFrame {
 
 	}
 
-	/**
-	 * Metodo Main, lança a aplicação
-	 * 
-	 * @param args
-	 */
 
 	public static void main(String[] args) {
 		FrmSplash frame = new FrmSplash();
@@ -67,10 +51,6 @@ public class FrmSplash extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * metodo que centraliza o Frame
-	 */
 
 	public void centralizeFrame() {
 		int x, y;

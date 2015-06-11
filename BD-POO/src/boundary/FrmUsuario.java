@@ -3,7 +3,6 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
 import control.CtrlUsuario;
@@ -25,8 +24,6 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -78,14 +75,13 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private ModeloTabela modelo;
 	private List<Funcionario> listaF = new ArrayList<Funcionario>();
 	private List<Usuario> listaU = new ArrayList<Usuario>();
-	private int id;
 	private CtrlFuncionario ctrlFunc;
 	private JMenuBar menuBarra;
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
 	private Funcionario f;
-	Usuario u;
+	private Usuario u;
 	private int controle = 0;
 	private JLabel lblTiraVermelha2;
 	private JLabel label;
@@ -93,19 +89,16 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblTiraVermelha;
 	private JLabel lblTiraCinza3;
 	private JLabel lblTiraCinza;
+	private ConfiguracoesTela configTela;
 	
 	public FrmUsuario() {
 
 		janela = new JFrame("Usuario");
-		janela.setTitle("Usu\u00E1rio");
+		
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBackground(SystemColor.window);
 		janela.setContentPane(panelPrincipal);
 		panelPrincipal.setLayout(null);
-		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);
@@ -118,7 +111,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
 		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
 			new FrmPrincipal(null);
@@ -321,10 +313,13 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		panelPrincipal.add(lblDadosObrigatorios);
 		
 		janela.setSize(633, 671);		
-		ConfigTelas.centralizarFrame(janela);
+		configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
+//		ConfigTelas.centralizarFrame(janela);
 		
 		f = new Funcionario();
-		ctrlFunc = new CtrlFuncionario();
+		
 		controlUsuario = new CtrlUsuario();
 		
 		btnIncluir.addActionListener(this);
@@ -334,6 +329,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		btnVoltar.addActionListener(this);
 		btnLimpar.addActionListener(this);
 		btnPesquisarNome.addActionListener(this);	
+		
 		btnVerificar.addActionListener(e ->{
 				if(!txtUsuario.getText().isEmpty()){
 					if(controlUsuario.verificarNomeUsuario( txtUsuario.getText() )){
@@ -477,7 +473,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	}
 	
 	private void pesquisarFuncionario() {
-			
+		
+		ctrlFunc = new CtrlFuncionario();
+		
 		try {
 			listaF = ctrlFunc.pesquisarFuncionarioSemUsuario(txtNome.getText());
 			if (!listaF.isEmpty()) {
@@ -543,7 +541,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 				valores[coluna] = table.getValueAt(linha, coluna);
 			}
 
-			id = listaF.get(linha).getId();
+			f.setId( listaF.get(linha).getId() );
 			f = listaF.get(linha);
 			for (Funcionario f : listaF) {
 				if(valores[0].equals(f.getNome())){

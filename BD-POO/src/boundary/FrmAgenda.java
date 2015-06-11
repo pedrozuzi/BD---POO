@@ -182,6 +182,7 @@ public class FrmAgenda extends MouseAdapter{
 		
 		btnSalvar.addActionListener(e -> {
 			adicionaServicoAgenda();
+			
 			tabelaServicoMarcado();
 		});
 		
@@ -194,6 +195,7 @@ public class FrmAgenda extends MouseAdapter{
 		controlServico = new CtrlServico();
 		s.setCodigo(controlServico.buscarNovaEntrada());
 		animal.setId(idAnimal);
+		animal.setNome(String.valueOf(comboBoxAnimal.getSelectedItem()));
 		s.setAnimal(animal);
 		c.setId(idCliente);
 		s.setCliente(c);
@@ -205,7 +207,6 @@ public class FrmAgenda extends MouseAdapter{
 		listaServicoMarcado = new ArrayList<ClienteAgenda>();
 		controlAgenda = new CtrlAgenda();
 		listaServicoMarcado = controlAgenda.buscarServicoMarcado();
-		
 		
 		if (!listaServicoMarcado.isEmpty()) {
 			modeloServicoMarcado = new ModeloTabela(listaServicoMarcado);
@@ -312,7 +313,7 @@ public class FrmAgenda extends MouseAdapter{
 			buscaAnimaisDoCliente(linha);
 			
 		}else if (tableAgenda.equals(acao)) {
-			Object[] valores = new Object[3];
+			Object[] valores = new Object[2];
 			int linha = tableAgenda.getSelectedRow();
 			int coluna = tableAgenda.getSelectedColumn();
 			

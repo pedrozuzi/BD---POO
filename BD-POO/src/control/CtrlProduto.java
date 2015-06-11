@@ -36,25 +36,26 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		CtrlTableLote {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote, txtQtde;
+	
+	private Object[] objetosTela =  new Object[25];
 
 	private ProdutoDao pDao;
 	private LoteDao lDao;
 	private LoteProdutoDao lpDao;
 
-	public CtrlProduto(JTextField txtIdProduto, JTextField txtNome,
-			JTextField txtDescricao, JTextField txtValorVenda,
-			JTextField txtValorCompra, JTextField txtIdFornecedor,
-			JTextField txtIdLote, JTextField txtDataValidadeLote, JTextField txtQtde) {
+	public CtrlProduto(Object[] objetosTela) {
 		
-		this.txtIdProduto = txtIdProduto;
-		this.txtNome = txtNome;
-		this.txtDescricao = txtDescricao;
-		this.txtValorVenda = txtValorVenda;
-		this.txtValorCompra = txtValorCompra;
-		this.txtIdFornecedor = txtIdFornecedor;
-		this.txtIdLote = txtIdLote;
-		this.txtDataValidadeLote = txtDataValidadeLote;
-		this.txtQtde = txtQtde;
+
+		
+		this.txtIdProduto = (JTextField) objetosTela[0];
+		this.txtNome = (JTextField) objetosTela[1];
+		this.txtDescricao = (JTextField) objetosTela[2];
+		this.txtValorVenda = (JTextField) objetosTela[3];
+		this.txtValorCompra = (JTextField) objetosTela[4];
+		this.txtIdFornecedor = (JTextField) objetosTela[5];
+		this.txtIdLote = (JTextField) objetosTela[6];
+		this.txtDataValidadeLote = (JTextField) objetosTela[7];
+		this.txtQtde = (JTextField) objetosTela[8];
 	}
 
 	/**

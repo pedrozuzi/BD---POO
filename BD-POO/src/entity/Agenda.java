@@ -4,6 +4,7 @@ public class Agenda {
 	
 	private String horario;
 	private Boolean escolhaHorario;
+	private Servico servico;
 	private int auxiliar;
 	private Cliente cliente;
 	
@@ -48,6 +49,11 @@ public class Agenda {
 		return this.horario;
 	}
 	
+	public Servico getServico() {
+		return servico;
+	}
 	
-
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
 }

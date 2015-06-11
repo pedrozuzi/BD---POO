@@ -26,7 +26,6 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
 import control.ModeloTabela;

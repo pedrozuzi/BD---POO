@@ -19,7 +19,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlLogin;
 import control.CtrlStatus;
@@ -27,7 +26,7 @@ import entity.Usuario;
 
 public class FrmLogin {
 
-	private JFrame janela ;//= new JFrame("Realizar Login");
+	private JFrame janela ;
 	private JTextField txtUsuario;
 	private JPasswordField pwdSenha;
 	private JLabel lblUsuario;

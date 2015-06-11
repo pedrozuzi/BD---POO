@@ -49,18 +49,14 @@ public class FrmPrincipal {
 		}
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	private void principalAdm(Usuario u) {
+		
 		janela = new JFrame("Menu Principal");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
 		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
@@ -161,24 +157,22 @@ public class FrmPrincipal {
 		atalhos();
 		atalhosAdm();
 		
-		janela.setSize(631,539);
-		janela.setLocationRelativeTo(null);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(631,539);		
+		ConfiguracoesTela configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 		
 	}
 
 	private void principal(Usuario u) {
+		
 		janela = new JFrame("Menu Principal");
+		
 		panPrincipal = new JPanel();
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
-		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
 		
 		btnCadastros = new JButton();
 		
@@ -248,10 +242,10 @@ public class FrmPrincipal {
 		panPrincipal.add(label_4);
 		
 		
-		janela.setSize(623,529);
-		janela.setLocationRelativeTo(null);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setSize(623,529);		
+		ConfiguracoesTela configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 		
 		atalhos(); //REFAZER
 		

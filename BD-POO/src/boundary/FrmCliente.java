@@ -23,7 +23,6 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlCliente;
 import control.ModeloTabela;

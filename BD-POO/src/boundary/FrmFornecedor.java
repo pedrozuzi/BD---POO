@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlFornecedor;
 import control.ModeloTabela;
@@ -74,17 +73,16 @@ public class FrmFornecedor extends MouseAdapter{
 	private JLabel lblTiraVermelha;
 	private JLabel lblTiraCinza3;
 	private JLabel lblTiraCinza;
+	private ConfiguracoesTela configTela;
 	
 	public FrmFornecedor() {
+		
 		janela = new JFrame("Fornecedor");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
-		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
 		
 		menuBarra = new JMenuBar();
 		janela.setJMenuBar(menuBarra);
@@ -97,7 +95,6 @@ public class FrmFornecedor extends MouseAdapter{
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
 		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
 			new FrmPrincipal(null);
@@ -166,35 +163,6 @@ public class FrmFornecedor extends MouseAdapter{
 		lblExcluir.setVisible(true);
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panel.add(lblExcluir);
-		
-		btnAlterar.addActionListener(e -> {
-			btnGravar.setEnabled(true);
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/MiniSalvar.png")));
-			btnGravar.setText("Alterar");
-			btnGravar.setActionCommand("Alterar");
-			telaAlterarExcluirPesquisarFornecedor();
-			
-		});
-		
-		btnIncluir.addActionListener( e -> {
-			scrollPane.setVisible(false);
-			btnGravar.setEnabled(true);
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/MiniSalvar.png")));
-			btnGravar.setText("Gravar");
-			btnGravar.setActionCommand("Incluir");
-			telaInserirFornecedor();
-		});
-		
-		btnExcluir.addActionListener(e -> {
-			btnGravar.setEnabled(true);
-			btnGravar.setText("Excluir");
-			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
-					("/img/trash.png")));
-			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirPesquisarFornecedor();
-		});
 		
 		lblTiraCinza2 = new JLabel("");
 		lblTiraCinza2.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
@@ -291,9 +259,40 @@ public class FrmFornecedor extends MouseAdapter{
 		panPrincipal.add(scrollPane);
 		panPrincipal.add(btnVoltar);
 		
-		janela.setSize(581,511);
 		janela.setContentPane( panPrincipal);
-		ConfigTelas.centralizarFrame(janela);
+		configTela = new ConfiguracoesTela();
+		janela.setSize(581,511);
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
+		
+		btnAlterar.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Alterar");
+			btnGravar.setActionCommand("Alterar");
+			telaAlterarExcluirPesquisarFornecedor();
+			
+		});
+		
+		btnIncluir.addActionListener( e -> {
+			scrollPane.setVisible(false);
+			btnGravar.setEnabled(true);
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/MiniSalvar.png")));
+			btnGravar.setText("Gravar");
+			btnGravar.setActionCommand("Incluir");
+			telaInserirFornecedor();
+		});
+		
+		btnExcluir.addActionListener(e -> {
+			btnGravar.setEnabled(true);
+			btnGravar.setText("Excluir");
+			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
+					("/img/trash.png")));
+			btnGravar.setActionCommand("Excluir");
+			telaAlterarExcluirPesquisarFornecedor();
+		});
 		
 		btnLupaPesquisar.addActionListener(e -> {
 			control = new CtrlFornecedor();

@@ -39,13 +39,6 @@ import control.ModeloTabela;
 import entity.Lote;
 import entity.Produto;
 
-/**
- * Classe que possui os elementos de tela do Produto e Lote
- * 
- * @author Hury
- *
- */
-
 // TODO INCLUIR QUANTIDADE!!!!!
 public class FrmProduto extends MouseAdapter {
 
@@ -107,30 +100,13 @@ public class FrmProduto extends MouseAdapter {
 
 	Object[] objetosTela = new Object[25];
 
-	/**
-	 * Construtor
-	 */
+	private ConfiguracoesTela configTela;
 
 	public FrmProduto() {
 
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
 		janela.setResizable(false);
-
-		// XXX DELETAR APÒS EDIÇÂO!!
-		janela.setSize(942, 702);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// XXX
-
-		// CONFIGURACOES DE TELA, COMENTAR PARA EDITAR NO WINDOW BUILDER!!
-		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
-		configTela.iconeBarra(janela);
-		configTela.tamanho(janela, 942, 702);
-		configTela.centralizeFrame(janela);
-		configTela.selecionaEstilo(0); // 1=nimbus
-		configTela.estilo(janela);
-		// COMENTAR ATÈ AQUI!!
 
 		janela.setContentPane(panPrincipal);
 		panPrincipal.setLayout(null);
@@ -529,6 +505,11 @@ public class FrmProduto extends MouseAdapter {
 		btnExcluirLote.addActionListener(ctrltela);
 		btnPesquisar.addActionListener(ctrltela);
 
+		janela.setSize(942, 702);
+		configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
+		
 		ctrltela.resetaTela(); // configura a tela para abertura
 
 		btnSalva.addActionListener(e -> {

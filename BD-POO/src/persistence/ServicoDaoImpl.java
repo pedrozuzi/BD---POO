@@ -52,8 +52,8 @@ public class ServicoDaoImpl implements ServicoDao {
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, servico.getCodigo());
 		ps.setString(2, servico.getNome());
-		ps.setInt(4, servico.getAnimal().getId() );
-		ps.setInt(5, servico.getCliente().getId());
+		ps.setInt(3, servico.getAnimal().getId() );
+		ps.setInt(4, servico.getCliente().getId());
 		System.out.println(servico.getAnimal().getNome()+"\n"+servico.getAnimal().getId());
 		ps.execute();
 		ps.close();

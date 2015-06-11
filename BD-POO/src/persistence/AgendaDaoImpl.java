@@ -72,14 +72,12 @@ public class AgendaDaoImpl implements AgendaDao{
 			Animal an = new Animal();
 			Servico s = new Servico();
 			Cliente c = new Cliente();
-			Agenda ag = new Agenda();
 			ClienteAgenda ca = new ClienteAgenda();
 			
 			an.setNome( rs.getString("nome") );
-			s.setNome( rs.getString("nome") );
-			c.setNome( rs.getString("nome") );
-			ag.setHorario( rs.getString("hora") );
-			ca.setAgenda(ag);
+			s.setNome( rs.getString("nome_servico") );
+			c.setNome( rs.getString("nome_cliente") );
+			ca.setHora(rs.getString("hora") );
 			ca.setAnimal(an);
 			ca.setCliente(c);
 			ca.setServico(s);

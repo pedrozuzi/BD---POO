@@ -67,7 +67,7 @@ public class ServicoDaoImpl implements ServicoDao {
 				+ "on c.id = s.id_cliente "
 				+ "inner join agenda a "
 				+ "on s.id = a.id_servico "
-				+ "where hora > CONVERT(CHAR(5), GETDATE()-'12:00', 108)";		
+				+ "where hora > CONVERT(CHAR(5), GETDATE()-'14:00', 108)";		
 		PreparedStatement ps = c.prepareStatement( query );
 		ResultSet rs = ps.executeQuery();
 		

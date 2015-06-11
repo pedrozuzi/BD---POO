@@ -2,17 +2,6 @@ package entity;
 
 import java.util.List;
 
-/**
- * 
- * @author Hury
- *
- */
-
-/*
- * create table cliente( id int not null, nome varchar(60) not null, logradouro
- * varchar(100) not null, numero int not null, bairro varchar(60) not null,
- * senha int null primary key(id), foreign key(id) references pessoa(idPessoa))
- */
 public class Cliente extends Pessoa{
 
 	private String nome;
@@ -70,7 +59,6 @@ public class Cliente extends Pessoa{
 	@Coluna(nome="Telefone", posicao=5)
 	@Override
 	public int getTelefone() {
-		// TODO Auto-generated method stub
 		return super.getTelefone();
 	}
 
@@ -80,6 +68,11 @@ public class Cliente extends Pessoa{
 
 	public void setListaAnimal(List<Animal> listaAnimal) {
 		this.listaAnimal = listaAnimal;
+	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
 	}
 
 }

@@ -43,7 +43,7 @@ public class FrmAgenda extends MouseAdapter{
 	
 	private JFrame janela; 
 	private JPanel panPrincipal;
-	private JTable tableAgenda;
+	private JTable tableAgenda = new JTable();
 	private JTable tableServicoMarcado;
 	private JTextField txtData;
 	private JTextField txtCliente;
@@ -281,6 +281,19 @@ public class FrmAgenda extends MouseAdapter{
 			txtCliente.setText(String.valueOf(valorCliente));
 			
 			buscaAnimaisDoCliente();
+		}else if (tableAgenda.equals(acao)) {
+			Object[] valores = new Object[3];
+			int linha = tableAgenda.getSelectedRow();
+			int coluna = tableAgenda.getSelectedColumn();
+			
+			for (coluna = 0; coluna < tableAgenda.getColumnCount(); coluna++) {
+				valores[coluna] = tableAgenda.getValueAt(linha, coluna);
+			}
+			
+			for (int i = 0; i < valores.length; i++) {
+				System.out.println(valores[i]);
+			}
+			
 		}
 	}
 

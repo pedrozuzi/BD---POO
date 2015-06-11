@@ -31,12 +31,8 @@ public class AgendaDaoImpl implements AgendaDao{
 		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"
 				+ " from servico s"
 				+ " right outer join agenda a"
-				+ " on s.id = a.id_servico";
-				
-//		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"
-//						+ " from servico s"
-//						+ " full outer join agenda a"
-//						+ " on s.id = a.id_servico";
+				+ " on s.id = a.id_servico"
+				+ " where id_servico is null";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
 		ResultSet rs = ps.executeQuery();

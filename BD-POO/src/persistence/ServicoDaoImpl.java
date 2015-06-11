@@ -42,6 +42,21 @@ public class ServicoDaoImpl implements ServicoDao {
 		
 
 	}
+	
+	@Override
+	public void adicinaServicoAgenda(Servico servico) throws SQLException {
+		String query = "insert into servico (id, nome, id_animal, id_cliente_servico) values"
+				+ " (?, ?, ?, ?)";
+		
+		PreparedStatement ps = c.prepareStatement( query );
+		ps.setInt(1, servico.getCodigo());
+		ps.setString(2, servico.getNome());
+		ps.setInt(4, servico.getAnimal().getId() );
+		ps.setInt(5, servico.getCliente().getId());
+		System.out.println(servico.getAnimal().getNome()+"\n"+servico.getAnimal().getId());
+		ps.execute();
+		ps.close();
+	}
 
 	@Override
 	public int buscarNovaEntrada() throws SQLException {

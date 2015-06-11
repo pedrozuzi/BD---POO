@@ -71,6 +71,7 @@ public class FrmAgenda extends MouseAdapter{
 	private CtrlAgenda controlAgenda;
 	private List<Agenda> listaAgenda;
 	private List<ClienteAgenda> listaServicoMarcado;
+	private int idAnimal;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -201,7 +202,6 @@ public class FrmAgenda extends MouseAdapter{
 		controlAgenda = new CtrlAgenda();
 		listaAgenda = controlAgenda.buscarAgenda();
 		
-		
 		modeloAgenda = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
 		tableAgenda.setModel(modeloAgenda);
@@ -291,7 +291,8 @@ public class FrmAgenda extends MouseAdapter{
 			valorCliente = tableBusca.getValueAt(linha, 0);
 			txtCliente.setText(String.valueOf(valorCliente));
 			
-			buscaAnimaisDoCliente();
+			buscaAnimaisDoCliente(linha);
+			
 		}else if (tableAgenda.equals(acao)) {
 			Object[] valores = new Object[3];
 			int linha = tableAgenda.getSelectedRow();
@@ -308,13 +309,13 @@ public class FrmAgenda extends MouseAdapter{
 		}
 	}
 
-	private void buscaAnimaisDoCliente() {
+	private void buscaAnimaisDoCliente(int linha) {
 		controlAnimal = new CtrlAnimal();
 		listaAnimal = new ArrayList<Animal>();
 		
 		try {
 			listaAnimal = controlAnimal.buscaCliente(idCliente);
-			
+			idAnimal = listaAnimal.get(linha).getId();
 			if (!listaAnimal.isEmpty()) {
 				listaAnimal.forEach(a -> {
 					comboBoxAnimal.addItem(a.getNome());

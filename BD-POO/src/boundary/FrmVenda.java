@@ -28,34 +28,44 @@ import javax.swing.border.BevelBorder;
 public class FrmVenda {
 
 	private JFrame janela;
+	
 	private JPanel panPrincipal;
-	private JTextField txtNumVenda;
-	private JTable tableVenda;
-	private JScrollPane scrollVenda;
 	private JPanel panVenda;
-	private JLabel lblData;
+	private JPanel panConsulta;
+	
+	private JTextField txtIdVenda;
+	private JTextField txtIdCliente;
+	private JTextField txtIdVendedor;
 	private JTextField txtDataVenda;
 	private JTextField txtNomeCli;
 	private JTextField txtCodProdServ;
 	private JTextField txtNomeProdServ;
 	private JTextField txtQtdeProdServ;
 	private JTextField txtDinheiroRecebido;
-	private JLabel lblCodCli;
-	private JLabel lblNewLabel_4;
+	
+	private JLabel lblTotal;
+	private JLabel lblData;
+
 	private JButton btnPesquisaCli;
-	private JRadioButton rdbProduto;
-	private JRadioButton rdbServico;
 	private JButton btnPesquisaProdServ;
-	private JLabel lblPrecoUPS;
-	private JLabel lblPrecoTPS;
 	private JButton btnAdicionarPS;
 	private JButton btnRemovePS;
-	private JPanel panConsulta;
 	private JButton btnConsultaEstoque;
 	private JButton btnCancelar;
 	private JButton btnAcao;
 	
+	private JRadioButton rdbProduto;
+	private JRadioButton rdbServico;
+
+	private JLabel lblPrecoUPS;
+	private JLabel lblPrecoTPS;
+	
+	private JTable tableVenda;
+	private JScrollPane scrollVenda;
+	
 	Object[] objetosTela = new Object[25];
+	
+
 
 	public FrmVenda() {
 		janela = new JFrame("Venda");
@@ -185,10 +195,10 @@ public class FrmVenda {
 		lblNVenda.setBounds(110, 23, 64, 14);
 		panVenda.add(lblNVenda);
 
-		txtNumVenda = new JTextField();
-		txtNumVenda.setBounds(166, 20, 64, 20);
-		panVenda.add(txtNumVenda);
-		txtNumVenda.setColumns(10);
+		txtIdVenda = new JTextField();
+		txtIdVenda.setBounds(166, 20, 64, 20);
+		panVenda.add(txtIdVenda);
+		txtIdVenda.setColumns(10);
 
 		lblData = new JLabel("Data:");
 		lblData.setBounds(10, 23, 46, 14);
@@ -203,18 +213,15 @@ public class FrmVenda {
 		JLabel lblVendedor = new JLabel("Vendedor");
 		lblVendedor.setBounds(248, 23, 46, 14);
 		panVenda.add(lblVendedor);
-
-		lblNewLabel_4 = new JLabel("lblVendedor");
-		lblNewLabel_4.setBounds(304, 23, 46, 14);
-		panVenda.add(lblNewLabel_4);
+		
+		txtIdVendedor = new JTextField();
+		txtIdVendedor.setBounds(307, 20, 86, 20);
+		panVenda.add(txtIdVendedor);
+		txtIdVendedor.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("cod:");
 		lblNewLabel_5.setBounds(10, 23, 27, 14);
 		panCliente.add(lblNewLabel_5);
-
-		lblCodCli = new JLabel("lblCodCli");
-		lblCodCli.setBounds(36, 23, 46, 14);
-		panCliente.add(lblCodCli);
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(92, 23, 46, 14);
@@ -228,6 +235,11 @@ public class FrmVenda {
 		btnPesquisaCli = new JButton("New button");
 		btnPesquisaCli.setBounds(278, 19, 33, 23);
 		panCliente.add(btnPesquisaCli);
+		
+		txtIdCliente = new JTextField();
+		txtIdCliente.setBounds(42, 20, 40, 20);
+		panCliente.add(txtIdCliente);
+		txtIdCliente.setColumns(10);
 
 		scrollVenda = new JScrollPane();
 		scrollVenda.setBounds(10, 58, 468, 267);
@@ -244,15 +256,15 @@ public class FrmVenda {
 		lblProdServ.setBounds(133, 32, 73, 14);
 		panTable.add(lblProdServ);
 
-		JLabel lblTotal = new JLabel("TOTAL R$:");
-		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTotal.setBounds(288, 358, 96, 30);
-		panTable.add(lblTotal);
+		JLabel lblT = new JLabel("TOTAL R$:");
+		lblT.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblT.setBounds(288, 358, 96, 30);
+		panTable.add(lblT);
 
-		JLabel lblNewLabel_13 = new JLabel("0,00");
-		lblNewLabel_13.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_13.setBounds(405, 358, 73, 30);
-		panTable.add(lblNewLabel_13);
+		lblTotal = new JLabel("0,00");
+		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblTotal.setBounds(405, 358, 73, 30);
+		panTable.add(lblTotal);
 
 		JLabel lblProduto = new JLabel("Cod:");
 		lblProduto.setBounds(39, 81, 33, 14);
@@ -386,6 +398,13 @@ public class FrmVenda {
 
 	private void compactaObjeto(){
 		
+		//TODO Venda
+         //txtIdVenda;
+         //txtIdCliente;
+         //txtIdVendedor;  
+         //lblTotal;
+         
+         
 	}
 	
 	public static void main(String[] args) {

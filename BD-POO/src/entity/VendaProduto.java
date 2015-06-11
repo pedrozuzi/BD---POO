@@ -41,7 +41,7 @@ public final class VendaProduto {
 		return quantidade;
 	}
 
-	public void setQuantidadr(int quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 

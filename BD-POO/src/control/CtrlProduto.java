@@ -44,9 +44,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	private LoteProdutoDao lpDao;
 
 	public CtrlProduto(Object[] objetosTela) {
-		
-
-		
+			
 		this.txtIdProduto = (JTextField) objetosTela[0];
 		this.txtNome = (JTextField) objetosTela[1];
 		this.txtDescricao = (JTextField) objetosTela[2];

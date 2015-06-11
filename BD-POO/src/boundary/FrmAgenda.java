@@ -62,6 +62,7 @@ public class FrmAgenda extends MouseAdapter{
 	private List<Agenda> listaAgenda;
 	private int idAnimal;
 	private CtrlServico controlServico;
+	private Agenda agenda;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -130,7 +131,7 @@ public class FrmAgenda extends MouseAdapter{
 		scrollPaneAgenda.setBounds(10, 37, 351, 332);
 		scrollPaneAgenda.setVisible(true);
 		panPrincipal.add(scrollPaneAgenda);
-
+		
 		montarAgenda();
 		
 		janela.setSize(807,430);
@@ -147,19 +148,27 @@ public class FrmAgenda extends MouseAdapter{
 		
 	}
 	
+	private void atualizaAgenda() {
+		//agenda.setHorario(horario);
+	}
+	
 	private void adicionaServicoAgenda() {
-		Servico s = new Servico();
+		agenda = new Agenda();
+		Servico servico = new Servico();
 		Animal animal = new Animal();
-		Cliente c = new Cliente();
+		Cliente cliente = new Cliente();
 		controlServico = new CtrlServico();
-		s.setCodigo(controlServico.buscarNovaEntrada());
+		servico.setCodigo(controlServico.buscarNovaEntrada());
 		animal.setId(idAnimal);
 		animal.setNome(String.valueOf(comboBoxAnimal.getSelectedItem()));
-		s.setAnimal(animal);
-		c.setId(idCliente);
-		s.setCliente(c);
-		s.setNome(String.valueOf(comboBoxServico.getSelectedItem()));
-		controlServico.incluiServicoAgenda(s);
+		servico.setAnimal(animal);
+		cliente.setId(idCliente);
+		servico.setCliente(cliente);
+		servico.setNome(String.valueOf(comboBoxServico.getSelectedItem()));
+		agenda.setCliente(cliente);
+		agenda.setServico(servico);
+		
+		controlServico.incluiServicoAgenda(servico);
 	}
 
 	private void montarAgenda() {
@@ -262,6 +271,8 @@ public class FrmAgenda extends MouseAdapter{
 			Object[] valores = new Object[2];
 			int linha = tableAgenda.getSelectedRow();
 			int coluna = tableAgenda.getSelectedColumn();
+			int linhasTabela = tableAgenda.getRowCount();
+			System.out.println(linhasTabela);
 			
 			for (coluna = 0; coluna < tableAgenda.getColumnCount(); coluna++) {
 				valores[coluna] = tableAgenda.getValueAt(linha, coluna);

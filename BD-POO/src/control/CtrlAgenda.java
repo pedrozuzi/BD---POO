@@ -3,9 +3,11 @@ package control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import persistence.AgendaDao;
 import persistence.AgendaDaoImpl;
 import entity.Agenda;
+import entity.Servico;
 
 public class CtrlAgenda {
 	
@@ -22,11 +24,13 @@ public class CtrlAgenda {
 		return lista;
 	}
 	
-	public List<Boolean> buscaDisp() {
-		List<Boolean> disp = new ArrayList<Boolean>();
+	public void atualizaAgenda( Agenda a ) {
 		aDao = new AgendaDaoImpl();
-		//disp = aDao.
-		return null;
-		
+		try {
+			aDao.atualizaAgenda(a);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
 }

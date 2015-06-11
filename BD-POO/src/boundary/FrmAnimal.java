@@ -37,6 +37,7 @@ import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Animal;
 import entity.Cliente;
+import entity.Usuario;
 
 public class FrmAnimal extends MouseAdapter {
 	
@@ -95,7 +96,7 @@ public class FrmAnimal extends MouseAdapter {
 	private JLabel lblTiraVermelha;
 	private ConfiguracoesTela configTela;
 	
-	public FrmAnimal() {
+	public FrmAnimal(Usuario u) {
 		
 		janelaAnimal = new JFrame("Animal");
 		
@@ -343,7 +344,6 @@ public class FrmAnimal extends MouseAdapter {
 			new FrmLogin();
 		});
 		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
 		menuPrincipal.addActionListener(e -> {
 			janelaAnimal.dispose();
 			janelaAnimal = null;
@@ -395,7 +395,7 @@ public class FrmAnimal extends MouseAdapter {
 		btnLimpar.addActionListener(e -> limpaCampos() );
 		
 		btnVoltar.addActionListener(e -> {
-			new FrmCadastros();
+			new FrmCadastros(u);
 			janelaAnimal.dispose();
 		});
 	}
@@ -598,7 +598,7 @@ public class FrmAnimal extends MouseAdapter {
 		}
 	}
 
-	public static void main(String[] args) {
-		new FrmAnimal();
-	}
+//	public static void main(String[] args) {
+//		new FrmAnimal();
+//	}
 }

@@ -91,7 +91,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
-	public FrmUsuario() {
+	public FrmUsuario(Usuario u) {
 
 		janela = new JFrame("Usuario");
 		
@@ -437,7 +437,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 			}
 		}else if(acao.equalsIgnoreCase("Voltar")){
 			janela.dispose();
-			new FrmCadastros();
+			new FrmCadastros(u);
 		}else if(acao.equalsIgnoreCase("Limpar")){
 			limpaCampos();
 		}
@@ -523,9 +523,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		txtUsuario.setText("");
 	}
 
-	public static void main(String[] args) {
-		new FrmUsuario();
-	}
+//	public static void main(String[] args) {
+//		new FrmUsuario(u);
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

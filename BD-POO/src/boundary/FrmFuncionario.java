@@ -31,6 +31,7 @@ import control.CtrlFuncionario;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Funcionario;
+import entity.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +88,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
-	public FrmFuncionario() {
+	public FrmFuncionario(Usuario u) {
 	
 		janela = new JFrame("Funcionário");
 		
@@ -603,7 +604,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	public void mouseReleased(MouseEvent e) {
 	}
 	
-	public static void main(String[] args) {
-		new FrmFuncionario();
-	}
+//	public static void main(String[] args) {
+//		new FrmFuncionario();
+//	}
 }

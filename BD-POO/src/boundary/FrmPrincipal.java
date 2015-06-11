@@ -57,7 +57,6 @@ public class FrmPrincipal {
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
 		
-		
 		janela.setContentPane( panPrincipal);
 		panPrincipal.setLayout(null);
 		
@@ -150,9 +149,9 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
-		btnCadastros.addActionListener(e -> new FrmCadastros());
+		btnCadastros.addActionListener(e -> new FrmCadastros(u));
 		
-		btnRelatorio.addActionListener(e -> new FrmRelatorio());
+		btnRelatorio.addActionListener(e -> new FrmRelatorio(u));
 		
 		atalhos();
 		atalhosAdm();
@@ -251,7 +250,7 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
-		btnCadastros.addActionListener(e -> new FrmCadastros());
+		btnCadastros.addActionListener(e -> new FrmCadastros(u));
 		
 	}
 
@@ -265,7 +264,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FrmRelatorio();
+//				new FrmRelatorio(u);
 			}
 		});
 		
@@ -273,7 +272,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FrmCadastros();
+//				new FrmCadastros(u);
 			}
 		});
 	}

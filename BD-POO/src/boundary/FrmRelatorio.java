@@ -1,5 +1,7 @@
 package boundary;
 
+import entity.Usuario;
+
 //import java.awt.Color;
 //import java.awt.SystemColor;
 //
@@ -29,7 +31,7 @@ public class FrmRelatorio {
 	
 	
 	
-	public FrmRelatorio() {
+	public FrmRelatorio(Usuario u) {
 //		janela = new JFrame("Relatório");
 //		panPrincipal = new JPanel();
 //		panPrincipal.setBackground(SystemColor.text);
@@ -63,6 +65,6 @@ public class FrmRelatorio {
 	}
 	
 	public static void main(String[] args) {
-		new FrmRelatorio();
+//		new FrmRelatorio(u);
 	}
 }

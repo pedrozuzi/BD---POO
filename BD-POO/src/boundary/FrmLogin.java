@@ -34,12 +34,12 @@ public class FrmLogin {
 	private JButton btnLogar;
 	private CtrlLogin controlLogin;
 	private JPanel panPrincipal;
-	private JLabel lblLogoLudPet;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
+	private JLabel lblBarraVermelhaBaixo;
+	private JLabel lblBarraVermelhaCima;
+	private JLabel lblBarraCinza;
 	private JLabel lblStatus;
 	private ConfiguracoesTela configTela;
+	private JLabel lblLogoLudPet;
 
 	public FrmLogin() {
 
@@ -95,23 +95,23 @@ public class FrmLogin {
 		lblLogoLudPet.setBounds(73, 31, 241, 205);
 		panPrincipal.add(lblLogoLudPet);
 
-		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(FrmLogin.class
+		lblBarraCinza = new JLabel("");
+		lblBarraCinza.setIcon(new ImageIcon(FrmLogin.class
 				.getResource("/img/teste2.png")));
-		label_2.setBounds(0, 317, 171, 14);
-		panPrincipal.add(label_2);
+		lblBarraCinza.setBounds(0, 317, 171, 14);
+		panPrincipal.add(lblBarraCinza);
 
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmLogin.class
+		lblBarraVermelhaBaixo = new JLabel("");
+		lblBarraVermelhaBaixo.setIcon(new ImageIcon(FrmLogin.class
 				.getResource("/img/teste.png")));
-		label.setBounds(0, 335, 225, 30);
-		panPrincipal.add(label);
+		lblBarraVermelhaBaixo.setBounds(0, 335, 225, 30);
+		panPrincipal.add(lblBarraVermelhaBaixo);
 
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmLogin.class
+		lblBarraVermelhaCima = new JLabel("");
+		lblBarraVermelhaCima.setIcon(new ImageIcon(FrmLogin.class
 				.getResource("/img/teste.png")));
-		label_1.setBounds(0, 0, 398, 28);
-		panPrincipal.add(label_1);
+		lblBarraVermelhaCima.setBounds(0, 0, 398, 28);
+		panPrincipal.add(lblBarraVermelhaCima);
 		
 
 		janela.setContentPane(panPrincipal);
@@ -124,20 +124,20 @@ public class FrmLogin {
 			if (!validaCampos()) {
 				logar();
 			}
-
 		});
 
 		atalho();
-
 		status();
 	}
 
 	private void atalho() {
+		
 		ActionMap am = panPrincipal.getActionMap();
 		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "logar");
 
 		am.put("logar", new AbstractAction() {
+
 			private static final long serialVersionUID = -4298843843983246541L;
 
 			@Override
@@ -151,6 +151,7 @@ public class FrmLogin {
 	}
 
 	private void logar() {
+		
 		Usuario u = new Usuario();
 		u.setNome(txtUsuario.getText());
 		u.setSenha(new String(pwdSenha.getPassword()));

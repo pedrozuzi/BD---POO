@@ -1,7 +1,6 @@
 package boundary;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,19 +24,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlProduto;
-import control.CtrlTableLote;
-import control.CtrlTableProduto;
 import control.CtrlTelaProduto;
 import control.ModeloTabela;
 import entity.Lote;
 import entity.Produto;
+import entity.Usuario;
 
 // TODO INCLUIR QUANTIDADE!!!!!
 public class FrmProduto extends MouseAdapter {
@@ -102,7 +98,7 @@ public class FrmProduto extends MouseAdapter {
 
 	private ConfiguracoesTela configTela;
 
-	public FrmProduto() {
+	public FrmProduto(Usuario u) {
 
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setBackground(Color.WHITE);
@@ -600,10 +596,6 @@ public class FrmProduto extends MouseAdapter {
 
 	}// fim construtor
 
-	/**
-	 * Mouse Click das Tables
-	 */
-
 	public void mouseClicked(MouseEvent e) {
 
 		Object a = new Object();
@@ -713,23 +705,19 @@ public class FrmProduto extends MouseAdapter {
 
 	}
 
-	/**
-	 * Metodo Main
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		// Runnable anonimo
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new FrmProduto();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
-}// end class
+	
+//	public static void main(String[] args) {
+//
+//		// Runnable anonimo
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					new FrmProduto(u);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//
+//	}
+}

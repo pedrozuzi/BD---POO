@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import entity.Fornecedor;
+import entity.Usuario;
 
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
@@ -75,7 +76,7 @@ public class FrmFornecedor extends MouseAdapter{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
-	public FrmFornecedor() {
+	public FrmFornecedor(Usuario u) {
 		
 		janela = new JFrame("Fornecedor");
 		
@@ -411,8 +412,8 @@ public class FrmFornecedor extends MouseAdapter{
 
 	}
 	
-	public static void main(String[] args) {
-		new FrmFornecedor();
-	}
+//	public static void main(String[] args) {
+//		new FrmFornecedor();
+//	}
 	
 }

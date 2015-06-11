@@ -28,6 +28,7 @@ import control.CtrlCliente;
 import control.ModeloTabela;
 import control.TratamentoTextFields;
 import entity.Cliente;
+import entity.Usuario;
 
 public class FrmCliente extends MouseAdapter {
 	
@@ -75,7 +76,7 @@ public class FrmCliente extends MouseAdapter {
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
-	public FrmCliente() {
+	public FrmCliente(Usuario u) {
 		janela = new JFrame("Cliente");
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
@@ -497,7 +498,7 @@ public class FrmCliente extends MouseAdapter {
 		
 	}
 
-	public static void main(String[] args) {
-		new FrmCliente();
-	}
+//	public static void main(String[] args) {
+//		new FrmCliente();
+//	}
 }

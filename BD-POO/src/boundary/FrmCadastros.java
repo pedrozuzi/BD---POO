@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 import control.ConfiguracoesTela;
+import entity.Usuario;
 
 public class FrmCadastros {
 	
@@ -41,7 +42,7 @@ public class FrmCadastros {
 	private ConfiguracoesTela configTela;
 	private JLabel lblTiraVermelha;
 	
-	public FrmCadastros() {
+	public FrmCadastros(Usuario u) {
 		
 		janela = new JFrame("Menu Cadastros");
 		
@@ -177,42 +178,43 @@ public class FrmCadastros {
 //		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "usuario");
 //		
 		btnAnimal.addActionListener(e -> {
-			new FrmAnimal();
 			fechar();
+			new FrmAnimal(u);
 		});
 		
 		btnCliente.addActionListener(e -> {
-			new FrmCliente();
 			fechar();
+			new FrmCliente(u);
 		});
 		btnFornecedor.addActionListener(e -> {
-			new FrmFornecedor();
 			fechar();
+			new FrmFornecedor(u);
 		});
 		btnFuncionario.addActionListener(e -> {
-			new FrmFuncionario();
 			fechar();
+			new FrmFuncionario(u);
 		});
 		btnProduto.addActionListener(e -> {
-			new FrmProduto();
 			fechar();
+			new FrmProduto(u);
 		});
 		btnUsuario.addActionListener(e -> {
-			new FrmUsuario();
 			fechar();
+			new FrmUsuario(u);
 		});
 		
-		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
-		janela.setVisible(true);
-		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		janela.setLocationRelativeTo(null);
+//		janela.setResizable(false);
+//		janela.setVisible(true);
+//		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	private void fechar() {
 		janela.dispose();
+		janela = null;
 	}
 
-	public static void main(String[] args) {
-		new FrmCadastros();
-	}
+//	public static void main(String[] args) {
+//		new FrmCadastros();
+//	}
 }

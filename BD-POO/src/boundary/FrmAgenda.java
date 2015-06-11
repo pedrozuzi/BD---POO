@@ -260,6 +260,7 @@ public class FrmAgenda extends MouseAdapter{
 		Object acao = e.getSource();
 		Object valorCliente;
 		if (tableBusca.equals(acao)) {
+			comboBoxAnimal.removeAllItems();
 			int linha = tableBusca.getSelectedRow();
 			idCliente = listaCliente.get(linha).getId();
 			valorCliente = tableBusca.getValueAt(linha, 0);
@@ -291,6 +292,7 @@ public class FrmAgenda extends MouseAdapter{
 		
 		try {
 			listaAnimal = controlAnimal.buscaCliente(idCliente);
+			System.out.println(idAnimal);
 			idAnimal = listaAnimal.get(linha).getId();
 			if (!listaAnimal.isEmpty()) {
 				listaAnimal.forEach(a -> {

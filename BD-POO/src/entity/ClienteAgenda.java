@@ -43,10 +43,5 @@ public class ClienteAgenda {
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
-	
-	@Override
-	public String toString() {
-		return cliente.getNome();
-	}
 
 }

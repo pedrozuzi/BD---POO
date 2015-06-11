@@ -27,14 +27,16 @@ public class ServicoDaoImpl implements ServicoDao {
 	
 	@Override
 	public void adicionarServico(Servico servico) throws SQLException {
-		String query = "insert into servico (id, nome, valor, id_cliente) values"
-				+ " (?, ?, ?, ?)";
+		String query = "insert into servico (id, nome, valor, id_animal, id_cliente_servico) values"
+				+ " (?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = c.prepareStatement( query );
 		ps.setInt(1, servico.getCodigo());
 		ps.setString(2, servico.getNome());
 		ps.setInt(3, servico.getValor());
-		ps.setInt(4, servico.getCliente().getId());
+		ps.setInt(4, servico.getAnimal().getId() );
+		ps.setInt(5, servico.getCliente().getId());
+		System.out.println(servico.getAnimal().getNome()+"\n"+servico.getAnimal().getId());
 		ps.execute();
 		ps.close();
 		
@@ -67,7 +69,7 @@ public class ServicoDaoImpl implements ServicoDao {
 				+ "on c.id = s.id_cliente "
 				+ "inner join agenda a "
 				+ "on s.id = a.id_servico "
-				+ "where hora > CONVERT(CHAR(5), GETDATE()-'14:00', 108)";		
+				+ "where hora > CONVERT(CHAR(5), GETDATE()-'00:30', 108)";		
 		PreparedStatement ps = c.prepareStatement( query );
 		ResultSet rs = ps.executeQuery();
 		

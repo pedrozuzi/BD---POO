@@ -136,9 +136,10 @@ create table servico(
 id int not null,
 nome varchar(11) not null,
 valor int null,
-id_cliente int not null,
-primary key(id, id_cliente),
-foreign key(id_cliente) references cliente(id))
+id_animal int not null,
+id_cliente_servico int not null
+primary key(id),
+foreign key(id_animal, id_cliente_servico) references animal(id, id_cliente))
 
 create table agenda(
 hora time not null,
@@ -146,28 +147,18 @@ disponibilidade int null check(disponibilidade = 1 or disponibilidade = 0),
 id_servico int null,
 id_cliente_agenda int null
 primary key(hora),
-foreign key (id_servico, id_cliente_agenda) references servico(id, id_cliente))
+foreign key (id_servico) references servico(id))
 
-select * from servico
-drop table agenda
-drop table servico
+insert into servico (id, nome, valor, id_animal, id_cliente_servico) values
+(3,'banho', 100, 2, )
 
-insert into servico (id, nome, valor, id_cliente) values
-(1,'banho', 55, 1),
-('banho', 60, 15),
-('tosa', 30, 24),
-('banho', 45, 25),
-('banho/tosa', 95, 26),
-('banho/tosa', 80, 27),
-('tosa', 50, 28)
 
-select CONVERT(CHAR(5), a.hora, 108) as hora, s.nome as nome_servico
-from servico s
-inner join agenda a
-on s.hora_agenda = a.hora
-where s.id = 3
-
-select * from cliente
+select c.nome, a.nome as nome_cao, a.raca, s.nome as servico, s.valor
+from cliente c
+inner join animal a
+on c.id = a.id_cliente
+inner join servico s
+on a.id = s.id_animal
 
 insert into agenda(hora, disponibilidade) values
 ('10:00',0),

@@ -6,6 +6,7 @@ public class Servico {
 	private String nome;
 	private int valor;
 	private Cliente cliente;
+	private Animal animal;
 	
 	public int getValor() {
 		return valor;
@@ -53,6 +54,14 @@ public class Servico {
 	@Override
 	public String toString() {
 		return this.nome;
+	}
+
+	public Animal getAnimal() {
+		return animal;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 	
 }

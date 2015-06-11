@@ -70,5 +70,7 @@ public class Animal {
 	public void setEspecie(String especie) {
 		this.especie = especie;
 	}
+	
+	
 
 }

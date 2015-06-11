@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -46,7 +48,6 @@ import javax.swing.UIManager;
 import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
-import entity.Usuario;
 
 public class FrmServico implements MouseListener, ActionListener{
 	
@@ -81,6 +82,8 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JButton btnFinalizar;
 	private JButton btnCancelar;
 	private JButton btnLimpar;
+	private int index;
+	private int controle = 0;
 	private JComboBox<Animal> cbAnimal;
 	private ButtonGroup bg;
 	private JDialog jd;
@@ -94,9 +97,9 @@ public class FrmServico implements MouseListener, ActionListener{
 	private Animal animal;
 	private ModeloTabela modelo;
 	private Servico servico;
-	private List<Servico> listaServico= new ArrayList<Servico>();;
+	private List<Servico> listaServico= new ArrayList<Servico>();
 	private CtrlAnimal controlAnimal;
-	private CtrlServico controlServico= new CtrlServico();;
+	private CtrlServico controlServico= new CtrlServico();
 
 	public FrmServico() {
 		
@@ -305,10 +308,12 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 		cliente = new Cliente();
 		servico = new Servico();
+		animal = new Animal();
 		
 		btnPesquisarCliente.addActionListener(e -> {
 			listaCliente = new ArrayList<Cliente>();
 			controlCliente = new CtrlCliente();
+			controle = 1;
 			try {
 				listaCliente = controlCliente.buscaClientePorNome(txtNomeCliente
 						.getText());
@@ -354,16 +359,15 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void acaoFinalizar() {
 		if(!validaCampos()){
-			System.out.println("ENTROU...");
 			servico.setCodigo( Integer.parseInt(txtCodigoServico.getText()) );
 			servico.setCliente( cliente );
+			servico.setAnimal( animal );
 			servico.setNome( bg.getSelection().getActionCommand() );
 			servico.setValor( Integer.parseInt( txtValor.getText() ));
 			controlServico.incluirServico(servico);
-			
-			JOptionPane.showConfirmDialog(null, "Serviço espera para ser pago", "ERRO", 
+			int a = JOptionPane.showConfirmDialog(null, "Serviço espera para ser pago", "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
-			
+			limpaCampos();
 		} else {
 			JOptionPane.showMessageDialog(null, "Sem dados para processar",
 					"Erro", JOptionPane.QUESTION_MESSAGE);
@@ -390,6 +394,7 @@ public class FrmServico implements MouseListener, ActionListener{
 //			controlServico = new CtrlServico();
 			montarTelaServicoAgendado();
 			buscarServicosAgendados();
+			controle = 2;
 		} else {
 			txtCodigoServico.setText( Integer.toString(controlServico.buscarNovaEntrada()) );
 			montarTelaNovoServico();			
@@ -508,9 +513,9 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void acaoComboBox() {
 		if(cbAnimal.getItemCount() > 0){
-			Animal a = new Animal();
-			a = (Animal) cbAnimal.getSelectedItem();
-			txtRaca.setText( a.getRaca() );		
+			animal = (Animal) cbAnimal.getSelectedItem();
+			txtRaca.setText( animal.getRaca() );
+			index = cbAnimal.getSelectedIndex();
 		} 
 	}
 	
@@ -528,30 +533,59 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-
-		Object[] valores = new Object[6];
-		listaAnimal = new ArrayList<Animal>();
-		controlAnimal = new CtrlAnimal();
 		
+		Object[] valores = new Object[6];
+
 		int linha = tableBuscaCliente.getSelectedRow();
 		int coluna = tableBuscaCliente.getSelectedColumn();
 		
-		for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
-			valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
-		}
-		
-		cliente = listaCliente.get(linha);
-		
-		try {
-			listaAnimal = controlAnimal.buscaCliente( cliente.getId() );
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if (controle == 1) {
+			listaAnimal = new ArrayList<Animal>();
+			controlAnimal = new CtrlAnimal();
+			
+			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
+				valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
+			}
 
-		montarComboBox();
+			cliente = listaCliente.get(linha);
+
+			try {
+				listaAnimal = controlAnimal.buscaCliente(cliente.getId());
+				cliente.setListaAnimal(listaAnimal);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			montarComboBox();
+		} else {
+			
+			listaServico = new ArrayList<Servico>();
+			controlServico = new CtrlServico();
+			
+			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
+				valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
+			}
+			
+			servico = listaServico.get(linha);
+			
+			montarTelaAgenda();
+//			controlServico.b
+		}
 	
-		jd.dispose();
-		jd = null;
+//		jd.dispose();
+//		jd = null;
+	}
+
+	private void montarTelaAgenda() {
+		String nome;
+		txtCodigoServico.setText( String.valueOf(servico.getCodigo()) );
+		txtNomeCliente.setText( servico.getCliente().getNome());
+		cbAnimal.setToolTipText( servico.getAnimal().getNome() );
+		txtRaca.setText( servico.getAnimal().getRaca() );
+		txtValor.setText( String.valueOf(servico.getValor()) );
+		nome = servico.getNome();
+		if(rdbtnBanho.equals(nome))	rdbtnBanho.setSelected(true);
+	    else if(rdbtnBanhoTosa.equals(nome)) rdbtnBanhoTosa.setSelected(true);
+		else if(rdbtnTosa.equals(nome)) rdbtnTosa.setSelected(true);
 	}
 
 	private void montarComboBox() {

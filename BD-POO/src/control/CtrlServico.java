@@ -1,6 +1,8 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -34,6 +36,20 @@ public class CtrlServico {
 		}
 		
 		return auxiliar;
+	}
+	
+	public List<Servico> buscarServicosAgendados(){
+		sDao = new ServicoDaoImpl();
+		List<Servico> lista = new ArrayList<Servico>();
+		
+		try {
+			lista = sDao.buscarServicosAgendados();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO", 
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return lista;
 	}
 	
 }

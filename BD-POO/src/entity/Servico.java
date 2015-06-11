@@ -14,7 +14,17 @@ public class Servico {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
-
+	
+	@Coluna(nome="Nome Cliente", posicao=1)
+	public String getNomeCliente(){
+		return this.cliente.getNome();
+	}
+	
+//	@Coluna(nome="Nome Animal", posicao=2)
+//	public String getNomeAnimal(){
+//		return cliente.getListaAnimal().get(0);
+//	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -22,7 +32,8 @@ public class Servico {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
+	
+	@Coluna(nome="Codigo Serviço", posicao=0)
 	public int getCodigo() {
 		return codigo;
 	}

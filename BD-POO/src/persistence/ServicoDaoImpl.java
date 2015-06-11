@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import connection.ConnectionImpl;
 import connection.GenericConnection;
+import entity.Cliente;
 import entity.Servico;
 
 public class ServicoDaoImpl implements ServicoDao {
@@ -49,6 +52,38 @@ public class ServicoDaoImpl implements ServicoDao {
 		rs.next();
 
 		return rs.getInt(1) == 0 ? 1 : rs.getInt(1)+1;
+	}
+
+	@Override
+	public List<Servico> buscarServicosAgendados() throws SQLException {
+		List<Servico> lista = new ArrayList<Servico>();
+		
+		String query = "select s.id as codigo_servico, CONVERT(CHAR(5), a.hora, 108) as hora, "
+				+ "s.nome as nome_servico, "
+				+ "s.id_cliente as codigo_cliente, "
+				+ "c.nome as nome_cliente "
+				+ "from cliente c "
+				+ "inner join servico s "
+				+ "on c.id = s.id_cliente "
+				+ "inner join agenda a "
+				+ "on s.id = a.id_servico "
+				+ "where hora > CONVERT(CHAR(5), GETDATE()-'12:00', 108)";		
+		PreparedStatement ps = c.prepareStatement( query );
+		ResultSet rs = ps.executeQuery();
+		
+		while (rs.next()){
+			System.out.println("ENTROU");
+			Servico s = new Servico();
+			Cliente c = new Cliente();
+			c.setId( rs.getInt("codigo_cliente") );
+			c.setNome( rs.getString("nome_cliente") );
+			s.setCodigo( rs.getInt("codigo_servico") );
+			s.setNome( rs.getString("nome_servico") );
+			s.setCliente(c);
+			System.out.println(s.getNomeCliente());
+			lista.add(s);
+		}
+		return lista;
 	}
 
 }

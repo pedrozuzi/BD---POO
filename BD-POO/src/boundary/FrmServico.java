@@ -94,9 +94,9 @@ public class FrmServico implements MouseListener, ActionListener{
 	private Animal animal;
 	private ModeloTabela modelo;
 	private Servico servico;
-	private List<Servico> listaServico;
+	private List<Servico> listaServico = new ArrayList<Servico>();;
 	private CtrlAnimal controlAnimal;
-	private CtrlServico controlServico;
+	private CtrlServico controlServico = new CtrlServico();;
 
 	public FrmServico() {
 		
@@ -386,6 +386,8 @@ public class FrmServico implements MouseListener, ActionListener{
 		btnLimpar.setVisible(true);
 		
 		if(am.equalsIgnoreCase("ServicoAgendado")){
+//			listaServico = new ArrayList<Servico>();
+//			controlServico = new CtrlServico();
 			montarTelaServicoAgendado();
 			buscarServicosAgendados();
 		} else {
@@ -396,9 +398,8 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 	
 	private void buscarServicosAgendados() {
-		listaServico = new ArrayList<Servico>();
-		controlServico = new CtrlServico();
-//		listaServico = controlServico.
+		listaServico = controlServico.buscarServicosAgendados();
+		acaoPesquisarCliente(listaServico);
 	}
 
 	private void montarTelaNovoServico() {
@@ -455,7 +456,15 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void acaoPesquisarCliente(List<?> lista) {
 			
-		jd = new JDialog(janela, "Pesquisar Cliente", true);
+//		Class<?> classe = lista.get(0).getClass();
+//		
+//		if(classe.getName().equalsIgnoreCase("entity.Cliente")){
+//			jd = new JDialog(janela, "Pesquisar Cliente", true);
+//		} else {
+//			jd = new JDialog(janela, "Buscar serviço", true);
+//		}		
+		
+		jd = new JDialog(janela, "Buscar serviço", true);
 		jd.setSize(600, 300);
 		
 		panBuscaCliente = new JPanel();

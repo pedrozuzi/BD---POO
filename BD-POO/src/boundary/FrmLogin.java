@@ -43,8 +43,6 @@ public class FrmLogin {
 
 	public FrmLogin() {
 
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO
-		// WINDONBUILDER
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janela);
 		configTela.iconeBarra(janela);
 

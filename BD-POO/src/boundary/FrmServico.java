@@ -3,7 +3,6 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import control.ConfigTelas;
 import control.ConfiguracoesTela;
 import control.CtrlAnimal;
 import control.CtrlCliente;
@@ -28,8 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -82,7 +79,6 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JButton btnFinalizar;
 	private JButton btnCancelar;
 	private JButton btnLimpar;
-	private int index;
 	private int controle = 0;
 	private JComboBox<Animal> cbAnimal;
 	private ButtonGroup bg;
@@ -312,8 +308,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		configTela.tamanho(janela);
 		
 		cliente = new Cliente();
-//		servico = new Servico();
-//		animal = new Animal();
+		servico = new Servico();
 		
 		btnPesquisarCliente.addActionListener(e -> {
 			listaCliente = new ArrayList<Cliente>();
@@ -473,7 +468,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		if(cbAnimal.getItemCount() > 0){
 			animal = (Animal) cbAnimal.getSelectedItem();
 			txtRaca.setText( animal.getRaca() );
-			index = cbAnimal.getSelectedIndex();
 		} 
 	}
 	
@@ -513,7 +507,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		} else {
 			
 			controlServico = new CtrlServico();
-			servico = new Servico();
 			
 			servico = listaServico.get(linha);
 			montarTelaAgenda();
@@ -526,7 +519,7 @@ public class FrmServico implements MouseListener, ActionListener{
 
 	private void montarTelaAgenda() {
 		txtCodigoServico.setText( String.valueOf(servico.getCodigo()) );
-		txtNomeCliente.setText( servico.getCliente().getNome());
+		txtNomeCliente.setText( servico.getCliente().getNome() );
 		txtRaca.setText( servico.getAnimal().getRaca() );
 		txtNomeAnimal.setText( servico.getAnimal().getNome() );
 		if( rdbtnBanho.getActionCommand().equalsIgnoreCase(servico.getNome()) )	rdbtnBanho.setSelected(true);

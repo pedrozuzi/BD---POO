@@ -97,7 +97,6 @@ public class FrmAnimal extends MouseAdapter {
 	
 	public FrmAnimal() {
 		
-		
 		janelaAnimal = new JFrame();
 		janelaAnimal.setTitle("Animal");
 		panPrincipalAnimal = new JPanel();
@@ -105,7 +104,6 @@ public class FrmAnimal extends MouseAdapter {
 		panPrincipalAnimal.setForeground(Color.WHITE);
 		panPrincipalAnimal.setLayout(null);
 		
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO WINDONBUILDER
 		ConfiguracoesTela configTela = new ConfiguracoesTela(janelaAnimal);
 		configTela.iconeBarra(janelaAnimal);
 		

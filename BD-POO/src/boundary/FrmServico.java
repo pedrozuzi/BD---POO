@@ -315,7 +315,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		janela.setVisible(true);
 		
 		cliente = new Cliente();
-		servico = new Servico();
+//		servico = new Servico();
 //		animal = new Animal();
 		
 		btnPesquisarCliente.addActionListener(e -> {
@@ -419,61 +419,6 @@ public class FrmServico implements MouseListener, ActionListener{
 		acaoPesquisarCliente(listaServico);
 	}
 
-	private void montarTelaNovoServico() {
-		panelServico.setVisible(true);
-		panelServico.setEnabled(true);
-		panelClienteAnimal.setVisible(true);
-		panelClienteAnimal.setEnabled(true);
-		txtNomeCliente.setVisible(true);
-		txtNomeCliente.setEnabled(true);
-		txtValor.setVisible(true);
-		txtCodigoServico.setVisible(true);
-		txtRaca.setVisible(true);
-		txtNomeAnimal.setVisible(false);
-		lblNomeCliente.setVisible(true);
-		lblNomeCliente.setEnabled(true);
-		lblCodigoServico.setVisible(true);
-		lblAnimal.setVisible(true);
-		lblAnimal.setEnabled(true);
-		lblRaca.setVisible(true);
-		lblRaca.setEnabled(true);
-		lblValor.setVisible(true);
-		btnPesquisarCliente.setVisible(true);
-		cbAnimal.setVisible(true);
-		cbAnimal.setEnabled(true);
-		rdbtnBanho.setEnabled(true);
-		rdbtnBanhoTosa.setEnabled(true);
-		rdbtnTosa.setEnabled(true);
-	}
-
-	private void montarTelaServicoAgendado() {
-		panelServico.setVisible(true);
-		panelServico.setEnabled(false);
-		panelClienteAnimal.setVisible(true);
-		panelClienteAnimal.setEnabled(false);
-		txtNomeCliente.setVisible(true);
-		txtNomeCliente.setEnabled(false);
-		txtValor.setVisible(true);
-		txtCodigoServico.setVisible(true);
-		txtNomeAnimal.setEnabled(false);
-		txtRaca.setVisible(true);
-		txtRaca.setEnabled(false);
-		txtNomeAnimal.setVisible(true);
-		lblNomeCliente.setVisible(true);
-		lblNomeCliente.setEnabled(false);
-		lblCodigoServico.setVisible(true);
-		lblAnimal.setVisible(true);
-		lblAnimal.setEnabled(false);
-		lblRaca.setVisible(true);
-		lblRaca.setEnabled(false);
-		lblValor.setVisible(true);
-		btnPesquisarCliente.setVisible(false);
-		cbAnimal.setVisible(false);
-		rdbtnBanho.setEnabled(false);
-		rdbtnBanhoTosa.setEnabled(false);
-		rdbtnTosa.setEnabled(false);
-	}
-
 	private void acaoPesquisarCliente(List<?> lista) {
 			
 		Class<?> classe = lista.isEmpty() ? null : lista.get(0).getClass();
@@ -541,6 +486,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		cbAnimal.removeAllItems();
 		bg.clearSelection();
 		txtValor.setText("");
+		txtNomeAnimal.setText("");
 	}
 
 	public static void main(String[] args) {
@@ -550,18 +496,11 @@ public class FrmServico implements MouseListener, ActionListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		
-		Object[] valores = new Object[6];
-
 		int linha = tableBuscaCliente.getSelectedRow();
-		int coluna = tableBuscaCliente.getSelectedColumn();
 		
 		if (controle == 1) {
 			listaAnimal = new ArrayList<Animal>();
 			controlAnimal = new CtrlAnimal();
-			
-			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
-				valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
-			}
 
 			cliente = listaCliente.get(linha);
 
@@ -571,20 +510,17 @@ public class FrmServico implements MouseListener, ActionListener{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 			montarComboBox();
+			
 		} else {
 			
 			controlServico = new CtrlServico();
 			servico = new Servico();
 			
-			for (coluna = 0; coluna < tableBuscaCliente.getColumnCount(); coluna++) {
-				valores[coluna] = tableBuscaCliente.getValueAt(linha, coluna);
-			}
-			
 			servico = listaServico.get(linha);
-			
 			montarTelaAgenda();
-
+			
 		}
 	
 		jd.dispose();
@@ -610,6 +546,61 @@ public class FrmServico implements MouseListener, ActionListener{
 			listaAnimal.forEach((m) -> cbAnimal.addItem(m) );
 			txtNomeCliente.setText( cliente.getNome() );
 		}
+	}
+	
+	private void montarTelaNovoServico() {
+		panelServico.setVisible(true);
+		panelServico.setEnabled(true);
+		panelClienteAnimal.setVisible(true);
+		panelClienteAnimal.setEnabled(true);
+		txtNomeCliente.setVisible(true);
+		txtNomeCliente.setEnabled(true);
+		txtValor.setVisible(true);
+		txtCodigoServico.setVisible(true);
+		txtRaca.setVisible(true);
+		txtNomeAnimal.setVisible(false);
+		lblNomeCliente.setVisible(true);
+		lblNomeCliente.setEnabled(true);
+		lblCodigoServico.setVisible(true);
+		lblAnimal.setVisible(true);
+		lblAnimal.setEnabled(true);
+		lblRaca.setVisible(true);
+		lblRaca.setEnabled(true);
+		lblValor.setVisible(true);
+		btnPesquisarCliente.setVisible(true);
+		cbAnimal.setVisible(true);
+		cbAnimal.setEnabled(true);
+		rdbtnBanho.setEnabled(true);
+		rdbtnBanhoTosa.setEnabled(true);
+		rdbtnTosa.setEnabled(true);
+	}
+
+	private void montarTelaServicoAgendado() {
+		panelServico.setVisible(true);
+		panelServico.setEnabled(false);
+		panelClienteAnimal.setVisible(true);
+		panelClienteAnimal.setEnabled(false);
+		txtNomeCliente.setVisible(true);
+		txtNomeCliente.setEnabled(false);
+		txtValor.setVisible(true);
+		txtCodigoServico.setVisible(true);
+		txtNomeAnimal.setEnabled(false);
+		txtRaca.setVisible(true);
+		txtRaca.setEnabled(false);
+		txtNomeAnimal.setVisible(true);
+		lblNomeCliente.setVisible(true);
+		lblNomeCliente.setEnabled(false);
+		lblCodigoServico.setVisible(true);
+		lblAnimal.setVisible(true);
+		lblAnimal.setEnabled(false);
+		lblRaca.setVisible(true);
+		lblRaca.setEnabled(false);
+		lblValor.setVisible(true);
+		btnPesquisarCliente.setVisible(false);
+		cbAnimal.setVisible(false);
+		rdbtnBanho.setEnabled(false);
+		rdbtnBanhoTosa.setEnabled(false);
+		rdbtnTosa.setEnabled(false);
 	}
 
 	@Override

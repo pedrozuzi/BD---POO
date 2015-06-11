@@ -38,12 +38,17 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 	public void insereVenda(Venda vend) throws SQLException {
 		// TODO Auto-generated method stub
 
-		String sql = "INSERT INTO venda" + "";
+		String sql = "INSERT INTO venda (id_cliente,id_funcionario,total) VALUES (?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,
 				Statement.RETURN_GENERATED_KEYS);
-		// ps.set
+		ps.setInt(1, vend.getIdcliente());
+		ps.setInt(2, vend.getIdfuncionario());
+		ps.setDouble(3, vend.getTotal());
 		ResultSet rs = ps.getGeneratedKeys();
 		rs.next();
+
+		vend.setId(rs.getInt(1));
+		
 		ps.close();
 	}
 

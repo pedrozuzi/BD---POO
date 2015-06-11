@@ -3,6 +3,7 @@ package control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import persistence.AgendaDao;
 import persistence.AgendaDaoImpl;
 import entity.Agenda;
@@ -34,5 +35,12 @@ public class CtrlAgenda {
 		return lista;
 		
 	}
-
+	
+	public List<Boolean> buscaDisp() {
+		List<Boolean> disp = new ArrayList<Boolean>();
+		aDao = new AgendaDaoImpl();
+		//disp = aDao.
+		return null;
+		
+	}
 }

@@ -162,6 +162,9 @@ public class FrmAgenda extends MouseAdapter{
 		scrollPaneAgenda.setVisible(true);
 		panPrincipal.add(scrollPaneAgenda);
 		
+//		List<Boolean> disp = new ArrayList<Boolean>();
+//		disp = controlAgenda.
+		
 		montarAgenda();
 		tabelaServicoMarcado();
 		
@@ -183,18 +186,26 @@ public class FrmAgenda extends MouseAdapter{
 		listaServicoMarcado = new ArrayList<ClienteAgenda>();
 		controlAgenda = new CtrlAgenda();
 		listaServicoMarcado = controlAgenda.buscarServicoMarcado();
-		modeloServicoMarcado = new ModeloTabela(listaServicoMarcado);
-		tableServicoMarcado.getTableHeader().setReorderingAllowed(false);
-		tableServicoMarcado.setModel(modeloServicoMarcado);
+		
+		
+		if (!listaServicoMarcado.isEmpty()) {
+			modeloServicoMarcado = new ModeloTabela(listaServicoMarcado);
+			tableServicoMarcado.getTableHeader().setReorderingAllowed(false);
+			tableServicoMarcado.setModel(modeloServicoMarcado);
+		}
+		
 	}
 
 	private void montarAgenda() {
 		listaAgenda = new ArrayList<Agenda>();
 		controlAgenda = new CtrlAgenda();
 		listaAgenda = controlAgenda.buscarAgenda();
+		
+		
 		modeloAgenda = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
 		tableAgenda.setModel(modeloAgenda);
+
 	}	
 		
 		

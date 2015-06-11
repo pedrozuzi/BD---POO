@@ -27,24 +27,24 @@ public class AgendaDaoImpl implements AgendaDao{
 	@Override
 	public List<Agenda> BuscarAgenda() throws SQLException {
 		List<Agenda> lista = new ArrayList<Agenda>();
-//		String sql = "select CONVERT(CHAR(5), hora, 108) as hora, disponibilidade"
-//					+ " from agenda";
 		
 		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"
-						+ " from servico s"
-						+ " full outer join agenda a"
-						+ " on s.id = a.id_servico";
+				+ " from servico s"
+				+ " right outer join agenda a"
+				+ " on s.id = a.id_servico";
+				
+//		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"
+//						+ " from servico s"
+//						+ " full outer join agenda a"
+//						+ " on s.id = a.id_servico";
 		
 		PreparedStatement ps = c.prepareStatement( sql );
 		ResultSet rs = ps.executeQuery();
 		
 		while ( rs.next() ){
 			Agenda a = new Agenda();
-			Servico s = new Servico();
 			a.setHorario( rs.getString("hora"));
 			a.setAuxiliar( rs.getInt("disponibilidade") );
-			s.setNome( rs.getString("nome"));
-			a.setServico(s);
 			lista.add(a);
 		}
 		ps.close();
@@ -84,6 +84,41 @@ public class AgendaDaoImpl implements AgendaDao{
 			lista.add(ca);
 		}
 		ps.close();
+		return lista;
+		
+	}
+	
+	public List<Boolean> buscaDisp() throws SQLException {
+		List<Boolean> disp = new ArrayList<Boolean>();
+		String sql = "select disponibilidade from agenda";
+		
+		PreparedStatement ps = c.prepareStatement( sql );
+		ResultSet rs = ps.executeQuery();
+		
+		while ( rs.next() ){
+			Agenda a = new Agenda();
+			a.setEscolhaHorario( rs.getBoolean("disponibilidade"));
+			//disp.add(a);
+		}
+		return disp;
+		
+	}
+	
+	public List<Agenda> buscaAgendaVazia() throws SQLException {
+		List<Agenda> lista = new ArrayList<Agenda>();
+		String sql = "select CONVERT(CHAR(5), hora, 108) as hora, disponibilidade"
+				+ " from agenda";
+		PreparedStatement ps = c.prepareStatement( sql );
+		ResultSet rs = ps.executeQuery();
+		
+		while ( rs.next() ){
+			Agenda a = new Agenda();
+			a.setHorario( rs.getString("hora"));
+			a.setAuxiliar( rs.getInt("disponibilidade") );
+			lista.add(a);
+		}
+		ps.close();
+		
 		return lista;
 		
 	}

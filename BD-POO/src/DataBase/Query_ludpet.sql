@@ -134,7 +134,7 @@ foreign key(id_produto) references produto(id))
 
 create table servico(
 id int not null,
-nome varchar(11) not null,
+nome varchar(15) not null,
 valor int null,
 id_animal int not null,
 id_cliente_servico int not null

@@ -1,10 +1,5 @@
 package entity;
 
-/**
- * 
- * @author Hury
- *
- */
 
 public class Tipo {
 

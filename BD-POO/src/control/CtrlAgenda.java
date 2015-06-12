@@ -35,7 +35,6 @@ public class CtrlAgenda {
 		aDao = new AgendaDaoImpl();
 		try {
 			aDao.encerraAgenda();
-			aDao.montaNovaAgenda();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

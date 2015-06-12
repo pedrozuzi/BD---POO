@@ -9,5 +9,4 @@ public interface AgendaDao {
 	List<Agenda> BuscarAgenda() throws SQLException;
 	void atualizaAgenda( Agenda a) throws SQLException;
 	void encerraAgenda() throws SQLException;
-	void montaNovaAgenda() throws SQLException;;
 }

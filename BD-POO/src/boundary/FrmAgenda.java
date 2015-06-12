@@ -178,7 +178,7 @@ public class FrmAgenda extends MouseAdapter {
 	}
 
 	private boolean validaCampos() {
-		return txtCliente.getText().isEmpty();
+		return txtCliente.getText().isEmpty() || comboBoxAnimal.getItemCount() == 0;
 	}
 
 	private String horaMarcada() {

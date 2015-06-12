@@ -30,11 +30,11 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import control.ConfiguracoesTela;
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
+import util.TratamentoTextFields;
 import control.CtrlAnimal;
 import control.CtrlCliente;
-import control.ModeloTabela;
-import control.TratamentoTextFields;
 import entity.Animal;
 import entity.Cliente;
 import entity.Usuario;

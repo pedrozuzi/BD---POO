@@ -5,10 +5,9 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
-import control.ConfiguracoesTela;
-
 import javax.swing.ImageIcon;
+
+import util.ConfiguracoesTela;
 
 public class FrmSplash extends JFrame {
 

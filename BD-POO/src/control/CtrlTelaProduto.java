@@ -17,14 +17,12 @@ public class CtrlTelaProduto implements ActionListener {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote,
 			txtQtde;
-	private JButton btnIncluir, btnAlterar, btnExcluir, btnPesquisar,
-			btnPesquisaProduto, btnPesquisaFornecedor, btnVolta, btnLimpa,
-			btnSalva;
-	private JPanel panAcoes, panInferior, panSuperior, panAcoes2, panProduto,
+	private JButton btnPesquisaProduto, btnPesquisaFornecedor, btnSalva;
+	private JPanel panAcoes, panAcoes2, panProduto,
 			panLote;
 	private JLabel lblAcao;
 
-	private Object[] objetosTela = new Object[25];
+//	private Object[] objetosTela = new Object[25];
 
 	public CtrlTelaProduto(Object[] objetosTela) {
 
@@ -37,21 +35,21 @@ public class CtrlTelaProduto implements ActionListener {
 		this.txtIdLote = (JTextField) objetosTela[6];
 		this.txtDataValidadeLote = (JTextField) objetosTela[7];
 		this.txtQtde = (JTextField) objetosTela[8];
-
-		this.btnIncluir = (JButton) objetosTela[9];
-		this.btnAlterar = (JButton) objetosTela[10];
-		this.btnExcluir = (JButton) objetosTela[11];
-		this.btnPesquisar = (JButton) objetosTela[12];
+//
+//		this.btnIncluir = (JButton) objetosTela[9];
+//		this.btnAlterar = (JButton) objetosTela[10];
+//		this.btnExcluir = (JButton) objetosTela[11];
+//		this.btnPesquisar = (JButton) objetosTela[12];
 
 		this.btnPesquisaProduto = (JButton) objetosTela[13];
 		this.btnPesquisaFornecedor = (JButton) objetosTela[14];
-		this.btnVolta = (JButton) objetosTela[15];
-		this.btnLimpa = (JButton) objetosTela[16];
+//		this.btnVolta = (JButton) objetosTela[15];
+//		this.btnLimpa = (JButton) objetosTela[16];
 		this.btnSalva = (JButton) objetosTela[17];
 		this.panAcoes = (JPanel) objetosTela[18];
 
-		this.panInferior = (JPanel) objetosTela[19];
-		this.panSuperior = (JPanel) objetosTela[20];
+//		this.panInferior = (JPanel) objetosTela[19];
+//		this.panSuperior = (JPanel) objetosTela[20];
 		this.panAcoes2 = (JPanel) objetosTela[21];
 		this.panProduto = (JPanel) objetosTela[22];
 		this.panLote = (JPanel) objetosTela[23];

@@ -3,11 +3,8 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
 import control.CtrlUsuario;
-import control.ModeloTabela;
-import control.TratamentoTextFields;
 
 import java.awt.Color;
 
@@ -39,6 +36,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
+import util.TratamentoTextFields;
 import entity.Funcionario;
 import entity.Usuario;
 

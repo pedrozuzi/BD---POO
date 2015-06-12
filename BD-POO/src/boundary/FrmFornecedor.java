@@ -9,10 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import control.ConfiguracoesTela;
 import control.CtrlFornecedor;
-import control.ModeloTabela;
-import control.TratamentoTextFields;
 
 import javax.swing.JLabel;
 
@@ -28,6 +25,9 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
+import util.TratamentoTextFields;
 import entity.Fornecedor;
 import entity.Usuario;
 

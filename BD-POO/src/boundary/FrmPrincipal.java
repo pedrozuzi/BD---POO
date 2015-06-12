@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import control.ConfiguracoesTela;
+import util.ConfiguracoesTela;
 import entity.Usuario;
 
 public class FrmPrincipal {

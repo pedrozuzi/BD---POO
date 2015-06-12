@@ -5,20 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
 
 import persistence.FornecedorDao;
 import persistence.FornecedorDaoImpl;
 import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
 import entity.Fornecedor;
-import entity.Pessoa;
 
 public class CtrlFornecedor{
 	
 	private FornecedorDao fDao;
 	private PessoaDao pDao;
-	private AbstractTableModel mt;
 	
 	public void inserir(Fornecedor f) {
 		pDao = new PessoaDaoImpl();

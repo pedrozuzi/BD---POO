@@ -26,10 +26,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import control.ConfiguracoesTela;
 import control.CtrlFuncionario;
-import control.ModeloTabela;
-import control.TratamentoTextFields;
 import entity.Funcionario;
 import entity.Usuario;
 
@@ -38,6 +35,10 @@ import java.util.List;
 
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
+import util.TratamentoTextFields;
 
 public class FrmFuncionario implements ActionListener, MouseListener{
 

@@ -25,10 +25,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import control.ConfiguracoesTela;
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
 import control.CtrlProduto;
 import control.CtrlTelaProduto;
-import control.ModeloTabela;
 import entity.Lote;
 import entity.Produto;
 import entity.Usuario;

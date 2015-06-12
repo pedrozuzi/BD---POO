@@ -7,12 +7,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import control.ConfiguracoesTela;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
-import control.ModeloTabela;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -39,6 +37,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;

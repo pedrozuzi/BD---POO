@@ -2,7 +2,6 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,16 +12,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import persistence.FornecedorDaoImpl;
 import persistence.LoteDao;
 import persistence.LoteProdutoDao;
-import persistence.PessoaDaoImpl;
 import persistence.ProdutoDao;
 import persistence.ProdutoDaoImpl;
-import entity.Fornecedor;
 import entity.Lote;
 import entity.LoteProduto;
-import entity.Pessoa;
 import entity.Produto;
 
 
@@ -31,8 +26,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote,
 			txtQtde;
-
-	private Object[] objetosTela = new Object[25];
 
 	private ProdutoDao pDao;
 	private LoteDao lDao;

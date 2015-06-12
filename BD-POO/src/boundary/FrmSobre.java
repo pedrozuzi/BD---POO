@@ -2,14 +2,17 @@ package boundary;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import control.ConfiguracoesTela;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
+
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+
+import util.ConfiguracoesTela;
+
 import java.awt.Window.Type;
 
 

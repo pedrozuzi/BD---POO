@@ -9,12 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import control.ConfiguracoesTela;
 import entity.Usuario;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JTable;
 import javax.swing.JMenuItem;
+
+import util.ConfiguracoesTela;
 
 public class FrmCadastros {
 	

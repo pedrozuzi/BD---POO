@@ -3,11 +3,9 @@ package boundary;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import control.ConfiguracoesTela;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
-import control.ModeloTabela;
 
 import java.awt.Color;
 
@@ -42,6 +40,8 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
 import entity.Animal;
 import entity.Cliente;
 import entity.Servico;

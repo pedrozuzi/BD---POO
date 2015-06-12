@@ -1,4 +1,4 @@
-package control;
+package util;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

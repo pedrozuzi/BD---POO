@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
-import control.ConfiguracoesTela;
+import util.ConfiguracoesTela;
 import control.CtrlLogin;
 import control.CtrlStatus;
 import entity.Usuario;

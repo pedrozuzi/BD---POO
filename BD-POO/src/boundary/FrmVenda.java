@@ -5,11 +5,6 @@ import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import control.ConfigTelas;
-import control.ConfiguracoesTela;
-import control.ModeloTabela;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -26,6 +21,9 @@ import javax.swing.JRadioButton;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
+import util.ConfigTelas;
+import util.ConfiguracoesTela;
+import util.ModeloTabela;
 import entity.Produto;
 import entity.Usuario;
 

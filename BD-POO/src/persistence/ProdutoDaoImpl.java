@@ -272,14 +272,14 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	@Override
 	public LoteProduto consultaLoteProduto(LoteProduto lotProd)
 			throws SQLException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	
 	@Override
 	public List<LoteProduto> listaLoteProduto() throws SQLException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

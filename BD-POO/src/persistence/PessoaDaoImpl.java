@@ -63,13 +63,13 @@ private Connection c;
 
 	@Override
 	public Pessoa consultaPessoa(Pessoa pes) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<Pessoa> listaPessoa() throws SQLException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

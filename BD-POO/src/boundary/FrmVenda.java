@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import control.ConfigTelas;
 import control.ConfiguracoesTela;
+import control.ModeloTabela;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JTable;
@@ -24,6 +26,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+
+import entity.Produto;
 
 public class FrmVenda {
 
@@ -60,8 +64,11 @@ public class FrmVenda {
 	private JLabel lblPrecoUPS;
 	private JLabel lblPrecoTPS;
 	
+	private ModeloTabela modeloVenda;
 	private JTable tableVenda;
 	private JScrollPane scrollVenda;
+	
+	private List<Produto> listaProduto;
 	
 	Object[] objetosTela = new Object[25];
 	
@@ -392,6 +399,10 @@ public class FrmVenda {
 		JButton btnCalculaTroco = new JButton(">");
 		btnCalculaTroco.setBounds(161, 21, 41, 23);
 		panDinheiro.add(btnCalculaTroco);
+		
+
+		
+
 		
 		janela.repaint();
 	}

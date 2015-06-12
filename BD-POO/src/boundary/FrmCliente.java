@@ -498,7 +498,8 @@ public class FrmCliente extends MouseAdapter {
 		
 	}
 
-//	public static void main(String[] args) {
-//		new FrmCliente();
-//	}
+	//public static void main(String[] args) {
+	//	new FrmCliente(null);
+//}
+	
 }

@@ -2,18 +2,15 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import control.ConfigTelas;
+import control.ConfiguracoesTela;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
 import control.ModeloTabela;
-
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -22,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,11 +27,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
-
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
@@ -72,6 +66,7 @@ public class FrmAgenda extends MouseAdapter {
 	private Agenda agenda;
 	private Animal animal;
 	private Servico servico;
+	private ConfiguracoesTela configTela;
 
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -147,7 +142,9 @@ public class FrmAgenda extends MouseAdapter {
 
 		janela.setSize(807, 430);
 		janela.setContentPane(panPrincipal);
-		ConfigTelas.centralizarFrame(janela);
+		configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 
 		btnLupaPesquisar.addActionListener(e -> {
 			cliente(jd);

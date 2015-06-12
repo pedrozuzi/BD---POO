@@ -496,7 +496,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			cliente = listaCliente.get(linha);
 
 			try {
-				listaAnimal = controlAnimal.buscaCliente(cliente.getId());
+				listaAnimal = controlAnimal.buscaAnimal(cliente.getId());
 				cliente.setListaAnimal(listaAnimal);
 			} catch (SQLException e) {
 				e.printStackTrace();

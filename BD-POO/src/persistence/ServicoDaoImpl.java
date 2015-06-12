@@ -45,7 +45,7 @@ public class ServicoDaoImpl implements ServicoDao {
 	}
 	
 	@Override
-	public void adicinaServicoAgenda(Servico servico) throws SQLException {
+	public void adicionaServicoAgenda(Servico servico) throws SQLException {
 		String query = "insert into servico (id, nome, id_animal, id_cliente_servico) values"
 				+ " (?, ?, ?, ?)";
 		

@@ -290,9 +290,12 @@ public class FrmAgenda extends MouseAdapter{
 		listaAnimal = new ArrayList<Animal>();
 		
 		try {
-			listaAnimal = controlAnimal.buscaCliente(idCliente);
-			System.out.println(listaAnimal.get(0));
-			//idAnimal = listaAnimal.get(linha).getId();
+			listaAnimal = controlAnimal.buscaAnimal(idCliente);
+			System.out.println(listaAnimal);
+			listaAnimal.forEach(a -> {
+				idAnimal = a.getId();
+			});
+			System.out.println(idAnimal);
 			if (!listaAnimal.isEmpty()) {
 				listaAnimal.forEach(a -> {
 					comboBoxAnimal.addItem(a.getNome());

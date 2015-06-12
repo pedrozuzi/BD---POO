@@ -10,5 +10,5 @@ public interface ServicoDao {
 	public void adicionarServico(Servico servico) throws SQLException;
 	public int buscarNovaEntrada() throws SQLException;
 	public List<Servico> buscarServicosAgendados() throws SQLException;
-	void adicinaServicoAgenda(Servico s) throws SQLException;
+	void adicionaServicoAgenda(Servico s) throws SQLException;
 }

@@ -583,7 +583,7 @@ public class FrmAnimal extends MouseAdapter {
 		listaAnimal = new ArrayList<Animal>();
 		
 		try {
-			listaAnimal = controlAnimal.buscaCliente(idCliente);
+			listaAnimal = controlAnimal.buscaAnimal(idCliente);
 			
 			if (!listaAnimal.isEmpty()) {
 				modelo = new ModeloTabela(listaAnimal);

@@ -56,7 +56,7 @@ public class CtrlServico {
 		sDao = new ServicoDaoImpl();
 		
 		try {
-			sDao.adicinaServicoAgenda(s);
+			sDao.adicionaServicoAgenda(s);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

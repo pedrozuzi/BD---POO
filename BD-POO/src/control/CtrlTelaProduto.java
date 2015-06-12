@@ -22,8 +22,6 @@ public class CtrlTelaProduto implements ActionListener {
 			panLote;
 	private JLabel lblAcao;
 
-//	private Object[] objetosTela = new Object[25];
-
 	public CtrlTelaProduto(Object[] objetosTela) {
 
 		this.txtIdProduto = (JTextField) objetosTela[0];
@@ -104,47 +102,46 @@ public class CtrlTelaProduto implements ActionListener {
 	}
 
 	public void botoesCrud() {
-		Component[] c;
-		comp(c = panAcoes.getComponents());
+		
+		comp(panAcoes.getComponents());
 	}
 
 	public void resetaTela() {
-		Component[] c;
-		comp(c = panProduto.getComponents());
-		comp(c = panLote.getComponents());
-		comp(c = panAcoes2.getComponents());
+		
+		comp(panProduto.getComponents());
+		comp(panLote.getComponents());
+		comp(panAcoes2.getComponents());
 		limpaCampos();
 		pesquisa(false);
 	}
 
 	public void incluiLote() {
-		Component[] c;
-		comp(c = panProduto.getComponents());
+		
+		comp(panProduto.getComponents());
 		txtNome.setEnabled(true);
 	}
 
 	public void excluiProduto() {
-		Component[] c;
-		comp(c = panProduto.getComponents());
-		comp(c = panLote.getComponents());
+		
+		comp(panProduto.getComponents());
+		comp(panLote.getComponents());
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}
 
 	public void incluiProduto() {
-		Component[] c;
-		comp(c = panLote.getComponents());
+		comp(panLote.getComponents());
 	}
 
 	public void vouta() {
-		Component[] c;
+
 		botoesCrud();
 		resetaTela();
 
 		limpaCampos();
 		pesquisa(false);
-		tfalse(c = panLote.getComponents());
-		tfalse(c = panProduto.getComponents());
+		tfalse(panLote.getComponents());
+		tfalse(panProduto.getComponents());
 		btnSalva.setEnabled(false);
 
 	}
@@ -154,9 +151,9 @@ public class CtrlTelaProduto implements ActionListener {
 	}
 
 	public void pesq() {
-		Component[] c;
-		comp(c = panProduto.getComponents());
-		comp(c = panLote.getComponents());
+
+		comp(panProduto.getComponents());
+		comp(panLote.getComponents());
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}

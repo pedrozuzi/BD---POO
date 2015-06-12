@@ -2,6 +2,8 @@ create database ludpet
 go
 use ludpet
 
+drop database ludpet
+
 create table tipo(
 id int identity not null,
 descricao varchar(50) not null
@@ -64,7 +66,7 @@ especie varchar(50) not null,
 sexo varchar(1) check(sexo='M' or sexo='F') not null,
 cor varchar(50) null
 primary key (id, id_cliente),
-foreign key (id_cliente) references cliente(id))
+foreign key (id_cliente) references cliente(id) on delete cascade)
 
 create table lote(
 id int identity not null,
@@ -101,12 +103,10 @@ foreign key(id_cliente) references cliente(id),
 foreign key(id_funcionario) references funcionario(id))
 
 create table venda_produto(
-
 id_venda int not null,
 id_produto int not null,
 data_venda datetime not null,
 quantidade int not null,
-
 check(data_venda <= getdate()),
 primary key(data_venda, id_venda, id_produto),
 foreign key(id_venda) references venda(id) ON DELETE CASCADE,
@@ -139,7 +139,7 @@ valor int null,
 id_animal int not null,
 id_cliente_servico int not null
 primary key(id),
-foreign key(id_animal, id_cliente_servico) references animal(id, id_cliente))
+foreign key(id_animal, id_cliente_servico) references animal(id, id_cliente) on delete cascade)
 
 create table agenda(
 hora time not null,
@@ -149,6 +149,22 @@ primary key(hora),
 foreign key (id_servico) references servico(id))
 
 --
+
+delete cliente
+from cliente c
+inner join animal a
+on c.id = a.id_cliente
+where c.id = 16 and a.id_cliente = 16
+inner join servico s
+on a.id = s.id_animal
+where c.id = 16 and a.id_cliente = 16 and s.id_cliente_servico = 16 
+
+delete servico
+where id_cliente_servico = 5
+
+select * from cliente
+select * from animal
+select * from servico
 
 --insert into servico (id, nome, valor, id_animal, id_cliente_servico) values
 --(3,'banho', 100, 2, 5 )
@@ -191,15 +207,17 @@ INSERT INTO pessoa (idTipo) VALUES
 (5), --14 cli
 (5)  --15 cli
 
+select * from pessoa
+
 INSERT INTO funcionario (id,cpf,nome,salario,telefone) VALUES
 (1,11111111111,'Hury Gabriel',99999.99,11111111), --adm
-(5,22222222222,'Pedro ZUZI',1200.00,11111111), -- cli
+(2,22222222222,'Pedro ZUZI',1200.00,11111111), -- cli
 (10,33333333333,'Pedro Afonso',850.00,11111111)   -- cli
 
 INSERT INTO usuario(id,username,passwor) VALUES
-(1,'hurygg','1234'),
-(5,'pedrozz','susi'),
-(10,'pedroaa','corinthias')
+(1,'adm','123'),
+(2,'pedrozz','10'),
+(10,'pepeu','20')
 
 INSERT INTO fornecedor (id,nome,telefone) VALUES
 (4,'burns',11111111),

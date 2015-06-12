@@ -3,13 +3,8 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
-import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 
 import util.ConfiguracoesTela;
 import control.CtrlLogin;
@@ -113,7 +107,6 @@ public class FrmLogin {
 		lblBarraVermelhaCima.setBounds(0, 0, 398, 28);
 		panPrincipal.add(lblBarraVermelhaCima);
 		
-
 		janela.setContentPane(panPrincipal);
 		janela.setSize(403, 404);
 		configTela = new ConfiguracoesTela();
@@ -126,28 +119,7 @@ public class FrmLogin {
 			}
 		});
 
-		atalho();
 		status();
-	}
-
-	private void atalho() {
-		
-		ActionMap am = panPrincipal.getActionMap();
-		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "logar");
-
-		am.put("logar", new AbstractAction() {
-
-			private static final long serialVersionUID = -4298843843983246541L;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!validaCampos()) {
-					logar();
-				}
-			}
-		});
-
 	}
 
 	private void logar() {

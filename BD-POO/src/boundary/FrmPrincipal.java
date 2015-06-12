@@ -2,19 +2,16 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
-import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
 import util.ConfiguracoesTela;
 import entity.Usuario;
@@ -31,15 +28,17 @@ public class FrmPrincipal {
 	private JLabel lblfRealizarVenda;
 	private JLabel lblfRealizarServio;
 	private JLabel lblLogoLudPet;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
+	private JLabel lblTiraVermelhaBaixo;
+	private JLabel lblTiraVermelha;
+	private JLabel lblTiraCinza;
+	private JLabel lblTiraCinzaBaixo;
 	private JButton btnRelatorio;
 	private JLabel lblRelatrios;
 	private JLabel lblfCadastros;
 	private JLabel lblNewLabel;
-	private Usuario usuario;
+	private JMenu mnMenu;
+	private JMenuItem mntmLogOff;
+	private JMenuBar mbPrincipal;
 
 	public FrmPrincipal(Usuario u) {
 		if (u.getF().getIdTipo() != 1) {
@@ -48,12 +47,8 @@ public class FrmPrincipal {
 			principalAdm(u);
 		}
 		
-		usuario = u;
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	private void principalAdm(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
@@ -132,20 +127,36 @@ public class FrmPrincipal {
 		lblNewLabel.setBounds(0, 507, 615, 28);
 		panPrincipal.add(lblNewLabel);
 		
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(this.getClass().getResource("/img/teste.png")));
-		label_1.setBounds(0, 242, 615, 14);
-		panPrincipal.add(label_1);
+		lblTiraVermelhaBaixo = new JLabel("");
+		lblTiraVermelhaBaixo.setIcon(new ImageIcon(this.getClass().getResource("/img/teste.png")));
+		lblTiraVermelhaBaixo.setBounds(0, 242, 615, 14);
+		panPrincipal.add(lblTiraVermelhaBaixo);
 		
-		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
-		label_2.setBounds(0, 217, 183, 14);
-		panPrincipal.add(label_2);
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
+		lblTiraVermelha.setBounds(0, 217, 183, 14);
+		panPrincipal.add(lblTiraVermelha);
 		
-		label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
-		label_3.setBounds(411, 492, 204, 14);
-		panPrincipal.add(label_3);
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/teste2.png")));
+		lblTiraCinza.setBounds(411, 492, 204, 14);
+		panPrincipal.add(lblTiraCinza);
+		
+		mbPrincipal = new JMenuBar();
+		mbPrincipal.setBounds(0, 0, 621, 21);
+		panPrincipal.add(mbPrincipal);
+		
+		mnMenu = new JMenu("Menu");
+		mbPrincipal.add(mnMenu);
+		
+		mntmLogOff = new JMenuItem("Log Off");
+		mntmLogOff.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/LogOffMenu.png")));
+		mnMenu.add(mntmLogOff);
+		
+		mntmLogOff.addActionListener(e -> {
+			sair();
+			new FrmLogin();
+		});
 		
 		btnCadastros.addActionListener(e -> {
 			sair();
@@ -184,6 +195,9 @@ public class FrmPrincipal {
 		janela = null;		
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void principal(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
@@ -200,59 +214,75 @@ public class FrmPrincipal {
 		btnRealizarVenda.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/venda.png")));
 		btnRealizarVenda.setToolTipText("Realizar uma venda");
-		btnRealizarVenda.setBounds(80, 285, 137, 88);
+		btnRealizarVenda.setBounds(80, 313, 137, 88);
 		panPrincipal.add(btnRealizarVenda);
 		
 		btnRealizarServico = new JButton("");
 		btnRealizarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/servico.png")));
 		btnRealizarServico.setToolTipText("Realizar um Serviço");
-		btnRealizarServico.setBounds(399, 286, 137, 88);
+		btnRealizarServico.setBounds(399, 314, 137, 88);
 		panPrincipal.add(btnRealizarServico);
 		
 		btnAgendarServico = new JButton("");
 		btnAgendarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/calendar.png")));
 		btnAgendarServico.setToolTipText("Agendar um serviço");
-		btnAgendarServico.setBounds(241, 285, 137, 88);
+		btnAgendarServico.setBounds(241, 313, 137, 88);
 		panPrincipal.add(btnAgendarServico);
 		
-		lblAgendarServio = new JLabel("(F2) Agendar Servi\u00E7o");
-		lblAgendarServio.setBounds(251, 373, 122, 14);
+		lblAgendarServio = new JLabel("Agendar Servi\u00E7o");
+		lblAgendarServio.setBounds(267, 401, 122, 14);
 		panPrincipal.add(lblAgendarServio);
 		
-		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
-		lblfRealizarVenda.setBounds(94, 372, 110, 14);
+		lblfRealizarVenda = new JLabel("Realizar Venda");
+		lblfRealizarVenda.setBounds(107, 401, 110, 14);
 		panPrincipal.add(lblfRealizarVenda);
 		
-		lblfRealizarServio = new JLabel("(F3) Realizar Servi\u00E7o");
-		lblfRealizarServio.setBounds(409, 373, 122, 14);
+		lblfRealizarServio = new JLabel("Realizar Servi\u00E7o");
+		lblfRealizarServio.setBounds(425, 401, 122, 14);
 		panPrincipal.add(lblfRealizarServio);
 		
 		lblLogoLudPet = new JLabel("");
 		lblLogoLudPet.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/logo.png")));
-		lblLogoLudPet.setBounds(180, 11, 228, 223);
+		lblLogoLudPet.setBounds(180, 39, 228, 223);
 		panPrincipal.add(lblLogoLudPet);
 		
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
-		label_1.setBounds(0, 460, 606, 31);
-		panPrincipal.add(label_1);
+		lblTiraVermelhaBaixo = new JLabel("");
+		lblTiraVermelhaBaixo.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
+		lblTiraVermelhaBaixo.setBounds(0, 460, 606, 31);
+		panPrincipal.add(lblTiraVermelhaBaixo);
 		
-		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
-		label_2.setBounds(0, 235, 606, 14);
-		panPrincipal.add(label_2);
+		lblTiraVermelha = new JLabel("");
+		lblTiraVermelha.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
+		lblTiraVermelha.setBounds(0, 263, 606, 14);
+		panPrincipal.add(lblTiraVermelha);
 		
-		label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
-		label_3.setBounds(0, 210, 204, 14);
-		panPrincipal.add(label_3);
+		lblTiraCinza = new JLabel("");
+		lblTiraCinza.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
+		lblTiraCinza.setBounds(0, 238, 204, 14);
+		panPrincipal.add(lblTiraCinza);
 		
-		label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
-		label_4.setBounds(399, 435, 204, 14);
-		panPrincipal.add(label_4);
+		lblTiraCinzaBaixo = new JLabel("");
+		lblTiraCinzaBaixo.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste2.png")));
+		lblTiraCinzaBaixo.setBounds(399, 435, 204, 14);
+		panPrincipal.add(lblTiraCinzaBaixo);
+		
+		mbPrincipal = new JMenuBar();
+		mbPrincipal.setBounds(0, 0, 621, 21);
+		panPrincipal.add(mbPrincipal);
+		
+		mnMenu = new JMenu("Menu");
+		mbPrincipal.add(mnMenu);
+		
+		mntmLogOff = new JMenuItem("Log Off");
+		mntmLogOff.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/LogOffMenu.png")));
+		mnMenu.add(mntmLogOff);
+		
+		mntmLogOff.addActionListener(e -> {
+			sair();
+			new FrmLogin();
+		});
 		
 		btnRealizarServico.addActionListener( e -> {
 			sair();

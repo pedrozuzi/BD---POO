@@ -84,6 +84,7 @@ public class FrmAgenda extends MouseAdapter {
 	private JMenu menu;
 	private JMenuItem menuPrincipal;
 	private JMenuItem logOff;
+	private JLabel lblEncerrarAgenda;
 
 	public FrmAgenda() {
 		
@@ -199,7 +200,7 @@ public class FrmAgenda extends MouseAdapter {
 		btnEncerrarAgenda.setBounds(384, 337, 98, 32);
 		panPrincipal.add(btnEncerrarAgenda);
 		
-		JLabel lblEncerrarAgenda = new JLabel("Encerrar Agenda");
+		lblEncerrarAgenda = new JLabel("Encerrar Agenda");
 		lblEncerrarAgenda.setBounds(384, 322, 103, 14);
 		panPrincipal.add(lblEncerrarAgenda);
 		configTela = new ConfiguracoesTela();
@@ -273,6 +274,7 @@ public class FrmAgenda extends MouseAdapter {
 				horaServico = String.valueOf(tableAgenda.getValueAt(linha, 0));
 			}
 		}
+		
 		return horaServico;
 	}
 
@@ -309,10 +311,11 @@ public class FrmAgenda extends MouseAdapter {
 	}
 
 	private void montarAgenda() {
+		
 		listaAgenda = new ArrayList<Agenda>();
 		controlAgenda = new CtrlAgenda();
 		listaAgenda = controlAgenda.buscarAgenda();
-
+		
 		modeloAgenda = new ModeloTabela(listaAgenda);
 		tableAgenda.getTableHeader().setReorderingAllowed(false);
 		tableAgenda.setModel(modeloAgenda);
@@ -320,6 +323,7 @@ public class FrmAgenda extends MouseAdapter {
 	}
 
 	private void cliente(JDialog jd) {
+		
 		jd = new JDialog(jd, "Buscar Cliente", true);
 
 		try {

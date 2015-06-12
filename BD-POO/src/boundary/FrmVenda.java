@@ -21,7 +21,6 @@ import javax.swing.JRadioButton;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
-import util.ConfigTelas;
 import util.ConfiguracoesTela;
 import util.ModeloTabela;
 import entity.Produto;
@@ -73,7 +72,9 @@ public class FrmVenda {
 
 
 	public FrmVenda(Usuario u) {
+		
 		janela = new JFrame("Venda");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
@@ -82,15 +83,10 @@ public class FrmVenda {
 		janela.setSize(849, 768);
 		janela.setContentPane(panPrincipal);
 
-		// CONFIGURACOES DE TELA, PODER SER NECESSARIO COMENTAR PARA EDITAR NO
-		// WINDONBUILDER
 		ConfiguracoesTela configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		configTela.selecionaEstilo(3);
 		configTela.estilo(janela);
-		ConfigTelas.centralizarFrame(janela);
-		
-
 
 		JPanel panAcoes = new JPanel();
 		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));

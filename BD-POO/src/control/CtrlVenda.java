@@ -13,13 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
-
-
-
-
-
-
 //import entity.Lote;
 //import entity.Produto;
 import entity.Venda;

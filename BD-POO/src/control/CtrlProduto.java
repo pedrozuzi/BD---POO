@@ -61,7 +61,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			prod.setValor_compra(Integer.parseInt(txtValorCompra.getText()));
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 			prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
-			// data
+	
 			try {
 				String data = txtDataValidadeLote.getText();
 				java.sql.Date date = null;
@@ -268,7 +268,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return lista;
 	}
 
-	@Deprecated
 	@Override
 	public Produto concultaProdutoId(String id) throws SQLException {
 		Produto p = new Produto();
@@ -333,7 +332,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 	
 	@Override
 	public Lote concultaLoteId(String id) throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

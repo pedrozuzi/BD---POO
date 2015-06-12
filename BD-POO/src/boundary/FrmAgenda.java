@@ -2,15 +2,18 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import control.ConfiguracoesTela;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
 import control.ModeloTabela;
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -19,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,9 +31,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
+
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
@@ -70,6 +76,7 @@ public class FrmAgenda extends MouseAdapter {
 	private JLabel lblAgenda;
 	private JLabel lblAnimal;
 	private JLabel lblServico;
+	private JButton btnEncerrarAgenda;
 
 	public FrmAgenda() {
 		
@@ -102,7 +109,7 @@ public class FrmAgenda extends MouseAdapter {
 		txtCliente.setColumns(10);
 
 		btnLupaPesquisar = new JButton("");
-		btnLupaPesquisar.setIcon(new ImageIcon(FrmProduto.class
+		btnLupaPesquisar.setIcon(new ImageIcon(this.getClass()
 				.getResource("/img/MiniLupa.png")));
 		btnLupaPesquisar.setBounds(297, 27, 63, 25);
 		panel.add(btnLupaPesquisar);
@@ -127,7 +134,9 @@ public class FrmAgenda extends MouseAdapter {
 		panPrincipal.add(lblServico);
 
 		btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(687, 346, 89, 23);
+		btnSalvar.setIcon(new ImageIcon(this.getClass().getResource
+				("/img/MiniSalvar.png")));
+		btnSalvar.setBounds(678, 337, 98, 32);
 		panPrincipal.add(btnSalvar);
 
 		tableAgenda = new JTable();
@@ -147,6 +156,16 @@ public class FrmAgenda extends MouseAdapter {
 
 		janela.setSize(807, 430);
 		janela.setContentPane(panPrincipal);
+		
+		btnEncerrarAgenda = new JButton("");
+		btnEncerrarAgenda.setIcon(new ImageIcon(this.getClass()
+				.getResource("/img/encerrarAgenda.png")));
+		btnEncerrarAgenda.setBounds(384, 337, 98, 32);
+		panPrincipal.add(btnEncerrarAgenda);
+		
+		JLabel lblEncerrarAgenda = new JLabel("Encerrar Agenda");
+		lblEncerrarAgenda.setBounds(384, 322, 103, 14);
+		panPrincipal.add(lblEncerrarAgenda);
 		configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);

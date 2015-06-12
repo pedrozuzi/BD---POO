@@ -8,26 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Venda;
 import entity.VendaProduto;
 
-/**
- * 
- * @author Hury
- *
- */
-
 public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	private Connection c;
-
-	/**
-	 * Construtor da classe.
-	 */
 
 	public VendaDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
@@ -57,7 +45,6 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		String sql = "venda" + "" + "";
 		PreparedStatement ps = c.prepareStatement(sql);
 
-		// ps.set
 		ps.execute();
 		ps.close();
 
@@ -69,7 +56,7 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		String query = "delete venda";
 
 		PreparedStatement ps = c.prepareStatement(query);
-		// ps.set
+
 		ps.execute();
 		ps.close();
 

@@ -3,7 +3,6 @@ package persistence;
 import java.sql.SQLException;
 import java.util.List;
 
-import entity.Funcionario;
 import entity.Usuario;
 
 public interface UsuarioDao {

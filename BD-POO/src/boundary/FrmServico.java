@@ -520,11 +520,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtValor.setText("");
 		txtNomeAnimal.setText("");
 	}
-
-//	public static void main(String[] args) {
-//		new FrmServico(new Usuario());
-//	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		

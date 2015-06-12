@@ -245,7 +245,7 @@ public class FrmAgenda extends MouseAdapter {
 	private void confirmaEncerrar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, ""
-				+ "Deseja realmente encerrar a tabela ? \n"
+				+ "Deseja realmente encerrar a Agenda ? \n"
 				+ "Ao fazer isso todos os serviços agendados serão excluidos.", 
 				"Aviso", JOptionPane.DEFAULT_OPTION, 
 				JOptionPane.WARNING_MESSAGE, 

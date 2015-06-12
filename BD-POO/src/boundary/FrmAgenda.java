@@ -41,7 +41,7 @@ public class FrmAgenda extends MouseAdapter{
 	private JTable tableAgenda = new JTable();
 	private JTextField txtCliente;
 	private JButton btnLupaPesquisar;
-	private JComboBox<String> comboBoxAnimal;
+	private JComboBox<Animal> comboBoxAnimal;
 	private JComboBox<String> comboBoxServico;
 	private JPanel panel;
 	private JDialog jd;
@@ -63,6 +63,7 @@ public class FrmAgenda extends MouseAdapter{
 	private int idAnimal;
 	private CtrlServico controlServico;
 	private Agenda agenda;
+	private Animal animal;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -96,7 +97,7 @@ public class FrmAgenda extends MouseAdapter{
 		btnLupaPesquisar.setBounds(297, 27, 63, 25);
 		panel.add(btnLupaPesquisar);
 		
-		comboBoxAnimal = new JComboBox<String>();
+		comboBoxAnimal = new JComboBox<Animal>();
 		comboBoxAnimal.setBounds(549, 236, 179, 20);
 		panPrincipal.add(comboBoxAnimal);
 		
@@ -146,9 +147,22 @@ public class FrmAgenda extends MouseAdapter{
 			adicionaServicoAgenda();
 		});
 		
+		comboBoxAnimal.addActionListener(a -> {
+			acaoComboBox();
+		});
+		
 	}
 	
+	private void acaoComboBox() {
+		animal = new Animal();
+		if (comboBoxAnimal.getItemCount() > 0) {
+			animal = (Animal) comboBoxAnimal.getSelectedItem();
+			idAnimal = animal.getId();
+		}
+	}
+
 	private void atualizaAgenda() {
+		//agenda.setAuxiliar(auxiliar);
 		//agenda.setHorario(horario);
 	}
 	
@@ -291,18 +305,11 @@ public class FrmAgenda extends MouseAdapter{
 		
 		try {
 			listaAnimal = controlAnimal.buscaAnimal(idCliente);
-			System.out.println(listaAnimal);
-			listaAnimal.forEach(a -> {
-				idAnimal = a.getId();
-			});
-			System.out.println(idAnimal);
+			
 			if (!listaAnimal.isEmpty()) {
-				listaAnimal.forEach(a -> {
-					comboBoxAnimal.addItem(a.getNome());
-				});
-			}else{
-				System.out.println("LISTA VAZIA");
+				listaAnimal.forEach(a -> comboBoxAnimal.addItem(a) );
 			}
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

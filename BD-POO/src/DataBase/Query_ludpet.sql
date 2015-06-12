@@ -148,16 +148,10 @@ id_servico int null
 primary key(hora),
 foreign key (id_servico) references servico(id))
 
-insert into servico (id, nome, valor, id_animal, id_cliente_servico) values
-(3,'banho', 100, 2, )
+--
 
-
-select c.nome, a.nome as nome_cao, a.raca, s.nome as servico, s.valor
-from cliente c
-inner join animal a
-on c.id = a.id_cliente
-inner join servico s
-on a.id = s.id_animal
+--insert into servico (id, nome, valor, id_animal, id_cliente_servico) values
+--(3,'banho', 100, 2, 5 )
 
 insert into agenda(hora, disponibilidade) values
 ('10:00',0),
@@ -212,16 +206,16 @@ INSERT INTO fornecedor (id,nome,telefone) VALUES
 (9,'aang',22222222)
 
 INSERT INTO cliente (id,nome,logradouro,numero,bairro,telefone,cpf) VALUES
-(5,'Oscar Alho','av 23',157,'se',11111111,11111111111),
-(25,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111),
-(26,'Pedro','rua chua',4,'cracolandia',222222,222222),
-(27,'Oscar','rua eira',500,'cracolandia',333333,333333),
-(28,'Alho','rua cac',600,'cracolandia',4444444,4444444),
-(29,'Cebola','rua c',800,'cracolandia',5555555,5555555),
-(30,'Suzi','rua',150,'cracolandia',666666,6666666)
+(5,'Oscar Alho','av 23',157,'se',11111111,11111111111)--,
+--(25,'Paula Tejando','rua cachueira',420,'cracolandia',11111111,11111111111),
+--(26,'Pedro','rua chua',4,'cracolandia',222222,222222),
+--(27,'Oscar','rua eira',500,'cracolandia',333333,333333),
+--(28,'Alho','rua cac',600,'cracolandia',4444444,4444444),
+--(29,'Cebola','rua c',800,'cracolandia',5555555,5555555),
+--(30,'Suzi','rua',150,'cracolandia',666666,6666666)
 
 INSERT INTO produto (nome,descricao,id_fornecedor,valor_venda,valor_compra,quantidade) VALUES
-('Petimax','ração para cachorro',4,10.00,5.00,5),
+('Petimax','raÃ§Ã£o para cachorro',4,10.00,5.00,5),
 ('bonix','ossinhos para cachorro',9,2.00,1.00,50)
 
 INSERT INTO lote (data_validade) VALUES
@@ -269,7 +263,7 @@ insert into animal (id_cliente, rga, nome, raca, especie, sexo, cor) values
 	(5, 1223344, 'logan', 'husky', 'cachorro', 'M', 'Branco')
 	
 select nome as nome, logradouro + ', ' + cast(numero as varchar(9))
-	+ ', ' + bairro as endereço_completo, telefone
+	+ ', ' + bairro as endereÃ§o_completo, telefone
 	from cliente
 	order by nome
 	
@@ -289,7 +283,7 @@ select  f.id, f.nome, SUBSTRING(f.cpf,1,9)+'-'+SUBSTRING(f.cpf,10,11)as cpf, f.s
 	on p.idtipo = t.id
 	where f.nome like '%p%'
 
---inner join para verificar qual é o cargo de um funcionario de um determinado login	
+--inner join para verificar qual Ã© o cargo de um funcionario de um determinado login	
 select f.nome, l.username, l.passwor, t.descricao as cargo
 	from usuario l
 	inner join funcionario f

@@ -13,12 +13,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import entity.Lote;
-import entity.Produto;
+
+
+
+
+
+
+
+//import entity.Lote;
+//import entity.Produto;
 import entity.Venda;
 import entity.VendaProduto;
-import persistence.ProdutoDao;
-import persistence.ProdutoDaoImpl;
+//import persistence.ProdutoDao;
+//import persistence.ProdutoDaoImpl;
 import persistence.VendaDao;
 import persistence.VendaDaoImpl;
 
@@ -33,15 +40,22 @@ public class CtrlVenda implements ActionListener {
 	private JTextField txtIdCliente;
 	private JTextField txtIdVendedor;
 	private JTextField txtDataVenda;
+	@SuppressWarnings("unused")
 	private JTextField txtNomeCli;
+	@SuppressWarnings("unused")
 	private JTextField txtCodProdServ;
+	@SuppressWarnings("unused")
 	private JTextField txtNomeProdServ;
+	@SuppressWarnings("unused")
 	private JTextField txtQtdeProdServ;
+	@SuppressWarnings("unused")
 	private JTextField txtDinheiroRecebido;
 
 	private JLabel lblTotal;
+	@SuppressWarnings("unused")
 	private JLabel lblData;
 
+	@SuppressWarnings("unused")
 	private Object[] objetosTela = new Object[25];
 
 	private VendaDao vDao;

@@ -31,7 +31,7 @@ public class FrmPrincipal {
 	private JLabel lblfRealizarVenda;
 	private JLabel lblfRealizarServio;
 	private JButton btnDeslogar;
-	private JLabel label;
+	private JLabel lblLogoLudPet;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
@@ -115,6 +115,7 @@ public class FrmPrincipal {
 		
 		lblRelatrios = new JLabel("(F3) Relatórios");
 		lblRelatrios.setBounds(108, 450, 98, 14);
+		lblRelatrios.setEnabled(false);
 		panPrincipal.add(lblRelatrios);
 		
 		lblfRealizarVenda = new JLabel("(F1) Realizar Venda");
@@ -129,10 +130,10 @@ public class FrmPrincipal {
 		lblfRealizarServio.setBounds(308, 337, 122, 14);
 		panPrincipal.add(lblfRealizarServio);
 		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
-		label.setBounds(175, 0, 255, 207);
-		panPrincipal.add(label);
+		lblLogoLudPet = new JLabel("");
+		lblLogoLudPet.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
+		lblLogoLudPet.setBounds(175, 0, 255, 207);
+		panPrincipal.add(lblLogoLudPet);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/img/teste.png")));
@@ -236,10 +237,10 @@ public class FrmPrincipal {
 		btnDeslogar.setBounds(545, 442, 51, 49);
 		panPrincipal.add(btnDeslogar);
 		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/logo.png")));
-		label.setBounds(180, 11, 228, 223);
-		panPrincipal.add(label);
+		lblLogoLudPet = new JLabel("");
+		lblLogoLudPet.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/logo.png")));
+		lblLogoLudPet.setBounds(180, 11, 228, 223);
+		panPrincipal.add(lblLogoLudPet);
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/teste.png")));
@@ -261,6 +262,10 @@ public class FrmPrincipal {
 		label_4.setBounds(399, 435, 204, 14);
 		panPrincipal.add(label_4);
 		
+		btnRealizarServico.addActionListener( e -> {
+			sair();
+			new FrmServico(u);
+		});
 		
 		janela.setSize(623,529);		
 		ConfiguracoesTela configTela = new ConfiguracoesTela();

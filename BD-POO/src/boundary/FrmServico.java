@@ -45,6 +45,7 @@ import javax.swing.UIManager;
 import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
+import entity.Usuario;
 
 public class FrmServico implements MouseListener, ActionListener{
 	
@@ -98,7 +99,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	private CtrlServico controlServico= new CtrlServico();
 	private JTextField txtNomeAnimal;
 
-	public FrmServico() {
+	public FrmServico(Usuario u) {
 		
 		janela = new JFrame("Servico");
 		
@@ -350,6 +351,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		mntmMenuPrincipal.addActionListener(e -> {
 			janela.dispose();
 			janela = null;
+			new FrmPrincipal(u);
 		});
 		
 		btnServicoAgendado.addActionListener(this);
@@ -481,7 +483,7 @@ public class FrmServico implements MouseListener, ActionListener{
 	}
 
 	public static void main(String[] args) {
-		new FrmServico();
+		new FrmServico(new Usuario());
 	}
 
 	@Override

@@ -5,11 +5,6 @@ import java.util.List;
 
 import entity.Venda;
 
-/**
- * 
- * @author Hury
- *
- */
 
 public interface VendaDao {
 	

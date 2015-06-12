@@ -25,12 +25,6 @@ import entity.LoteProduto;
 import entity.Pessoa;
 import entity.Produto;
 
-/**
- * Classe que interage com o Dao
- * 
- * @author Hury
- *
- */
 
 public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		CtrlTableLote {
@@ -57,16 +51,13 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		this.txtQtde = (JTextField) objetosTela[8];
 	}
 
-	/**
-	 * Metodo que atribui a ação necessaria ao botão.
-	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 
-		if (acao.equalsIgnoreCase("ACAOSALVA")) { // insere um novo produto e um
-													// novo lote
+		if (acao.equalsIgnoreCase("ACAOSALVA")) { 
+			
 			Produto prod = new Produto();
 			Lote lot = new Lote();
 			LoteProduto lotprod = new LoteProduto();
@@ -89,9 +80,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				e1.printStackTrace();
 			}
 
-			lotprod.setIdProduto(insereProduto(prod)); // insere produto
-			lotprod.setIdLote(insereLote(lot)); // insere lote
-			insereLoteProduto(lotprod); // insere lote_produto
+			lotprod.setIdProduto(insereProduto(prod)); 
+			lotprod.setIdLote(insereLote(lot)); 
+			insereLoteProduto(lotprod); 
 
 			JOptionPane
 					.showMessageDialog(null,
@@ -99,10 +90,8 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			System.out
 					.println("prod: " + prod.getId() + " lot: " + lot.getId());
 
-		} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) { // insere apenas
-																// um novo
-																// produto
-
+		} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) { 
+																														
 			Produto prod = new Produto();
 			prod.setNome(txtNome.getText());
 			prod.setDescricao(txtDescricao.getText());
@@ -115,10 +104,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			JOptionPane.showMessageDialog(null,
 					" O Novo produto foi incluido com sucesso!");
 
-		} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) { // insere um novo
-																// lote a um
-																// produto
-																// existente
+		} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) { 
 
 			Lote lot = new Lote();
 			LoteProduto lotprod = new LoteProduto();
@@ -134,18 +120,17 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				e1.printStackTrace();
 			}
 
-			//pega o id do produto pesquisado
 			lotprod.setIdProduto(Integer.parseInt(txtIdProduto.getText())); 
 																			
-			lotprod.setIdLote(insereLote(lot)); // insere lote
-			insereLoteProduto(lotprod); // insere lote_produto
+			lotprod.setIdLote(insereLote(lot)); 
+			insereLoteProduto(lotprod); 
 			JOptionPane.showMessageDialog(null,
 					" O Novo lote foi vinculado ao produto com sucesso!");
 
-		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) { // Atualiza produto
+		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) { 
 
 			if (!txtIdProduto.getText().equals("")
-					&& txtIdLote.getText().equals("")) { // Apenas produto
+					&& txtIdLote.getText().equals("")) { 
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));
 				prod.setNome(txtNome.getText());
@@ -158,7 +143,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 
 				atualizaProduto(prod);
 			} else if (!txtIdProduto.getText().equals("")
-					&& !txtIdLote.getText().equals("")) { // Produto e Lote
+					&& !txtIdLote.getText().equals("")) { 
 
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));
@@ -188,13 +173,13 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				atualizaLote(lot);
 			}
 
-		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) { // Exclui Produto
+		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) { 
 			Produto prod = new Produto();
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
 
 			excluiProduto(prod);
 
-		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) { // Exclui Produto
+		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) { 
 			Lote lot = new Lote();
 			lot.setId(Integer.parseInt(txtIdLote.getText()));
 
@@ -206,12 +191,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 
 	}
 
-	/**
-	 * Insere um produto
-	 * 
-	 * @param prod
-	 * @return
-	 */
 
 	public int insereProduto(Produto prod) {
 		pDao = new ProdutoDaoImpl();
@@ -220,8 +199,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			id = pDao.insereProduto(prod);
 			System.out.println("Produto Incluido");
 
-			// TODO limpa campos
-
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(),
 					"ERRO - Produto", JOptionPane.ERROR_MESSAGE);
@@ -229,11 +206,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return id;
 	}
 
-	/**
-	 * Exclui um produto.
-	 * 
-	 * @param prod
-	 */
 
 	public void excluiProduto(Produto prod) {
 		pDao = new ProdutoDaoImpl();
@@ -246,12 +218,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
-	/**
-	 * Inclui um lote.
-	 * 
-	 * @param lot
-	 * @return
-	 */
 
 	public int insereLote(Lote lot) {
 		lDao = new ProdutoDaoImpl();
@@ -266,11 +232,6 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return id;
 	}
 
-	/**
-	 * Inclui um LoteProduto
-	 * 
-	 * @param lotprod
-	 */
 
 	public void insereLoteProduto(LoteProduto lotprod) {
 		lpDao = new ProdutoDaoImpl();
@@ -323,32 +284,18 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return p;
 	}
 
-	/**
-	 * Atualiza um produto
-	 * 
-	 * @param prod
-	 */
-
 	public void atualizaProduto(Produto prod) {
 		ProdutoDao pDao = new ProdutoDaoImpl();
 		try {
 			pDao.atualizaProduto(prod);
-			// carregaCombo();
 			JOptionPane.showMessageDialog(null,
 					"Produto Atualizado com sucesso!", "Sucesso",
 					JOptionPane.INFORMATION_MESSAGE);
-			// limpaCampos();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	/**
-	 * Busca Lotes a partir da ID de um produto.
-	 * 
-	 * @return Uma lista de todos os lotes relacionados ao produto.
-	 */
 
 	@Override
 	public List<Lote> buscaLotePorProduto(int id) throws SQLException {
@@ -390,7 +337,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
-	@Deprecated
+	
 	@Override
 	public Lote concultaLoteId(String id) throws SQLException {
 		// TODO Auto-generated method stub

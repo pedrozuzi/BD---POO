@@ -6,21 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import boundary.FrmProduto;
 
-/**
- * Classe que realiza as interações de tela da classe FrmProduto
- * 
- * @author Hury
- *
- */
-
-// TODO Diminuir Parametros
 public class CtrlTelaProduto implements ActionListener {
 
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
@@ -32,8 +23,8 @@ public class CtrlTelaProduto implements ActionListener {
 	private JPanel panAcoes, panInferior, panSuperior, panAcoes2, panProduto,
 			panLote;
 	private JLabel lblAcao;
-	
-	private Object[] objetosTela =  new Object[25];
+
+	private Object[] objetosTela = new Object[25];
 
 	public CtrlTelaProduto(Object[] objetosTela) {
 
@@ -49,7 +40,7 @@ public class CtrlTelaProduto implements ActionListener {
 
 		this.btnIncluir = (JButton) objetosTela[9];
 		this.btnAlterar = (JButton) objetosTela[10];
-		this.btnExcluir =(JButton) objetosTela[11];
+		this.btnExcluir = (JButton) objetosTela[11];
 		this.btnPesquisar = (JButton) objetosTela[12];
 
 		this.btnPesquisaProduto = (JButton) objetosTela[13];
@@ -58,21 +49,19 @@ public class CtrlTelaProduto implements ActionListener {
 		this.btnLimpa = (JButton) objetosTela[16];
 		this.btnSalva = (JButton) objetosTela[17];
 		this.panAcoes = (JPanel) objetosTela[18];
-		
+
 		this.panInferior = (JPanel) objetosTela[19];
-		this.panSuperior =(JPanel) objetosTela[20];
+		this.panSuperior = (JPanel) objetosTela[20];
 		this.panAcoes2 = (JPanel) objetosTela[21];
 		this.panProduto = (JPanel) objetosTela[22];
 		this.panLote = (JPanel) objetosTela[23];
-		
+
 		this.lblAcao = (JLabel) objetosTela[24];
 
 	}
 
 	public boolean camposProduto() {
 
-		
-		
 		return !(txtNome.getText().equals("")
 				|| txtDescricao.getText().equals("")
 				|| txtValorVenda.getText().equals("")
@@ -91,10 +80,6 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
-	/**
-	 * Limpa todos os textFilds do FrmProduto.
-	 */
-
 	public void limpaCampos() {
 
 		txtIdProduto.setText("");
@@ -105,16 +90,8 @@ public class CtrlTelaProduto implements ActionListener {
 		txtIdFornecedor.setText("");
 		txtIdLote.setText("");
 		txtDataValidadeLote.setText("");
-	 txtQtde.setText("");
+		txtQtde.setText("");
 	}
-
-	/**
-	 * Recebe um componente, desabilita/habilita todos os subcomponentes do
-	 * mesmo.
-	 * 
-	 * @param c
-	 *            O componente para interação.
-	 */
 
 	public void comp(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
@@ -122,34 +99,18 @@ public class CtrlTelaProduto implements ActionListener {
 		}
 	}
 
-	/**
-	 * Recebe um componente, desabilita todos os subcomponentes do mesmo.
-	 * 
-	 * @param c
-	 *            O componente para interação.
-	 */
-
-	public void tfalse(Component[] c) { // desabilita os components
+	public void tfalse(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(false);
 		}
 	}
-
-	/**
-	 * Desabilita/Habilita os Botoes de CRUD.
-	 */
 
 	public void botoesCrud() {
 		Component[] c;
 		comp(c = panAcoes.getComponents());
 	}
 
-	/**
-	 * Desabilita/Habilita todos os componentes da tela.
-	 */
-
 	public void resetaTela() {
-		// System.out.println("resetado");
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		comp(c = panLote.getComponents());
@@ -158,19 +119,11 @@ public class CtrlTelaProduto implements ActionListener {
 		pesquisa(false);
 	}
 
-	/**
-	 * Configura os campos para a inclusão de um lote.
-	 */
-
 	public void incluiLote() {
 		Component[] c;
 		comp(c = panProduto.getComponents());
 		txtNome.setEnabled(true);
 	}
-
-	/**
-	 * 
-	 */
 
 	public void excluiProduto() {
 		Component[] c;
@@ -180,18 +133,10 @@ public class CtrlTelaProduto implements ActionListener {
 		btnPesquisaFornecedor.setEnabled(false);
 	}
 
-	/**
-	 * Configura os campos para a inclusão de um Produto.
-	 */
-
 	public void incluiProduto() {
 		Component[] c;
 		comp(c = panLote.getComponents());
 	}
-
-	/**
-	 * 
-	 */
 
 	public void vouta() {
 		Component[] c;
@@ -206,21 +151,10 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
-	/**
-	 * Habilita/Desabilita os botoes de pesquisa
-	 * 
-	 * @param status
-	 *            True ou False
-	 */
-
 	public void pesquisa(boolean status) {
 		btnPesquisaProduto.setEnabled(status);
-		// btnPesquisaFornecedor.setEnabled(status);
 	}
 
-	/**
-	 * 
-	 */
 	public void pesq() {
 		Component[] c;
 		comp(c = panProduto.getComponents());
@@ -229,28 +163,16 @@ public class CtrlTelaProduto implements ActionListener {
 		btnPesquisaFornecedor.setEnabled(false);
 	}
 
-	// TODO
-	public void resetaTable() {
-
-	}
-
-	/**
-	 * Verifica a ação do botão e atribui as atividades, de tela, a serem
-	 * realizadas.
-	 */
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
 
-		// acoes basicas de tela
 		if (acao.equalsIgnoreCase("LIMPA")) {
 			limpaCampos();
 		} else if (acao.equalsIgnoreCase("VOLTA")) {
 			vouta();
 		}
 
-		// botao de acoes
 		else if (acao.equalsIgnoreCase("ACAOSALVA")) {
 			vouta();
 		} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) {
@@ -267,8 +189,7 @@ public class CtrlTelaProduto implements ActionListener {
 			vouta();
 		}
 
-		// panAcaoes
-		else if (acao.equalsIgnoreCase("INCLUIR")) { // lote e produto
+		else if (acao.equalsIgnoreCase("INCLUIR")) {
 			botoesCrud();
 			resetaTela();
 			lblAcao.setText("Salvar");
@@ -276,8 +197,7 @@ public class CtrlTelaProduto implements ActionListener {
 					.getResource("/img/MiniSalvar.png")));
 			btnSalva.setActionCommand("ACAOSALVA");
 			pesquisa(false);
-		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) { // inclui apenas
-																// produto
+		} else if (acao.equalsIgnoreCase("INCLUIRPRODUTO")) {
 
 			botoesCrud();
 			resetaTela();
@@ -291,7 +211,7 @@ public class CtrlTelaProduto implements ActionListener {
 
 			pesquisa(false);
 
-		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) { // inclui lote
+		} else if (acao.equalsIgnoreCase("INCLUIRLOTE")) {
 
 			botoesCrud();
 			resetaTela();

@@ -6,11 +6,7 @@ import java.util.List;
 
 import entity.VendaProduto;
 
-/**
- * 
- * @author Hury
- *
- */
+
 
 public interface VendaProdutoDao {
 

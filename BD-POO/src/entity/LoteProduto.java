@@ -1,10 +1,6 @@
 package entity;
 
-/**
- * 
- * @author Hury
- *
- */
+
 public class LoteProduto {
 	
 	private int idProduto;

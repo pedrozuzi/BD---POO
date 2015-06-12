@@ -2,16 +2,6 @@ package entity;
 
 import java.sql.Date;
 
-/**
- * 
- * @author Hury
- *
- */
-
-/*
- * create table lote( id int identity not null, data_validade datetime not null
- * primary key(id))
- */
 public class Lote {
 
 	private int id;

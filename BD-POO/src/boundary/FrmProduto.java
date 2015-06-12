@@ -35,7 +35,6 @@ import entity.Lote;
 import entity.Produto;
 import entity.Usuario;
 
-// TODO INCLUIR QUANTIDADE!!!!!
 public class FrmProduto extends MouseAdapter {
 
 	private JFrame janela = new JFrame("Produto");
@@ -84,10 +83,6 @@ public class FrmProduto extends MouseAdapter {
 
 	private JScrollPane scrollProduto;
 	private JScrollPane scrollLote;
-
-	// private CtrlTableProduto controlTableProduto;
-	// private CtrlTableLote controlTableLote;
-	// private CtrlProduto ctrlincluiprod;
 
 	private List<Produto> listaProduto;
 	private List<Lote> listaLote;
@@ -258,7 +253,6 @@ public class FrmProduto extends MouseAdapter {
 		lblLote.setBounds(701, 0, 69, 18);
 		panSuperior.add(lblLote);
 
-		// TABLE PRODUTO
 		tableProduto = new JTable();
 		tableProduto.addMouseListener(this);
 		tableProduto.setBorder(new LineBorder(Color.BLACK));
@@ -266,7 +260,6 @@ public class FrmProduto extends MouseAdapter {
 		tableProduto.setShowGrid(true);
 		tableProduto.setVisible(true);
 
-		// SCROLL PRODUTO
 		scrollProduto = new JScrollPane();
 		scrollProduto.getViewport().setBorder(null);
 		scrollProduto.setViewportView(tableProduto);
@@ -275,15 +268,12 @@ public class FrmProduto extends MouseAdapter {
 
 		panSuperior.add(scrollProduto);
 
-		// TABLE LOTE
 		tableLote = new JTable();
 		tableLote.addMouseListener(this);
 		tableLote.setBorder(new LineBorder(Color.BLACK));
 		tableLote.setGridColor(Color.BLACK);
 		tableLote.setShowGrid(true);
 		tableLote.setVisible(true);
-
-		// SCROLL LOTE
 
 		scrollLote = new JScrollPane();
 		scrollLote.getViewport().setBorder(null);
@@ -654,7 +644,7 @@ public class FrmProduto extends MouseAdapter {
 				}
 			}
 
-		} else if (a.equals(tableLote)) { // Chamada da TableLote
+		} else if (a.equals(tableLote)) { 
 			System.out.println("table lote");
 
 			Object[] valores = new Object[2];

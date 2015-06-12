@@ -36,7 +36,6 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	@Override
 	public void insereVenda(Venda vend) throws SQLException {
-		// TODO Auto-generated method stub
 
 		String sql = "INSERT INTO venda (id_cliente,id_funcionario,total) VALUES (?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,
@@ -54,7 +53,6 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	@Override
 	public void atualizaVenda(Venda vend) throws SQLException {
-		// TODO Auto-generated method stub
 
 		String sql = "venda" + "" + "";
 		PreparedStatement ps = c.prepareStatement(sql);
@@ -67,7 +65,6 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	@Override
 	public void excluiVenda(Venda vend) throws SQLException {
-		// TODO Auto-generated method stub
 
 		String query = "delete venda";
 
@@ -80,7 +77,6 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	@Override
 	public List<Venda> pesquisaVenda(Venda vend) throws SQLException {
-		// TODO Auto-generated method stub
 
 		List<Venda> lista = new ArrayList<Venda>();
 
@@ -106,26 +102,22 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	@Override
 	public void insereVenda(VendaProduto vendprod) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void atualizaVenda(VendaProduto vendprod) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void excluiVenda(VendaProduto vendprod) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<VendaProduto> pesquisaVenda(VendaProduto vendprod)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

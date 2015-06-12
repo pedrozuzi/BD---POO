@@ -5,11 +5,7 @@ import java.util.List;
 
 import entity.LoteProduto;
 
-/**
- * Interface com os metodos de LoteProduto a serem implementados.
- * @author Hury
- *
- */
+
 
 public interface LoteProdutoDao {
 	

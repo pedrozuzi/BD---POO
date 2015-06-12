@@ -17,32 +17,17 @@ import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
 
-/**
- * Classe que possui implementações de produto, lote e lote_Produto, responsavel
- * pelos codigos SQL.
- * 
- * @author Hury
- *
- */
 
 public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	private Connection c;
 
-	/**
-	 * Construtor da classe.
-	 */
 
 	public ProdutoDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();
 	}
 
-	// Metodos implementados Produto
-
-	/**
-	 * Insere um produto na tabela produto a partir da query SQL
-	 */
 
 	@Override
 	public int insereProduto(Produto prod) throws SQLException {
@@ -69,9 +54,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-	/**
-	 * Atualiza um produto na tabela produto a partir da query SQL
-	 */
 
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
@@ -94,10 +76,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-	/**
-	 * Exclui um produto na tabela produto a partir da query SQL
-	 */
-
 	@Override
 	public void excluiProduto(Produto prod) throws SQLException {
 
@@ -117,9 +95,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-	/**
-	 * Consulta um produto na tabela produto a partir da query SQL
-	 */
 
 	@Override
 	public Produto consultaProduto(String id) throws SQLException {
@@ -143,10 +118,6 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-	/**
-	 * Consulta produtos na tabela produto a partir da query SQL e cria uma
-	 * lista de produtos
-	 */
 
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
@@ -175,7 +146,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return lista;
 	}
 
-	// Metodos implementados Lote
+
 	@Override
 	public int insereLote(Lote lot) throws SQLException {
 		String sql = "INSERT INTO lote (data_validade)" + "VALUES(?)";
@@ -219,16 +190,13 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-	@Deprecated
+	
 	@Override
 	public Lote consultaLote(Lote lot) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-	 * Lista todos os lotes de um determinado produto
-	 */
 
 	@Override
 	public List<Lote> listaLote(int id) throws SQLException {
@@ -258,7 +226,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return lista;
 	}
 
-	// Metodos implementados LoteProduto
+	
 	@Override
 	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
 		String sql = "INSERT INTO lote_produto (idProduto,idLote)"
@@ -286,7 +254,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
     
-	@Deprecated
+	
 	@Override
 	public void excluiLoteProduto(LoteProduto lotProd) throws SQLException {
 
@@ -300,7 +268,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
  
-	@Deprecated
+	
 	@Override
 	public LoteProduto consultaLoteProduto(LoteProduto lotProd)
 			throws SQLException {
@@ -308,7 +276,7 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return null;
 	}
 
-	@Deprecated
+	
 	@Override
 	public List<LoteProduto> listaLoteProduto() throws SQLException {
 		// TODO Auto-generated method stub

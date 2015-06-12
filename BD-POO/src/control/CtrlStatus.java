@@ -13,10 +13,10 @@ public class CtrlStatus {
 	
 	public String verificaStatus(){
 		String status = "OFFLINE";
-		
 		sDao = new StatusDaoImpl();
+		
 		try {
-			status = sDao.status();
+			status = sDao.status(status);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO",
 					JOptionPane.ERROR_MESSAGE);

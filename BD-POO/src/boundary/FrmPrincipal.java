@@ -159,7 +159,6 @@ public class FrmPrincipal {
 		panPrincipal.add(label_3);
 		
 		btnDeslogar.addActionListener( e -> {
-			sair();
 			deslogar();
 		});
 		
@@ -290,10 +289,7 @@ public class FrmPrincipal {
 			new FrmVenda(u);
 		});
 		
-		btnDeslogar.addActionListener( e -> {
-			sair();
-			deslogar();
-		});
+		btnDeslogar.addActionListener( e -> deslogar() );
 		
 		btnAgendarServico.addActionListener( e -> {
 			sair();
@@ -306,17 +302,11 @@ public class FrmPrincipal {
 		configTela.tamanho(janela);
 		
 		atalhos(); //REFAZER
-		
-		btnDeslogar.addActionListener( e -> deslogar() );
-		
-		btnCadastros.addActionListener(e -> {
-			sair();
-			new FrmCadastros(u);
-		});
-		
+				
 	}
 
 	private void atalhosAdm() {
+		
 		ActionMap am = panPrincipal.getActionMap();
 		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), "relatorio");
@@ -351,7 +341,6 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sair();
 				deslogar();
 			}
 		});

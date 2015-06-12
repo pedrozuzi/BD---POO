@@ -4,6 +4,6 @@ import java.sql.SQLException;
 
 public interface StatusDao {
 
-	String status() throws SQLException;
+	String status(String status) throws SQLException;
 
 }

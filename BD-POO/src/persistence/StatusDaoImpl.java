@@ -17,19 +17,19 @@ public class StatusDaoImpl implements StatusDao {
 		c = gDao.getConnection();
 	}
 
-	public String status() throws SQLException {
-		String status = "OFFLINE";
+	public String status(String status) throws SQLException {
 
 		String sql = "select name, state_desc from sys.databases where name like ?";
+		
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1, "ludpet");
 		ResultSet rs = ps.executeQuery();
+		
 		if(rs.next()){
 			status= rs.getString("state_desc");
 		}
 
 		ps.close();
-		System.out.println(status);
 		return status;
 	}
 

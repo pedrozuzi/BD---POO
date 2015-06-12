@@ -6,7 +6,7 @@ import entity.Agenda;
 
 public interface AgendaDao {
 	
-	List<Agenda> BuscarAgenda() throws SQLException;
+	List<Agenda> buscarAgenda() throws SQLException;
 	void atualizaAgenda( Agenda a) throws SQLException;
 	void encerraAgenda() throws SQLException;
 }

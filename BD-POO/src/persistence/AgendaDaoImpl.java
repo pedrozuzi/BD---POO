@@ -20,7 +20,7 @@ public class AgendaDaoImpl implements AgendaDao{
 	}
 
 	@Override
-	public List<Agenda> BuscarAgenda() throws SQLException {
+	public List<Agenda> buscarAgenda() throws SQLException {
 		List<Agenda> lista = new ArrayList<Agenda>();
 		
 		String sql = "select CONVERT(CHAR(5), a.hora, 108) as hora, a.disponibilidade, s.nome"

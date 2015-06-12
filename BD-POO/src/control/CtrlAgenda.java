@@ -15,7 +15,7 @@ public class CtrlAgenda {
 		aDao = new AgendaDaoImpl();
 		List<Agenda> lista = new ArrayList<Agenda>();
 		try {
-			lista = aDao.BuscarAgenda();
+			lista = aDao.buscarAgenda();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

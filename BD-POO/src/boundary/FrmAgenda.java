@@ -67,15 +67,20 @@ public class FrmAgenda extends MouseAdapter {
 	private Animal animal;
 	private Servico servico;
 	private ConfiguracoesTela configTela;
+	private JLabel lblAgenda;
+	private JLabel lblAnimal;
+	private JLabel lblServico;
 
 	public FrmAgenda() {
+		
 		janela = new JFrame("Agenda");
+		
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
 
-		JLabel lblAgenda = new JLabel("Agenda");
+		lblAgenda = new JLabel("Agenda");
 		lblAgenda.setFont(new Font("Arial", Font.BOLD, 16));
 		lblAgenda.setBounds(150, 11, 78, 20);
 		panPrincipal.add(lblAgenda);
@@ -113,11 +118,11 @@ public class FrmAgenda extends MouseAdapter {
 		comboBoxServico.setBounds(384, 236, 125, 20);
 		panPrincipal.add(comboBoxServico);
 
-		JLabel lblAnimal = new JLabel("Animal");
+		lblAnimal = new JLabel("Animal");
 		lblAnimal.setBounds(609, 211, 46, 14);
 		panPrincipal.add(lblAnimal);
 
-		JLabel lblServico = new JLabel("Tipo de Servi\u00E7o");
+		lblServico = new JLabel("Tipo de Servi\u00E7o");
 		lblServico.setBounds(389, 211, 98, 14);
 		panPrincipal.add(lblServico);
 

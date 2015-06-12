@@ -73,6 +73,7 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	@Override
 	public List<Cliente> listaCliente(String nome) throws SQLException {
+		
 		List<Cliente> lista = new ArrayList<Cliente>();
 		
 		String sql = "SELECT * FROM cliente WHERE nome like ?";

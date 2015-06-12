@@ -149,9 +149,15 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
-		btnCadastros.addActionListener(e -> new FrmCadastros(u));
+		btnCadastros.addActionListener(e -> {
+			sair();
+			new FrmCadastros(u);
+		});
 		
-		btnRelatorio.addActionListener(e -> new FrmRelatorio(u));
+		btnRelatorio.addActionListener(e -> {
+			sair();
+			new FrmRelatorio(u);
+		});
 		
 		atalhos();
 		atalhosAdm();
@@ -161,6 +167,11 @@ public class FrmPrincipal {
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
 		
+	}
+
+	private void sair() {
+		janela.dispose();
+		janela = null;		
 	}
 
 	private void principal(Usuario u) {
@@ -250,7 +261,10 @@ public class FrmPrincipal {
 		
 		btnDeslogar.addActionListener( e -> deslogar() );
 		
-		btnCadastros.addActionListener(e -> new FrmCadastros(u));
+		btnCadastros.addActionListener(e -> {
+			sair();
+			new FrmCadastros(u);
+		});
 		
 	}
 

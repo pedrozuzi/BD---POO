@@ -131,8 +131,4 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		return lista;
 	}
 
-	
-
-
-
 }

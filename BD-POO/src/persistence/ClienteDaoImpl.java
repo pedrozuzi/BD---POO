@@ -62,7 +62,9 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	@Override
 	public void excluirCliente(Cliente c) throws SQLException {
+		
 		String sql = "delete cliente where id = ?";
+		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt( 1, c.getId() );
 		ps.execute();

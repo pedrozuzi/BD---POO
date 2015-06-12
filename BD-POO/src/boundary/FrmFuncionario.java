@@ -340,7 +340,11 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		configTela.tamanho(janela);
 
 		btnLimpar.addActionListener(this);
-		btnVoltar.addActionListener(this);
+		btnVoltar.addActionListener( e -> {
+			janela.dispose();
+			janela = null;
+			new FrmCadastros(u);
+		});
 		btnGravar.addActionListener(this);
 		btnIncluir.addActionListener(this);
 		btnAlterar.addActionListener(this);
@@ -422,7 +426,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		label.setVisible(false);
 		lblTiraVermelha2.setVisible(false);
 		Funcionario f = new Funcionario();
-				
+			
 		if(btnIncluir.equals(acao)){
 			limpaCampos();
 			montarTela(1);
@@ -452,7 +456,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 				f.setNome( txtNome.getText() );
 				f.setCpf( txtCpf.getText().replace("-", "").replace(".", ""));
 				f.setSalario( Double.parseDouble(txtSalario.getText().replace(",", ".")) );
-				System.out.println(f.getSalario());
 				f.setTelefone( Integer.parseInt(txtTelefone.getText()) );
 				if(rdbtnAdministrador.isSelected()){
 					f.setIdTipo(1);
@@ -502,9 +505,6 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			}
 		}
 		
-		if(btnVoltar.equals(acao)){
-			System.out.println("Voltando...");
-		}
 		if(btnLimpar.equals(acao)){
 			limpaCampos();
 		}

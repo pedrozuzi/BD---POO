@@ -97,10 +97,10 @@ public class FrmCliente extends MouseAdapter {
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
 		
-		//MANDAR O USUARIO LOGADO NO SISTEMA NO LUGAR DE (null)
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
-			new FrmPrincipal(null);
+			janela = null;
+			new FrmPrincipal(u);
 		}); 
 		
 		logOff = new JMenuItem("Log Off");

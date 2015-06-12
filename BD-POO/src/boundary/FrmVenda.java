@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
-import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JTable;
@@ -22,8 +21,11 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
 import util.ConfiguracoesTela;
-import entity.Produto;
 import entity.Usuario;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class FrmVenda {
 
@@ -65,8 +67,6 @@ public class FrmVenda {
 		
 	Object[] objetosTela = new Object[25];
 
-	private JPanel panAcoes;
-
 	private JPanel panCliente;
 
 	private JPanel panTable;
@@ -77,23 +77,7 @@ public class FrmVenda {
 
 	private JPanel panInferior;
 
-	private JButton btnView;
-
-	private JButton btnExcluir;
-
-	private JButton btnAlterar;
-
-	private JButton btnInserir;
-
-	private JLabel lblVenda;
-
 	private JLabel lblNVenda;
-
-	private JLabel lblConsulta;
-
-	private JLabel lblExcluir;
-
-	private JLabel lblAlterar;
 
 	private JLabel lblVendedor;
 
@@ -122,6 +106,10 @@ public class FrmVenda {
 	private JLabel lblRecebido;
 
 	private JLabel lblTroco;
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem mntmTelaPrincipal;
+	private JMenuItem mntmLogOff;
 
 	public FrmVenda(Usuario u) {
 		
@@ -131,18 +119,11 @@ public class FrmVenda {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
-		
-		panAcoes = new JPanel();
-		panAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panAcoes.setBounds(217, 20, 431, 90);
-		panPrincipal.add(panAcoes);
-		panAcoes.setLayout(null);
-		panAcoes.setOpaque(false);
 
 		panCliente = new JPanel();
 		panCliente.setBorder(new TitledBorder(null, "Cliente",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panCliente.setBounds(459, 121, 321, 53);
+		panCliente.setBounds(459, 63, 344, 53);
 		panPrincipal.add(panCliente);
 		panCliente.setLayout(null);
 		panCliente.setOpaque(false);
@@ -150,7 +131,7 @@ public class FrmVenda {
 		panVenda = new JPanel();
 		panVenda.setBorder(new TitledBorder(null, "Venda",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panVenda.setBounds(30, 121, 419, 53);
+		panVenda.setBounds(30, 63, 419, 53);
 		panPrincipal.add(panVenda);
 		panVenda.setLayout(null);
 		panVenda.setOpaque(false);
@@ -159,7 +140,7 @@ public class FrmVenda {
 		panTable.setBorder(new TitledBorder(null,
 				"Lista de Produtos/Servi\u00E7os", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
-		panTable.setBounds(30, 193, 488, 416);
+		panTable.setBounds(30, 127, 488, 416);
 		panPrincipal.add(panTable);
 		panTable.setLayout(null);
 		panTable.setOpaque(false);
@@ -168,7 +149,7 @@ public class FrmVenda {
 		panProdServ.setBorder(new TitledBorder(null,
 				"Adicionar Produto/Servi\u00E7o", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
-		panProdServ.setBounds(540, 193, 240, 276);
+		panProdServ.setBounds(540, 127, 240, 276);
 		panPrincipal.add(panProdServ);
 		panProdServ.setLayout(null);
 		panProdServ.setOpaque(false);
@@ -176,7 +157,7 @@ public class FrmVenda {
 		panConsulta = new JPanel();// TODO
 		panConsulta.setBorder(new TitledBorder(null, "Consulta",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panConsulta.setBounds(540, 469, 240, 53);
+		panConsulta.setBounds(540, 423, 240, 53);
 		panPrincipal.add(panConsulta);
 		panConsulta.setLayout(null);
 		panConsulta.setOpaque(false); 
@@ -184,57 +165,17 @@ public class FrmVenda {
 		panDinheiro = new JPanel();
 		panDinheiro.setBorder(new TitledBorder(null, "Dinheiro",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panDinheiro.setBounds(540, 526, 240, 85);
+		panDinheiro.setBounds(528, 487, 240, 85);
 		panPrincipal.add(panDinheiro);
 		panDinheiro.setLayout(null);
 		panDinheiro.setOpaque(false);
 
 		panInferior = new JPanel();
 		panInferior.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panInferior.setBounds(30, 620, 750, 60);
+		panInferior.setBounds(30, 583, 750, 60);
 		panPrincipal.add(panInferior);
 		panInferior.setLayout(null);
 		panInferior.setOpaque(false);
-
-		btnInserir = new JButton("");
-		btnInserir.setIcon(new ImageIcon(FrmVenda.class
-				.getResource("/img/Insert.png")));
-		btnInserir.setBounds(17, 11, 75, 44);
-		panAcoes.add(btnInserir);
-
-		btnAlterar = new JButton("");
-		btnAlterar.setIcon(new ImageIcon(FrmVenda.class
-				.getResource("/img/Edit.png")));
-		btnAlterar.setBounds(109, 11, 75, 44);
-		panAcoes.add(btnAlterar);
-
-		btnExcluir = new JButton("");
-		btnExcluir.setIcon(new ImageIcon(FrmVenda.class
-				.getResource("/img/Delete.png")));
-		btnExcluir.setBounds(215, 11, 75, 44);
-		panAcoes.add(btnExcluir);
-
-		btnView = new JButton("");
-		btnView.setIcon(new ImageIcon(FrmVenda.class
-				.getResource("/img/View.png")));
-		btnView.setBounds(321, 11, 75, 44);
-		panAcoes.add(btnView);
-
-		lblVenda = new JLabel("<html>Nova<br>Venda</html>");
-		lblVenda.setBounds(39, 57, 46, 29);
-		panAcoes.add(lblVenda);
-
-		lblAlterar = new JLabel("<html>Altera<br>Venda</html>");
-		lblAlterar.setBounds(130, 57, 46, 29);
-		panAcoes.add(lblAlterar);
-
-		lblExcluir = new JLabel("<html>Exclui<br>Venda</html>");
-		lblExcluir.setBounds(229, 57, 46, 29);
-		panAcoes.add(lblExcluir);
-
-		lblConsulta = new JLabel("<html>Consulta<br>Venda</html>");
-		lblConsulta.setBounds(328, 57, 46, 29);
-		panAcoes.add(lblConsulta);
 
 		lblNVenda = new JLabel("N\u00B0 Venda:");
 		lblNVenda.setBounds(110, 23, 64, 14);
@@ -277,8 +218,9 @@ public class FrmVenda {
 		panCliente.add(txtNomeCli);
 		txtNomeCli.setColumns(10);
 
-		btnPesquisaCli = new JButton("New button");
-		btnPesquisaCli.setBounds(278, 19, 33, 23);
+		btnPesquisaCli = new JButton("");
+		btnPesquisaCli.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniLupa.png")));
+		btnPesquisaCli.setBounds(278, 19, 40, 23);
 		panCliente.add(btnPesquisaCli);
 		
 		txtIdCliente = new JTextField();
@@ -352,7 +294,8 @@ public class FrmVenda {
 		panProdServ.add(txtQtdeProdServ);
 		txtQtdeProdServ.setColumns(10);
 
-		btnPesquisaProdServ = new JButton("New button");
+		btnPesquisaProdServ = new JButton("");
+		btnPesquisaProdServ.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniLupa.png")));
 		btnPesquisaProdServ.setBounds(149, 77, 33, 23);
 		panProdServ.add(btnPesquisaProdServ);
 
@@ -390,30 +333,30 @@ public class FrmVenda {
 
 		btnAcao = new JButton("Finalizar");
 		btnAcao.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniSalvar.png")));
-		btnAcao.setBounds(631, 11, 109, 38);
+		btnAcao.setBounds(607, 11, 133, 38);
 		panInferior.add(btnAcao);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniX.png")));
-		btnCancelar.setBounds(520, 11, 101, 38);
+		btnCancelar.setBounds(465, 11, 132, 38);
 		panInferior.add(btnCancelar);
 
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmVenda.class
 				.getResource("/img/teste.png")));
-		label.setBounds(0, 0, 763, 14);
+		label.setBounds(0, 25, 845, 14);
 		panPrincipal.add(label);
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmVenda.class
 				.getResource("/img/teste2.png")));
-		label_1.setBounds(787, 692, 46, 14);
+		label_1.setBounds(787, 649, 46, 14);
 		panPrincipal.add(label_1);
 
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(FrmVenda.class
 				.getResource("/img/teste.png")));
-		label_2.setBounds(70, 715, 763, 14);
+		label_2.setBounds(60, 674, 763, 14);
 		panPrincipal.add(label_2);
 
 		txtDinheiroRecebido = new JTextField();
@@ -439,7 +382,32 @@ public class FrmVenda {
 		panDinheiro.add(btnCalculaTroco);
 		
 		janela.setContentPane(panPrincipal);
-		janela.setSize(849, 768);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 833, 21);
+		panPrincipal.add(menuBar);
+		
+		menu = new JMenu("Menu\r\n");
+		menuBar.add(menu);
+		
+		mntmTelaPrincipal = new JMenuItem("Tela Principal");
+		menu.add(mntmTelaPrincipal);
+		
+		mntmTelaPrincipal.addActionListener( e -> {
+			janela.dispose();
+			janela = null;
+			new FrmPrincipal(u);
+		});
+		
+		mntmLogOff.addActionListener( e -> {
+			janela.dispose();
+			janela = null;
+			new FrmLogin();
+		});
+		
+		mntmLogOff = new JMenuItem("Log Off");
+		menu.add(mntmLogOff);
+		janela.setSize(849, 733);
 		ConfiguracoesTela configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);

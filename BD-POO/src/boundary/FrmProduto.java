@@ -154,7 +154,6 @@ public class FrmProduto extends MouseAdapter {
 		JMenu mnMenu = new JMenu("Menu");
 		menuBarProduto.add(mnMenu);
 
-		// TODO action temporario
 		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
 
 		mntmMenuPrincipal.addActionListener(e -> {

@@ -115,7 +115,6 @@ public class FrmAnimal extends MouseAdapter {
 		menuPrincipal.setIcon(new ImageIcon(getClass()
 				.getResource("/img/HomeMenu.png")));
 		menu.add(menuPrincipal);
-
 		
 		logOff = new JMenuItem("Log Off");
 		logOff.setIcon(new ImageIcon(getClass()
@@ -347,7 +346,7 @@ public class FrmAnimal extends MouseAdapter {
 		menuPrincipal.addActionListener(e -> {
 			janelaAnimal.dispose();
 			janelaAnimal = null;
-			new FrmPrincipal(null);
+			new FrmPrincipal(u);
 		}); 
 		
 		btnLupaPesquisar.addActionListener(l -> {

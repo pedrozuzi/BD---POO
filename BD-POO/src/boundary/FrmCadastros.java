@@ -61,16 +61,16 @@ public class FrmCadastros {
 		lblTiraVermelha.setBounds(0, 234, 449, 14);
 		panPrincipal.add(lblTiraVermelha);
 		
-		lblProduto = new JLabel("(F3) Produto");
-		lblProduto.setBounds(320, 358, 100, 14);
+		lblProduto = new JLabel("Produto");
+		lblProduto.setBounds(331, 358, 100, 14);
 		panPrincipal.add(lblProduto);
 		
-		lblFornecedor = new JLabel("(F1) Fornecedor");
-		lblFornecedor.setBounds(34, 358, 97, 14);
+		lblFornecedor = new JLabel("Fornecedor");
+		lblFornecedor.setBounds(34, 358, 111, 14);
 		panPrincipal.add(lblFornecedor);
 		
-		lblFuncionario = new JLabel("(F2) Funcion\u00E1rio");
-		lblFuncionario.setBounds(172, 358, 97, 14);
+		lblFuncionario = new JLabel("Funcion\u00E1rio");
+		lblFuncionario.setBounds(193, 358, 76, 14);
 		panPrincipal.add(lblFuncionario);
 		
 		btnFornecedor = new JButton("");
@@ -108,16 +108,16 @@ public class FrmCadastros {
 		lblLogo.setBounds(111, 29, 237, 194);
 		panPrincipal.add(lblLogo);
 		
-		lblAnimal = new JLabel("(F5) Animal");
-		lblAnimal.setBounds(183, 483, 97, 14);
+		lblAnimal = new JLabel("Animal");
+		lblAnimal.setBounds(199, 483, 97, 14);
 		panPrincipal.add(lblAnimal);
 		
-		lblUsuario = new JLabel("(F6) Usu\u00E1rio");
-		lblUsuario.setBounds(323, 483, 97, 14);
+		lblUsuario = new JLabel("Usu\u00E1rio");
+		lblUsuario.setBounds(334, 483, 97, 14);
 		panPrincipal.add(lblUsuario);
 		
-		lblCliente = new JLabel("(F4) Cliente");
-		lblCliente.setBounds(24, 483, 97, 14);
+		lblCliente = new JLabel("Cliente");
+		lblCliente.setBounds(56, 483, 48, 14);
 		panPrincipal.add(lblCliente);
 		
 		janela.setContentPane( panPrincipal );
@@ -140,58 +140,7 @@ public class FrmCadastros {
 		janela.setSize(457,547);
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
-		
-//		ActionMap am = panPrincipal.getActionMap();
-//		InputMap im = panPrincipal.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
-//		
-//		am.put("animal", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmAnimal();
-//			}
-//		});
-//		
-//		am.put("fornecedor", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmFornecedor();
-//			}
-//		});
-//		
-//		am.put("funcionario", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmFuncionario();
-//			}
-//		});
-//		am.put("produto", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmProduto();
-//			}
-//		});
-//		
-//		am.put("cliente", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmCliente();
-//			}
-//		});
-//		
-//		am.put("usuario", new AbstractAction() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new FrmUsuario();
-//			}
-//		});
-//		
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0), "fornecedor");
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0), "funcionario");
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), "produto");
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0), "cliente");
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "animal");
-//		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "usuario");
-//		
+
 		btnAnimal.addActionListener(e -> {
 			fechar();
 			new FrmAnimal(u);
@@ -227,12 +176,7 @@ public class FrmCadastros {
 			fechar();
 			new FrmLogin();
 		});
-		
-		
-//		janela.setLocationRelativeTo(null);
-//		janela.setResizable(false);
-//		janela.setVisible(true);
-//		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 	}
 	
 	private void fechar() {

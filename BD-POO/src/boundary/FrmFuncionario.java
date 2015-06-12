@@ -111,7 +111,7 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
-			new FrmPrincipal(null);
+			new FrmPrincipal(u);
 		}); 
 		
 		logOff = new JMenuItem("Log Off");

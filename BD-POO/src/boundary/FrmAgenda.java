@@ -16,6 +16,9 @@ import control.ModeloTabela;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -77,6 +80,10 @@ public class FrmAgenda extends MouseAdapter {
 	private JLabel lblAnimal;
 	private JLabel lblServico;
 	private JButton btnEncerrarAgenda;
+	private JMenuBar menuBarra;
+	private JMenu menu;
+	private JMenuItem menuPrincipal;
+	private JMenuItem logOff;
 
 	public FrmAgenda() {
 		
@@ -86,6 +93,35 @@ public class FrmAgenda extends MouseAdapter {
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setLayout(null);
+		
+		menuBarra = new JMenuBar();
+		janela.setJMenuBar(menuBarra);
+		
+		menu = new JMenu("Menu");
+		menuBarra.add(menu);
+		
+		menuPrincipal = new JMenuItem("Menu Principal");
+		menuPrincipal.setIcon(new ImageIcon(getClass()
+				.getResource("/img/HomeMenu.png")));
+		menu.add(menuPrincipal);
+
+		
+		logOff = new JMenuItem("Log Off");
+		logOff.setIcon(new ImageIcon(getClass()
+				.getResource("/img/LogOffMenu.png")));
+		menu.add(logOff);
+		
+		logOff.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+			new FrmLogin();
+		});
+		
+		menuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+			new FrmPrincipal(null);
+		}); 
 
 		lblAgenda = new JLabel("Agenda");
 		lblAgenda.setFont(new Font("Arial", Font.BOLD, 16));

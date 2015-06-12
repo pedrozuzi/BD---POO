@@ -98,6 +98,12 @@ public class FrmServico implements MouseListener, ActionListener{
 	private CtrlAnimal controlAnimal;
 	private CtrlServico controlServico= new CtrlServico();
 	private JTextField txtNomeAnimal;
+	private JLabel lblTiraVermelhaEmCima;
+	private JLabel lblTiraCinzaEmCima;
+	private JLabel lblTiraCinzaCima;
+	private JLabel lblTiraVermelhaEmBaixo;
+	private JLabel lblTiraCinzaBaixo;
+	private JLabel lblTiraCinzaEmBaixo;
 
 	public FrmServico(Usuario u) {
 		
@@ -109,6 +115,21 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 		lblCodigoServico = new JLabel("C\u00F3digo Serviço : ");
 		lblCodigoServico.setVisible(false);
+		
+		lblTiraCinzaEmBaixo = new JLabel("");
+		lblTiraCinzaEmBaixo.setBounds(318, 406, 195, 20);
+		panel.add(lblTiraCinzaEmBaixo);
+		lblTiraCinzaEmBaixo.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraCinza.png")));
+		
+		lblTiraCinzaBaixo = new JLabel("");
+		lblTiraCinzaBaixo.setBounds(-50, 406, 203, 20);
+		panel.add(lblTiraCinzaBaixo);
+		lblTiraCinzaBaixo.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraCinza.png")));
+		
+		lblLogoLudPet = new JLabel("");
+		lblLogoLudPet.setIcon(new ImageIcon(FrmServico.class.getResource("/img/logo.png")));
+		lblLogoLudPet.setBounds(120, 210, 254, 216);
+		panel.add(lblLogoLudPet);
 		lblCodigoServico.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCodigoServico.setBounds(23, 175, 111, 14);
 		panel.add(lblCodigoServico);
@@ -299,10 +320,25 @@ public class FrmServico implements MouseListener, ActionListener{
 		panelOperacao.add(lblServicoAgendado);
 		lblServicoAgendado.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
-		lblLogoLudPet = new JLabel("");
-		lblLogoLudPet.setIcon(new ImageIcon(FrmServico.class.getResource("/img/LogoPetShop100.png")));
-		lblLogoLudPet.setBounds(17, 200, 470, 193);
-		panel.add(lblLogoLudPet);
+		lblTiraVermelhaEmCima = new JLabel("");
+		lblTiraVermelhaEmCima.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraVermelha.png")));
+		lblTiraVermelhaEmCima.setBounds(0, 22, 499, 14);
+		panel.add(lblTiraVermelhaEmCima);
+		
+		lblTiraCinzaEmCima = new JLabel("");
+		lblTiraCinzaEmCima.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraCinza.png")));
+		lblTiraCinzaEmCima.setBounds(0, 32, 111, 20);
+		panel.add(lblTiraCinzaEmCima);
+		
+		lblTiraCinzaCima = new JLabel("");
+		lblTiraCinzaCima.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraCinza.png")));
+		lblTiraCinzaCima.setBounds(384, 32, 103, 20);
+		panel.add(lblTiraCinzaCima);
+		
+		lblTiraVermelhaEmBaixo = new JLabel("");
+		lblTiraVermelhaEmBaixo.setBounds(0, 427, 499, 14);
+		panel.add(lblTiraVermelhaEmBaixo);
+		lblTiraVermelhaEmBaixo.setIcon(new ImageIcon(FrmServico.class.getResource("/img/TiraVermelha.png")));
 		
 		configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
@@ -332,11 +368,11 @@ public class FrmServico implements MouseListener, ActionListener{
 			acaoFinalizar();
 		});
 		
-//		btnCancelar.addActionListener(e -> { //TODO
-//			janela.dispose();
-//			janela = null;
-//			new FrmPrincipal(usuario);
-//		});
+		btnCancelar.addActionListener(e -> { 
+			janela.dispose();
+			janela = null;
+			new FrmPrincipal(u);
+		});
 		
 		cbAnimal.addActionListener(e -> {
 			acaoComboBox();
@@ -357,7 +393,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		btnServicoAgendado.addActionListener(this);
 		btnNovoServico.addActionListener(this);
 		
-	}//FIM CONSTRUTOR
+	}
 
 	private void acaoFinalizar() {
 		if(!validaCampos()){
@@ -387,6 +423,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		limpaCampos();
 		controlServico = new CtrlServico();
 		lblLogoLudPet.setVisible(false);
+		lblTiraVermelhaEmBaixo.setVisible(false);
+		lblTiraCinzaEmBaixo.setVisible(false);
+		lblTiraCinzaBaixo.setVisible(false);
 		btnCancelar.setVisible(true);
 		btnFinalizar.setVisible(true);
 		btnLimpar.setVisible(true);
@@ -482,9 +521,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeAnimal.setText("");
 	}
 
-	public static void main(String[] args) {
-		new FrmServico(new Usuario());
-	}
+//	public static void main(String[] args) {
+//		new FrmServico(new Usuario());
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {

@@ -489,8 +489,8 @@ public class FrmProduto extends MouseAdapter {
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
 		
-		ctrltela.resetaTela(); // configura a tela para abertura
-
+		ctrltela.resetaTela(); 
+		
 		btnSalva.addActionListener(e -> {
 
 			String acao = e.getActionCommand();

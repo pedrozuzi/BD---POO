@@ -195,8 +195,8 @@ public class FrmAnimal extends MouseAdapter {
 		lblExcluir.setBounds(252, 53, 38, 19);
 		panelAnimal.add(lblExcluir);
 		
-		lblIncluir = new JLabel("(F2) Incluir");
-		lblIncluir.setBounds(49, 54, 69, 19);
+		lblIncluir = new JLabel("Incluir");
+		lblIncluir.setBounds(59, 54, 69, 19);
 		panelAnimal.add(lblIncluir);
 		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblIncluir.setVisible(true);

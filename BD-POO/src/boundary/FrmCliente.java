@@ -191,10 +191,10 @@ public class FrmCliente extends MouseAdapter {
 		btnIncluir.setVisible(true);
 		panel.add(btnIncluir);
 		
-		lblIncluir = new JLabel("(F2) Incluir");
+		lblIncluir = new JLabel("Incluir");
 		lblIncluir.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblIncluir.setVisible(true);
-		lblIncluir.setBounds(54, 54, 69, 19);
+		lblIncluir.setBounds(69, 54, 69, 19);
 		panel.add(lblIncluir);
 		
 		btnAlterar = new JButton("");

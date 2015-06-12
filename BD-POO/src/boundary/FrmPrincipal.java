@@ -41,6 +41,9 @@ public class FrmPrincipal {
 	private JLabel lblfCadastros;
 	private JLabel lblNewLabel;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public FrmPrincipal(Usuario u) {
 		if (u.getF().getIdTipo() != 1) {
 			principal(u);
@@ -49,6 +52,9 @@ public class FrmPrincipal {
 		}
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void principalAdm(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
@@ -174,6 +180,9 @@ public class FrmPrincipal {
 		janela = null;		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void principal(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");

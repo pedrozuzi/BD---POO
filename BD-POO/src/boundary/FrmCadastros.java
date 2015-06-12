@@ -2,24 +2,19 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.KeyStroke;
 
 import control.ConfiguracoesTela;
 import entity.Usuario;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JTable;
+import javax.swing.JMenuItem;
 
 public class FrmCadastros {
 	
@@ -53,76 +48,91 @@ public class FrmCadastros {
 		
 		lblTiraCinza = new JLabel("");
 		lblTiraCinza.setIcon(new ImageIcon(this.getClass().getResource("/img/TiraCinza.png")));
-		lblTiraCinza.setBounds(0, 176, 157, 14);
+		lblTiraCinza.setBounds(0, 209, 157, 14);
 		panPrincipal.add(lblTiraCinza);
 		
 		lblTiraVermelha = new JLabel("");
 		lblTiraVermelha.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/TiraVermelha.png")));
-		lblTiraVermelha.setBounds(0, 201, 449, 14);
+		lblTiraVermelha.setBounds(0, 234, 449, 14);
 		panPrincipal.add(lblTiraVermelha);
 		
 		lblProduto = new JLabel("(F3) Produto");
-		lblProduto.setBounds(320, 326, 100, 14);
+		lblProduto.setBounds(320, 358, 100, 14);
 		panPrincipal.add(lblProduto);
 		
 		lblFornecedor = new JLabel("(F1) Fornecedor");
-		lblFornecedor.setBounds(35, 326, 97, 14);
+		lblFornecedor.setBounds(34, 358, 97, 14);
 		panPrincipal.add(lblFornecedor);
 		
 		lblFuncionario = new JLabel("(F2) Funcion\u00E1rio");
-		lblFuncionario.setBounds(170, 326, 97, 14);
+		lblFuncionario.setBounds(172, 358, 97, 14);
 		panPrincipal.add(lblFuncionario);
 		
 		btnFornecedor = new JButton("");
 		btnFornecedor.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/fornecedor.png")));
-		btnFornecedor.setBounds(25, 239, 97, 89);
+		btnFornecedor.setBounds(24, 271, 97, 89);
 		panPrincipal.add(btnFornecedor);
 		
 		btnFuncionario = new JButton("");
 		btnFuncionario.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/funcionario.png")));
-		btnFuncionario.setBounds(170, 239, 97, 89);
+		btnFuncionario.setBounds(172, 271, 97, 89);
 		panPrincipal.add(btnFuncionario);
 		
 		btnProduto = new JButton("");
 		btnProduto.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/produto.png")));
-		btnProduto.setBounds(310, 239, 97, 88);
+		btnProduto.setBounds(310, 271, 97, 88);
 		panPrincipal.add(btnProduto);
 		
 		btnUsuario = new JButton("");
 		btnUsuario.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/usuario.png")));
-		btnUsuario.setBounds(310, 369, 97, 89);
+		btnUsuario.setBounds(310, 394, 97, 89);
 		panPrincipal.add(btnUsuario);
 		
 		btnCliente = new JButton("");
 		btnCliente.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/cliente.png")));
-		btnCliente.setBounds(25, 369, 97, 89);
+		btnCliente.setBounds(24, 394, 97, 89);
 		panPrincipal.add(btnCliente);
 		
 		btnAnimal = new JButton("");
 		btnAnimal.setIcon(new ImageIcon(FrmProduto.class.getResource("/img/pata.png")));
-		btnAnimal.setBounds(170, 369, 99, 89);
+		btnAnimal.setBounds(170, 394, 99, 89);
 		panPrincipal.add(btnAnimal);
 		
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(this.getClass().getResource("/img/logo.png")));
-		lblLogo.setBounds(99, -8, 243, 219);
+		lblLogo.setBounds(111, 29, 237, 194);
 		panPrincipal.add(lblLogo);
 		
 		lblAnimal = new JLabel("(F5) Animal");
-		lblAnimal.setBounds(183, 458, 97, 14);
+		lblAnimal.setBounds(183, 483, 97, 14);
 		panPrincipal.add(lblAnimal);
 		
 		lblUsuario = new JLabel("(F6) Usu\u00E1rio");
-		lblUsuario.setBounds(323, 458, 97, 14);
+		lblUsuario.setBounds(323, 483, 97, 14);
 		panPrincipal.add(lblUsuario);
 		
 		lblCliente = new JLabel("(F4) Cliente");
-		lblCliente.setBounds(25, 458, 97, 14);
+		lblCliente.setBounds(24, 483, 97, 14);
 		panPrincipal.add(lblCliente);
 		
 		janela.setContentPane( panPrincipal );
+		
+		JMenuBar mbCadastros = new JMenuBar();
+		mbCadastros.setBounds(0, 0, 449, 21);
+		panPrincipal.add(mbCadastros);
+		
+		JMenu mnPrincipal = new JMenu("Menu");
+		mbCadastros.add(mnPrincipal);
+		
+		JMenuItem mntmTelaPrincipal = new JMenuItem("Menu Principal");
+		mntmTelaPrincipal.setIcon(new ImageIcon(FrmCadastros.class.getResource("/img/HomeMenu.png")));
+		mnPrincipal.add(mntmTelaPrincipal);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Log Off");
+		mntmNewMenuItem.setIcon(new ImageIcon(FrmCadastros.class.getResource("/img/LogOffMenu.png")));
+		mnPrincipal.add(mntmNewMenuItem);
 		configTela = new ConfiguracoesTela();
-		janela.setSize(455,512);
+		janela.setSize(457,547);
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
 		
@@ -213,8 +223,4 @@ public class FrmCadastros {
 		janela.dispose();
 		janela = null;
 	}
-
-//	public static void main(String[] args) {
-//		new FrmCadastros();
-//	}
 }

@@ -121,7 +121,7 @@ public class CtrlTelaProduto implements ActionListener {
 		comp(panLote.getComponents());
 	}
 
-	public void vouta() {
+	public void volta() {
 
 		botoesCrud();
 		resetaTela();
@@ -153,23 +153,23 @@ public class CtrlTelaProduto implements ActionListener {
 		if (acao.equalsIgnoreCase("LIMPA")) {
 			limpaCampos();
 		} else if (acao.equalsIgnoreCase("VOLTA")) {
-			vouta();
+			volta();
 		}
 
 		else if (acao.equalsIgnoreCase("ACAOSALVA")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOSALVAPRODUTO")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) {
-			vouta();
+			volta();
 		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
-			vouta();
+			volta();
 		}
 
 		else if (acao.equalsIgnoreCase("INCLUIR")) {

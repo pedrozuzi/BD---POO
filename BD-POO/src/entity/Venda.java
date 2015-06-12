@@ -1,14 +1,5 @@
 package entity;
 
-import java.sql.Date;
-
-/**
- * 
- * @author Hury
- *
- * @Entity
- */
-
 public class Venda {
 
 	private int id;

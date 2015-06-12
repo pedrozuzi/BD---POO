@@ -13,7 +13,6 @@ import entity.Usuario;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import javax.swing.JTable;
 import javax.swing.JMenuItem;
 
 import util.ConfiguracoesTela;

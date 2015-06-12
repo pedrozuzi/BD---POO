@@ -367,7 +367,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			servico.setNome( bg.getSelection().getActionCommand() );
 			servico.setValor( Integer.parseInt( txtValor.getText() ));
 			controlServico.incluirServico(servico);
-			int a = JOptionPane.showConfirmDialog(null, "Serviço espera para ser pago", "ERRO", 
+			JOptionPane.showConfirmDialog(null, "Serviço espera para ser pago", "ERRO", 
 					JOptionPane.ERROR_MESSAGE);
 			limpaCampos();
 		} else {

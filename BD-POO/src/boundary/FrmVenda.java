@@ -391,7 +391,16 @@ public class FrmVenda {
 		menuBar.add(menu);
 		
 		mntmTelaPrincipal = new JMenuItem("Tela Principal");
+		mntmTelaPrincipal.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/HomeMenu.png")));
 		menu.add(mntmTelaPrincipal);
+		
+		mntmLogOff = new JMenuItem("Log Off");
+		mntmLogOff.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/LogOffMenu.png")));
+		menu.add(mntmLogOff);
+		janela.setSize(849, 733);
+		ConfiguracoesTela configTela = new ConfiguracoesTela();
+		configTela.iconeBarra(janela);
+		configTela.tamanho(janela);
 		
 		mntmTelaPrincipal.addActionListener( e -> {
 			janela.dispose();
@@ -404,14 +413,6 @@ public class FrmVenda {
 			janela = null;
 			new FrmLogin();
 		});
-		
-		mntmLogOff = new JMenuItem("Log Off");
-		menu.add(mntmLogOff);
-		janela.setSize(849, 733);
-		ConfiguracoesTela configTela = new ConfiguracoesTela();
-		configTela.iconeBarra(janela);
-		configTela.tamanho(janela);
-		
 		
 	}
 	

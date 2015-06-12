@@ -6,11 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Agenda;
-import entity.Servico;
 
 public class AgendaDaoImpl implements AgendaDao{
 	
@@ -52,6 +50,41 @@ public class AgendaDaoImpl implements AgendaDao{
 		PreparedStatement ps = c.prepareStatement( sql );
 		ps.setInt(1, a.getServico().getCodigo() );
 		ps.setString(2, a.getHorario() );
+		ps.execute();
+		ps.close();
+	}
+
+	@Override
+	public void encerraAgenda() throws SQLException {
+		String sql = "delete agenda";
+		PreparedStatement ps = c.prepareStatement( sql );
+		ps.execute();
+		ps.close();
+	}
+
+	@Override
+	public void montaNovaAgenda() throws SQLException {
+		String sql = "insert into agenda(hora, disponibilidade, id_servico) values "
+					+ "('10:00',0, null),"
+					+ "('10:30',0, null),"
+					+ "('11:00',0, null),"
+					+ "('11:30',0, null),"
+					+ "('12:00',0, null),"
+					+ "('12:30',0, null),"
+					+ "('13:00',0, null),"
+					+ "('13:30',0, null),"
+					+ "('14:00',0, null),"
+					+ "('14:30',0, null),"
+					+ "('15:00',0, null),"
+					+ "('15:30',0, null),"
+					+ "('16:00',0, null),"
+					+ "('16:30',0, null),"
+					+ "('17:00',0, null),"
+					+ "('17:30',0, null),"
+					+ "('18:00',0, null),"
+					+ "('18:30',0, null),"
+					+ "('19:00',0, null)";
+		PreparedStatement ps = c.prepareStatement( sql );
 		ps.execute();
 		ps.close();
 	}

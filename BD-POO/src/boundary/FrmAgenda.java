@@ -182,12 +182,15 @@ public class FrmAgenda extends MouseAdapter {
 					atualizaAgenda(horaServico);
 					montarAgenda();
 					limpaCampos();
-					JOptionPane.showMessageDialog(null, "Serviço agendado para as: " + agenda.getHorario());
+					JOptionPane.showMessageDialog(null, 
+							"Serviço agendado para as: " + agenda.getHorario());
 				}else{
-					JOptionPane.showMessageDialog(null, "Defina um cliente e um animal para agendar o serviço");
+					JOptionPane.showMessageDialog(null, 
+							"Defina um cliente e um animal para agendar o serviço");
 				}
 			}else{
-				JOptionPane.showMessageDialog(null, "Escolha um horário para agendar");
+				JOptionPane.showMessageDialog(null, 
+						"Escolha um horário para agendar");
 			}
 		});
 
@@ -216,7 +219,8 @@ public class FrmAgenda extends MouseAdapter {
 	}
 
 	private void encerrarAgenda() {
-		// TODO 
+		controlAgenda.encerraAgenda();
+		montarAgenda();
 		
 	}
 

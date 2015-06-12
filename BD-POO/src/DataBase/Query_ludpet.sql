@@ -199,8 +199,8 @@ INSERT INTO pessoa (idTipo) VALUES
 
 INSERT INTO funcionario (id,cpf,nome,salario,telefone) VALUES
 (1,11111111111,'Hury Gabriel',99999.99,11111111), --adm
-(5,22222222222,'Pedro ZUZI',1200.00,11111111), --
-(10,33333333333,'Pedro Afonso',850.00,11111111)   --
+(5,22222222222,'Pedro ZUZI',1200.00,11111111), -- cli
+(10,33333333333,'Pedro Afonso',850.00,11111111)   -- cli
 
 INSERT INTO usuario(id,username,passwor) VALUES
 (1,'hurygg','1234'),
@@ -332,4 +332,4 @@ on ven.produto = prod.codigo
 group by cli.nome
 order by qtde
 
-	--inner join, retorna todos os produtos de um determinado lote
+	

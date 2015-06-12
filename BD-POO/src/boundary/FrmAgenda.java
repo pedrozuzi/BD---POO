@@ -2,22 +2,27 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import control.ConfigTelas;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
 import control.ModeloTabela;
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,9 +31,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
+
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
@@ -148,16 +155,28 @@ public class FrmAgenda extends MouseAdapter {
 
 		btnSalvar.addActionListener(e -> {
 			String horaServico = horaMarcada();
-			adicionaServicoAgenda();
-			atualizaAgenda(horaServico);
-			montarAgenda();
-			limpaCampos();
+			if (horaServico != null) {
+				if (!validaCampos()) {
+					adicionaServicoAgenda();
+					atualizaAgenda(horaServico);
+					montarAgenda();
+					limpaCampos();
+				}else{
+					JOptionPane.showMessageDialog(null, "Defina um cliente e um animal para agendar o serviço");
+				}
+			}else{
+				JOptionPane.showMessageDialog(null, "Escolha um horário para agendar");
+			}
 		});
 
 		comboBoxAnimal.addActionListener(a -> {
 			acaoComboBox();
 		});
 
+	}
+
+	private boolean validaCampos() {
+		return txtCliente.getText().isEmpty();
 	}
 
 	private String horaMarcada() {

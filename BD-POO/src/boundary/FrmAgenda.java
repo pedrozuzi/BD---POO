@@ -182,6 +182,7 @@ public class FrmAgenda extends MouseAdapter {
 					atualizaAgenda(horaServico);
 					montarAgenda();
 					limpaCampos();
+					JOptionPane.showMessageDialog(null, "Serviço agendado para as: " + agenda.getHorario());
 				}else{
 					JOptionPane.showMessageDialog(null, "Defina um cliente e um animal para agendar o serviço");
 				}
@@ -193,7 +194,30 @@ public class FrmAgenda extends MouseAdapter {
 		comboBoxAnimal.addActionListener(a -> {
 			acaoComboBox();
 		});
+		
+		btnEncerrarAgenda.addActionListener(e -> {
+			confirmaEncerrar();
+		});
 
+	}
+	
+	private void confirmaEncerrar(){
+		Object[] opcoes = {"Sim", "Não"};
+		int escolha = JOptionPane.showOptionDialog(null, ""
+				+ "Deseja realmente encerrar a tabela ? \n"
+				+ "Ao fazer isso todos os serviços agendados serão excluidos.", 
+				"Aviso", JOptionPane.DEFAULT_OPTION, 
+				JOptionPane.WARNING_MESSAGE, 
+				null, opcoes, opcoes[1]);
+			
+		if (escolha == JOptionPane.YES_OPTION) {
+			encerrarAgenda();
+		}
+	}
+
+	private void encerrarAgenda() {
+		// TODO 
+		
 	}
 
 	private boolean validaCampos() {

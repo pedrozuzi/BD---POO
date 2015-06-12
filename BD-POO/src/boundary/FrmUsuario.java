@@ -113,7 +113,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
-			new FrmPrincipal(null);
+			new FrmPrincipal(u);
 		}); 
 		
 		logOff = new JMenuItem("Log Off");
@@ -319,7 +319,6 @@ public class FrmUsuario implements ActionListener, MouseListener{
 //		ConfigTelas.centralizarFrame(janela);
 		
 		f = new Funcionario();
-		
 		controlUsuario = new CtrlUsuario();
 		
 		btnIncluir.addActionListener(this);

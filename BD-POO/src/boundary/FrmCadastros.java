@@ -36,6 +36,10 @@ public class FrmCadastros {
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	private JLabel lblTiraVermelha;
+	private JMenuBar mbCadastros;
+	private JMenu mnPrincipal;
+	private JMenuItem mntmTelaPrincipal;
+	private JMenuItem mntmLogOff;
 	
 	public FrmCadastros(Usuario u) {
 		
@@ -117,20 +121,20 @@ public class FrmCadastros {
 		
 		janela.setContentPane( panPrincipal );
 		
-		JMenuBar mbCadastros = new JMenuBar();
+		mbCadastros = new JMenuBar();
 		mbCadastros.setBounds(0, 0, 449, 21);
 		panPrincipal.add(mbCadastros);
 		
-		JMenu mnPrincipal = new JMenu("Menu");
+		mnPrincipal = new JMenu("Menu");
 		mbCadastros.add(mnPrincipal);
 		
-		JMenuItem mntmTelaPrincipal = new JMenuItem("Menu Principal");
+		mntmTelaPrincipal = new JMenuItem("Menu Principal");
 		mntmTelaPrincipal.setIcon(new ImageIcon(FrmCadastros.class.getResource("/img/HomeMenu.png")));
 		mnPrincipal.add(mntmTelaPrincipal);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Log Off");
-		mntmNewMenuItem.setIcon(new ImageIcon(FrmCadastros.class.getResource("/img/LogOffMenu.png")));
-		mnPrincipal.add(mntmNewMenuItem);
+		mntmLogOff = new JMenuItem("Log Off");
+		mntmLogOff.setIcon(new ImageIcon(FrmCadastros.class.getResource("/img/LogOffMenu.png")));
+		mnPrincipal.add(mntmLogOff);
 		configTela = new ConfiguracoesTela();
 		janela.setSize(457,547);
 		configTela.iconeBarra(janela);
@@ -212,6 +216,17 @@ public class FrmCadastros {
 			fechar();
 			new FrmUsuario(u);
 		});
+		
+		mntmTelaPrincipal.addActionListener(e -> {
+			fechar();
+			new FrmPrincipal(u);
+		});
+		
+		mntmLogOff.addActionListener(e -> {
+			fechar();
+			new FrmLogin();
+		});
+		
 		
 //		janela.setLocationRelativeTo(null);
 //		janela.setResizable(false);

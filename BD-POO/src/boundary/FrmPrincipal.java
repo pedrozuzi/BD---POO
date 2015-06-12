@@ -85,6 +85,7 @@ public class FrmPrincipal {
 				("/img/relatorio.png")));
 		btnRelatorio.setToolTipText("Abrir Relatórios");
 		btnRelatorio.setBounds(85, 362, 137, 88);
+		btnRelatorio.setEnabled(false);
 		panPrincipal.add(btnRelatorio);
 		
 		btnCadastros = new JButton("");

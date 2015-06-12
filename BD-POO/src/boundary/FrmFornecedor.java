@@ -98,7 +98,7 @@ public class FrmFornecedor extends MouseAdapter{
 		
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
-			new FrmPrincipal(null);
+			new FrmPrincipal(u);
 		}); 
 		
 		logOff = new JMenuItem("Log Off");

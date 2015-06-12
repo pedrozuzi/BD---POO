@@ -7,9 +7,9 @@ import entity.Agenda;
 import entity.Coluna;
 
 public class ModeloTabela extends AbstractTableModel {
+	
 	private static final long serialVersionUID = 1L;
 	
-
 	private final List<?> lista;
 	private Class<?> classe;
 
@@ -73,13 +73,13 @@ public class ModeloTabela extends AbstractTableModel {
 	
 	@Override
 	public void setValueAt(Object valor, int linha, int coluna) {
+		
 		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
 			if (coluna == 1) {
 				Agenda a = (Agenda) lista.get(linha);
 				a.setEscolhaHorario((Boolean) valor);
 				fireTableCellUpdated(linha, coluna);
 			}
-			
 		} 
 
 	}

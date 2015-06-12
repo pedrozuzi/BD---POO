@@ -170,7 +170,7 @@ public class FrmPrincipal {
 		
 		btnAgendarServico.addActionListener( e -> {
 			sair();
-			new FrmAgenda();
+			new FrmAgenda(u);
 		});
 		
 		btnRealizarVenda.addActionListener(e -> {
@@ -296,7 +296,7 @@ public class FrmPrincipal {
 		
 		btnAgendarServico.addActionListener( e -> {
 			sair();
-			new FrmAgenda();
+			new FrmAgenda(u);
 		});
 		
 		janela.setSize(623,529);		

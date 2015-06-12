@@ -43,6 +43,7 @@ import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
+import entity.Usuario;
 
 public class FrmAgenda extends MouseAdapter {
 
@@ -86,7 +87,7 @@ public class FrmAgenda extends MouseAdapter {
 	private JMenuItem logOff;
 	private JLabel lblEncerrarAgenda;
 
-	public FrmAgenda() {
+	public FrmAgenda(Usuario u) {
 		
 		janela = new JFrame("Agenda");
 		
@@ -121,7 +122,7 @@ public class FrmAgenda extends MouseAdapter {
 		menuPrincipal.addActionListener(e -> {
 			janela.dispose();
 			janela = null;
-			new FrmPrincipal(null);
+			new FrmPrincipal(u);
 		}); 
 
 		lblAgenda = new JLabel("Agenda");
@@ -434,7 +435,4 @@ public class FrmAgenda extends MouseAdapter {
 
 	}
 
-	public static void main(String[] args) {
-		new FrmAgenda();
-	}
 }

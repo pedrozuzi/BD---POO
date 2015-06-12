@@ -52,11 +52,13 @@ public class CtrlUsuario {
 		uDao = new UsuarioDaoImpl();
 		
 		try {
+			
 			if(uDao.verificarUsuario(nome)){
 				return true;
 			}else{
 				return false;
 			}
+			
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), 

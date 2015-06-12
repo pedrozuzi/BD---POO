@@ -378,7 +378,7 @@ public class FrmCliente extends MouseAdapter {
 			}else{
 				modelo.clear();
 			}
-		} catch (Exception e1) {
+		} catch (Exception e1) { 
 		}
 		
 	}

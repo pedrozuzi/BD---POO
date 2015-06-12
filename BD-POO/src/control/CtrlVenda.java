@@ -92,14 +92,7 @@ public class CtrlVenda implements ActionListener {
 			vprod.setIdvenda(Integer.parseInt(txtIdVenda.getText()));
 			//vprod.setQuantidade();
 			
-			
-
-			try {
 				insereVenda(vend);
-
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
 
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) {
 

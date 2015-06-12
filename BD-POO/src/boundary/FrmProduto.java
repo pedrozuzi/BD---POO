@@ -419,6 +419,10 @@ public class FrmProduto extends MouseAdapter {
 		panAcoes2.add(btnSalva);
 		btnSalva.setIcon(new ImageIcon(FrmProduto.class
 				.getResource("/img/MiniSalvar.png")));
+		
+		JLabel lblQuantidade = new JLabel("Quantidade:");
+		lblQuantidade.setBounds(231, 165, 69, 14);
+		panProduto.add(lblQuantidade);
 
 		lblAcao = new JLabel("Salvar");
 		lblAcao.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -484,10 +488,6 @@ public class FrmProduto extends MouseAdapter {
 		CtrlProduto ctrlprod = new CtrlProduto(objetosTela);
 
 		CtrlTelaProduto ctrltela = new CtrlTelaProduto(objetosTela);
-
-		JLabel lblQuantidade = new JLabel("Quantidade:");
-		lblQuantidade.setBounds(231, 165, 69, 14);
-		panProduto.add(lblQuantidade);
 
 		btnLimpa.addActionListener(ctrltela);
 		btnVolta.addActionListener(ctrltela);

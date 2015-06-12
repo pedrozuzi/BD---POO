@@ -553,7 +553,7 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		} else if(controle == 2){
 			
 			valores1 = table.getValueAt(linha, coluna);
-			f = listaU.get(linha).getF();;
+			f = listaU.get(linha).getF();
 			
 			listaU.forEach(u -> {
 				if(valores1.equals(u.getNome())){

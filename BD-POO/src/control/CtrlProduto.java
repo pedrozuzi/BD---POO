@@ -35,16 +35,17 @@ import entity.Produto;
 public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		CtrlTableLote {
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
-			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote, txtQtde;
-	
-	private Object[] objetosTela =  new Object[25];
+			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote,
+			txtQtde;
+
+	private Object[] objetosTela = new Object[25];
 
 	private ProdutoDao pDao;
 	private LoteDao lDao;
 	private LoteProdutoDao lpDao;
 
 	public CtrlProduto(Object[] objetosTela) {
-			
+
 		this.txtIdProduto = (JTextField) objetosTela[0];
 		this.txtNome = (JTextField) objetosTela[1];
 		this.txtDescricao = (JTextField) objetosTela[2];
@@ -88,17 +89,13 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				e1.printStackTrace();
 			}
 
-			try {
-				lotprod.setIdProduto(insereProduto(prod)); // insere produto
-				lotprod.setIdLote(insereLote(lot)); // insere lote
-				insereLoteProduto(lotprod); // insere lote_produto
+			lotprod.setIdProduto(insereProduto(prod)); // insere produto
+			lotprod.setIdLote(insereLote(lot)); // insere lote
+			insereLoteProduto(lotprod); // insere lote_produto
 
-				JOptionPane
-						.showMessageDialog(null,
-								" Os Novos produto e lote foram incluidos e vinculados com sucesso!");
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
+			JOptionPane
+					.showMessageDialog(null,
+							" Os Novos produto e lote foram incluidos e vinculados com sucesso!");
 			System.out
 					.println("prod: " + prod.getId() + " lot: " + lot.getId());
 
@@ -114,13 +111,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 			prod.setId_fornecedor(Integer.parseInt(txtIdFornecedor.getText()));
 			prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
-			try {
-				insereProduto(prod);
-				JOptionPane.showMessageDialog(null,
-						" O Novo produto foi incluido com sucesso!");
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
+			insereProduto(prod);
+			JOptionPane.showMessageDialog(null,
+					" O Novo produto foi incluido com sucesso!");
 
 		} else if (acao.equalsIgnoreCase("ACAOSALVALOTE")) { // insere um novo
 																// lote a um
@@ -141,24 +134,18 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				e1.printStackTrace();
 			}
 
-			try {
-				lotprod.setIdProduto(Integer.parseInt(txtIdProduto.getText())); // pega
-																				// o
-																				// id
-																				// do
-																				// produto
-																				// pesquisado
-				lotprod.setIdLote(insereLote(lot)); // insere lote
-				insereLoteProduto(lotprod); // insere lote_produto
-				JOptionPane.showMessageDialog(null,
-						" O Novo lote foi vinculado ao produto com sucesso!");
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
+			//pega o id do produto pesquisado
+			lotprod.setIdProduto(Integer.parseInt(txtIdProduto.getText())); 
+																			
+			lotprod.setIdLote(insereLote(lot)); // insere lote
+			insereLoteProduto(lotprod); // insere lote_produto
+			JOptionPane.showMessageDialog(null,
+					" O Novo lote foi vinculado ao produto com sucesso!");
 
 		} else if (acao.equalsIgnoreCase("ACAOGRAVA")) { // Atualiza produto
 
-			if (!txtIdProduto.getText().equals("") && txtIdLote.getText().equals("")) {  //Apenas produto
+			if (!txtIdProduto.getText().equals("")
+					&& txtIdLote.getText().equals("")) { // Apenas produto
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));
 				prod.setNome(txtNome.getText());
@@ -170,8 +157,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
 				atualizaProduto(prod);
-			}else if(!txtIdProduto.getText().equals("") && !txtIdLote.getText().equals("")){ //Produto e Lote
-				
+			} else if (!txtIdProduto.getText().equals("")
+					&& !txtIdLote.getText().equals("")) { // Produto e Lote
+
 				Produto prod = new Produto();
 				prod.setId(Integer.parseInt(txtIdProduto.getText()));
 				prod.setNome(txtNome.getText());
@@ -183,7 +171,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				prod.setQuantidade(Integer.parseInt(txtQtde.getText()));
 
 				atualizaProduto(prod);
-				
+
 				Lote lot = new Lote();
 				lot.setId(Integer.parseInt(txtIdLote.getText()));
 				try {
@@ -196,26 +184,24 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
-				
+
 				atualizaLote(lot);
 			}
-			
-			
+
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUI")) { // Exclui Produto
 			Produto prod = new Produto();
 			prod.setId(Integer.parseInt(txtIdProduto.getText()));
 
 			excluiProduto(prod);
-			
+
 		} else if (acao.equalsIgnoreCase("ACAOEXCLUILOTE")) { // Exclui Produto
 			Lote lot = new Lote();
 			lot.setId(Integer.parseInt(txtIdLote.getText()));
-			
+
 			excluiLote(lot);
-			
+
 		} else if (acao.equalsIgnoreCase("ACAOPESQUISA")) {
-			
-			
+
 		}
 
 	}
@@ -390,10 +376,10 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	public void excluiLote(Lote lot){
+
+	public void excluiLote(Lote lot) {
 		LoteDao lDao = new ProdutoDaoImpl();
-		
+
 		try {
 			lDao.excluiLote(lot);
 			JOptionPane.showMessageDialog(null, "Lote Excluido com sucesso!",

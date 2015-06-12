@@ -5,8 +5,8 @@ public class Agenda {
 	private String horario;
 	private Boolean escolhaHorario;
 	private Servico servico;
-	private int auxiliar;
 	private Cliente cliente;
+	private int auxiliar;
 	
 	@Coluna(nome="Serviço", posicao=1)
 	public Boolean getEscolhaHorario() {

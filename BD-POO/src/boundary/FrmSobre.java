@@ -14,9 +14,6 @@ import javax.swing.JScrollPane;
 import entity.Usuario;
 import util.ConfiguracoesTela;
 
-import java.awt.Window.Type;
-
-
 public class FrmSobre {
 
 	private JFrame janela;

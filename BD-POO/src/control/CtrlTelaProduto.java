@@ -33,25 +33,13 @@ public class CtrlTelaProduto implements ActionListener {
 		this.txtIdLote = (JTextField) objetosTela[6];
 		this.txtDataValidadeLote = (JTextField) objetosTela[7];
 		this.txtQtde = (JTextField) objetosTela[8];
-//
-//		this.btnIncluir = (JButton) objetosTela[9];
-//		this.btnAlterar = (JButton) objetosTela[10];
-//		this.btnExcluir = (JButton) objetosTela[11];
-//		this.btnPesquisar = (JButton) objetosTela[12];
-
 		this.btnPesquisaProduto = (JButton) objetosTela[13];
 		this.btnPesquisaFornecedor = (JButton) objetosTela[14];
-//		this.btnVolta = (JButton) objetosTela[15];
-//		this.btnLimpa = (JButton) objetosTela[16];
 		this.btnSalva = (JButton) objetosTela[17];
 		this.panAcoes = (JPanel) objetosTela[18];
-
-//		this.panInferior = (JPanel) objetosTela[19];
-//		this.panSuperior = (JPanel) objetosTela[20];
 		this.panAcoes2 = (JPanel) objetosTela[21];
 		this.panProduto = (JPanel) objetosTela[22];
 		this.panLote = (JPanel) objetosTela[23];
-
 		this.lblAcao = (JLabel) objetosTela[24];
 
 	}

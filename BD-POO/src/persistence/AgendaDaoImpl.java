@@ -46,14 +46,14 @@ public class AgendaDaoImpl implements AgendaDao{
 
 	@Override
 	public void atualizaAgenda( Agenda a ) throws SQLException {
-		String sql = "update agenda set disponibilidade = ?, "
+		String sql = "update agenda set disponibilidade = 1, "
 				+ "id_servico = ? "
 				+ "where hora = ?";
-		
 		PreparedStatement ps = c.prepareStatement( sql );
-		ps.setInt(1, a.getAuxiliar() );
-		ps.setInt(2, a.getServico().getCodigo() );
-		ps.setString(3, a.getHorario() );
+		ps.setInt(1, a.getServico().getCodigo() );
+		ps.setString(2, a.getHorario() );
+		ps.execute();
+		ps.close();
 	}
 
 }

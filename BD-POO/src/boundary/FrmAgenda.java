@@ -2,15 +2,24 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+
+
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+
+
 import control.ConfigTelas;
 import control.CtrlAgenda;
 import control.CtrlAnimal;
 import control.CtrlCliente;
 import control.CtrlServico;
 import control.ModeloTabela;
+
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTable;
@@ -18,6 +27,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,9 +38,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
+
+
+
 import entity.Agenda;
 import entity.Animal;
 import entity.Cliente;
@@ -64,6 +82,7 @@ public class FrmAgenda extends MouseAdapter{
 	private CtrlServico controlServico;
 	private Agenda agenda;
 	private Animal animal;
+	private Servico servico;
 	
 	public FrmAgenda() {
 		janela = new JFrame("Agenda");
@@ -144,7 +163,11 @@ public class FrmAgenda extends MouseAdapter{
 		});
 		
 		btnSalvar.addActionListener(e -> {
+			String horaServico = horaMarcada();
+			
 			adicionaServicoAgenda();
+			atualizaAgenda(horaServico);
+			montarAgenda();
 		});
 		
 		comboBoxAnimal.addActionListener(a -> {
@@ -153,6 +176,18 @@ public class FrmAgenda extends MouseAdapter{
 		
 	}
 	
+	private String horaMarcada() {
+		int linhasTabela = tableAgenda.getRowCount();
+		String horaServico = null;
+		
+		for (int linha = 0; linha < linhasTabela; linha++) {
+			if (tableAgenda.getValueAt(linha, 1).equals(true)) {
+				horaServico = String.valueOf(tableAgenda.getValueAt(linha, 0));
+			}
+		}
+		return horaServico;
+	}
+
 	private void acaoComboBox() {
 		animal = new Animal();
 		if (comboBoxAnimal.getItemCount() > 0) {
@@ -161,14 +196,14 @@ public class FrmAgenda extends MouseAdapter{
 		}
 	}
 
-	private void atualizaAgenda() {
-		//agenda.setAuxiliar(auxiliar);
-		//agenda.setHorario(horario);
+	private void atualizaAgenda(String horaServico) {
+		agenda.setHorario(horaServico);
+		controlAgenda.atualizaAgenda(agenda);
 	}
 	
 	private void adicionaServicoAgenda() {
 		agenda = new Agenda();
-		Servico servico = new Servico();
+		servico = new Servico();
 		Animal animal = new Animal();
 		Cliente cliente = new Cliente();
 		controlServico = new CtrlServico();
@@ -285,16 +320,14 @@ public class FrmAgenda extends MouseAdapter{
 			Object[] valores = new Object[2];
 			int linha = tableAgenda.getSelectedRow();
 			int coluna = tableAgenda.getSelectedColumn();
-			int linhasTabela = tableAgenda.getRowCount();
-			System.out.println(linhasTabela);
 			
 			for (coluna = 0; coluna < tableAgenda.getColumnCount(); coluna++) {
 				valores[coluna] = tableAgenda.getValueAt(linha, coluna);
 			}
-			
-			for (int i = 0; i < valores.length; i++) {
-				System.out.println(valores[i]);
-			}
+//			
+//			for (int i = 0; i < valores.length; i++) {
+//				System.out.println(valores[i]);
+//			}
 			
 		}
 	}

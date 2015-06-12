@@ -2,8 +2,6 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -159,14 +157,10 @@ public class FrmProduto extends MouseAdapter {
 		// TODO action temporario
 		JMenuItem mntmMenuPrincipal = new JMenuItem("Menu Principal");
 
-		mntmMenuPrincipal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				FrmPrincipal telaprincipal = new FrmPrincipal(null);
-				telaprincipal.main(null);
-				janela.dispose();
-
-			}
+		mntmMenuPrincipal.addActionListener(e -> {
+			janela.dispose();
+			janela = null;
+			new FrmPrincipal(u);
 		});
 
 		mntmMenuPrincipal.setIcon(new ImageIcon(FrmProduto.class

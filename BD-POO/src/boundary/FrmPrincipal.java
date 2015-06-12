@@ -40,6 +40,7 @@ public class FrmPrincipal {
 	private JLabel lblRelatrios;
 	private JLabel lblfCadastros;
 	private JLabel lblNewLabel;
+	private Usuario usuario;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -50,6 +51,8 @@ public class FrmPrincipal {
 		} else {
 			principalAdm(u);
 		}
+		
+		usuario = u;
 	}
 	
 	/**
@@ -58,7 +61,7 @@ public class FrmPrincipal {
 	private void principalAdm(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
-		
+				
 		panPrincipal = new JPanel();
 		panPrincipal.setForeground(Color.WHITE);
 		panPrincipal.setBackground(SystemColor.text);
@@ -155,7 +158,10 @@ public class FrmPrincipal {
 		label_3.setBounds(411, 460, 204, 14);
 		panPrincipal.add(label_3);
 		
-		btnDeslogar.addActionListener( e -> deslogar() );
+		btnDeslogar.addActionListener( e -> {
+			sair();
+			deslogar();
+		});
 		
 		btnCadastros.addActionListener(e -> {
 			sair();
@@ -165,6 +171,21 @@ public class FrmPrincipal {
 		btnRelatorio.addActionListener(e -> {
 			sair();
 			new FrmRelatorio(u);
+		});
+		
+		btnAgendarServico.addActionListener( e -> {
+			sair();
+			new FrmAgenda();
+		});
+		
+		btnRealizarVenda.addActionListener(e -> {
+			sair();
+			new FrmVenda(u);
+		});
+		
+		btnRealizarServico.addActionListener( e -> {
+			sair();
+			new FrmServico(u);
 		});
 		
 		atalhos();
@@ -181,10 +202,7 @@ public class FrmPrincipal {
 		janela.dispose();
 		janela = null;		
 	}
-
-	/**
-	 * @wbp.parser.entryPoint
-	 */
+	
 	private void principal(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
@@ -267,6 +285,21 @@ public class FrmPrincipal {
 			new FrmServico(u);
 		});
 		
+		btnRealizarVenda.addActionListener( e -> {
+			sair();
+			new FrmVenda(u);
+		});
+		
+		btnDeslogar.addActionListener( e -> {
+			sair();
+			deslogar();
+		});
+		
+		btnAgendarServico.addActionListener( e -> {
+			sair();
+			new FrmAgenda();
+		});
+		
 		janela.setSize(623,529);		
 		ConfiguracoesTela configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
@@ -293,7 +326,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				new FrmRelatorio(u);
+				new FrmRelatorio(usuario);
 			}
 		});
 		
@@ -301,7 +334,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				new FrmCadastros(u);
+				new FrmCadastros(usuario);
 			}
 		});
 	}
@@ -318,6 +351,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				sair();
 				deslogar();
 			}
 		});
@@ -326,7 +360,8 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FrmVenda();
+				sair();
+				new FrmVenda(usuario);
 			}
 		});
 		
@@ -334,7 +369,8 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				sair();
+				new FrmServico(usuario);
 			}
 		});
 		
@@ -342,6 +378,7 @@ public class FrmPrincipal {
 			private static final long serialVersionUID = 4184595576327756095L;
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				sair();
 				new FrmAgenda();
 			}
 		});
@@ -355,12 +392,8 @@ public class FrmPrincipal {
 				null, opcoes, opcoes[1]);
 			
 		if (escolha == JOptionPane.YES_OPTION) {
-			janela.dispose();
+			sair();
 			new FrmLogin();
 		}
-	}
-	
-	public static void main(String[] args) {
-		new FrmPrincipal(new Usuario());
 	}
 }

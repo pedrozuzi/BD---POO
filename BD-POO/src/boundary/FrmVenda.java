@@ -21,13 +21,13 @@ import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
 import entity.Produto;
+import entity.Usuario;
 
 public class FrmVenda {
 
@@ -74,7 +74,7 @@ public class FrmVenda {
 	
 
 
-	public FrmVenda() {
+	public FrmVenda(Usuario u) {
 		janela = new JFrame("Venda");
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
@@ -419,6 +419,6 @@ public class FrmVenda {
 	}
 	
 	public static void main(String[] args) {
-		new FrmVenda();
+		new FrmVenda(new Usuario());
 	}
 }

@@ -33,6 +33,12 @@ import entity.Lote;
 import entity.Produto;
 import entity.Usuario;
 
+/**
+ * Classe que comporta os componentes de tela do produto e lote
+ * @author Hury
+ *
+ */
+
 public class FrmProduto extends MouseAdapter {
 
 	private JFrame janela = new JFrame("Produto");
@@ -91,6 +97,11 @@ public class FrmProduto extends MouseAdapter {
 
 	private ConfiguracoesTela configTela;
 
+	/**
+	 * Construtor
+	 * @param u Usuario que está interagindo com a tela.
+	 */
+	
 	public FrmProduto(Usuario u) {
 
 		JPanel panPrincipal = new JPanel();
@@ -579,6 +590,10 @@ public class FrmProduto extends MouseAdapter {
 
 	}// fim construtor
 
+	/**
+	 * Mouse Click das tables
+	 */
+	
 	public void mouseClicked(MouseEvent e) {
 
 		Object a = new Object();
@@ -614,8 +629,7 @@ public class FrmProduto extends MouseAdapter {
 				CtrlProduto ctrlprod = new CtrlProduto(objetosTela);
 
 				try {
-					listaLote = ctrlprod.buscaLotePorProduto(idprod);// TODO
-																		// Arrumar
+					listaLote = ctrlprod.buscaLotePorProduto(idprod);
 
 					if (!listaLote.isEmpty()) {
 						modeloLote = new ModeloTabela(listaLote);
@@ -652,9 +666,12 @@ public class FrmProduto extends MouseAdapter {
 			}
 
 		}
-
 	}
 
+	/**
+	 * objetoTela recebe os componentes de tela
+	 */
+	
 	private void compactaObjetos() {
 
 		objetosTela[0] = txtIdProduto;

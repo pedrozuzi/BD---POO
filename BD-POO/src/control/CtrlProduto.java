@@ -20,6 +20,11 @@ import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
 
+/**
+ * Classe reponsavel pelo controle do produto
+ * @author Hury 
+ *
+ */
 
 public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		CtrlTableLote {
@@ -44,6 +49,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		this.txtQtde = (JTextField) objetosTela[8];
 	}
 
+	/**
+	 * Ação dos botôes
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -184,6 +192,11 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 
 	}
 
+	/**
+	 * Insere um produto a partir do Dao
+	 * @param prod
+	 * @return
+	 */
 
 	public int insereProduto(Produto prod) {
 		pDao = new ProdutoDaoImpl();
@@ -199,6 +212,10 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return id;
 	}
 
+	/**
+	 * Exclui um produto a partir do Dao
+	 * @param prod
+	 */
 
 	public void excluiProduto(Produto prod) {
 		pDao = new ProdutoDaoImpl();
@@ -211,6 +228,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
+	/**
+	 * Insere um Lote a partir do Dao
+	 */
 
 	public int insereLote(Lote lot) {
 		lDao = new ProdutoDaoImpl();
@@ -225,6 +245,10 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return id;
 	}
 
+	/**
+	 * Insere um Lote_Produto a partir do Dao
+	 * @param lotprod
+	 */
 
 	public void insereLoteProduto(LoteProduto lotprod) {
 		lpDao = new ProdutoDaoImpl();
@@ -238,8 +262,15 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
-	@Deprecated
-	public void insereLoteProduto(LoteProduto lotprod, int codprod, int codlot) {
+	/**
+	 * 
+	 * @param lotprod
+	 * @param codprod
+	 * @param codlot
+	 */
+	
+	
+	/**public void insereLoteProduto(LoteProduto lotprod, int codprod, int codlot) {
 		lpDao = new ProdutoDaoImpl();
 		try {
 			lotprod.setIdProduto(codprod);
@@ -253,6 +284,11 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 					"ERRO - LoteProduto", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	
+	/**
+	 * Retorna uma lista de produtos a partir de um nome
+	 */
 
 	@Override
 	public List<Produto> buscaProdutoPorNome(String nome) throws SQLException {
@@ -268,6 +304,10 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return lista;
 	}
 
+	/**
+	 * consulta um produto
+	 */
+	
 	@Override
 	public Produto concultaProdutoId(String id) throws SQLException {
 		Produto p = new Produto();
@@ -276,6 +316,11 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		return p;
 	}
 
+	/**
+	 * 
+	 * @param prod
+	 */
+	
 	public void atualizaProduto(Produto prod) {
 		ProdutoDao pDao = new ProdutoDaoImpl();
 		try {
@@ -288,6 +333,10 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public List<Lote> buscaLotePorProduto(int id) throws SQLException {

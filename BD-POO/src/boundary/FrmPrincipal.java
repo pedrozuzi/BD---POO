@@ -2,7 +2,6 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,10 +11,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import util.ConfiguracoesTela;
 import entity.Usuario;
 
+/**
+ * Classe que representa o Menu Principal do sistema
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmPrincipal {
 	
 	private JFrame janela;
@@ -40,6 +43,10 @@ public class FrmPrincipal {
 	private JMenuItem mntmLogOff;
 	private JMenuBar mbPrincipal;
 
+	/**
+	 * Contrutor, recebe o usuário logado no sistema
+	 * @param u
+	 */
 	public FrmPrincipal(Usuario u) {
 		if (u.getF().getIdTipo() != 1) {
 			principal(u);
@@ -49,6 +56,10 @@ public class FrmPrincipal {
 		
 	}
 	
+	/**
+	 * Método que constrói a tela principal do administrador do sistema
+	 * @param u recebe o usuário logado
+	 */
 	private void principalAdm(Usuario u) {
 		
 		janela = new JFrame("Menu Principal");
@@ -190,13 +201,17 @@ public class FrmPrincipal {
 		
 	}
 
+	/**
+	 * Método invocado para fechar a tela
+	 */
 	private void sair() {
 		janela.dispose();
 		janela = null;		
 	}
 	
 	/**
-	 * @wbp.parser.entryPoint
+	 * Método que constrói a tela principal do sistema
+	 * @param u recebe o usuário logado
 	 */
 	private void principal(Usuario u) {
 		
@@ -307,6 +322,9 @@ public class FrmPrincipal {
 				
 	}
 
+	/**
+	 * Método para deslogar
+	 */
 	public void deslogar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, "Deseja Deslogar ?", 

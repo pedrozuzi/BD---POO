@@ -5,6 +5,11 @@ import java.util.List;
 
 import entity.Lote;
 
+/**
+ * Interface que possui os metodos ta Table Lote
+ * @author Hury
+ *
+ */
 
 public interface CtrlTableLote {
 

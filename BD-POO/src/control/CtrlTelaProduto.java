@@ -12,15 +12,27 @@ import javax.swing.JTextField;
 
 import boundary.FrmProduto;
 
+/**
+ * Classe que possui os metodos de interação de tela do Produto
+ * 
+ * @author Hury
+ *
+ */
+
 public class CtrlTelaProduto implements ActionListener {
 
 	private JTextField txtIdProduto, txtNome, txtDescricao, txtValorVenda,
 			txtValorCompra, txtIdFornecedor, txtIdLote, txtDataValidadeLote,
 			txtQtde;
 	private JButton btnPesquisaProduto, btnPesquisaFornecedor, btnSalva;
-	private JPanel panAcoes, panAcoes2, panProduto,
-			panLote;
+	private JPanel panAcoes, panAcoes2, panProduto, panLote;
 	private JLabel lblAcao;
+
+	/**
+	 * Contrutor, recebe o objeto com os componentes.
+	 * 
+	 * @param objetosTela
+	 */
 
 	public CtrlTelaProduto(Object[] objetosTela) {
 
@@ -44,6 +56,12 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
+	/**
+	 * Verifica se os textFilds do produto estão vazios.
+	 * 
+	 * @return
+	 */
+
 	public boolean camposProduto() {
 
 		return !(txtNome.getText().equals("")
@@ -55,14 +73,30 @@ public class CtrlTelaProduto implements ActionListener {
 
 	}
 
+	/**
+	 * Verifica se os textFilds do lote estão vazios.
+	 * 
+	 * @return
+	 */
+
 	public boolean camposLote() {
 		return !(txtDataValidadeLote.getText().equals(""));
 	}
+
+	/**
+	 * Verifica se os textFilds de pesquisa estão vazios.
+	 * 
+	 * @return
+	 */
 
 	public boolean camposPesquisa() {
 		return !(txtNome.getText().equals(""));
 
 	}
+
+	/**
+	 * Limpa todos os textfilds.
+	 */
 
 	public void limpaCampos() {
 
@@ -77,11 +111,23 @@ public class CtrlTelaProduto implements ActionListener {
 		txtQtde.setText("");
 	}
 
+	/**
+	 * Recebe um componente e desabilita/habilita todos os subcomponentes
+	 * 
+	 * @param c
+	 */
+
 	public void comp(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
 			c[i].setEnabled(!c[i].isEnabled());
 		}
 	}
+
+	/**
+	 * Recebe um componente e desabilita todos os subcomponentes
+	 * 
+	 * @param c
+	 */
 
 	public void tfalse(Component[] c) {
 		for (int i = 0; i < c.length; i++) {
@@ -89,37 +135,61 @@ public class CtrlTelaProduto implements ActionListener {
 		}
 	}
 
+	/**
+	 * Habilita/Desabilita os botões de CRUD
+	 */
+
 	public void botoesCrud() {
-		
+
 		comp(panAcoes.getComponents());
 	}
 
+    /**
+     * Prepara a tela para uma nova ação.
+     */
+
 	public void resetaTela() {
-		
+
 		comp(panProduto.getComponents());
 		comp(panLote.getComponents());
 		comp(panAcoes2.getComponents());
 		limpaCampos();
 		pesquisa(false);
 	}
+	
+	/**
+	 * Prepara os campos para uma inclusão de lote.
+	 */
 
 	public void incluiLote() {
-		
+
 		comp(panProduto.getComponents());
 		txtNome.setEnabled(true);
 	}
+	
+	/**
+	 * Prepara a tela para a exclusão de um produto
+	 */
 
 	public void excluiProduto() {
-		
+
 		comp(panProduto.getComponents());
 		comp(panLote.getComponents());
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}
+	
+	/**
+	 * Prepara a tela para a inclusão de um produto.
+	 */
 
 	public void incluiProduto() {
 		comp(panLote.getComponents());
 	}
+	
+	/**
+	 * Prepara a tela para voltar a ação selecionada.
+	 */
 
 	public void volta() {
 
@@ -133,11 +203,20 @@ public class CtrlTelaProduto implements ActionListener {
 		btnSalva.setEnabled(false);
 
 	}
+	
+	/**
+	 * Muda os campos de pesquisa para ativos ou inativos.
+	 * @param status
+	 */
 
 	public void pesquisa(boolean status) {
 		btnPesquisaProduto.setEnabled(status);
 	}
 
+	/**
+	 * Prepara a tela para uma consulta.
+	 */
+	
 	public void pesq() {
 
 		comp(panProduto.getComponents());
@@ -145,6 +224,10 @@ public class CtrlTelaProduto implements ActionListener {
 		txtNome.setEnabled(true);
 		btnPesquisaFornecedor.setEnabled(false);
 	}
+	
+	/**
+	 * Delega a ação ao botão.
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

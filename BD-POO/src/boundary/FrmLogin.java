@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.KeyAddr;
-
 import util.ConfiguracoesTela;
 import control.CtrlLogin;
 import control.CtrlStatus;
@@ -186,14 +184,13 @@ public class FrmLogin extends KeyAdapter{
 
 	}
 
+
 	/**
-	 * Método para o evento do teclado ao teclar o 
-	 * enter.
+	 * Método para tratar o atalho do enter na tela.
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int acao = e.getKeyCode();
-		System.out.println("ENTROU...");
 		if(acao == KeyEvent.VK_ENTER){
 			logar();
 		}

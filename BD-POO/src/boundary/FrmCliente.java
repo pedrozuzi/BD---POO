@@ -334,6 +334,12 @@ public class FrmCliente extends MouseAdapter {
 		
 		btnLimpar.addActionListener(l -> limpaCampos() );
 		
+		btnVoltar.addActionListener( e -> {
+			janela.dispose();
+			janela = null;
+			new FrmCadastros(u);
+		});
+		
 		btnIncluir.addActionListener(l -> {
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource

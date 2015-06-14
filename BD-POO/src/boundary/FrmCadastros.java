@@ -2,6 +2,8 @@ package boundary;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -9,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import entity.Fornecedor;
 import entity.Usuario;
 
 import javax.swing.JMenuBar;
@@ -20,9 +23,8 @@ import util.ConfiguracoesTela;
 /**
  * Classe para chamar os formulários de cadastros
  * @author Pedro Zuzi
- *
  */
-public class FrmCadastros {
+public class FrmCadastros extends KeyAdapter{
 	
 	private JFrame janela;
 	private JPanel panPrincipal;
@@ -46,6 +48,7 @@ public class FrmCadastros {
 	private JMenu mnPrincipal;
 	private JMenuItem mntmTelaPrincipal;
 	private JMenuItem mntmLogOff;
+	private Usuario usuario;
 	
 	/**
 	 * Contrutor, recebe o usuário logado no sistema
@@ -54,6 +57,7 @@ public class FrmCadastros {
 	public FrmCadastros(Usuario u) {
 		
 		janela = new JFrame("Menu Cadastros");
+		usuario = u;
 		
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
@@ -70,16 +74,16 @@ public class FrmCadastros {
 		lblTiraVermelha.setBounds(0, 234, 449, 14);
 		panPrincipal.add(lblTiraVermelha);
 		
-		lblProduto = new JLabel("Produto");
+		lblProduto = new JLabel("(F3)Produto");
 		lblProduto.setBounds(331, 358, 100, 14);
 		panPrincipal.add(lblProduto);
 		
-		lblFornecedor = new JLabel("Fornecedor");
+		lblFornecedor = new JLabel("(F1)Fornecedor");
 		lblFornecedor.setBounds(34, 358, 111, 14);
 		panPrincipal.add(lblFornecedor);
 		
-		lblFuncionario = new JLabel("Funcion\u00E1rio");
-		lblFuncionario.setBounds(193, 358, 76, 14);
+		lblFuncionario = new JLabel("(F2)Funcion\u00E1rio");
+		lblFuncionario.setBounds(182, 358, 96, 14);
 		panPrincipal.add(lblFuncionario);
 		
 		btnFornecedor = new JButton("");
@@ -117,16 +121,16 @@ public class FrmCadastros {
 		lblLogo.setBounds(111, 29, 237, 194);
 		panPrincipal.add(lblLogo);
 		
-		lblAnimal = new JLabel("Animal");
-		lblAnimal.setBounds(199, 483, 97, 14);
+		lblAnimal = new JLabel("(F5)Animal");
+		lblAnimal.setBounds(193, 483, 65, 14);
 		panPrincipal.add(lblAnimal);
 		
-		lblUsuario = new JLabel("Usu\u00E1rio");
-		lblUsuario.setBounds(334, 483, 97, 14);
+		lblUsuario = new JLabel("(F6)Usu\u00E1rio");
+		lblUsuario.setBounds(320, 483, 65, 14);
 		panPrincipal.add(lblUsuario);
 		
-		lblCliente = new JLabel("Cliente");
-		lblCliente.setBounds(56, 483, 48, 14);
+		lblCliente = new JLabel("(F4)Cliente");
+		lblCliente.setBounds(34, 483, 65, 14);
 		panPrincipal.add(lblCliente);
 		
 		janela.setContentPane( panPrincipal );
@@ -149,7 +153,7 @@ public class FrmCadastros {
 		janela.setSize(457,547);
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
-
+		
 		btnAnimal.addActionListener(e -> {
 			fechar();
 			new FrmAnimal(u);
@@ -185,7 +189,43 @@ public class FrmCadastros {
 			fechar();
 			new FrmLogin();
 		});
+		
+		btnAnimal.addKeyListener(this);
+		btnCliente.addKeyListener(this);
+		btnFornecedor.addKeyListener(this);
+		btnFuncionario.addKeyListener(this);
+		btnProduto.addKeyListener(this);
+		btnUsuario.addKeyListener(this);
 
+	}
+	
+	/**
+	 * Métod para tratar os atalhos da tela.
+	 * @param e recebe o que foi digitado.
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int acao = e.getKeyCode();
+		if(acao == KeyEvent.VK_F1){
+			fechar();
+			new FrmFornecedor(usuario);
+		} else if(acao == KeyEvent.VK_F2){
+			fechar();
+			new FrmFuncionario(usuario);
+		} else if(acao == KeyEvent.VK_F3){
+			fechar();
+			new FrmProduto(usuario);
+		} else if(acao == KeyEvent.VK_F4){
+			fechar();
+			new FrmCliente(usuario);
+		} else if(acao == KeyEvent.VK_F5){
+			fechar();
+			new FrmAnimal(usuario);
+		} else if(acao == KeyEvent.VK_F6){
+			fechar();
+			new FrmUsuario(usuario);
+		} 
+	
 	}
 	
 	/**

@@ -276,6 +276,12 @@ public class FrmFornecedor extends MouseAdapter{
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
 		
+		btnVoltar.addActionListener( e -> {
+			janela.dispose();
+			janela = null;
+			new FrmCadastros(u);
+		});
+		
 		btnAlterar.addActionListener(e -> {
 			btnGravar.setEnabled(true);
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource

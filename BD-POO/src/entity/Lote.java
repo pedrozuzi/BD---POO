@@ -2,6 +2,12 @@ package entity;
 
 import java.sql.Date;
 
+/**
+ * Classe de entidade que possui os atributos do Lote
+ * @author Hury
+ *
+ */
+
 public class Lote {
 
 	private int id;

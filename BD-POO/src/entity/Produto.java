@@ -1,5 +1,11 @@
 package entity;
 
+/**
+ * Classe de entidade que possui os atribultos de Produto.
+ * @author Hury
+ *
+ */
+
 public final class Produto {
 
 	private int id;
@@ -66,7 +72,6 @@ public final class Produto {
 	}
 
 	@Coluna(nome = "quantidade", posicao = 6)
-	
 	public int getQuantidade() {
 		return quantidade;
 	}

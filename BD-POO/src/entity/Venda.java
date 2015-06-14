@@ -1,5 +1,11 @@
 package entity;
 
+/**
+ * Classe de entidade que possui os atribultos de uma Venda.
+ * @author Hury
+ *
+ */
+
 public class Venda {
 
 	private int id;

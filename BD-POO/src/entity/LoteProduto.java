@@ -1,5 +1,10 @@
 package entity;
 
+/**
+ * Classe de entidade que possui os atributos de LoteProduto.
+ * @author Hury
+ *
+ */
 
 public class LoteProduto {
 	

@@ -6,9 +6,19 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Classe que realiza a conexão com o banco de dados
+ * @author 
+ *
+ */
+
 public class ConnectionImpl implements GenericConnection {
 	
 	private Connection con;
+	
+	/**
+	 * Abre conexão com o banco
+	 */
 	
 	@Override
 	public Connection getConnection() {
@@ -31,6 +41,10 @@ public class ConnectionImpl implements GenericConnection {
 		}
 		return con;
 	}
+	
+	/**
+	 * Fecha a conexão com o banco
+	 */
 
 	@Override
 	public void fechaConexao(Connection con) {

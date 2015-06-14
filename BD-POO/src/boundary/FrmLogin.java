@@ -3,6 +3,8 @@ package boundary;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import com.sun.corba.se.impl.protocol.giopmsgheaders.KeyAddr;
 
 import util.ConfiguracoesTela;
 import control.CtrlLogin;
@@ -24,7 +28,7 @@ import entity.Usuario;
  * @author Hury Gabriel
  *
  */
-public class FrmLogin {
+public class FrmLogin extends KeyAdapter{
 
 	private JFrame janela ;
 	private JTextField txtUsuario;
@@ -122,6 +126,8 @@ public class FrmLogin {
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
 		
+		pwdSenha.addKeyListener(this);
+		
 		btnLogar.addActionListener(e -> {
 			if (!validaCampos()) {
 				logar();
@@ -180,6 +186,19 @@ public class FrmLogin {
 
 	}
 
+	/**
+	 * Método para o evento do teclado ao teclar o 
+	 * enter.
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int acao = e.getKeyCode();
+		System.out.println("ENTROU...");
+		if(acao == KeyEvent.VK_ENTER){
+			logar();
+		}
+	}
+	
 	/**
 	 * Método main
 	 * @param args

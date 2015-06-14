@@ -188,7 +188,6 @@ public class FrmCadastros {
 
 	}
 	
-	
 	/**
 	 * Método chamado para fechar o formulário
 	 */

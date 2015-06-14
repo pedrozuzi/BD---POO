@@ -18,6 +18,12 @@ import control.CtrlLogin;
 import control.CtrlStatus;
 import entity.Usuario;
 
+/**
+ * Classe para validação de um usuário para entrar no sistema
+ * @author Pedro Zuzi
+ * @author Hury Gabriel
+ *
+ */
 public class FrmLogin {
 
 	private JFrame janela ;
@@ -35,6 +41,9 @@ public class FrmLogin {
 	private ConfiguracoesTela configTela;
 	private JLabel lblLogoLudPet;
 
+	/**
+	 * Construtor
+	 */
 	public FrmLogin() {
 
 		janela = new JFrame("Realizar Login");
@@ -122,6 +131,10 @@ public class FrmLogin {
 		status();
 	}
 
+	/**
+	 * Método invocado para o usuário logar no sistema
+	 * com suas credenciais e as validações do mesmo
+	 */
 	private void logar() {
 		
 		Usuario u = new Usuario();
@@ -139,11 +152,18 @@ public class FrmLogin {
 
 	}
 
+	/**
+	 * Método para validação dos campos
+	 * @return true se campos vazios, false se campos preenchidos
+	 */
 	private boolean validaCampos() {
 		return txtUsuario.getText().isEmpty()
 				|| pwdSenha.getPassword().equals("");
 	}
 
+	/**
+	 * Método para verificação do status do banco de dados
+	 */
 	public void status() {
 
 		CtrlStatus ctrls = new CtrlStatus();
@@ -160,6 +180,10 @@ public class FrmLogin {
 
 	}
 
+	/**
+	 * Método main
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new FrmLogin();
 	}

@@ -544,7 +544,6 @@ public class FrmAnimal extends MouseAdapter {
 			}
 			limpaCampos();
 	}
-
 	
 	/**
 	 * Método invocado para busca de clientes do banco de dados
@@ -567,7 +566,6 @@ public class FrmAnimal extends MouseAdapter {
 		limpaCampos();
 
 	}
-
 	
 	/**
 	 * Método para limpar os campos
@@ -578,7 +576,6 @@ public class FrmAnimal extends MouseAdapter {
 		txtRaca.setText("");
 		txtRga.setText("");
 	}
-	
 	
 	/**
 	 * Método chamado quando ocorre um clique em uma tabela
@@ -614,7 +611,6 @@ public class FrmAnimal extends MouseAdapter {
 			txtCor.setText( String.valueOf(valoresAnimal[5]));
 		}
 	}
-
 	
 	/**
 	 * Método para busca de animais de um cliente no banco de dados

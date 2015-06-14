@@ -17,6 +17,11 @@ import javax.swing.JMenuItem;
 
 import util.ConfiguracoesTela;
 
+/**
+ * Classe para chamar os formulários de cadastros
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmCadastros {
 	
 	private JFrame janela;
@@ -42,6 +47,10 @@ public class FrmCadastros {
 	private JMenuItem mntmTelaPrincipal;
 	private JMenuItem mntmLogOff;
 	
+	/**
+	 * Contrutor, recebe o usuário logado no sistema
+	 * @param u
+	 */
 	public FrmCadastros(Usuario u) {
 		
 		janela = new JFrame("Menu Cadastros");
@@ -179,6 +188,10 @@ public class FrmCadastros {
 
 	}
 	
+	
+	/**
+	 * Método chamado para fechar o formulário
+	 */
 	private void fechar() {
 		janela.dispose();
 		janela = null;

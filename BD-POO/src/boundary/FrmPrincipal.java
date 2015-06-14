@@ -42,6 +42,7 @@ public class FrmPrincipal {
 	private JMenu mnMenu;
 	private JMenuItem mntmLogOff;
 	private JMenuBar mbPrincipal;
+	private JMenuItem mntmSobre;
 
 	/**
 	 * Contrutor, recebe o usuário logado no sistema
@@ -59,6 +60,7 @@ public class FrmPrincipal {
 	/**
 	 * Método que constrói a tela principal do administrador do sistema
 	 * @param u recebe o usuário logado
+	 * @wbp.parser.entryPoint
 	 */
 	private void principalAdm(Usuario u) {
 		
@@ -164,6 +166,10 @@ public class FrmPrincipal {
 		mntmLogOff.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/LogOffMenu.png")));
 		mnMenu.add(mntmLogOff);
 		
+		mntmSobre = new JMenuItem("Sobre");
+		mntmSobre.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sobre.png")));
+		mnMenu.add(mntmSobre);
+		
 		mntmLogOff.addActionListener(e -> {
 			sair();
 			new FrmLogin();
@@ -172,6 +178,10 @@ public class FrmPrincipal {
 		btnCadastros.addActionListener(e -> {
 			sair();
 			new FrmCadastros(u);
+		});
+		
+		mntmSobre.addActionListener(e -> {
+			new FrmSobre();
 		});
 		
 		btnRelatorio.addActionListener(e -> {
@@ -294,9 +304,17 @@ public class FrmPrincipal {
 		mntmLogOff.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/LogOffMenu.png")));
 		mnMenu.add(mntmLogOff);
 		
+		mntmSobre = new JMenuItem("Sobre");
+		mntmSobre.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sobre.png")));
+		mnMenu.add(mntmSobre);
+		
 		mntmLogOff.addActionListener(e -> {
 			sair();
 			new FrmLogin();
+		});
+		
+		mntmSobre.addActionListener(e -> {
+			new FrmSobre();
 		});
 		
 		btnRealizarServico.addActionListener( e -> {

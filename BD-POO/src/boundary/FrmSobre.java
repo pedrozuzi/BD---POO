@@ -11,6 +11,12 @@ import java.io.IOException;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
+/**
+ * Classe que apresenta informações sobre o desenvolvimento do projeto
+ * @author Pedro Afonso
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmSobre {
 
 	private JDialog jd;

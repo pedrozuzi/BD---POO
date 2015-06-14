@@ -47,7 +47,7 @@ import entity.Usuario;
 
 /**
  * Classe que possui os componentes de tela da agenda.
- * @author 
+ * @author Zuzi
  *
  */
 
@@ -253,10 +253,10 @@ public class FrmAgenda extends MouseAdapter {
 
 	}
 	
+
 	/**
-	 * 
+	 * Método para a confirmação de encerramento da agenda
 	 */
-	
 	private void confirmaEncerrar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, ""
@@ -272,7 +272,7 @@ public class FrmAgenda extends MouseAdapter {
 	}
 	
 	/**
-	 * 
+	 * Método invocado para encerrar a agenda
 	 */
 
 	private void encerrarAgenda() {
@@ -281,15 +281,19 @@ public class FrmAgenda extends MouseAdapter {
 		
 	}
 	
+	
 	/**
-	 * 
-	 * @return
+	 * Método para a validação dos campos
+	 * @return true se campos vazios, false se campos preenchidos
 	 */
-
 	private boolean validaCampos() {
 		return txtCliente.getText().isEmpty() || comboBoxAnimal.getItemCount() == 0;
 	}
-
+	
+	/**
+	 * Método para pegar a hora marcada
+	 * @return Hora marcada
+	 */
 	private String horaMarcada() {
 		int linhasTabela = tableAgenda.getRowCount();
 		String horaServico = null;
@@ -304,10 +308,8 @@ public class FrmAgenda extends MouseAdapter {
 	}
 	
 	/**
-	 * 
-	 *
+	 * Método chamado para saber a ação do ComboBox
 	 */
-
 	private void acaoComboBox() {
 		animal = new Animal();
 		if (comboBoxAnimal.getItemCount() > 0) {
@@ -315,21 +317,21 @@ public class FrmAgenda extends MouseAdapter {
 			idAnimal = animal.getId();
 		}
 	}
+	
 
 	/**
-	 * 
+	 * Método para atualizar a agenda com o horário marcado
 	 * @param horaServico
 	 */
-	
 	private void atualizaAgenda(String horaServico) {
 		agenda.setHorario(horaServico);
 		controlAgenda.atualizaAgenda(agenda);
 	}
+	
 
 	/**
-	 * 
+	 * Método invocado para adicionar um novo serviço a agenda
 	 */
-	
 	private void adicionaServicoAgenda() {
 		agenda = new Agenda();
 		servico = new Servico();
@@ -349,10 +351,10 @@ public class FrmAgenda extends MouseAdapter {
 		controlServico.incluiServicoAgenda(servico);
 	}
 	
+	
 	/**
-	 * 
+	 * Método para montar a agenda
 	 */
-
 	private void montarAgenda() {
 		
 		listaAgenda = new ArrayList<Agenda>();
@@ -364,7 +366,12 @@ public class FrmAgenda extends MouseAdapter {
 		tableAgenda.setModel(modeloAgenda);
 
 	}
-
+	
+	
+	/**
+	 * Método para abrir um JDialog para buscar clientes
+	 * @param jd recebe um JDialog
+	 */
 	private void cliente(JDialog jd) {
 		
 		jd = new JDialog(jd, "Buscar Cliente", true);
@@ -416,6 +423,10 @@ public class FrmAgenda extends MouseAdapter {
 		jd.setVisible(true);
 	}
 
+	
+	/**
+	 * Método invocado para busca de clientes do banco de dados
+	 */
 	private void buscaCliente() {
 		controlCliente = new CtrlCliente();
 		listaCliente = new ArrayList<Cliente>();
@@ -433,11 +444,17 @@ public class FrmAgenda extends MouseAdapter {
 		}
 	}
 
+	/**
+	 * Método para limpar campos
+	 */
 	private void limpaCampos() {
 		txtCliente.setText("");
 		comboBoxAnimal.removeAllItems();
 	}
-
+	
+	/**
+	 * Método chamado quando occore um clique em uma tabela
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object acao = e.getSource();
@@ -461,6 +478,11 @@ public class FrmAgenda extends MouseAdapter {
 		}
 	}
 
+	
+	/**
+	 * Método invocado para buscar os animais do cliente selecionado
+	 * @param linha a linha que se encontra o cliente na tabela
+	 */
 	private void buscaAnimaisDoCliente(int linha) {
 		controlAnimal = new CtrlAnimal();
 		listaAnimal = new ArrayList<Animal>();

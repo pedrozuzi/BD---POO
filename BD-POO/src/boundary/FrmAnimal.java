@@ -39,6 +39,12 @@ import entity.Animal;
 import entity.Cliente;
 import entity.Usuario;
 
+/**
+ * Classe que possui os componentes de tela para manipulação
+ * dos dados de Animais
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmAnimal extends MouseAdapter {
 	
 	private JFrame janelaAnimal;
@@ -96,6 +102,10 @@ public class FrmAnimal extends MouseAdapter {
 	private JLabel lblTiraVermelha;
 	private ConfiguracoesTela configTela;
 	
+	/**
+	 * Contrutor, recebe o usuário logado no sistema
+	 * @param u
+	 */
 	public FrmAnimal(Usuario u) {
 		
 		janelaAnimal = new JFrame("Animal");
@@ -399,6 +409,10 @@ public class FrmAnimal extends MouseAdapter {
 		});
 	}
 	
+	/**
+	 * Método para validação dos campos
+	 * @return true se campos vazios, false se campos preenchidos
+	 */
 	private boolean validaCampos() {
 		return txtCliente.getText().isEmpty() || 
 				txtCor.getText().isEmpty() || 
@@ -408,6 +422,9 @@ public class FrmAnimal extends MouseAdapter {
 				txtRga.getText().isEmpty();
 	}
 
+	/**
+	 * Método que monta a tela para o usuário
+	 */
 	private void montarTela() {
 		lblLogo.setVisible(false);
 		lblTiraCinza2.setVisible(false);
@@ -435,6 +452,10 @@ public class FrmAnimal extends MouseAdapter {
 		btnVoltar.setVisible(true);
 	}
 
+	/**
+	 * Método para abrir um JDialog para buscar clientes
+	 * @param jd recebe um JDialog
+	 */
 	public void cliente(JDialog jd) {
 		jd = new JDialog(jd, "Buscar Cliente", true);
 		
@@ -485,6 +506,11 @@ public class FrmAnimal extends MouseAdapter {
 		
 	}
 	
+	/**
+	 * Método chamado para invocar uma ação ao botão pressionado
+	 * @param cmd recebe um comando ao qual será chamado uma ação
+	 * @throws SQLException
+	 */
 	private void acaoGravar(String cmd) throws SQLException {
 		Animal a = new Animal();
 		controlAnimal = new CtrlAnimal();
@@ -519,6 +545,10 @@ public class FrmAnimal extends MouseAdapter {
 			limpaCampos();
 	}
 
+	
+	/**
+	 * Método invocado para busca de clientes do banco de dados
+	 */
 	public void buscaCliente() {
 		controlCliente = new CtrlCliente();
 		listaCliente = new ArrayList<Cliente>();
@@ -538,6 +568,10 @@ public class FrmAnimal extends MouseAdapter {
 
 	}
 
+	
+	/**
+	 * Método para limpar os campos
+	 */
 	private void limpaCampos() {
 		txtNome.setText("");
 		txtCor.setText("");
@@ -545,6 +579,10 @@ public class FrmAnimal extends MouseAdapter {
 		txtRga.setText("");
 	}
 	
+	
+	/**
+	 * Método chamado quando occore um clique em uma tabela
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object acao = e.getSource();
@@ -577,6 +615,10 @@ public class FrmAnimal extends MouseAdapter {
 		}
 	}
 
+	
+	/**
+	 * Método para busca de animais de um cliente no banco de dados
+	 */
 	private void buscaAnimaisDoCliente() {
 		controlAnimal = new CtrlAnimal();
 		listaAnimal = new ArrayList<Animal>();
@@ -595,9 +637,5 @@ public class FrmAnimal extends MouseAdapter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		new FrmAnimal(null);
 	}
 }

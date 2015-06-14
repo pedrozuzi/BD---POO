@@ -47,7 +47,7 @@ import entity.Usuario;
 
 /**
  * Classe que possui os componentes de tela da agenda.
- * @author Zuzi
+ * @author Pedro Zuzi
  *
  */
 

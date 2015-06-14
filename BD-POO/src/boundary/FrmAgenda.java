@@ -45,6 +45,12 @@ import entity.Cliente;
 import entity.Servico;
 import entity.Usuario;
 
+/**
+ * Classe que possui os componentes de tela da agenda.
+ * @author 
+ *
+ */
+
 public class FrmAgenda extends MouseAdapter {
 
 	private JFrame janela;
@@ -87,6 +93,11 @@ public class FrmAgenda extends MouseAdapter {
 	private JMenuItem logOff;
 	private JLabel lblEncerrarAgenda;
 
+	/**
+	 * Construtor, recebe o usuario que irá interagir com a tela.
+	 * @param u
+	 */
+	
 	public FrmAgenda(Usuario u) {
 		
 		janela = new JFrame("Agenda");
@@ -242,6 +253,10 @@ public class FrmAgenda extends MouseAdapter {
 
 	}
 	
+	/**
+	 * 
+	 */
+	
 	private void confirmaEncerrar(){
 		Object[] opcoes = {"Sim", "Não"};
 		int escolha = JOptionPane.showOptionDialog(null, ""
@@ -255,12 +270,21 @@ public class FrmAgenda extends MouseAdapter {
 			encerrarAgenda();
 		}
 	}
+	
+	/**
+	 * 
+	 */
 
 	private void encerrarAgenda() {
 		controlAgenda.encerraAgenda();
 		montarAgenda();
 		
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 
 	private boolean validaCampos() {
 		return txtCliente.getText().isEmpty() || comboBoxAnimal.getItemCount() == 0;
@@ -278,6 +302,11 @@ public class FrmAgenda extends MouseAdapter {
 		
 		return horaServico;
 	}
+	
+	/**
+	 * 
+	 *
+	 */
 
 	private void acaoComboBox() {
 		animal = new Animal();
@@ -287,11 +316,20 @@ public class FrmAgenda extends MouseAdapter {
 		}
 	}
 
+	/**
+	 * 
+	 * @param horaServico
+	 */
+	
 	private void atualizaAgenda(String horaServico) {
 		agenda.setHorario(horaServico);
 		controlAgenda.atualizaAgenda(agenda);
 	}
 
+	/**
+	 * 
+	 */
+	
 	private void adicionaServicoAgenda() {
 		agenda = new Agenda();
 		servico = new Servico();
@@ -310,6 +348,10 @@ public class FrmAgenda extends MouseAdapter {
 
 		controlServico.incluiServicoAgenda(servico);
 	}
+	
+	/**
+	 * 
+	 */
 
 	private void montarAgenda() {
 		

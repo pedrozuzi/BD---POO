@@ -47,6 +47,11 @@ import entity.Cliente;
 import entity.Servico;
 import entity.Usuario;
 
+/**
+ * Formulário de realização de qualquer serviço.
+ * @author Pedro Afonso
+ *
+ */
 public class FrmServico implements MouseListener, ActionListener{
 	
 	private JFrame janela;
@@ -105,6 +110,10 @@ public class FrmServico implements MouseListener, ActionListener{
 	private JLabel lblTiraCinzaBaixo;
 	private JLabel lblTiraCinzaEmBaixo;
 
+	/**
+	 * Construtor 
+	 * @param u usuário logado no sistema
+	 */
 	public FrmServico(Usuario u) {
 		
 		janela = new JFrame("Servico");
@@ -357,7 +366,7 @@ public class FrmServico implements MouseListener, ActionListener{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			acaoPesquisarCliente(listaCliente);
+			acaoPesquisar(listaCliente);
 		});
 		
 		btnLimpar.addActionListener(e -> {
@@ -395,6 +404,10 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 
+	/**
+	 * Método para tratar a ação do 
+	 * botão finalizar
+	 */
 	private void acaoFinalizar() {
 		if(!validaCampos()){
 			servico.setCodigo( Integer.parseInt(txtCodigoServico.getText()) );
@@ -413,10 +426,18 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 
+	/**
+	 * Método para validar os campos obrigatorios.
+	 * @return true se os campos estiverem preechidos.
+	 */
 	private boolean validaCampos() {
 		return txtValor.getText().isEmpty() || txtNomeCliente.getText().isEmpty();
 	}
 
+	/**
+	 * Método para tratar a ação de alguns botões
+	 * na tela.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String am = e.getActionCommand();
@@ -443,16 +464,24 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 	
+	/**
+	 * Método que buscar os serviços já 
+	 * agendados.
+	 */
 	private void buscarServicosAgendados() {
 		try{
 			listaServico = controlServico.buscarServicosAgendados();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		acaoPesquisarCliente(listaServico);
+		acaoPesquisar(listaServico);
 	}
 
-	private void acaoPesquisarCliente(List<?> lista) {
+	/**
+	 * Método para montar um JDialog 
+	 * @param lista recebe uma lista de serviços ou de clientes.
+	 */
+	private void acaoPesquisar(List<?> lista) {
 			
 		Class<?> classe = lista.isEmpty() ? null : lista.get(0).getClass();
 		
@@ -485,7 +514,7 @@ public class FrmServico implements MouseListener, ActionListener{
 		scrollPaneBusca.setBounds(jd.getX(), jd.getY(), jd.getWidth(), jd.getHeight());
 		panBuscaCliente.add(scrollPaneBusca);
 		
-		montarTabelaCliente(lista);
+		montarTabela(lista);
 		
 		jd.setResizable(false);
 		jd.setLocationRelativeTo(null);
@@ -494,7 +523,11 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 
-	private void montarTabelaCliente(List<?> lista) {
+	/**
+	 * Método para montar a tabela no JDialog
+	 * @param lista recebe uma lista de clientes ou de serviços.
+	 */
+	private void montarTabela(List<?> lista) {
 		
 		if(!lista.isEmpty()){
 			modelo = new ModeloTabela(lista);
@@ -504,6 +537,11 @@ public class FrmServico implements MouseListener, ActionListener{
 		
 	}
 
+	/**
+	 * Método que pega o objeto selecionado
+	 * no comboBox e preenche um textField com 
+	 * um informação.
+	 */
 	private void acaoComboBox() {
 		animal = new Animal();
 		if(cbAnimal.getItemCount() > 0){
@@ -512,6 +550,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		} 
 	}
 	
+	/**
+	 * Método que limpa todos campos da tela.
+	 */
 	private void limpaCampos() {
 		txtNomeCliente.setText("");
 		txtRaca.setText("");
@@ -521,6 +562,10 @@ public class FrmServico implements MouseListener, ActionListener{
 		txtNomeAnimal.setText("");
 	}
 	
+	/**
+	 * Método que trata quando um click foi feito 
+	 * na tabela.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		
@@ -554,6 +599,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		jd = null;
 	}
 
+	/**
+	 * Método que preeche os campos na tela.
+	 */
 	private void montarTelaAgenda() {
 		txtCodigoServico.setText( String.valueOf(servico.getCodigo()) );
 		txtNomeCliente.setText( servico.getCliente().getNome() );
@@ -564,6 +612,9 @@ public class FrmServico implements MouseListener, ActionListener{
 		else if( rdbtnTosa.getActionCommand().equalsIgnoreCase(servico.getNome()) ) rdbtnTosa.setSelected(true);
 	}
 
+	/**
+	 * Método que preenche as informações no ComboBox
+	 */
 	private void montarComboBox() {
 		if(cbAnimal.getItemCount() > 0){
 			cbAnimal.removeAllItems();
@@ -575,6 +626,10 @@ public class FrmServico implements MouseListener, ActionListener{
 		}
 	}
 	
+	/**
+	 * Método que monta a tela para o usuario
+	 * incluir um novo serviço.
+	 */
 	private void montarTelaNovoServico() {
 		panelServico.setVisible(true);
 		panelServico.setEnabled(true);
@@ -602,6 +657,10 @@ public class FrmServico implements MouseListener, ActionListener{
 		rdbtnTosa.setEnabled(true);
 	}
 
+	/**
+	 * Método que montar a tela de um serviço
+	 * agendado.
+	 */
 	private void montarTelaServicoAgendado() {
 		panelServico.setVisible(true);
 		panelServico.setEnabled(false);

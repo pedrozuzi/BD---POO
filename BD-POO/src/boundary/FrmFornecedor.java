@@ -38,6 +38,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que possui os componentes de tela para manipulação
+ * dos dados de Fornecedor
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmFornecedor extends MouseAdapter{
 	
 	private JFrame janela; 
@@ -76,6 +82,10 @@ public class FrmFornecedor extends MouseAdapter{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
+	/**
+	 * Contrutor, recebe o usuário logado no sistema
+	 * @param u
+	 */
 	public FrmFornecedor(Usuario u) {
 		
 		janela = new JFrame("Fornecedor");
@@ -272,7 +282,7 @@ public class FrmFornecedor extends MouseAdapter{
 					("/img/MiniSalvar.png")));
 			btnGravar.setText("Alterar");
 			btnGravar.setActionCommand("Alterar");
-			telaAlterarExcluirPesquisarFornecedor();
+			telaAlterarExcluirFornecedor();
 			
 		});
 		
@@ -292,7 +302,7 @@ public class FrmFornecedor extends MouseAdapter{
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/trash.png")));
 			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirPesquisarFornecedor();
+			telaAlterarExcluirFornecedor();
 		});
 		
 		btnLupaPesquisar.addActionListener(e -> {
@@ -332,10 +342,18 @@ public class FrmFornecedor extends MouseAdapter{
 		
 	}
 	
+	/**
+	 * Método para validação dos campos
+	 * @return true se campos vazios, false se campos preenchidos
+	 */
 	private boolean validaCampos() {
 		return txtNome.getText().isEmpty() || txtTelefone.getText().isEmpty();
 	}
 	
+	/**
+	 * Método chamado para invocar uma ação ao botão pressionado
+	 * @param cmd recebe um comando ao qual será chamado uma ação
+	 */
 	private void acaoGravar(String cmd) {
 		Fornecedor f = new Fornecedor();
 		control = new CtrlFornecedor();
@@ -358,7 +376,11 @@ public class FrmFornecedor extends MouseAdapter{
 		limpaCampos();
 	}
 
-	private void telaAlterarExcluirPesquisarFornecedor() {
+	/**
+	 * Método para montar a tela para alteração e exclusão
+	 * de um fornecedor
+	 */
+	private void telaAlterarExcluirFornecedor() {
 		btnLupaPesquisar.setVisible(true);
 		txtNome.setVisible(true);
 		txtTelefone.setVisible(true);
@@ -376,11 +398,18 @@ public class FrmFornecedor extends MouseAdapter{
 		
 	}
 
+	/**
+	 * Método para limpar os campos
+	 */
 	private void limpaCampos() {
 		txtNome.setText("");
 		txtTelefone.setText("");
 	}
 
+	/**
+	 * Método para montar a tela para inserção de um novo
+	 * fornecedor
+	 */
 	private void telaInserirFornecedor(){
 		btnLupaPesquisar.setVisible(false);
 		txtNome.setVisible(true);
@@ -396,6 +425,9 @@ public class FrmFornecedor extends MouseAdapter{
 		label.setVisible(false);
 	}
 	
+	/**
+	 * Método chamado quando ocorre um clique na tabela
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[2];
@@ -411,9 +443,5 @@ public class FrmFornecedor extends MouseAdapter{
 			txtTelefone.setText(String.valueOf(valores[1]));
 
 	}
-	
-//	public static void main(String[] args) {
-//		new FrmFornecedor();
-//	}
 	
 }

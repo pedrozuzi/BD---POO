@@ -581,7 +581,7 @@ public class FrmAnimal extends MouseAdapter {
 	
 	
 	/**
-	 * Método chamado quando occore um clique em uma tabela
+	 * Método chamado quando ocorre um clique em uma tabela
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {

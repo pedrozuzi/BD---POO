@@ -30,6 +30,12 @@ import control.CtrlCliente;
 import entity.Cliente;
 import entity.Usuario;
 
+/**
+ * Classe que possui os componentes de tela para manipulação
+ * dos dados de Clientes
+ * @author Pedro Zuzi
+ *
+ */
 public class FrmCliente extends MouseAdapter {
 	
 	private JFrame janela; 
@@ -76,6 +82,10 @@ public class FrmCliente extends MouseAdapter {
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
+	/**
+	 * Contrutor, recebe o usuário logado no sistema
+	 * @param u
+	 */
 	public FrmCliente(Usuario u) {
 		janela = new JFrame("Cliente");
 		panPrincipal = new JPanel();
@@ -330,7 +340,7 @@ public class FrmCliente extends MouseAdapter {
 					("/img/MiniSalvar.png")));
 			btnGravar.setText("Gravar");
 			btnGravar.setActionCommand("Incluir");
-			telaInserirFornecedor();
+			telaInserirCliente();
 		});
 		
 		btnAlterar.addActionListener(l -> {
@@ -339,7 +349,7 @@ public class FrmCliente extends MouseAdapter {
 					("/img/MiniSalvar.png")));
 			btnGravar.setText("Alterar");
 			btnGravar.setActionCommand("Alterar");
-			telaAlterarExcluirFornecedor();
+			telaAlterarExcluirCliente();
 		});
 		
 		btnExcluir.addActionListener(l -> {
@@ -348,7 +358,7 @@ public class FrmCliente extends MouseAdapter {
 			btnGravar.setIcon(new ImageIcon(FrmFornecedor.class.getResource
 					("/img/trash.png")));
 			btnGravar.setActionCommand("Excluir");
-			telaAlterarExcluirFornecedor();
+			telaAlterarExcluirCliente();
 		});
 		
 		btnGravar.addActionListener(e -> {
@@ -365,6 +375,9 @@ public class FrmCliente extends MouseAdapter {
 		
 	}
 	
+	/**
+	 * Método invocado para busca de clientes do banco de dados
+	 */
 	private void buscarCliente() {
 		control = new CtrlCliente();
 		lista = new ArrayList<Cliente>();
@@ -383,6 +396,10 @@ public class FrmCliente extends MouseAdapter {
 		
 	}
 
+	/**
+	 * Método chamado para invocar uma ação ao botão pressionado
+	 * @param cmd
+	 */
 	private void acaoGravar(String cmd) {
 		Cliente c = new Cliente();
 		control = new CtrlCliente();
@@ -418,7 +435,10 @@ public class FrmCliente extends MouseAdapter {
 		 limpaCampos();
 	}
 
-	private void telaInserirFornecedor() {
+	/**
+	 * Método para montar a tela para a inserção de um novo Cliente
+	 */
+	private void telaInserirCliente() {
 		btnLupaPesquisar.setVisible(false);
 		txtCpf.setVisible(true);
 		lblCpf.setVisible(true);
@@ -443,7 +463,10 @@ public class FrmCliente extends MouseAdapter {
 		table.setVisible(false);
 	}
 	
-	private void telaAlterarExcluirFornecedor() {
+	/**
+	 * Método para montar a tela para exclusão de um Cliente
+	 */
+	private void telaAlterarExcluirCliente() {
 		lblLogo.setVisible(false);
 		lblTiraCinza2.setVisible(false);
 		lblTiraVermelha2.setVisible(false);
@@ -468,6 +491,9 @@ public class FrmCliente extends MouseAdapter {
 		table.setVisible(true);
 	}
 
+	/**
+	 * Método para limpar os campos
+	 */
 	private void limpaCampos() {
 		txtNome.setText("");
 		txtCpf.setText("");
@@ -477,6 +503,9 @@ public class FrmCliente extends MouseAdapter {
 		txtTelefone.setText("");
 	}
 	
+	/**
+	 * Método chamado quando ocorre um clique na tabela
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[6];
@@ -497,9 +526,5 @@ public class FrmCliente extends MouseAdapter {
 		txtTelefone.setText(String.valueOf(valores[5]));
 		
 	}
-
-	//public static void main(String[] args) {
-	//	new FrmCliente(null);
-//}
 	
 }

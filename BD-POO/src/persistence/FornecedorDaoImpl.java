@@ -13,6 +13,9 @@ import entity.Fornecedor;
 
 public class FornecedorDaoImpl implements FornecedorDao{
 	
+	/**
+	 * Construtor
+	 */
 	public FornecedorDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
@@ -20,6 +23,12 @@ public class FornecedorDaoImpl implements FornecedorDao{
 	
 	private Connection c;
 
+	/**
+	 * Método para inserção de um novo Fornecedor ao
+	 * banco de dados
+	 * @param f Objeto Fornecedor
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserirFornecedor(Fornecedor f) throws SQLException {
 		String query = "insert into fornecedor values (?, ?, ?)";
@@ -33,6 +42,12 @@ public class FornecedorDaoImpl implements FornecedorDao{
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Método para atualização de um Fornecedor no banco
+	 * de dados
+	 * @param f Objeto Fornecedor
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void atualizarFornecedor(Fornecedor f) throws SQLException {
 		String query = "update fornecedor set "
@@ -50,6 +65,12 @@ public class FornecedorDaoImpl implements FornecedorDao{
 		
 	}
 
+	/**
+	 * Método para exclusão de um Fornecedor no banco
+	 * de dados
+	 * @param f Objeto Fornecedor
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluirFornecedor(Fornecedor f) throws SQLException {
 		String query = "delete fornecedor "
@@ -62,38 +83,13 @@ public class FornecedorDaoImpl implements FornecedorDao{
 		
 	}
 
-	@Override
-	public Fornecedor consultarFornecedor(String id) throws SQLException {
-		Fornecedor f = new Fornecedor();
-		String query = "select id, nome, telefone "
-				+ "from fornecedor where id = ?";
-		PreparedStatement ps = c.prepareStatement( query );
-		ps.setInt(1,  Integer.parseInt(id) );
-		ResultSet rs = ps.executeQuery();
-		if( rs.next() ){
-			f.setId( rs.getInt("id") );
-			f.setNome( rs.getString("nome") );	
-			f.setTelefone( rs.getInt("telefone"));
-		}
-		ps.close();
-		return f;
-	}
-//		List<Fornecedor> lista = new ArrayList<Fornecedor>();
-//		String sql = "SELECT id, nome, telefone FROM fornecedor";
-//		PreparedStatement ps = c.prepareStatement(sql);
-//		ResultSet rs = ps.executeQuery();
-//		while (rs.next()){
-//			Fornecedor f = new Fornecedor();
-//			f.setId(rs.getInt("id"));
-//			f.setNome(rs.getString("nome"));
-//			f.setTelefone(rs.getInt("telefone"));
-//			lista.add(f);
-//		}
-//		return lista;
-//	}	
-		
-	
-
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Fornecedor
+	 * @param nome
+	 * @return  List<Fornecedor> contendo as informações
+	 * @throws SQLException
+	 */
 	@Override
 	public List<Fornecedor> listaFornecedor(String nome) throws SQLException {
 		List<Fornecedor> lista = new ArrayList<Fornecedor>();

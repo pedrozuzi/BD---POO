@@ -26,6 +26,8 @@ import entity.Usuario;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 /**
  * Classe que possui os componentes de tela para cadastro  
@@ -67,9 +69,6 @@ public class FrmVenda {
 
 	private JLabel lblPrecoUPS;
 	private JLabel lblPrecoTPS;
-	
-	private JTable tableVenda;
-	private JScrollPane scrollVenda;
 		
 	Object[] objetosTela = new Object[25];
 
@@ -234,13 +233,6 @@ public class FrmVenda {
 		panCliente.add(txtIdCliente);
 		txtIdCliente.setColumns(10);
 
-		scrollVenda = new JScrollPane();
-		scrollVenda.setBounds(10, 58, 468, 267);
-		panTable.add(scrollVenda);
-
-		tableVenda = new JTable();
-		scrollVenda.setViewportView(tableVenda);
-
 		lblProdutoServico = new JLabel("Produto/Servi\u00E7o:");
 		lblProdutoServico.setBounds(10, 32, 96, 14);
 		panTable.add(lblProdutoServico);
@@ -258,6 +250,19 @@ public class FrmVenda {
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTotal.setBounds(405, 358, 73, 30);
 		panTable.add(lblTotal);
+		
+		JList listVenda = new JList();
+		listVenda.setModel(new AbstractListModel() {
+			String[] values = new String[] {"   ID | Produto                                          |Quantidade| Pre\u00E7o U| Total  "};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		listVenda.setBounds(62, 72, 337, 261);
+		panTable.add(listVenda);
 
 		lblProduto = new JLabel("Cod:");
 		lblProduto.setBounds(39, 81, 33, 14);

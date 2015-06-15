@@ -5,6 +5,11 @@ import java.util.List;
 
 import entity.Produto;
 
+/**
+ * Interface que possui os metodos Dao do produto
+ * @author Hury
+ *
+ */
 
 public interface ProdutoDao {
 

@@ -13,6 +13,12 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Funcionario;
 
+/**
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do objeto Funcionário
+ * @author Pedro Afonso
+ *
+ */
 public class FuncionarioDaoImpl implements FuncionarioDao {
 
 	/**

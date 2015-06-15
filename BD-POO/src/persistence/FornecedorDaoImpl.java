@@ -11,6 +11,12 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Fornecedor;
 
+/**
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do objeto Fornecedor
+ * @author Pedro Zuzi
+ *
+ */
 public class FornecedorDaoImpl implements FornecedorDao{
 	
 	/**

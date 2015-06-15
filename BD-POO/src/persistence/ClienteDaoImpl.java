@@ -12,7 +12,8 @@ import connection.GenericConnection;
 import entity.Cliente;
 
 /**
- * 
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do Objeto Cliente
  * @author Pedro Zuzi
  *
  */

@@ -5,12 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
-
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Pessoa;
 
+/**
+ * Classe para comunicação com o banco para
+ * realização das funcionalidades do Objeto Pessoa
+ * @author Pedro Zuzi
+ * @author Pedro Afonso
+ *
+ */
 public class PessoaDaoImpl implements PessoaDao {
 	
 private Connection c;
@@ -20,6 +25,12 @@ private Connection c;
 		c = gDao.getConnection();
 	}
 
+	/**
+	 * Método para inserção de um nova Pessoa ao
+	 * banco de dados
+	 * @param pes Objeto Pessoa
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserePessoa(Pessoa pes) throws SQLException { 
 		String sql = "insert into pessoa (idTipo) values (?)";
@@ -35,6 +46,12 @@ private Connection c;
 
 	}
 		
+	/**
+	 * Método para atualização de uma Pessoa no banco
+	 * de dados
+	 * @param pes Objeto Pessoa
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void atualizaPessoa(Pessoa pes) throws SQLException {
 		String query = "update pessoa set "
@@ -49,6 +66,12 @@ private Connection c;
 		
 	}
 
+	/**
+	 * Método para exclusão de uma Pessoa no banco
+	 * de dados
+	 * @param pes Objeto Pessoa
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluiPessoa(Pessoa pes) throws SQLException {
 		String sql = "delete pessoa "
@@ -59,18 +82,6 @@ private Connection c;
 		ps.execute();
 		ps.close();
 		
-	}
-
-	@Override
-	public Pessoa consultaPessoa(Pessoa pes) throws SQLException {
-		
-		return null;
-	}
-
-	@Override
-	public List<Pessoa> listaPessoa() throws SQLException {
-		
-		return null;
 	}
 
 }

@@ -13,15 +13,30 @@ import entity.Animal;
 import entity.Cliente;
 import entity.Servico;
 
+/**
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do Serviço
+ * @author Pedro Afonso
+ *
+ */
 public class ServicoDaoImpl implements ServicoDao {
 
 	private Connection c;
 	
+	/**
+	 * Construtor
+	 */
 	public ServicoDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}
 	
+	/**
+	 * Método para inserção de um novo Serviço ao
+	 * banco de dados
+	 * @param servico
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void adicionarServico(Servico servico) throws SQLException {
 		String query = "insert into servico (id, nome, valor, id_animal, id_cliente_servico) values"
@@ -40,6 +55,11 @@ public class ServicoDaoImpl implements ServicoDao {
 
 	}
 	
+	/**
+	 * Método para buscar um novo código de serviço
+	 * @return Código
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void adicionaServicoAgenda(Servico servico) throws SQLException {
 		String query = "insert into servico (id, nome, id_animal, id_cliente_servico) values"
@@ -56,6 +76,12 @@ public class ServicoDaoImpl implements ServicoDao {
 		ps.close();
 	}
 
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Serviço
+	 * @return List<Servico> com as informações
+	 * @throws SQLException exceção do banco de dados
+	 */ 
 	@Override
 	public int buscarNovaEntrada() throws SQLException {
 		
@@ -69,6 +95,11 @@ public class ServicoDaoImpl implements ServicoDao {
 		return rs.getInt(1) == 0 ? 1 : rs.getInt(1)+1;
 	}
 
+	/**
+	 * Método para adicionar um serviço a Agenda
+	 * @param s Objeto Servico
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Servico> buscarServicosAgendados() throws SQLException {
 		List<Servico> lista = new ArrayList<Servico>();

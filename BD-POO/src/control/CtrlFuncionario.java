@@ -15,7 +15,7 @@ import entity.Funcionario;
 /**
  * Classe para controle das funcionalidades
  * da tela do funcionário
- * @author x036157
+ * @author Pedro Afonso
  *
  */
 public class CtrlFuncionario {

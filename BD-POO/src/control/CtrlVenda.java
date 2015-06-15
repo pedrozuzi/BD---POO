@@ -54,6 +54,10 @@ public class CtrlVenda implements ActionListener {
 
 	private VendaDao vDao;
 
+	/**
+	 * Construtor
+	 * @param objetosTela que serão manipulados na classe
+	 */
 	public CtrlVenda(Object[] objetosTela) {
 
 		this.txtIdVenda = (JTextField) objetosTela[0];

@@ -14,15 +14,30 @@ import connection.GenericConnection;
 import entity.Funcionario;
 import entity.Usuario;
 
+/**
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do Usuário
+ * @author Pedro Afonso
+ *
+ */
 public class UsuarioDaoImpl implements UsuarioDao {
 	
 	private Connection c;
 	
+	/**
+	 * Construtor
+	 */
 	public UsuarioDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}
 	
+	/**
+	 * Método para inserção de um novo Usuário ao
+	 * banco de dados
+	 * @param u Objeto Usuário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserirUsuario(Usuario u) throws SQLException {
 		String query = "INSERT INTO usuario (id,username,passwor) "
@@ -37,6 +52,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Método para atualização de um Usuário no banco
+	 * de dados
+	 * @param u Objeto Usuário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void alterarUsuario(Usuario u) throws SQLException {
 		String query = "update usuario set "
@@ -57,6 +78,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	}
 
+	/**
+	 * Método para exclusão de um Usuário no banco
+	 * de dados
+	 * @param u Objeto Usuário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluirUsuario(Usuario u) throws SQLException {
 		String query = "delete usuario "
@@ -71,6 +98,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Método para verficação da existência de um nome de Usuário
+	 * @param nome
+	 * @return true nome existe, false nome não existe
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public boolean verificarUsuario(String nome) throws SQLException {
 		
@@ -89,6 +122,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		return rs.getBoolean("verificacao");
 	}
 
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Usuário
+	 * @param nome
+	 * @return List<Usuario> contendo as informações
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Usuario> pesquisarUsuario(String nome) throws SQLException {
 		

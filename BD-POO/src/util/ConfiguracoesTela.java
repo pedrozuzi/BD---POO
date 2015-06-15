@@ -7,6 +7,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+/**
+ * Classe para configuração das telas
+ * @author Pedro Afonso
+ *
+ */
 public class ConfiguracoesTela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +19,11 @@ public class ConfiguracoesTela extends JFrame {
 	protected static String look = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
 	protected static int tamanhofonte = 16;
 
+	/**
+	 * Método para colocar o logo da empresa na barra
+	 * @param tela que sera manipulada
+	 * @return tela com suas configurações feitas
+	 */
 	public JFrame iconeBarra(JFrame tela) {
 		BufferedImage image = null;
 		try {
@@ -26,6 +36,10 @@ public class ConfiguracoesTela extends JFrame {
 		return tela;
 	}
 
+	/**
+	 * Método para setar as configurações padrão das telas
+	 * @param tela que sera configurada
+	 */
 	public void tamanho(JFrame tela) {
 
         tela.setLocationRelativeTo(null);
@@ -35,6 +49,10 @@ public class ConfiguracoesTela extends JFrame {
 		
 	}
 
+	/**
+	 * Método para setar o estilo selecionado na tela
+	 * @param tela que recebera o estilo
+	 */
 	public void estilo(JFrame tela) {
 		try {
 			UIManager.setLookAndFeel(look);
@@ -44,7 +62,12 @@ public class ConfiguracoesTela extends JFrame {
 		}
 	}
 
-	public String selecionaEstilo(int opcEstilo) { // org.jvnet.substance.SubstanceLookAndFeel
+	/**
+	 * Método para selecionar um estilo para a tela
+	 * @param opcEstilo número para o estilo
+	 * @return o estilo que foi escolhido
+	 */
+	public String selecionaEstilo(int opcEstilo) { 
 		switch (opcEstilo) {
 		case 0:
 			look = "javax.swing.plaf.metal.MetalLookAndFeel";

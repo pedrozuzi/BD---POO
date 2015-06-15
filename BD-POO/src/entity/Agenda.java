@@ -16,7 +16,7 @@ public class Agenda {
 	
 	/**
 	 * Método para retorno da escolha do horário
-	 * @return escolhaHorario
+	 * @return Horário escolhido
 	 */
 	@Coluna(nome="Serviço", posicao=1)
 	public Boolean getEscolhaHorario() {
@@ -33,7 +33,7 @@ public class Agenda {
 	
 	/**
 	 * Método para retorno do objeto Cliente
-	 * @return cliente
+	 * @return Um Objeto cliente
 	 */
 	public Cliente getCliente() {
 		return cliente;
@@ -81,15 +81,26 @@ public class Agenda {
 		}
 	}
 	
+	/**
+	 * Método para retorno do horário formatado
+	 */
 	@Override
 	public String toString() {
 		return this.horario;
 	}
 	
+	/**
+	 * Método para retorno do objeto serviço
+	 * @return Objeto serviço
+	 */
 	public Servico getServico() {
 		return servico;
 	}
 	
+	/**
+	 * Métod para setar o objeto serviço
+	 * @param servico
+	 */
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}

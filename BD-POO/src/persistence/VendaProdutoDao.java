@@ -6,7 +6,11 @@ import java.util.List;
 
 import entity.VendaProduto;
 
-
+/**
+ * Interface que possui os metodos de 
+ * @author Hury
+ *
+ */
 
 public interface VendaProdutoDao {
 

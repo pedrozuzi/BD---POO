@@ -13,6 +13,10 @@ public final class TratamentoTextFields extends JTextField{
 	
 	private int tamanhoMaximo;
 	
+	/**
+	 * Construtor
+	 * chama o método para aceitar apenas letras
+	 */
 	public TratamentoTextFields() {
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -22,6 +26,11 @@ public final class TratamentoTextFields extends JTextField{
 		});
 	}
 	
+	/**
+	 * Construtor
+	 * chama o método para aceitar apenas números
+	 * @param maximo de caracteres aceitos 
+	 */
 	public TratamentoTextFields(int maximo) {
 	    setTamanhoCaracteres(maximo);
 	    
@@ -33,7 +42,12 @@ public final class TratamentoTextFields extends JTextField{
 	    });
 	}
 	
-	public TratamentoTextFields(JTextField txtUsuario) {
+	/**
+	 * Construtor
+	 * chama o método para tratamento do campo de usuário
+	 * @param campo para o tratamento
+	 */
+	public TratamentoTextFields(JTextField campo) {
 		addKeyListener(new KeyAdapter() {
 			@Override
 		    public void keyTyped(KeyEvent evt) {
@@ -42,7 +56,13 @@ public final class TratamentoTextFields extends JTextField{
 		});
 	}
 	
-	public TratamentoTextFields(JTextField txtUsuario, int maximo) {
+	/**
+	 * Construtor
+	 * Chama o método para tratamento do campo salário
+	 * @param campo a ser tratado
+	 * @param maximo de caracteres aceitos
+	 */
+	public TratamentoTextFields(JTextField campo, int maximo) {
 		setTamanhoCaracteres(maximo);
 		
 	    addKeyListener(new KeyAdapter() {
@@ -53,6 +73,10 @@ public final class TratamentoTextFields extends JTextField{
 	    });
 	}
 	
+	/**
+	 * Método para aceitar apenas letras
+	 * @param e evento do teclado
+	 */
 	private void apenasLetras(KeyEvent e) {
 		String caracteres = "1234567890'!@#$%¨&*()_+/\\;.[{}]°ºª§*-+,=<>?|\"";
 		
@@ -61,6 +85,10 @@ public final class TratamentoTextFields extends JTextField{
 		}
 	}
 	
+	/**
+	 * Método para aceitar apenas números
+	 * @param e evento do teclado
+	 */
 	private void apenasNumeros(KeyEvent e) {
 		String caracteres = "0987654321";
 		if (!caracteres.contains(e.getKeyChar() + "")) {
@@ -73,27 +101,37 @@ public final class TratamentoTextFields extends JTextField{
 		}
 	}
 	
-	public static JTextField mascara(JTextField txtField, String mascara) {
+	/**
+	 * Método para definir a máscara do campo
+	 * @param campo ser tratado
+	 * @param mascara, o tipo de mascara
+	 * @return campo
+	 */
+	public static JTextField mascara(JTextField campo, String mascara) {
 		if (mascara.equalsIgnoreCase("cpf")) {
 			try {
 				MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
-				txtField = new JFormattedTextField(maskCpf);
-				return txtField;
+				campo = new JFormattedTextField(maskCpf);
+				return campo;
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}else if (mascara.equalsIgnoreCase("data")) {
 			try {
 				MaskFormatter maskCpf = new MaskFormatter("##/##/####");
-				txtField = new JFormattedTextField(maskCpf);
-				return txtField;
+				campo = new JFormattedTextField(maskCpf);
+				return campo;
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		return txtField;
+		return campo;
 	}
 	
+	/**
+	 * Método para tratamento do campo salário
+	 * @param e evento do teclado
+	 */
 	private void salario( KeyEvent e ) {
 		String caracteres = "0987654321.,";
 		if (getText().contains(".") || getText().contains(",")) {
@@ -109,14 +147,27 @@ public final class TratamentoTextFields extends JTextField{
 		}
 	}
 
+	/**
+	 * Método para retorno do tamanho máximo de
+	 * caracteres estabelecido
+	 * @return tamanho
+	 */
 	public int getTamanhoMaximo() {
 		return tamanhoMaximo;
 	}
 
+	/**
+	 * Método para setar o tamanho máximo de caracteres
+	 * @param tamanhoCaracteres
+	 */
 	public void setTamanhoCaracteres(int tamanhoCaracteres) {
 		this.tamanhoMaximo = tamanhoCaracteres;
 	}
 
+	/**
+	 * Método para tratamento do campo usuário
+	 * @param e evento do teclado
+	 */
 	private void usuario(KeyEvent e) {
 		String caracteres = " '!@#$%¨&*()+/\\;.[{}]°ºª§*´`^~+,=<>?|\"";
 		

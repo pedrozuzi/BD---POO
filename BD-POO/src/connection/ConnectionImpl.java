@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Classe que realiza a conexão com o banco de dados
- * @author 
+ * @author Pedro Afonso
  *
  */
 

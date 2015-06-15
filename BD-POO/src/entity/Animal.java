@@ -25,7 +25,7 @@ public class Animal {
 	}
 	
 	/**
-	 * Método para setar o id do anil
+	 * Método para setar o id do animal
 	 * @param id valor do id
 	 */
 	public void setId(int id) {

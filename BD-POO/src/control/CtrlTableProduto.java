@@ -9,7 +9,6 @@ import entity.Produto;
  * @author Hury
  *
  */
-
 public interface CtrlTableProduto {
 
 	List<Produto> buscaProdutoPorNome(String nome) throws SQLException;

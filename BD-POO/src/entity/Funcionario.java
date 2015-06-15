@@ -28,8 +28,8 @@ public class Funcionario extends Pessoa{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Método para retorno do cpf do funcionário
+	 * @return valor do cpf
 	 */
 	@Coluna(nome="CPF", posicao=1)
 	public String getCpf() {
@@ -37,12 +37,13 @@ public class Funcionario extends Pessoa{
 	}
 	
 	/**
-	 * 
-	 * @param cpf
+	 * Método para setar o cpf do funcionário
+	 * @param cpf valor do cpf
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
 	
 	/**
 	 * 

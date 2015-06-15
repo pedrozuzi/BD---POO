@@ -1,7 +1,8 @@
 package entity;
 
 /**
- * Classe de entidade que possui os atribultos de uma Venda.
+ * Classe para objeto do tipo venda com seus valores 
+ * e tipos
  * @author Hury
  *
  */

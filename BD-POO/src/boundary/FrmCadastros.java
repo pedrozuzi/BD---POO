@@ -49,8 +49,8 @@ public class FrmCadastros extends KeyAdapter{
 	private Usuario usuario;
 	
 	/**
-	 * Contrutor, recebe o usuário logado no sistema
-	 * @param u
+	 * Contrutor.
+	 * @param u usuário logado no sistema
 	 */
 	public FrmCadastros(Usuario u) {
 		

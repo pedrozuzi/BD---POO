@@ -99,7 +99,7 @@ public class FrmProduto extends MouseAdapter {
 
 	/**
 	 * Construtor
-	 * @param u Usuario que está interagindo com a tela.
+	 * @param u usuário logado no sistema.
 	 */
 	
 	public FrmProduto(Usuario u) {

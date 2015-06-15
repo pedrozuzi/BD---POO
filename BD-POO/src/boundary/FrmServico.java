@@ -48,7 +48,8 @@ import entity.Servico;
 import entity.Usuario;
 
 /**
- * Formulário de realização de qualquer serviço.
+ * Classe que possui os componetes de tela 
+ * para realização de um serviço.
  * @author Pedro Afonso
  *
  */

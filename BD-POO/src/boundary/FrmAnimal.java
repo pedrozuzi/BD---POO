@@ -103,8 +103,8 @@ public class FrmAnimal extends MouseAdapter {
 	private ConfiguracoesTela configTela;
 	
 	/**
-	 * Contrutor, recebe o usuário logado no sistema
-	 * @param u
+	 * Contrutor.
+	 * @param u usuário logado no sistema
 	 */
 	public FrmAnimal(Usuario u) {
 		

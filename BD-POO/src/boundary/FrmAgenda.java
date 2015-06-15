@@ -94,8 +94,8 @@ public class FrmAgenda extends MouseAdapter {
 	private JLabel lblEncerrarAgenda;
 
 	/**
-	 * Construtor, recebe o usuario que irá interagir com a tela.
-	 * @param u
+	 * Construtor.
+	 * @param u usuário logado no sistema
 	 */
 	
 	public FrmAgenda(Usuario u) {

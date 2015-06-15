@@ -42,6 +42,12 @@ import util.TratamentoTextFields;
 import entity.Funcionario;
 import entity.Usuario;
 
+/**
+ * Classe que possui os componentes de tela para
+ * cadastro do usuário.
+ * @author Pedro Afonso
+ *
+ */
 public class FrmUsuario implements ActionListener, MouseListener{
 
 	private JFrame janela;
@@ -91,6 +97,10 @@ public class FrmUsuario implements ActionListener, MouseListener{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
+	/**
+	 * Construtor.
+	 * @param u usuário logado no sistema
+	 */
 	public FrmUsuario(Usuario u) {
 
 		janela = new JFrame("Usuario");

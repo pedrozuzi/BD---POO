@@ -45,8 +45,8 @@ public class FrmPrincipal {
 	private JMenuItem mntmSobre;
 
 	/**
-	 * Contrutor, recebe o usuário logado no sistema
-	 * @param u
+	 * Contrutor.
+	 * @param u usuário logado no sistema
 	 */
 	public FrmPrincipal(Usuario u) {
 		if (u.getF().getIdTipo() != 1) {
@@ -183,12 +183,7 @@ public class FrmPrincipal {
 		mntmSobre.addActionListener(e -> {
 			new FrmSobre();
 		});
-		
-		btnRelatorio.addActionListener(e -> {
-			sair();
-			new FrmRelatorio(u);
-		});
-		
+				
 		btnAgendarServico.addActionListener( e -> {
 			sair();
 			new FrmAgenda(u);

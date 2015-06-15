@@ -28,6 +28,9 @@ public class FrmSobre {
 	private JLabel lblBarraCinzaEmBaixo;
 	private JScrollPane spInformacoes;
 
+	/**
+	 * Construtor
+	 */
 	public FrmSobre(){
 		jd = new JDialog(jd, "Sobre", true);
 		

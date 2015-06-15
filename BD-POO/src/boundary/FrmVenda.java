@@ -27,6 +27,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+/**
+ * Classe que possui os componentes de tela para cadastro  
+ * do usuário.
+ * @author Pedro Afonso
+ *
+ */
 public class FrmVenda {
 
 	private JFrame janela;

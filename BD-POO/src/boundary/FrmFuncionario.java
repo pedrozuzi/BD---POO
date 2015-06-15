@@ -40,6 +40,12 @@ import util.ConfiguracoesTela;
 import util.ModeloTabela;
 import util.TratamentoTextFields;
 
+/**
+ * Classe que possui os componente de tela para 
+ * cadastro de um Funcionário.
+ * @author Pedro Afonso
+ *
+ */
 public class FrmFuncionario implements ActionListener, MouseListener{
 
 	private JFrame janela;
@@ -89,6 +95,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 	private JLabel lblTiraCinza;
 	private ConfiguracoesTela configTela;
 	
+	/**
+	 * Construtor
+	 * @param u usuário logado no sistema
+	 */
 	public FrmFuncionario(Usuario u) {
 	
 		janela = new JFrame("Funcionário");

@@ -83,8 +83,8 @@ public class FrmCliente extends MouseAdapter {
 	private ConfiguracoesTela configTela;
 	
 	/**
-	 * Contrutor, recebe o usuário logado no sistema
-	 * @param u
+	 * Contrutor.
+	 * @param u usuário logado no sistema
 	 */
 	public FrmCliente(Usuario u) {
 		janela = new JFrame("Cliente");

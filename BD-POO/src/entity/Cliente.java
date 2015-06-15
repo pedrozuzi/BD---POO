@@ -18,6 +18,7 @@ public class Cliente extends Pessoa{
 	
 	/**
 	 * Método para retorno do nome do cliente
+	 * @return nome do cliente
 	 */
 	@Override
 	public String getNome() {

@@ -11,15 +11,29 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Cliente;
 
+/**
+ * 
+ * @author Pedro Zuzi
+ *
+ */
 public class ClienteDaoImpl implements ClienteDao{
 	
 	private Connection con;
 	
+	/**
+	 * Construtor
+	 */
 	public ClienteDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		con = gc.getConnection();
 	}
 	
+	/**
+	 * Método para inserção de um novo cliente ao
+	 * banco de dados
+	 * @param c Objeto Cliente
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserirCliente(Cliente c) throws SQLException {
 		String query = "insert into cliente values (?, ?, ?, ?, ?, ?, ?)";
@@ -37,6 +51,12 @@ public class ClienteDaoImpl implements ClienteDao{
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Método para atualização de um cliente no banco
+	 * de dados
+	 * @param c Objeto Cliente
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void atualizarCliente(Cliente c) throws SQLException {
 		String sql = "update cliente set "
@@ -60,6 +80,12 @@ public class ClienteDaoImpl implements ClienteDao{
 		ps.close();
 	}
 
+	/**
+	 * Método para exclusão de um cliente no banco
+	 * de dados
+	 * @param c Objeto Cliente
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluirCliente(Cliente c) throws SQLException {
 		
@@ -73,6 +99,13 @@ public class ClienteDaoImpl implements ClienteDao{
 		
 	}
 
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Cliente
+	 * @param nome
+	 * @return List<Cliente> contendo as informações
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Cliente> listaCliente(String nome) throws SQLException {
 		

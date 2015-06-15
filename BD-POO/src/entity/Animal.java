@@ -3,7 +3,7 @@ package entity;
 /**
  * Classe para o tipo do animal com valores e
  * tipo do mesmo
- * @author Pedro Afonso
+ * @author Pedro Zuzi
  *
  */
 public class Animal {

@@ -6,7 +6,7 @@ import java.util.List;
  * Classse para o objeto do tipo cliente com valores 
  * do mesmo
  * @author Pedro Afonso
- *
+ * @author Pedro Zuzi
  */
 public class Cliente extends Pessoa{
 

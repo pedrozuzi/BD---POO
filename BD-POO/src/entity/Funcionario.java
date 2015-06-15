@@ -3,7 +3,7 @@ package entity;
 /**
  * Classe para objeto do tipo Funcionario com valores e 
  * tipo do mesmo
- * @author x036157
+ * @author Pedro Afonso
  *
  */
 public class Funcionario extends Pessoa{
@@ -46,7 +46,8 @@ public class Funcionario extends Pessoa{
 	
 	
 	/**
-	 * 
+	 * Método para retorno do nome do Funcionário
+	 * @return nome do Funcionário
 	 */
 	@Coluna(nome="Nome", posicao=0)
 	@Override
@@ -55,7 +56,8 @@ public class Funcionario extends Pessoa{
 	}
 	
 	/**
-	 * 
+	 * Método para retorno do tipo de id do funcionário
+	 * @return tipo do id
 	 */
 	@Override
 	public int getIdTipo() {

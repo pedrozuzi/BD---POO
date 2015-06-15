@@ -4,7 +4,7 @@ package entity;
  * Classe para os objetos do tipo agenda, onde serão contidos
  * os valores e métodos para o mesmo
  * @author Pedro Zuzi
- *
+ * @author Pedro Afonso
  */
 public class Agenda {
 	
@@ -65,13 +65,17 @@ public class Agenda {
 	}
 	
 	/**
-	 * 
+	 * Método que retorna o valor da disponibilidade da agenda 0 ou 1
 	 * @return auxiliar
 	 */
 	public int getAuxiliar() {
 		return auxiliar;
 	}
 	
+	/**
+	 * Método para setar o valor da disponibilidade da agenda
+	 * @param auxiliar
+	 */
 	public void setAuxiliar(int auxiliar) {
 		if(this.auxiliar == 0){
 			setEscolhaHorario(new Boolean(false));

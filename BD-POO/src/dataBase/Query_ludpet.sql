@@ -2,13 +2,12 @@ create database ludpet
 go
 use ludpet
 
-drop database ludpet
-
 create table tipo(
 id int identity not null,
 descricao varchar(50) not null
 primary key(id)) 
 
+--EXECUTAR ANTES DE RODAR O PROJETO
 INSERT INTO tipo (descricao) VALUES 
 ('Administrador'),      --1
 ('Atendente'),          --2

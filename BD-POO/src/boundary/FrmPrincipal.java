@@ -35,8 +35,6 @@ public class FrmPrincipal {
 	private JLabel lblTiraVermelha;
 	private JLabel lblTiraCinza;
 	private JLabel lblTiraCinzaBaixo;
-	private JButton btnRelatorio;
-	private JLabel lblRelatrios;
 	private JLabel lblfCadastros;
 	private JLabel lblNewLabel;
 	private JMenu mnMenu;
@@ -87,43 +85,30 @@ public class FrmPrincipal {
 		btnRealizarServico.setBounds(299, 267, 132, 88);
 		panPrincipal.add(btnRealizarServico);
 		
-		btnRelatorio = new JButton("");
-		btnRelatorio.setIcon(new ImageIcon(this.getClass().getResource
-				("/img/relatorio.png")));
-		btnRelatorio.setToolTipText("Abrir Relatórios");
-		btnRelatorio.setBounds(86, 380, 137, 88);
-		btnRelatorio.setEnabled(false);
-		panPrincipal.add(btnRelatorio);
-		
 		btnCadastros = new JButton("");
 		btnCadastros.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/cadastros.png")));
 		btnCadastros.setToolTipText("Cadastrar/Consultar/Aterar/Remover");
-		btnCadastros.setBounds(233, 380, 132, 88);
+		btnCadastros.setBounds(152, 380, 132, 88);
 		panPrincipal.add(btnCadastros);
 		
 		btnAgendarServico = new JButton("");
 		btnAgendarServico.setIcon(new ImageIcon(this.getClass().getResource
 				("/img/calendar.png")));
 		btnAgendarServico.setToolTipText("Agendar um serviço");
-		btnAgendarServico.setBounds(375, 380, 132, 88);
+		btnAgendarServico.setBounds(294, 380, 132, 88);
 		panPrincipal.add(btnAgendarServico);
 		
 		lblAgendarServio = new JLabel("Agendar Servi\u00E7o");
-		lblAgendarServio.setBounds(411, 468, 122, 14);
+		lblAgendarServio.setBounds(330, 468, 122, 14);
 		panPrincipal.add(lblAgendarServio);
-		
-		lblRelatrios = new JLabel("Relat\u00F3rios");
-		lblRelatrios.setBounds(119, 468, 98, 14);
-		lblRelatrios.setEnabled(false);
-		panPrincipal.add(lblRelatrios);
 		
 		lblfRealizarVenda = new JLabel("Realizar Venda");
 		lblfRealizarVenda.setBounds(179, 355, 110, 14);
 		panPrincipal.add(lblfRealizarVenda);
 		
 		lblfCadastros = new JLabel("Cadastros");
-		lblfCadastros.setBounds(277, 468, 98, 14);
+		lblfCadastros.setBounds(196, 468, 98, 14);
 		panPrincipal.add(lblfCadastros);
 		
 		lblfRealizarServio = new JLabel("Realizar Servi\u00E7o");

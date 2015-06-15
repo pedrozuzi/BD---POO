@@ -15,6 +15,9 @@ import entity.Funcionario;
 
 public class FuncionarioDaoImpl implements FuncionarioDao {
 
+	/**
+	 * Construtor
+	 */
 	public FuncionarioDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
@@ -22,6 +25,12 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 	
 	private Connection c;
 	
+	/**
+	 * Método para inserção de um novo Funcionário ao
+	 * banco de dados
+	 * @param func Objeto Funcionário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserirFuncionario(Funcionario func) throws SQLException {
 
@@ -41,6 +50,12 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 		
 	}
 
+	/**
+	 * Método para atualização de um Funcionário no banco
+	 * de dados
+	 * @param func Objeto Funcionário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void atualizarFuncionario(Funcionario func) throws SQLException {
 		String query = "update funcionario set "
@@ -63,6 +78,12 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Método para exclusão de um Funcionário no banco
+	 * de dados
+	 * @param func Objeto Funcionário
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluirFuncionario(Funcionario func) throws SQLException {
 		String query = "delete funcionario "
@@ -76,6 +97,13 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Funcionário
+	 * @param nome a ser pesquisado
+	 * @return List<Funcionario> contendo as informações
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Funcionario> pesquisarFuncionario(String nome)
 			throws SQLException {
@@ -104,6 +132,13 @@ public class FuncionarioDaoImpl implements FuncionarioDao {
 			return lista;
 	}
 
+	/**
+	 * Método para buscar do banco de dados Objetos
+	 * do tipo Funcionário que não possuem um usuário cadastrado
+	 * @param nome a ser pesquisado
+	 * @return List<Funcionario> contendo as informações
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Funcionario> pesquisarFuncionarioSemUsuario(String nome)
 			throws SQLException {

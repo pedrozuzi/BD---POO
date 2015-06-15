@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Fornecedor;
 
 /**
- * Inetrface para os métodos da classe FornecedorDaoImpl
+ * Ineterface para os métodos da classe FornecedorDaoImpl
  * @author Pedro Zuzi
  *
  */
@@ -41,7 +41,7 @@ public interface FornecedorDao {
 	 * do tipo Fornecedor
 	 * @param nome
 	 * @return  List<Fornecedor> contendo as informações
-	 * @throws SQLException
+	 * @throws SQLException exceção do banco de dados
 	 */
 	List<Fornecedor> listaFornecedor(String nome) throws SQLException;
 

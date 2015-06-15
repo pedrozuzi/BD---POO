@@ -111,26 +111,6 @@ primary key(data_venda, id_venda, id_produto),
 foreign key(id_venda) references venda(id) ON DELETE CASCADE,
 foreign key(id_produto) references produto(id) ON DELETE CASCADE)
 
-create table compra(
-id int identity not null,
-id_funcionario int not null,
-quantidade int not null,
-total int not null
-primary key(id, id_funcionario),
-foreign key(id_funcionario) references funcionario(id))
-
-create table compra_produto(
-data_compra datetime not null,
-id_compra int not null,
-id_funcionario int not null,
-id_produto int not null,
-quantidade int not null,
-total int not null,
-check(data_compra <= getdate()),
-primary key(data_compra, id_compra, id_funcionario, id_produto),
-foreign key(id_compra, id_funcionario) references compra(id, id_funcionario),
-foreign key(id_produto) references produto(id))
-
 create table servico(
 id int not null,
 nome varchar(15) not null,
@@ -147,27 +127,7 @@ id_servico int null
 primary key(hora),
 foreign key (id_servico) references servico(id))
 
---
-
-delete cliente
-from cliente c
-inner join animal a
-on c.id = a.id_cliente
-where c.id = 16 and a.id_cliente = 16
-inner join servico s
-on a.id = s.id_animal
-where c.id = 16 and a.id_cliente = 16 and s.id_cliente_servico = 16 
-
-delete servico
-where id_cliente_servico = 5
-
-select * from cliente
-select * from animal
-select * from servico
-
---insert into servico (id, nome, valor, id_animal, id_cliente_servico) values
---(3,'banho', 100, 2, 5 )
-
+--EXECUTAR ANTES DE RODAR O PROJETO
 insert into agenda(hora, disponibilidade) values
 ('10:00',0),
 ('10:30',0),
@@ -205,8 +165,6 @@ INSERT INTO pessoa (idTipo) VALUES
 (5), --13 cli
 (5), --14 cli
 (5)  --15 cli
-
-select * from pessoa
 
 INSERT INTO funcionario (id,cpf,nome,salario,telefone) VALUES
 (1,11111111111,'Hury Gabriel',99999.99,11111111), --adm
@@ -258,21 +216,6 @@ insert into venda (id_cliente,id_funcionario,total)
 use master
 drop database ludpet
 
-select * from produto
-select * from lote
-select * from lote_produto
-
-select * from venda
-select * from venda_produto
-
-delete lote_produto where idProduto = 3
-delete produto
-delete lote
-
-SELECT IDENT_CURRENT('produto');
-SELECT IDENT_CURRENT('lote');
-
-
 insert into cliente (id, nome, logradouro, numero, bairro, telefone) values
 	(5, 'Pedro', 'Rua da boa vista', 400, 'mooca', 12122334)
 
@@ -283,44 +226,6 @@ select nome as nome, logradouro + ', ' + cast(numero as varchar(9))
 	+ ', ' + bairro as endereço_completo, telefone
 	from cliente
 	order by nome
-	
---inner join cliente/animal
-select cli.id as id_cliente, cli.nome, an.id as id_animal, an.nome
-	from cliente cli
-	inner join animal an
-	on cli.id = an.id_cliente	
-	
-	
---inner join para verificar o tipo do funcionario(atendente, adm etc)
-select  f.id, f.nome, SUBSTRING(f.cpf,1,9)+'-'+SUBSTRING(f.cpf,10,11)as cpf, f.salario, f.telefone, t.descricao
-	from funcionario f 
-	inner join pessoa p
-	on f.id = p.idPessoa
-	inner join tipo t
-	on p.idtipo = t.id
-	where f.nome like '%p%'
-
---inner join para verificar qual é o cargo de um funcionario de um determinado login	
-select f.nome, l.username, l.passwor, t.descricao as cargo
-	from usuario l
-	inner join funcionario f
-	on l.id = f.id
-	inner join pessoa p
-	on f.id = p.idPessoa
-	inner join tipo t
-	on p.idtipo = t.id
-	where username = 'pedrozz'	and passwor = '1234'
-	
-	
-select username, passwor 
-	from usuario 
-	where username = 'pedrozz'	and passwor = '1234' 
-
-	--inner join, retorna todos os lotes de um determinado produto
-
-	select * from produto
-	select * from lote
-	select * from lote_produto
 
 select lot.data_validade, lot.id as id_lote
 from lote lot

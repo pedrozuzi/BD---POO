@@ -359,6 +359,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		});
 	}
 
+	/**
+	 * Método invocado quando um botão é pressionado
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
@@ -461,6 +464,10 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 	}
 	
+	/**
+	 * Método para pesquisar um Usuário no banco
+	 * de dados
+	 */
 	private void pesquisarUsuario(){
 		
 		try{
@@ -481,6 +488,10 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		
 	}
 	
+	/**
+	 * Método para pesquisar um Funcionário no banco
+	 * de dados
+	 */
 	private void pesquisarFuncionario() {
 		
 		ctrlFunc = new CtrlFuncionario();
@@ -503,6 +514,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 
 	}
 
+	/**
+	 * Método para montar a tela
+	 */
 	private void montarTela() {
 		panelFuncionario.setVisible(true);
 		scrollPane.setVisible(true);
@@ -525,6 +539,9 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		btnLimpar.setVisible(true);
 	}
 
+	/**
+	 * Método chamado para limpar os campos
+	 */
 	private void limpaCampos() {
 		txtNome.setText("");
 		pwdSenha.setText("");
@@ -532,10 +549,10 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		txtUsuario.setText("");
 	}
 
-//	public static void main(String[] args) {
-//		new FrmUsuario(u);
-//	}
-
+	/**
+	 * Método chamado quando uma Tabela é acionada
+	 * pelo mouse
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores;
@@ -591,11 +608,15 @@ public class FrmUsuario implements ActionListener, MouseListener{
 		}
 	}
 
+	/**
+	 * Método para habilitar botões
+	 */
 	private void habilitaCampos() {
 		txtUsuario.setEditable(true);
 		pwdSenha.setEditable(true);
 		pwdConfirmarSenha.setEditable(true);
 	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 	}

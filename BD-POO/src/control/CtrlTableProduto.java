@@ -5,7 +5,7 @@ import java.util.List;
 import entity.Produto;
 
 /**
- * Interface que possui os metodos de Table Produto
+ * Interface que possui os métodos da Table/Produto
  * @author Hury
  *
  */

@@ -10,10 +10,20 @@ import persistence.UsuarioDao;
 import persistence.UsuarioDaoImpl;
 import entity.Usuario;
 
+/**
+ * Classe para controlar as funcionalidades 
+ * da tela do usuário
+ * @author Pedro Afonso
+ *
+ */
 public class CtrlUsuario {
 
 	private UsuarioDao uDao;
 	
+	/**
+	 * Método para cadastrar um usuario
+	 * @param us dados do usuário
+	 */
 	public void adicionarUsuario(Usuario us){
 		uDao = new UsuarioDaoImpl();
 		
@@ -25,6 +35,11 @@ public class CtrlUsuario {
 		}
 	}
 	
+	/**
+	 * Método para verificar o nome 
+	 * @param nome
+	 * @return
+	 */
 	public boolean verificarNomeUsuario(String nome){
 		uDao = new UsuarioDaoImpl();
 		

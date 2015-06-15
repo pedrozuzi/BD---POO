@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Lote;
 
 /**
- * Interface que possui os metodos ta Table Lote
+ * Interface que possui os métodos da Table/Lote
  * @author Hury
  *
  */

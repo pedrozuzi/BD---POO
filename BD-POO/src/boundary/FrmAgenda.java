@@ -321,7 +321,7 @@ public class FrmAgenda extends MouseAdapter {
 
 	/**
 	 * Método para atualizar a agenda com o horário marcado
-	 * @param horaServico
+	 * @param horaServico horário selecionado
 	 */
 	private void atualizaAgenda(String horaServico) {
 		agenda.setHorario(horaServico);
@@ -425,7 +425,7 @@ public class FrmAgenda extends MouseAdapter {
 
 	
 	/**
-	 * Método invocado para busca de clientes do banco de dados
+	 * Método invocado para busca de clientes
 	 */
 	private void buscaCliente() {
 		controlCliente = new CtrlCliente();

@@ -1,10 +1,20 @@
 package entity;
 
+/**
+ * Classe para objeto do tipo Funcionario com valores e 
+ * tipo do mesmo
+ * @author x036157
+ *
+ */
 public class Funcionario extends Pessoa{
 
 	private String cpf;
 	private double salario;
 	
+	/**
+	 * Método para retorno do salário do funcinário
+	 * @return valor do salário'
+	 */
 	public double getSalario() {
 		return salario;
 	}

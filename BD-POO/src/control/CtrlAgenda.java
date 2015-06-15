@@ -7,10 +7,20 @@ import persistence.AgendaDao;
 import persistence.AgendaDaoImpl;
 import entity.Agenda;
 
+/**
+ * Classe para controle das funcionalidades
+ * da tela da agenda.
+ * @author Pedro Afonso
+ *
+ */
 public class CtrlAgenda {
 	
 	private AgendaDao aDao;
 	
+	/**
+	 * Método que busca a agenda
+	 * @return a agenda em uma lista
+	 */
 	public List<Agenda> buscarAgenda() {
 		aDao = new AgendaDaoImpl();
 		List<Agenda> lista = new ArrayList<Agenda>();
@@ -22,6 +32,10 @@ public class CtrlAgenda {
 		return lista;
 	}
 	
+	/**
+	 * Método para atualizar a agenda
+	 * @param a agenda que será atualizada
+	 */
 	public void atualizaAgenda( Agenda a ) {
 		aDao = new AgendaDaoImpl();
 		try {
@@ -31,6 +45,9 @@ public class CtrlAgenda {
 		}
 	}
 	
+	/**
+	 * Método que encerra a agenda para o próximo dia
+	 */
 	public void encerraAgenda() {
 		aDao = new AgendaDaoImpl();
 		try {

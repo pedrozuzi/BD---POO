@@ -3,11 +3,10 @@ package connection;
 import java.sql.Connection;
 
 /**
- * Interface que possui os metodos de conexão.
+ * Interface que possui os métodos de conexão.
  * @author 
  *
  */
-
 public interface GenericConnection {
 
 	public Connection getConnection();

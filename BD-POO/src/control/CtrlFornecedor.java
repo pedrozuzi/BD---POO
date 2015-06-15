@@ -12,6 +12,12 @@ import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
 import entity.Fornecedor;
 
+/**
+ * Classe para controle das funcionalidades da
+ * tela do fornecedor
+ * @author x036157
+ *
+ */
 public class CtrlFornecedor{
 	
 	private FornecedorDao fDao;

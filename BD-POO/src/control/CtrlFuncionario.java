@@ -12,11 +12,21 @@ import persistence.PessoaDao;
 import persistence.PessoaDaoImpl;
 import entity.Funcionario;
 
+/**
+ * Classe para controle das funcionalidades
+ * da tela do funcionário
+ * @author x036157
+ *
+ */
 public class CtrlFuncionario {
 
 	private FuncionarioDao fDao;
 	private PessoaDao pDao;
 	
+	/**
+	 * Método para cadastrar um funcionário
+	 * @param f funcionário a ser cadastrado
+	 */
 	public void incluir(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
 		pDao = new PessoaDaoImpl();
@@ -29,6 +39,10 @@ public class CtrlFuncionario {
 		}
 	}
 	
+	/**
+	 * Método para remover um funcionário cadastrado.
+	 * @param f dados do funcionário a ser excluído
+	 */
 	public void remover(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
 		pDao = new PessoaDaoImpl();
@@ -41,9 +55,12 @@ public class CtrlFuncionario {
 					"Erro", JOptionPane.ERROR_MESSAGE);
 		}
 		
-//		fireTableRowsDeleted(indiceLinha, indiceLinha); 
 	}
 	
+	/**
+	 * 
+	 * @param f
+	 */
 	public void alterar(Funcionario f){
 		fDao = new FuncionarioDaoImpl();
 		pDao = new PessoaDaoImpl();
@@ -57,6 +74,12 @@ public class CtrlFuncionario {
 		}
 	}
 	
+	/**
+	 * Método para pesquisar todos funcionarios cadastrados
+	 * no sistema
+	 * @param nome do funcionário a ser pesquisado
+	 * @return lista de funcionários
+	 */
 	public List<Funcionario> pesquisarFuncionario( String nome ){
 		List<Funcionario> lista = new ArrayList<Funcionario>();
 		fDao = new FuncionarioDaoImpl();
@@ -72,6 +95,12 @@ public class CtrlFuncionario {
 		
 	}
 	
+	/**
+	 * Método para pesquisar um funcionário que nao 
+	 * tenha cadastro no sistema
+	 * @param nome do funcionário a ser pesquisado
+	 * @return lista de funcionários.
+	 */
 	public List<Funcionario> pesquisarFuncionarioSemUsuario(String nome){
 		List<Funcionario> lista = new ArrayList<Funcionario>();
 		fDao = new FuncionarioDaoImpl();

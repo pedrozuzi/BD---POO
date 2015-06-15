@@ -8,6 +8,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+/**
+ * Classe para tratamento dos campos
+ * @author Pedro Zuzi
+ *
+ */
 public final class TratamentoTextFields extends JTextField{
 	private static final long serialVersionUID = 4693065480438008645L;
 	

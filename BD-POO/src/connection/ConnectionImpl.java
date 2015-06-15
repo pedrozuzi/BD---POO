@@ -18,6 +18,7 @@ public class ConnectionImpl implements GenericConnection {
 	
 	/**
 	 * Método que abre a conexão com o banco
+	 * @return conexao com o banco
 	 */
 	@Override
 	public Connection getConnection() {
@@ -43,6 +44,7 @@ public class ConnectionImpl implements GenericConnection {
 	
 	/**
 	 * Método que fecha a conexão com o banco
+	 * @param conexao do banco
 	 */
 	@Override
 	public void fechaConexao(Connection con) {

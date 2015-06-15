@@ -9,7 +9,16 @@ import java.sql.Connection;
  */
 public interface GenericConnection {
 
+	/**
+	 * Método que abre a conexão com o banco
+	 * @return conexao com o banco
+	 */
 	public Connection getConnection();
+	
+	/**
+	 * Método que fecha a conexão com o banco
+	 * @param conexao do banco
+	 */
 	public void fechaConexao(Connection con);
 	
 }

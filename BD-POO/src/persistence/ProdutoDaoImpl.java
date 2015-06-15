@@ -17,6 +17,12 @@ import entity.Lote;
 import entity.LoteProduto;
 import entity.Produto;
 
+/**
+ * Interface que possui os metodos implementados de ProdutoDao, LoteDao, LoteProdutoDao
+ * para SQL.
+ * @author Hury
+ *
+ */
 
 public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 

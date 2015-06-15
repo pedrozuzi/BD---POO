@@ -64,6 +64,10 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	}
 
+	/**
+	 * 
+	 */
+	
 	@Override
 	public void excluiVenda(Venda vend) throws SQLException {
 
@@ -75,6 +79,10 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		ps.close();
 
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public List<Venda> pesquisaVenda(Venda vend) throws SQLException {
@@ -101,21 +109,37 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	}
 
+	/**
+	 * Insere uma Venda.
+	 */
+	
 	@Override
 	public void insereVenda(VendaProduto vendprod) throws SQLException {
 		
 	}
 
+	/**
+	 * Atualiza as informações de uma venda.
+	 */
+	
 	@Override
 	public void atualizaVenda(VendaProduto vendprod) throws SQLException {
 		
 	}
+	
+	/**
+	 * Exclui uma Venda.
+	 */
 
 	@Override
 	public void excluiVenda(VendaProduto vendprod) throws SQLException {
 		
 	}
 
+	/**
+	 * Pesquisa uma Venda.
+	 */
+	
 	@Override
 	public List<VendaProduto> pesquisaVenda(VendaProduto vendprod)
 			throws SQLException {

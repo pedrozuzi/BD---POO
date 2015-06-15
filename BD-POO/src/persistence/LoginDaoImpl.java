@@ -9,15 +9,30 @@ import connection.GenericConnection;
 import entity.Funcionario;
 import entity.Usuario;
 
+/**
+ * Classe para comunicação com o banco de
+ * dados para verificação de um Usuário
+ * @author Pedro Zuzi
+ *
+ */
 public class LoginDaoImpl implements LoginDao{
 	
 	private Connection c;
 	
+	/**
+	 * Construtor
+	 */
 	public LoginDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}
 
+	/**
+	 * Método para verficar as credenciais do usuário
+	 * @param u Objeto Usuário
+	 * @return true se usuário existe, false se não existe
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public boolean realizarLogin( Usuario u ) throws SQLException {
 		String query = "select f.nome, f.cpf, f.salario, u.username, u.passwor, t.id,  "

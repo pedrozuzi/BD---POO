@@ -8,15 +8,31 @@ import java.sql.SQLException;
 import connection.ConnectionImpl;
 import connection.GenericConnection;
 
+/**
+ * Classe para comunicação com o banco para 
+ * verificação da conexão com o banco de dados
+ * @author Hury
+ *
+ */
 public class StatusDaoImpl implements StatusDao {
 
 	private Connection c;
 
+	/**
+	 * Construtor
+	 */
 	public StatusDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();
 	}
 
+	/**
+	 * Método para inserção de um novo cliente ao
+	 * banco de dados
+	 * @param c Objeto Cliente
+	 * @throws SQLException exceção do banco de dados
+	 */
+	@Override
 	public String status(String status) throws SQLException {
 
 		String sql = "select name, state_desc from sys.databases where name like ?";

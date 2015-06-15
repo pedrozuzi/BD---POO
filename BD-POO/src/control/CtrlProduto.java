@@ -273,7 +273,7 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
-	/**
+	/*//*
 	 * 
 	 * @param lotprod
 	 * @param codprod

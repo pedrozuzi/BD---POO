@@ -13,6 +13,12 @@ import connection.GenericConnection;
 import entity.Venda;
 import entity.VendaProduto;
 
+/**
+ * Classe que possui os metodos SQL da venda
+ * @author Hury
+ *
+ */
+
 public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 
 	private Connection c;
@@ -21,6 +27,10 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();
 	}
+	
+	/**
+	 * Insere uma venda.
+	 */
 
 	@Override
 	public void insereVenda(Venda vend) throws SQLException {
@@ -39,6 +49,10 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 		ps.close();
 	}
 
+	/**
+	 * Atualiza uma venda.
+	 */
+	
 	@Override
 	public void atualizaVenda(Venda vend) throws SQLException {
 

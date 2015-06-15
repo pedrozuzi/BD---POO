@@ -10,15 +10,28 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Agenda;
 
+/**
+ * Classe para 
+ * @author Pedro Zuzi
+ *
+ */
 public class AgendaDaoImpl implements AgendaDao{
 	
 	private Connection c;
 	
+	/**
+	 * Construtor
+	*/
 	public AgendaDaoImpl() {
 		GenericConnection gc = new ConnectionImpl();
 		c = gc.getConnection();
 	}
 
+	/**
+	 * Método para retorno do banco de dados
+	 * @return List<Agenda> contendo valores do objeto agenda
+	 * @throws SQLException exceção do banco de dados
+	*/
 	@Override
 	public List<Agenda> buscarAgenda() throws SQLException {
 		List<Agenda> lista = new ArrayList<Agenda>();
@@ -42,6 +55,11 @@ public class AgendaDaoImpl implements AgendaDao{
 		return lista;
 	}
 
+	/**
+	 * Método para atualizar a Agenda
+	 * @param a
+	 * @throws SQLException
+	 */
 	@Override
 	public void atualizaAgenda( Agenda a ) throws SQLException {
 		String sql = "update agenda set disponibilidade = 1, "
@@ -54,6 +72,10 @@ public class AgendaDaoImpl implements AgendaDao{
 		ps.close();
 	}
 
+	/**
+	 * Método que encerra a Agenda
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void encerraAgenda() throws SQLException {
 		String sql = "update agenda set id_servico = null, disponibilidade=0";

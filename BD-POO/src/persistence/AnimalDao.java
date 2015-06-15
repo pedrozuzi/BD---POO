@@ -5,6 +5,11 @@ import java.util.List;
 
 import entity.Animal;
 
+/**
+ * Interface para os métodos da AnimalDaoImpl
+ * @author Pedro Zuzi
+ *
+ */
 public interface AnimalDao {
 	
 	List<Animal> listaAnimal(int idCliente) throws SQLException;

@@ -10,7 +10,7 @@ import persistence.StatusDaoImpl;
 /**
  * Classe que controla a verificação do 
  * status do banco
- * @author Pedro Afonso
+ * @author Hury
  *
  */
 public class CtrlStatus {

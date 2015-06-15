@@ -14,7 +14,7 @@ public class Usuario {
 
 	/**
 	 * Método para retorno da senha
-	 * @return senha
+	 * @return senha valor da senha
 	 */
 	public String getSenha() {
 		return senha;
@@ -22,7 +22,7 @@ public class Usuario {
 	
 	/**
 	 * Método para setar o valor da senha
-	 * @param senha
+	 * @param senha valor da senha
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -38,7 +38,7 @@ public class Usuario {
 	
 	/**
 	 * Método para setar o objeto Funcionário
-	 * @param f
+	 * @param f objeto funcionário
 	 */
 	public void setF(Funcionario f) {
 		this.f = f;
@@ -55,7 +55,7 @@ public class Usuario {
 	
 	/**
 	 * Método para setar o nome do Usuário
-	 * @param nome
+	 * @param nome do usuário
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;

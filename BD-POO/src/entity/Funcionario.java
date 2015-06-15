@@ -18,22 +18,44 @@ public class Funcionario extends Pessoa{
 	public double getSalario() {
 		return salario;
 	}
+	
+	/**
+	 * Método para setar o salário do funcionario
+	 * @param salario
+	 */
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@Coluna(nome="CPF", posicao=1)
 	public String getCpf() {
 		return cpf;
 	}
+	
+	/**
+	 * 
+	 * @param cpf
+	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	/**
+	 * 
+	 */
 	@Coluna(nome="Nome", posicao=0)
 	@Override
 	public String getNome() {
 		return super.getNome();
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public int getIdTipo() {
 		return super.getIdTipo();

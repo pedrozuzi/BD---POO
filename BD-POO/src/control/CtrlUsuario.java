@@ -36,9 +36,9 @@ public class CtrlUsuario {
 	}
 	
 	/**
-	 * Método para verificar o nome 
-	 * @param nome
-	 * @return
+	 * Método para verificar se o nome de usuário ja existe
+	 * @param nome a ser verificado
+	 * @return se o nome já existe ou nao
 	 */
 	public boolean verificarNomeUsuario(String nome){
 		uDao = new UsuarioDaoImpl();
@@ -59,6 +59,11 @@ public class CtrlUsuario {
 		return false;
 	}
 	
+	/**
+	 * Método para buscar, pelo nome, um usuário cadastrado
+	 * @param nome do usuário
+	 * @return lista de usuários
+	 */
 	public List<Usuario> pesquisarUsuario(String nome){
 		uDao = new UsuarioDaoImpl();
 		List<Usuario> lista = new ArrayList<Usuario>();
@@ -72,6 +77,10 @@ public class CtrlUsuario {
 		
 	}
 	
+	/**
+	 * Método para alterar dados de um usuário cadastrado
+	 * @param us dados do usuário
+	 */
 	public void alterarUsuario(Usuario us){
 		uDao = new UsuarioDaoImpl();
 		
@@ -84,6 +93,10 @@ public class CtrlUsuario {
 		
 	}
 	
+	/**
+	 * Método para excluir um usuário cadastrado
+	 * @param us dados do usuario
+	 */
 	public void deletarUsuario(Usuario us){
 		uDao = new UsuarioDaoImpl();
 		

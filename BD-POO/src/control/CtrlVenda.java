@@ -23,7 +23,8 @@ import persistence.VendaDao;
 import persistence.VendaDaoImpl;
 
 /**
- * 
+ * Classe que controla as funcionalidades 
+ * da tela venda
  * @author Hury
  *
  */
@@ -69,6 +70,9 @@ public class CtrlVenda implements ActionListener {
 
 	}
 
+	/**
+	 * Método para ação dos botões
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

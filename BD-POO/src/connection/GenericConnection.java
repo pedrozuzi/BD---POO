@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 /**
  * Interface que possui os métodos de conexão.
- * @author 
+ * @author Pedro Afonso
  *
  */
 public interface GenericConnection {

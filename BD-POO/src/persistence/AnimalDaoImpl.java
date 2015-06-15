@@ -13,6 +13,12 @@ import connection.ConnectionImpl;
 import connection.GenericConnection;
 import entity.Animal;
 
+/**
+ * Classe para comunicação com o banco para 
+ * realização das funcionalidades do Objeto Animal
+ * @author Pedro Zuzi
+ *
+ */
 public class AnimalDaoImpl implements AnimalDao{
 	
 	private Connection c;
@@ -22,6 +28,12 @@ public class AnimalDaoImpl implements AnimalDao{
 		c = gc.getConnection();
 	}
 
+	/**
+	 * Método para retorno de informações do banco de dados
+	 * @param idCliente id do cliente
+	 * @return List<Animal> contendo informações do objeto Animal
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public List<Animal> listaAnimal(int idCliente) throws SQLException {
 		
@@ -50,6 +62,12 @@ public class AnimalDaoImpl implements AnimalDao{
 		return lista;
 	}
 
+	/**
+	 * Método para inserção no banco de dados um novo
+	 * registro de um Objeto Animal
+	 * @param a Objeto Animal
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void inserirAnimal(Animal a) throws SQLException {
 		String query = "insert into animal (id_cliente, rga, nome, raca, especie, sexo, cor) "
@@ -68,6 +86,12 @@ public class AnimalDaoImpl implements AnimalDao{
 				"Aviso", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Método para atualização das informações no banco
+	 * de dados de um objeto Animal
+	 * @param a Objeto Animal
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void atualizaAnimal( Animal a ) throws SQLException {
 		String query = "update animal set "
@@ -92,6 +116,12 @@ public class AnimalDaoImpl implements AnimalDao{
 		JOptionPane.showMessageDialog(null, "Dados atualizados");
 	}
 
+	/**
+	 * Método para exclusão de um objeto Animal do banco
+	 * de dados
+	 * @param a Objeto Animal
+	 * @throws SQLException exceção do banco de dados
+	 */
 	@Override
 	public void excluiAnimal(Animal a) throws SQLException {
 		String query = "delete animal where id = ?";

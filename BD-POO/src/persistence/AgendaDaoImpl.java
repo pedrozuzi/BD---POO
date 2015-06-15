@@ -13,7 +13,6 @@ import entity.Agenda;
 /**
  * Classe para comunicação com o banco para 
  * realização das funcionalidades da agenda
- * no mesmo
  * @author Pedro Zuzi
  *
  */

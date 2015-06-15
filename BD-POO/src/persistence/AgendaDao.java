@@ -12,7 +12,7 @@ import entity.Agenda;
 public interface AgendaDao {
 	
 	/**
-	 * Método para retorno do banco de dados
+	 * Método para retorno de informações do banco de dados
 	 * @return List<Agenda> contendo valores do objeto agenda
 	 * @throws SQLException exceção do banco de dados
 	 */

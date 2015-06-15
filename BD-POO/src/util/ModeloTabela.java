@@ -6,6 +6,11 @@ import javax.swing.table.AbstractTableModel;
 import entity.Agenda;
 import entity.Coluna;
 
+/**
+ * Classe para montar o modelo das Tabelas dinamicamente
+ * @author Pedro Zuzi
+ *
+ */
 public class ModeloTabela extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 1L;
@@ -13,21 +18,36 @@ public class ModeloTabela extends AbstractTableModel {
 	private final List<?> lista;
 	private Class<?> classe;
 
+	/**
+	 * Construtor
+	 * @param lista, recebe uma lista de uma determinada classe
+	 */
 	public ModeloTabela(List<?> lista) {
 		this.lista = lista;
 		this.classe = lista.get(0).getClass();
 	}
 
+	/**
+	 * Método para limpar a Tabela
+	 */
 	public void clear(){
 		lista.clear();
 		fireTableRowsDeleted(0, lista.size());
 	}
 	
+	/**
+	 * Método para retorno do número de linhas da Tabela
+	 * @return quantidade de linhas
+	 */
 	@Override
 	public int getRowCount() {
 		return lista.size();
 	}
 	
+	/**
+	 * Método para retorno do número de colunas da Tabela
+	 * @return quantidade de colunas
+	 */
 	@Override
 	public int getColumnCount() {
 		int colunas = 0;
@@ -40,6 +60,11 @@ public class ModeloTabela extends AbstractTableModel {
 		return colunas;
 	}
 
+	/**
+	 * Método para percorrer os métodos de uma determinada classe
+	 * e montar a tabela dinamicamente de acordo com as anotações
+	 * @return valor do método da classe
+	 */
 	@Override
 	public Object getValueAt(int linha, int coluna) {
 		try {
@@ -58,6 +83,11 @@ public class ModeloTabela extends AbstractTableModel {
 		return "";
 	}
 	
+	/**
+	 * Método para adicionar o nome da coluna de acordo
+	 * com a anotação
+	 * @return nome da coluna
+	 */
 	@Override
 	public String getColumnName(int coluna) {
 		for (Method metodo : classe.getDeclaredMethods()) {
@@ -71,6 +101,9 @@ public class ModeloTabela extends AbstractTableModel {
 		return "";
 	}
 	
+	/**
+	 * Método para setar o valor modificado na Tabela
+	 */
 	@Override
 	public void setValueAt(Object valor, int linha, int coluna) {
 		
@@ -84,6 +117,10 @@ public class ModeloTabela extends AbstractTableModel {
 
 	}
 	
+	/**
+	 * Método para retorno se a tabela vai ser editável
+	 * @return true se editável, false se não editável
+	 */
 	@Override
 	public boolean isCellEditable(int linha, int coluna) {
 		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {
@@ -94,6 +131,11 @@ public class ModeloTabela extends AbstractTableModel {
 		return false;
 	}
 	
+	/**
+	 * Método para retorno da classe da coluna através do seu
+	 * índice 
+	 * @return classe
+	 */
 	@Override
 	public Class<?> getColumnClass(int coluna) {
 		if (classe.getName().equalsIgnoreCase("entity.Agenda")) {

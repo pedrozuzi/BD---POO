@@ -706,18 +706,4 @@ public class FrmProduto extends MouseAdapter {
 	}
 
 	
-//	public static void main(String[] args) {
-//
-//		// Runnable anonimo
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					new FrmProduto(u);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//
-//	}
 }

@@ -273,26 +273,9 @@ public class CtrlProduto implements ActionListener, CtrlTableProduto,
 		}
 	}
 
-	/*//*
-	 * 
-	 * @param lotprod
-	 * @param codprod
-	 * @param codlot
-	 */
-
+ 
 	/**
-	 * public void insereLoteProduto(LoteProduto lotprod, int codprod, int
-	 * codlot) { lpDao = new ProdutoDaoImpl(); try {
-	 * lotprod.setIdProduto(codprod); lotprod.setIdLote(codlot);
-	 * lpDao.insereLoteProduto(lotprod);
-	 * System.out.println("LoteProduto Incluido!");
-	 * JOptionPane.showMessageDialog(null, "Produto incluido com Sucesso",
-	 * "Sucesso", JOptionPane.INFORMATION_MESSAGE); } catch (Exception e) {
-	 * JOptionPane.showMessageDialog(null, e.getMessage(), "ERRO - LoteProduto",
-	 * JOptionPane.ERROR_MESSAGE); } }
-	 * 
-	 * 
-	 * /** Retorna uma lista de produtos a partir de um nome
+	 * Retorna uma lista de produtos a partir de um nome
 	 */
 
 	@Override

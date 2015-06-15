@@ -30,19 +30,19 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 
 /**
- * Classe que possui os componentes de tela para cadastro  
- * do usuário.
+ * Classe que possui os componentes de tela para cadastro do usuário.
+ * 
  * @author Hury Gabriel
  *
  */
 public class FrmVenda {
 
 	private JFrame janela;
-	
+
 	private JPanel panPrincipal;
 	private JPanel panVenda;
 	private JPanel panConsulta;
-	
+
 	private JTextField txtIdVenda;
 	private JTextField txtIdCliente;
 	private JTextField txtIdVendedor;
@@ -52,7 +52,7 @@ public class FrmVenda {
 	private JTextField txtNomeProdServ;
 	private JTextField txtQtdeProdServ;
 	private JTextField txtDinheiroRecebido;
-	
+
 	private JLabel lblTotal;
 	private JLabel lblData;
 
@@ -63,51 +63,33 @@ public class FrmVenda {
 	private JButton btnConsultaEstoque;
 	private JButton btnCancelar;
 	private JButton btnAcao;
-	
+
 	private JRadioButton rdbProduto;
 	private JRadioButton rdbServico;
 
 	private JLabel lblPrecoUPS;
 	private JLabel lblPrecoTPS;
-		
+
 	Object[] objetosTela = new Object[25];
 
 	private JPanel panCliente;
-
 	private JPanel panTable;
-
 	private JPanel panProdServ;
-
 	private JPanel panDinheiro;
-
 	private JPanel panInferior;
-
 	private JLabel lblNVenda;
-
 	private JLabel lblVendedor;
-
 	private JLabel lblCodigo;
-
 	private JLabel lblNome;
-
 	private JLabel lblProdutoServico;
-
 	private JLabel lblProdServ;
-
 	private JLabel lblT;
-
 	private JLabel lblProduto;
-
 	private JLabel lblNome2;
-
 	private JLabel lblQuantidade;
-
 	private JLabel lblPreco;
-
 	private JLabel lblPrecoTotal;
-
 	private JButton btnConsultaPreco;
-
 	private JLabel lblRecebido;
 
 	private JLabel lblTroco;
@@ -116,10 +98,15 @@ public class FrmVenda {
 	private JMenuItem mntmTelaPrincipal;
 	private JMenuItem mntmLogOff;
 
+	/**
+	 * Construtor da classe.
+	 * @param u
+	 */
+	
 	public FrmVenda(Usuario u) {
-		
+
 		janela = new JFrame("Venda");
-		
+
 		panPrincipal = new JPanel();
 		panPrincipal.setBackground(SystemColor.text);
 		panPrincipal.setForeground(Color.WHITE);
@@ -165,7 +152,7 @@ public class FrmVenda {
 		panConsulta.setBounds(540, 423, 240, 53);
 		panPrincipal.add(panConsulta);
 		panConsulta.setLayout(null);
-		panConsulta.setOpaque(false); 
+		panConsulta.setOpaque(false);
 
 		panDinheiro = new JPanel();
 		panDinheiro.setBorder(new TitledBorder(null, "Dinheiro",
@@ -176,7 +163,8 @@ public class FrmVenda {
 		panDinheiro.setOpaque(false);
 
 		panInferior = new JPanel();
-		panInferior.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panInferior.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null,
+				null, null, null));
 		panInferior.setBounds(30, 583, 750, 60);
 		panPrincipal.add(panInferior);
 		panInferior.setLayout(null);
@@ -204,7 +192,7 @@ public class FrmVenda {
 		lblVendedor = new JLabel("Vendedor");
 		lblVendedor.setBounds(248, 23, 46, 14);
 		panVenda.add(lblVendedor);
-		
+
 		txtIdVendedor = new JTextField();
 		txtIdVendedor.setBounds(307, 20, 86, 20);
 		panVenda.add(txtIdVendedor);
@@ -224,10 +212,11 @@ public class FrmVenda {
 		txtNomeCli.setColumns(10);
 
 		btnPesquisaCli = new JButton("");
-		btnPesquisaCli.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniLupa.png")));
+		btnPesquisaCli.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/MiniLupa.png")));
 		btnPesquisaCli.setBounds(278, 19, 40, 23);
 		panCliente.add(btnPesquisaCli);
-		
+
 		txtIdCliente = new JTextField();
 		txtIdCliente.setBounds(42, 20, 40, 20);
 		panCliente.add(txtIdCliente);
@@ -250,13 +239,15 @@ public class FrmVenda {
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTotal.setBounds(405, 358, 73, 30);
 		panTable.add(lblTotal);
-		
+
 		JList listVenda = new JList();
 		listVenda.setModel(new AbstractListModel() {
-			String[] values = new String[] {"   ID | Produto                                          |Quantidade| Pre\u00E7o U| Total  "};
+			String[] values = new String[] { "   ID | Produto                                          |Quantidade| Pre\u00E7o U| Total  " };
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public Object getElementAt(int index) {
 				return values[index];
 			}
@@ -306,7 +297,8 @@ public class FrmVenda {
 		txtQtdeProdServ.setColumns(10);
 
 		btnPesquisaProdServ = new JButton("");
-		btnPesquisaProdServ.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniLupa.png")));
+		btnPesquisaProdServ.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/MiniLupa.png")));
 		btnPesquisaProdServ.setBounds(149, 77, 33, 23);
 		panProdServ.add(btnPesquisaProdServ);
 
@@ -343,12 +335,14 @@ public class FrmVenda {
 		panConsulta.add(btnConsultaEstoque);
 
 		btnAcao = new JButton("Finalizar");
-		btnAcao.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniSalvar.png")));
+		btnAcao.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/MiniSalvar.png")));
 		btnAcao.setBounds(607, 11, 133, 38);
 		panInferior.add(btnAcao);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/MiniX.png")));
+		btnCancelar.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/MiniX.png")));
 		btnCancelar.setBounds(465, 11, 132, 38);
 		panInferior.add(btnCancelar);
 
@@ -391,42 +385,50 @@ public class FrmVenda {
 		JButton btnCalculaTroco = new JButton(">");
 		btnCalculaTroco.setBounds(161, 21, 41, 23);
 		panDinheiro.add(btnCalculaTroco);
-		
+
 		janela.setContentPane(panPrincipal);
-		
+
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 833, 21);
 		panPrincipal.add(menuBar);
-		
+
 		menu = new JMenu("Menu\r\n");
 		menuBar.add(menu);
-		
+
 		mntmTelaPrincipal = new JMenuItem("Tela Principal");
-		mntmTelaPrincipal.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/HomeMenu.png")));
+		mntmTelaPrincipal.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/HomeMenu.png")));
 		menu.add(mntmTelaPrincipal);
-		
+
 		mntmLogOff = new JMenuItem("Log Off");
-		mntmLogOff.setIcon(new ImageIcon(FrmVenda.class.getResource("/img/LogOffMenu.png")));
+		mntmLogOff.setIcon(new ImageIcon(FrmVenda.class
+				.getResource("/img/LogOffMenu.png")));
 		menu.add(mntmLogOff);
 		janela.setSize(849, 733);
 		ConfiguracoesTela configTela = new ConfiguracoesTela();
 		configTela.iconeBarra(janela);
 		configTela.tamanho(janela);
-		
-		mntmTelaPrincipal.addActionListener( e -> {
+
+		mntmTelaPrincipal.addActionListener(e -> {
 			janela.dispose();
 			janela = null;
 			new FrmPrincipal(u);
 		});
-		
-		mntmLogOff.addActionListener( e -> {
+
+		mntmLogOff.addActionListener(e -> {
 			janela.dispose();
 			janela = null;
 			new FrmLogin();
 		});
-		
+
 	}
-	
+
+	/**
+	 * Metodo main
+	 * 
+	 * @param args
+	 */
+
 	public static void main(String[] args) {
 		new FrmVenda(new Usuario());
 	}

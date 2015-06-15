@@ -87,15 +87,16 @@ public class Cliente extends Pessoa{
 	}
 
 	/**
-	 * Método para 
-	 * @param cpf
+	 * Método para setar o cpf do cliente
+	 * @param cpf valor do cpf
 	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
 	/**
-	 * 
+	 * Método para retorno do telefone do cliente
+	 * @return numero do telefone
 	 */
 	@Coluna(nome="Telefone", posicao=5)
 	@Override

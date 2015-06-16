@@ -111,9 +111,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-/**
- * Consulta um Produto
- */
+	/**
+	 * Consulta um Produto
+	 */
 	
 	@Override
 	public Produto consultaProduto(String id) throws SQLException {

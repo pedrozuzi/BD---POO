@@ -13,8 +13,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.border.SoftBevelBorder;

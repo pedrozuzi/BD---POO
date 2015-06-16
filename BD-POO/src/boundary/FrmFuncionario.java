@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -46,7 +47,7 @@ import util.TratamentoTextFields;
  * @author Pedro Afonso
  *
  */
-public class FrmFuncionario implements ActionListener, MouseListener{
+public class FrmFuncionario extends MouseAdapter implements ActionListener {
 
 	private JFrame janela;
 	private JPanel panPrincipal;
@@ -371,6 +372,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 			
 	}
 	
+	/**
+	 * 
+	 * @param controle
+	 */
 	private void montarTela(int controle) {
 		if(controle == 1){
 			lblNome.setVisible(true);
@@ -427,6 +432,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		}
 	}
 
+	/**
+	 * Método para acao de diversos botões na tela
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object acao = e.getSource();
@@ -521,6 +529,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 
 	}
 	
+	/**
+	 * Método solicita a pesquisa de um funcionario pelo nome
+	 * e monta o modelo da tabela
+	 */
 	private void pesquisar() {
 		try{
 			lista = ctrlFunc.pesquisarFuncionario(txtNome.getText());
@@ -538,11 +550,19 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		
 	}
 
+	/**
+	 * Método para verificar se os campos obrigatorios 
+	 * estão com dados
+	 * @return true para verdadeiro
+	 */
 	private boolean validaCampos() {
 		return txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
 				txtSalario.getText().isEmpty() || txtTelefone.getText().isEmpty();
 	}
-
+	
+	/**
+	 * Método para limpar os campos da tela
+	 */
 	private void limpaCampos() {
 		bg.clearSelection();
 		txtCpf.setText("");
@@ -551,6 +571,9 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		txtTelefone.setText("");
 	}
 	
+	/**
+	 * Método para acao de um click na tabela
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Object[] valores = new Object[2];
@@ -560,14 +583,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
-//		valores[coluna] = table.getValueAt(linha, coluna); NAO FUNCIONA SOMENTE COM ESTA LINHA POIS NAO PEGARA O 
-//															VALOR DAS DUAS COLUNAS.
 		
 		id = lista.get(linha).getId();
 		for (Funcionario f : lista) {
 			if(valores[0].equals(f.getNome())){
-//				txtNome.setText(String.valueOf(valores[0]));
-//				txtCpf.setText(String.valueOf(valores[1]));
 				txtNome.setText(f.getNome());
 				txtCpf.setText(f.getCpf());
 				txtTelefone.setText( Integer.toString(f.getTelefone()) );
@@ -590,6 +609,10 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		}
 	}
 
+	/**
+	 * Método que deixa todos os campos da tela 
+	 * habilitados
+	 */
 	private void habilitarCampos() {
 		txtCpf.setEnabled(true);
 		txtSalario.setEnabled(true);
@@ -598,24 +621,4 @@ public class FrmFuncionario implements ActionListener, MouseListener{
 		rdbtnAtendente.setEnabled(true);
 		rdbtnAdministrador.setEnabled(true);
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-	
-//	public static void main(String[] args) {
-//		new FrmFuncionario();
-//	}
 }

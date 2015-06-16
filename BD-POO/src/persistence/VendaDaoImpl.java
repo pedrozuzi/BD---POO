@@ -65,7 +65,7 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 	}
 
 	/**
-	 * 
+	 * Exclui uma venda
 	 */
 	
 	@Override
@@ -81,7 +81,7 @@ public class VendaDaoImpl implements VendaDao, VendaProdutoDao {
 	}
 	
 	/**
-	 * 
+	 * Lista n vendas a partir de uma pesquisa
 	 */
 
 	@Override

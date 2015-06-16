@@ -118,6 +118,11 @@ public class CtrlVenda implements ActionListener {
 		}
 
 	}
+	
+	/**
+	 * Insere uma venda.
+	 * @param vend
+	 */
 
 	public void insereVenda(Venda vend) {
 		vDao = new VendaDaoImpl();
@@ -132,6 +137,11 @@ public class CtrlVenda implements ActionListener {
 		}
 
 	}
+	
+	/**
+	 * Exclui uma venda.
+	 * @param vend
+	 */
 
 	public void excluiVenda(Venda vend) {
 		vDao = new VendaDaoImpl();
@@ -144,6 +154,11 @@ public class CtrlVenda implements ActionListener {
 		}
 	}
 
+	/**
+	 * Atualiza uma venda.
+	 * @param vend
+	 */
+	
 	public void atualizaVenda(Venda vend) {
 		vDao = new VendaDaoImpl();
 		try {
@@ -157,6 +172,13 @@ public class CtrlVenda implements ActionListener {
 		}
 	}
 
+	/**
+	 * Lista a venda a partir de pesquisa.
+	 * @param vend
+	 * @return
+	 * @throws SQLException
+	 */
+	
 	public List<Venda> buscaVenda(Venda vend) throws SQLException {
 		List<Venda> lista = new ArrayList<Venda>();
 		vDao = new VendaDaoImpl();

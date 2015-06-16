@@ -48,7 +48,6 @@ public class ServicoDaoImpl implements ServicoDao {
 		ps.setInt(3, servico.getValor());
 		ps.setInt(4, servico.getAnimal().getId() );
 		ps.setInt(5, servico.getCliente().getId());
-		System.out.println(servico.getAnimal().getNome()+"\n"+servico.getAnimal().getId());
 		ps.execute();
 		ps.close();
 		
@@ -121,7 +120,6 @@ public class ServicoDaoImpl implements ServicoDao {
 		ResultSet rs = ps.executeQuery();
 		
 		while (rs.next()){
-			System.out.println("ENTROU");
 			Servico s = new Servico();
 			Cliente c = new Cliente();
 			Animal a = new Animal();

@@ -114,7 +114,7 @@ public class ServicoDaoImpl implements ServicoDao {
 				+ "on a.id = s.id_animal "
 				+ "right outer join agenda ag "
 				+ "on s.id = ag.id_servico "
-				+ "where hora > CONVERT(CHAR(5), GETDATE()-'00:15', 108) "
+				+ "where hora > CONVERT(CHAR(5), GETDATE()-'00:10', 108) "
 				+ "and ag.id_servico is not null";	
 		
 		PreparedStatement ps = c.prepareStatement( query );

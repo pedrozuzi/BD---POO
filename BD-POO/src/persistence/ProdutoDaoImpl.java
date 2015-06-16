@@ -34,6 +34,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		c = gDao.getConnection();
 	}
 
+	/**
+	 * Insere um produto.
+	 */
 
 	@Override
 	public int insereProduto(Produto prod) throws SQLException {
@@ -60,6 +63,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Atualiza um produto.
+	 */
 
 	@Override
 	public void atualizaProduto(Produto prod) throws SQLException {
@@ -81,12 +87,16 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		ps.close();
 
 	}
+	
+	/**
+	 * Exclui um produto
+	 */
 
 	@Override
 	public void excluiProduto(Produto prod) throws SQLException {
 
 		String query = "delete produto " + " where id = ?";
-		//XXX ON CASCADE
+		
 		query = "delete lot from lote lot"
 				+ " inner join lote_produto lp on lot.id = lp.idLote"
 				+ " inner join produto prod"
@@ -101,7 +111,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
-
+/**
+ * Consulta um Produto
+ */
+	
 	@Override
 	public Produto consultaProduto(String id) throws SQLException {
 
@@ -124,6 +137,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Lista n produtos
+	 */
 
 	@Override
 	public List<Produto> listaProduto(String nome) throws SQLException {
@@ -153,6 +169,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 	}
 
 
+	/**
+	 * Insere um lote.
+	 */
+	
 	@Override
 	public int insereLote(Lote lot) throws SQLException {
 		String sql = "INSERT INTO lote (data_validade)" + "VALUES(?)";
@@ -170,6 +190,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return id;
 
 	}
+	
+	/**
+	 * Atualiza as informações de um lote.
+	 */
 
 	@Override
 	public void atualizaLote(Lote lot) throws SQLException {
@@ -184,6 +208,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Exclui um lote.
+	 */
+	
 	@Override
 	public void excluiLote(Lote lot) throws SQLException {
 
@@ -196,6 +224,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Consulta um lote.
+	 */
 	
 	@Override
 	public Lote consultaLote(Lote lot) throws SQLException {
@@ -203,6 +234,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return null;
 	}
 
+	/**
+	 * Lista um lote
+	 */
 
 	@Override
 	public List<Lote> listaLote(int id) throws SQLException {
@@ -232,6 +266,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return lista;
 	}
 
+	/**
+	 * Vincula lote e produto.
+	 */
 	
 	@Override
 	public void insereLoteProduto(LoteProduto lotProd) throws SQLException {
@@ -246,6 +283,10 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
 
+	/**
+	 * Atualiza vinculo entre lote e produto.
+	 */
+	
 	@Override
 	public void atualizaLoteProduto(LoteProduto lotProd) throws SQLException {
 		String sql = "UPDATE lote_produto SET idProduto = ?, idLote = ?"
@@ -260,6 +301,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
     
+	/**
+	 * Exclui vinculo entre lote e produto.
+	 */
 	
 	@Override
 	public void excluiLoteProduto(LoteProduto lotProd) throws SQLException {
@@ -274,6 +318,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 
 	}
  
+	/**
+	 * Consulta lote produto.
+	 */
 	
 	@Override
 	public LoteProduto consultaLoteProduto(LoteProduto lotProd)
@@ -282,6 +329,9 @@ public class ProdutoDaoImpl implements ProdutoDao, LoteDao, LoteProdutoDao {
 		return null;
 	}
 
+	/**
+	 * lista de vinculo entre lote e produto.
+	 */
 	
 	@Override
 	public List<LoteProduto> listaLoteProduto() throws SQLException {

@@ -19,7 +19,10 @@ import entity.Pessoa;
 public class PessoaDaoImpl implements PessoaDao {
 	
 private Connection c;
-	
+		
+	/**
+	 * Construtor
+	 */
 	public PessoaDaoImpl() {
 		GenericConnection gDao = new ConnectionImpl();
 		c = gDao.getConnection();

@@ -493,7 +493,7 @@ public class FrmServico implements MouseListener, ActionListener{
 				jd = new JDialog(janela, "Buscar serviço", true);
 			}	
 		} else {
-			jd = new JDialog(janela, "ERRO", true);
+			jd = new JDialog(janela, "Nenhum dado informado", true);
 		}
 
 		jd.setSize(600, 300);

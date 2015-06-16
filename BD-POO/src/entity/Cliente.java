@@ -20,6 +20,7 @@ public class Cliente extends Pessoa{
 	 * Método para retorno do nome do cliente
 	 * @return nome do cliente
 	 */
+	@Coluna(nome="Nome", posicao=0)
 	@Override
 	public String getNome() {
 		return super.getNome();

@@ -521,10 +521,8 @@ public class FrmCliente extends MouseAdapter {
 		for (coluna = 0; coluna < table.getColumnCount(); coluna++) {
 			valores[coluna] = table.getValueAt(linha, coluna);
 		}
-		
 		id = lista.get(linha).getId();
 		txtNome.setText( String.valueOf(valores[0]));
-		System.out.println(valores[1]);
 		txtCpf.setText(String.valueOf(valores[1]));
 		txtLogradouro.setText(String.valueOf(valores[2])); 
 		txtNumero.setText(String.valueOf(valores[3]));

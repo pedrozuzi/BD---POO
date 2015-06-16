@@ -222,7 +222,7 @@ public class FrmVenda {
 		lblProdutoServico.setBounds(10, 32, 96, 14);
 		panTable.add(lblProdutoServico);
 
-		lblProdServ = new JLabel("lblProdServ");
+		lblProdServ = new JLabel("-");
 		lblProdServ.setBounds(133, 32, 73, 14);
 		panTable.add(lblProdServ);
 
@@ -306,11 +306,11 @@ public class FrmVenda {
 		lblPrecoTotal.setBounds(14, 208, 114, 14);
 		panProdServ.add(lblPrecoTotal);
 
-		lblPrecoUPS = new JLabel("New label");
+		lblPrecoUPS = new JLabel("-");
 		lblPrecoUPS.setBounds(157, 187, 46, 14);
 		panProdServ.add(lblPrecoUPS);
 
-		lblPrecoTPS = new JLabel("New label");
+		lblPrecoTPS = new JLabel("-");
 		lblPrecoTPS.setBounds(157, 208, 46, 14);
 		panProdServ.add(lblPrecoTPS);
 
